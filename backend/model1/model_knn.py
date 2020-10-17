@@ -17,9 +17,15 @@ class Model():
 
     def predict(self,vec=[]):
         X,y=self.prepare_dataset()
-        print(X,y)
         self.model=KNN(n_neighbors=self.num,metric="manhattan")
         self.model.fit(X,y)
-        return self.model.predict([vec])[0]
+        key=self.model.classes_
+        val=list(self.model.predict_proba([vec])[0])
+        d={}
+        k=0
+        for i in key:
+            d[i]=val[k]
+            k+=1
+        return d
 
         
