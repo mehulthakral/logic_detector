@@ -3,8 +3,8 @@ An attempt to detect logic of the program
 
 Steps:
 
-1. Install Docker
-2. Install Dockerfile
+1. Install docker
+2. Install docker-compose
 3. clone the repo
 4. `sudo docker-compose up --build`
 5. type `localhost:8090` in browser to access UI
