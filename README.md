@@ -14,7 +14,7 @@ Note to add a new logic detection module,
 
 1. create a directory modelx where x is a number. 
 2. add the required modules in it.
-3. create a file called `predict.py` and add a function called `predict(function,language)` which takes 2 args. `function` is the string which contains the function definition and language specifies the language
+3. create a file called `predict.py` and add a function called `predict(function,language)` which takes 2 args and returns a python dict. `function` is the string which contains the function definition and language specifies the language. The return value must be a python dict which gives probabilities of various classes. The keys are the classes and values are probabilities.
 
 
 
