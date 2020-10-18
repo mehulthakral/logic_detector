@@ -1,15 +1,15 @@
 
-def EQUAL(a,b,c):
-    return int(a==b and b==c) 
+def EQUAL(a,b):
+    return int(a==b)
 
-def MIN(a,b,c):
-    return min(a,b,c)
+def MIN(a,b):
+    return min(a,b)
 
-def MAX(a,b,c):
-    return max(a,b,c)
+def MAX(a,b):
+    return max(a,b)
 
-def SUM(a,b,c):
-    return a+b+c
+def SUM(a,b):
+    return a+b
 
 def MAX_ARR(l:list):
     return max(l)
@@ -36,6 +36,19 @@ def SEARCH(l:list):
 def SQUARE(a:float):
     return a*a
 
+def MAX_FREQ(a:list):
+    d={}
+    for i in a:
+        if i not in d:
+            d[i]=0 
+        d[i]+=1
+    m=0
+    m_=0
+    for i in d:
+        if d[i]>m:
+            m=d[i]
+            m_=i
+    return m_
 
 
 

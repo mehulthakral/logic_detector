@@ -1,22 +1,19 @@
-
-from model1.predict import predict
-from flask import Flask,jsonify,request,Response,render_template
-from flask_cors import CORS, cross_origin
-import os
-import requests
-from werkzeug.utils import secure_filename
-
+import model1.Predict as mp
+from flask import Flask,jsonify,request
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/predict', methods=['GET'])
-@cross_origin(origin='*')
+@app.route('/predict', methods=['POST'])
 def string():
     json = request.get_json(force=True)
 
-    return predict(json['f'],json['lang'])
+    return jsonify(mp.predict(json['f'],json['lang']))
 
 
-
+if __name__ == '__main__':
+    app.debug=True
+    app.run()
 
 
     

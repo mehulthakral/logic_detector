@@ -5,13 +5,12 @@ from sklearn.preprocessing import LabelEncoder
 import pandas as pd 
 import numpy as np
 import random
-from inspect import *
 from keras.models import load_model
 import pickle
 
 
 class Model:
-    def __init__(self,name="dataset.csv",test_samples=1) -> None:
+    def __init__(self,name="model1/dataset.csv",test_samples=1) -> None:
         self.dataset=pd.read_csv(name,header=None)
         self.num_test_samples=test_samples
         self.model=None
@@ -23,7 +22,6 @@ class Model:
         le = LabelEncoder()
         le.fit(y)
         y = le.transform(y)
-        #d=dict(zip(le.transform(le.classes_),le.classes_))
         return y,le
 
     def prepare_dataset(self):
@@ -72,7 +70,7 @@ class Model:
                 print("\t",d.inverse_transform([i])[0],":",l[j][i]) 
             print("\t ACTUAL ANS : ",d.inverse_transform([self.y_test[j]])[0])
 
-    def save(self,name="model.h5",label="label.pkl"):
+    def save(self,name="model1/model.h5",label="model1/label.pkl"):
         if self.model==None:
             self.train()
         self.model.save(name)
@@ -83,10 +81,10 @@ class Model:
 
     def load(self):
         try:
-            self.model=load_model("model.h5")
+            self.model=load_model("model1/model.h5")
         except:
             self.save()
-        pkl_file = open('label.pkl', 'rb')
+        pkl_file = open('model1/label.pkl', 'rb')
         self.d = pickle.load(pkl_file) 
         pkl_file.close()
     
@@ -99,19 +97,19 @@ class Model:
             mapping={}
             for i in range(len(l[0])):
                 mapping[self.d.inverse_transform([i])[0]]=l[0][i]
-            return mapping
+            return str(mapping)
         else:
-            return {}
+            return str({})
 
 
 
 
 
 if __name__=="__main__":
-    obj=Model()
-    obj.train()
-    obj.test()
-    obj.save()
+    model=Model()
+    model.train()
+    model.test()
+    model.save()
 
 
 

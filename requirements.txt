@@ -3,8 +3,8 @@ pymysql
 requests
 flask_cors
 Werkzeug
-numpy
-pandas
 tensorflow
 keras
 sklearn
+numpy
+pandas

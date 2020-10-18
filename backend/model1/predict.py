@@ -1,42 +1,12 @@
-from numpy.random import seed
-seed(0)
-import tensorflow
-tensorflow.random.set_seed(0)
+from . import func
+from . import languages
+from . import model_knn as model 
+import sys
 
-
-
-def Vector(f,lang):
-    import languages
-    if type(f)==str:
-        d={}
-        exec(f,{},d)
-        f=list(d.values())[0]
-    if lang=="python":
-        obj=languages.python(f)
-    else:
-        obj=languages.python(max) #default
-
-    ans=obj.generate_vector()
-
-    return ans 
 
 def predict(f,lang):
-    vec=Vector(f,lang)
-    import model_knn as model 
+    vec=languages.Vector(f,lang)
     obj=model.Model()
     return obj.predict(vec)
-
-
-if __name__=="__main__":
-    #test
-    import func
-    print(predict(func.MAX,"python"))
-    #print(predict("def f(a): return 10*a","python"))
-
-
-
-
-
-
 
 

@@ -1,29 +1,30 @@
-from numpy.random import seed
-seed(0)
-import tensorflow
-tensorflow.random.set_seed(0)
-
 import csv
-from predict import Vector
 import func
 import random
+import languages 
 
+import inspect
 
+def add_to_dataset(choice,lang="python",dataset_name="dataset.csv"):
 
-def add_to_dataset(f,lang="python",name="dataset.csv"):
-    ans=Vector(f,lang)
+    name,f=choice
 
-    ans.append(f)
+    ans=languages.Vector(f,lang)
 
-    with open(name,"a",newline='') as file:
+    ans.append(name)
+
+    print(ans)
+
+    with open(dataset_name,"a",newline='') as file:
         writer=csv.writer(file)
         writer.writerow(ans)
 
-def generate_dataset(nums=2):
-    l=[f for f in dir(func) if '__' not in f]
-    print(l)
-    for i in range(nums):
+def generate_dataset(nums=50):
+    l=[o for o in inspect.getmembers(func) if inspect.isfunction(o[1])]
+    
+    for _ in range(nums):
         f=random.choice(l)
+        print(f)
         add_to_dataset(f) 
 
 generate_dataset()

@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 class Model():
 
-    def __init__(self,name="dataset.csv",num=1) -> None:
+    def __init__(self,name="model1/dataset.csv",num=1) -> None:
         self.dataset=pd.read_csv(name,header=None)
         self.dataset.dropna()
         self.num=num
@@ -26,6 +26,5 @@ class Model():
         for i in key:
             d[i]=val[k]
             k+=1
+        ans=self.model.predict([vec])[0]
         return d
-
-        
