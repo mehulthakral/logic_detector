@@ -1,5 +1,5 @@
     def heapify(nums, n, i):
-        # 递归函数出口
+        # 
         if i > n: return
         largest = i
         l = 2*i+1
@@ -10,7 +10,7 @@
         # swap the largest element with the parent node of the tree
         if largest != i: 
             nums[i], nums[largest] = nums[largest],nums[i]
-            heapify(nums, n, largest) # 递归保证最小值下沉到tree底部， 保持max_heap的合法性
+            heapify(nums, n, largest) # 
     
     
     def build_heap(nums):
