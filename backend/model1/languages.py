@@ -9,19 +9,33 @@ import pandas as pd
 import numpy as np
 import random
 import inspect
-
+from typing import List, Set, Dict, Tuple, Optional
 class python:
-    len_list=3
-    mappings={int:random.random,float:random.random,bool:lambda : random.randint(0,1),list: lambda : [random.randint(0,1) for i in range(python.len_list)],tuple: lambda : [random.randint() for i in range(python.len_list)],set: lambda : [random.random() for i in range(python.len_list)],inspect.Parameter.empty:random.random}
-    def __init__(self,f,nums=1000) -> None:
+    def __init__(self,f,nums=1000,a=0,b=3,len_list=3) -> None:
         self.func=f
         self.nums=nums
+        self.len_list=len_list
+        self.a=a
+        self.b=b
+        self.mappings={
+            int:lambda :random.randint(a,b),
+            float:lambda : random.random(),
+            bool:lambda : bool(random.randint(0,1)),
+            list: lambda : [random.randint(a,b) for i in range(len_list)],
+            tuple: lambda : tuple([random.randint(a,b) for i in range(len_list)]),
+            set: lambda : {random.randint(a,b) for i in range(len_list)},
+            List[int]: lambda :[random.randint(a,b) for i in range(len_list)],
+            Tuple[int]: lambda : tuple([random.randint(a,b) for i in range(len_list)]),
+            Set[int]: lambda : {random.randint(a,b) for i in range(len_list)},
+            List[float]: lambda :[random.random() for i in range(len_list)],
+            inspect.Parameter.empty:lambda : random.random()
+        }
 
     def data_gen(self):
         params=inspect.signature(self.func).parameters
         l=[]
         for i in params:
-            l.append(python.mappings[params[i].annotation]())
+            l.append(self.mappings[params[i].annotation]())
         return l
 
     def generate_data(self):
@@ -60,7 +74,7 @@ class python:
         # compile the keras model
         model.compile(loss='mse', optimizer='adam')
 
-        model.fit(X, y, epochs=150, batch_size=5,verbose = 0)
+        model.fit(X, y, epochs=150, batch_size=5)
 
         ans=[]
         for i in model.layers[1:-1]:

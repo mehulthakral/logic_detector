@@ -1,37 +1,20 @@
 
+from typing import List, Set, Dict, Tuple, Optional
+
 def EQUAL(a,b):
     return int(a==b)
 
-def MIN(a,b):
-    return min(a,b)
-
-def MAX(a,b):
-    return max(a,b)
-
-def SUM(a,b):
-    return a+b
-
-def MAX_ARR(l:list):
+def MAX(l:list):
     return max(l)
 
-def MIN_ARR(l:list):
+def MIN(l:list):
     return min(l)
 
-def SUM_ARR(l:list):
+def SUM(l:list):
     return sum(l)
 
-def EQUAL_ARR(l:list):
-    x=l[0]
-    for i in l:
-        if i!=x:
-            return 0
-    return 1
-
-def SEARCH(l:list):
-    for i in l:
-        if i<0.5:
-            return 1 
-    return 0
+def SEARCH(l:List[int],a:int):
+    return a in l
 
 def SQUARE(a:float):
     return a*a
@@ -50,6 +33,25 @@ def MAX_FREQ(a:list):
             m_=i
     return m_
 
+def SORT(l:list):
+    return sorted(l)
 
+def FIB(N: int):
+    if N < 2: return N
+    a, b = 0, 1
+    for _ in range(N-1):
+        c = a+b
+        a, b = b, c
+    return c
 
-#func=MAX
+def PALIN(x:int):
+    return str(x) == str(x)[::-1] 
+
+def POW(x:float,n:float):
+    return x**n
+
+def GCD(x:int,y:int):
+   while(y): 
+       x, y = y, x % y 
+  
+   return x 

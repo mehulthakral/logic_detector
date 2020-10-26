@@ -13,8 +13,6 @@ def add_to_dataset(choice,lang="python",dataset_name="dataset.csv"):
 
     ans.append(name)
 
-    print(ans)
-
     with open(dataset_name,"a",newline='') as file:
         writer=csv.writer(file)
         writer.writerow(ans)
