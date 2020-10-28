@@ -1,0 +1,1463 @@
+fib,"from scipy import constants as c
+
+class Solution:
+    def fib(self, N: int) -> int:
+        return int((c.golden ** N + 1) / 5 ** 0.5)
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        dp_0,dp_1 = 0,1
+        for i in range(N):
+            dp_0,dp_1 = dp_1,dp_1+dp_0
+        return dp_0
+"
+fib,"class Solution:
+    # @functools.lru_cache(maxsize=10 ** 6)
+    def fib(self, N: int) -> int:  
+        if N < 2:
+            return N
+
+        return self.fib(N - 1) + self.fib(N - 2)
+"
+fib,"class Solution:
+	def fib(self, N: int) -> int:
+		def dfs(n):
+			if n not in memo: memo[n] = dfs(n-1)+dfs(n-2)            
+			return memo[n]
+			
+		memo = {0:0, 1:1}
+		return dfs(N)
+"
+fib,"class Solution:
+	def fib(self, N: int) -> int:        
+		dp = [0, 1]+[0]*(N-1)
+		for i in range(2, N+1):
+			dp[i] = dp[i-1]+dp[i-2]
+		return dp[N]
+"
+fib,"class Solution:
+	def fib(self, N: int) -> int:
+		if N < 2: return N
+		a, b = 0, 1
+		for _ in range(N-1):
+			c = a+b
+			a, b = b, c
+		return c
+"
+fib,"class Solution:
+    def fib(self, n: int) -> int:
+		# initializing table with hard-coded base values
+        table = [0,1,1]
+
+        if n > 2:  # series until 2 is already in table, we needn't calculate again
+			# we iterate until the nth term is reached (added an offset of 2 since first two are already in table)
+            for i in range(n-2): 
+                table.append(table[-1] + table[-2])
+        
+		# return required nth term,
+		# table[-1] would have worked except for n < 2, since our table is initialized until 2nd term.
+        return table[n] 
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        curr = 1
+        prev = 0
+
+        if N == 0:
+            return prev
+        elif N==1:
+            return curr
+        else:
+            for i in range(N-1):
+                prev, curr = curr, curr+prev
+
+        return curr
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        if N < 2:
+            return N
+        
+        p1 = 1
+        p2 = 1
+        
+        for i in range(2, N):
+            temp = p1
+            p1 += p2
+            p2 = temp
+            
+        return p1
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:      
+        def dp(n):
+            if memo[n] != None:
+                return memo[n]
+            memo[n] = 0 if n==0 else 1 if n == 1 else dp(n-1) + dp(n-2)
+            return memo[n]  
+        
+        memo = [None] * (N+1)
+        return dp(N)
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        a,b = 0 ,1
+        n = 2
+#special case is when N is 0 or 1:
+        if N ==0:
+            return 0
+        if N ==1:
+            return 1
+#run while loop to do the math
+        while n<=N:
+            rst = a + b
+            a,b = b , a+b
+            n +=1
+        return(rst)
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        res = [0,1]
+        if N == 0:
+            return res[0]
+        elif N==1:
+            return res[1]
+        for i in range(2,N+1):
+            res.append(res[-1] + res[-2])            
+        return res[-1]
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        if N == 0:
+            return 0
+        elif N == 1:
+            return 1
+        else:
+            fibs = [0, 1]
+            for number in range(N-1):
+                fibs.append(fibs[-1] + fibs[-2])
+            return fibs[-1]
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        if N == 0:
+            return 0
+        if N == 1:
+            return 1
+
+        if N > 1:
+            return self.fib(N - 1) + self.fib(N - 2)
+
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        f = [0, 1]
+        if N == 0:
+            return f[0]
+        elif N == 1:
+            return f[1]
+        else:
+            for i in range(2, N + 1):
+                f.append(f[i-2] + f[i-1])
+
+        return f[-1]
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        f = (0, 1)
+        if N == 0:
+            return f[0]
+        elif N == 1:
+            return f[1]
+        else:
+            for _ in range(2, N + 1):
+                f += (f[-2] + f[-1],)
+
+        return f[-1]
+"
+fib,"class Solution:
+    def fib(self, n: int) -> int:
+        
+        def get_mat_mult(mat, other_mat):
+            res = [[0 for _ in range(len(mat[0]))] for _ in range(len(mat))]
+            for i in range(len(mat)):
+                for j in range(len(mat[i])):
+                    for k in range(len(other_mat[i])):
+                        res[i][j] += mat[i][k] * other_mat[k][j]
+            return res
+        
+        if n == 0 or n == 1:
+            return n
+        
+        final_mat = [[1,0],[0,1]]
+        start_mat = [[1,1], [1,0]]
+        n -= 1
+        while(n):
+            if (n & 1):
+                final_mat = get_mat_mult(start_mat, final_mat)
+            start_mat = get_mat_mult(start_mat, start_mat) 
+            n >>= 1
+        return final_mat[0][0]
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        memo = [0, 1]
+        for i in range(2, N+1):
+            memo.append(memo[i-1]+memo[i-2])
+        return memo[N]"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        
+        res = [0,1]
+        c = 0
+        
+        if N == 0:
+            return res[0]
+        elif N==1:
+            return res[1]
+        
+        for i in range(2,N+1):
+            
+            c = res[0] + res[1]
+            
+            res[0] = res[1]
+            res[1] = c
+            
+        return res[-1]
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        ## RC ##
+        if(N == 0): return 0
+        dp = [0,1] + [0] * (N-1)
+        for i in range(2,N+1):
+            dp[i] = dp[i-1] + dp[i-2]
+        return dp[-1]
+"
+fib,"class Solution:
+    def fib(self, N: int) -> int:
+        s = [0, 1]
+        for i in range(2, N + 1):
+            s.append(s[i - 1] + s[i - 2])
+        return s[-1] if N > 0 else 0
+"
+fib,"class Solution:
+	def fib(self, N: int) -> int:
+		dic = {}
+		dic[0], dic[1] = 0, 1
+		for i in range(2, N+1):
+			dic[i] = dic[i-1] + dic[i-2]
+		return dic[N]
+"
+fib,"class Solution:
+    def fib(self, N):
+        f = {0: 0, 1: 1}
+        
+        n = 1
+        
+        while N not in f:
+            f[n + 1] = f[n] + f[n - 1]
+            
+            n += 1
+            
+        return f[N]
+"
+isAnagram,"from collections import Counter
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        count ={}
+		# +1 for s and -1 for t. If the char from s not in count then assign 1 and if the char from t not in count , then assign -1. 
+        for i in range(len(s)):
+            if s[i] in count:
+                count[s[i]] +=1
+            else:
+                count[s[i]] =1
+            if t[i] in count:
+                count[t[i]] -=1
+            else:
+                count[t[i]] = -1
+        
+        for key,value in count.items():
+            if value !=0:
+                return False
+        return True
+"
+isAnagram,"from collections import Counter
+class Solution:
+    def isAnagram(self, s, t):
+		    return Counter(s)==Counter(t)
+"
+isAnagram,"from collections import Counter
+class Solution:
+        def isAnagram(self, s: str, t: str) -> bool:
+                return Counter(t)==Counter(s)"
+isAnagram,"from collections import Counter
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s)==Counter(t)
+"
+isAnagram,"from collections import Counter
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
+        
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s, t):
+        dictionary = {}
+        
+        for i in s:
+            if i in dictionary:
+                dictionary[i] += 1
+            else:
+                dictionary[i] = 1
+
+        for i in t:
+            if i in dictionary:
+                dictionary[i] -= 1
+            else:
+                return False
+
+        for val in dictionary.values():
+            if val != 0:
+                return False
+        
+        return True
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        dicts = {}
+        
+        for i in s:
+            if i in dicts:
+                dicts[i] += 1
+            else:
+                dicts[i] = 1
+        
+        for i in t:
+            if i in dicts:
+                dicts[i] -= 1
+            else:
+                return False
+        
+        for value in dicts.values():
+            if value != 0:
+                return False
+        
+        return True
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        dic_s, dic_t = {}, {}
+        for letter in s:
+            if letter not in dic_s:
+                dic_s[letter] = 1
+            else:
+                dic_s[letter] += 1
+        for letter in t:
+            if letter not in dic_t:
+                dic_t[letter] = 1
+            else:
+                dic_t[letter] += 1
+        return dic_t == dic_s
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        # convert strings to lists
+        s_list = []
+        t_list = []
+        
+        for item in s:
+            s_list.append(item)
+            
+        for item in t:
+            t_list.append(item)
+            
+        # loop through items in list
+        for item in s_list:
+            
+            # if it is in the other list, remove that item
+            if item in t_list:
+                
+                t_list.remove(item)
+
+            # if it is not in the other list, then return false
+            else:
+                return False
+            
+        # if the other list is empty
+        if not t_list:
+
+            return True"
+isAnagram,"from collections import Counter
+
+class Solution:
+    def isAnagram(self, s, t):
+        return Counter(s) == Counter(t)
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+      char_count = {}
+      for char in s: char_count[char] = char_count.get(char, 0) + 1
+      for char in t: char_count[char] = char_count.get(char, 0) - 1
+      return False not in [char_count[char] == 0 for char in char_count]
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        count={}
+        for i in s:
+            if i in count:
+                count[i] +=1
+            else:
+                count[i]=1
+        for i in t:
+            if i in count:
+                count[i] -=1
+            else:
+                count[i]=1
+        for k in count:
+            if count[k]!=0:
+                return False
+        return True"
+isAnagram,"class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        obj1 = {}
+        obj2 = {}
+        
+        for i in s:
+            if i not in obj1:
+                obj1[i] = 1
+            else:
+                obj1[i] += 1
+        
+        for i in t:
+            if i not in obj2:
+                obj2[i] = 1
+            else:
+                obj2[i] += 1
+                
+        return obj1 == obj2    # In python you can compare dictionaries
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s, t):
+        h = {}
+        for i in s:
+            if i not in h:
+                h[i] = 0
+            h[i] += 1
+                
+        for j in t:
+            if j not in h:
+                h[j] = 0
+            h[j] -= 1
+        
+        for key in h.keys():
+            if h[key] != 0:
+                return False
+            
+        return True"
+isAnagram,"from collections import Counter
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return(Counter(s) == Counter(t))
+"
+isAnagram,"class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return(sorted(s) == sorted(t))
+"
+isAnagram,"from collections import Counter
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(t) == Counter(s)
+"
+isAnagram,"from collections import Counter
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        return Counter(s) == Counter(t)"
+isAnagram,"from collections import Counter
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)"
+isAnagram,"from collections import Counter
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        ## RC ##
+        ## APPROACH : Counter ##
+		## TIME COMPLEXITY : O(N) ##
+		## SPACE COMPLEXITY : O(1) ##
+        return Counter(s) == Counter(t)
+
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        return str(x) == str(x)[::-1]
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x) -> bool:
+        if x<0:
+            return False 
+        else:
+            x = str(x)
+            x = [item for item in x]
+            if len(x)%2 ==0:
+                part1 = x[0:int(len(x)/2)]
+                part2 = x[int(len(x)/2):]
+                if part1 == part2[::-1]:
+                    return True 
+                else:
+                    return False 
+            else:
+                part1 = x[0:int(len(x)/2)]
+                part2 = x[int(len(x)/2)+1:]
+                if part1 == part2[::-1]:
+                    return True 
+                else:
+                    return False 
+"
+isPalindrome,"class Solution(object):
+    def isPalindrome(self, x):
+        """"""
+        :type x: int
+        :rtype: bool
+        """"""
+		# always false if negative
+        if x < 0:
+            return False
+        arr = []
+        while x != 0:
+            x, r = divmod(x, 10) # Divide by 10, see the remainder
+            arr.append(r)
+        return arr==arr[::-1]"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        return True if str(x) == str(x)[::-1] else False
+"
+isPalindrome,"class Solution(object):
+    def isPalindrome(self, x):
+        """"""
+        :type x: int
+        :rtype: bool
+        """"""
+        s=str(x)
+        d=s[::-1]
+        return s==d
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if(x<0):
+            return """"
+        else:
+            x1=x
+            count=0
+            rev=0
+            while(x1>0):
+                count+=1
+                x1//=10
+            if(count==1):
+                return ""true""
+            length=count
+            count//=2
+            if(length%2==0):
+                s=x//(10**count)
+                s1=x%(10**count)
+                while(s>0):
+                    rev=rev*10+(s%10)
+                    s=s//10
+                if(s1==rev):
+                    return ""true""
+            else:
+                s=x//(10**(count+1))
+                s1=x%(10**count)
+                while(s>0):
+                    rev=rev*10+(s%10)
+                    s=s//10
+                print(rev)
+                
+                if(s1==rev):
+                    return ""true"""
+isPalindrome,"class Solution:
+        def isPalindrome(self, x):
+                return str(x) == str(x)[::-1]
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        
+        ## RC ##
+        ## APPROACH : covert the second half of the integer and compare with first half ##
+        
+        # Special cases:
+        # when x < 0, x is not a palindrome.
+        # Also if the last digit of the number is 0, in order to be a palindrome,
+        # the first digit of the number also needs to be 0.
+        # Only 0 satisfy this property.
+        if(x < 0 or (x % 10 == 0 and x != 0)) : return False
+
+        revertedNumber = 0
+        while(x > revertedNumber):                      # indicates half completed.
+            revertedNumber = revertedNumber * 10 + x % 10
+            x = x // 10
+
+        # When the length is an odd number, we can get rid of the middle digit by revertedNumber/10
+        # For example when the input is 12321, at the end of the while loop we get x = 12, revertedNumber = 123,
+        # since the middle digit doesn't matter in palidrome(it will always equal to itself), we can simply get rid of it.
+        return x == revertedNumber or x == revertedNumber//10;
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if not x:
+            return True
+        elif x < 0:
+            return False
+        
+        old_x = x
+        new_x = 0
+        
+        while old_x:
+            (t, r) = divmod(old_x, 10)
+            new_x = new_x * 10 + r
+            old_x = t
+
+        return new_x == x
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x<0:
+            return False
+        n=str(x)
+        i,j=0,len(n)-1
+        while j>=i:
+            if n[i]==n[j]:
+                i+=1
+                j-=1
+            else:
+                return False
+        return True
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        half = len(str(x))//2
+        string = str(x)
+        for i in range(0,half):
+            if string[i] == string[-i-1]:
+                continue
+            else:
+                return False
+                break
+        return True
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x<0:
+            return False
+        x_s = str(x)
+        return x_s == x_s[::-1] 
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        return x >= 0 and x == int(f""{x}""[::-1])
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if str(x)==str(x)[::-1]:
+            return True
+        return False
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        return True if str(x) == str(x)[::-1] else False
+"
+isPalindrome,"from collections import deque
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x<0:
+            return False
+        d=deque(str(x))
+        while d:
+            l=d.popleft()
+            if d: #For odd cases like 121,422 
+                r=d.pop()
+                if int(l)!=int(r):
+                    return False
+        return True
+"
+isPalindrome,"class Solution:
+	def isPalindrome(self, x: int) -> bool:
+		if x < 0:
+			return False
+		
+		return str(x) == str(x)[::-1]
+"
+isPalindrome,"class Solution:
+	def isPalindrome(self, x: int) -> bool:
+		if x<0:
+			return False
+
+		inputNum = x
+		newNum = 0
+		while x>0:
+			newNum = newNum * 10 + x%10
+			x = x//10
+		return newNum == inputNum
+"
+isPalindrome,"class Solution:
+	def isPalindrome(self, x: int) -> bool:
+		if x < 0 or (x > 0 and x%10 == 0):   # if x is negative, return False. if x is positive and last digit is 0, that also cannot form a palindrome, return False.
+			return False
+		
+		result = 0
+		while x > result:
+			result = result * 10 + x % 10
+			x = x // 10
+			
+		return True if (x == result or x == result // 10) else False
+"
+isPalindrome,"class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0 or (x % 10 == 0 and x != 0): 
+            False
+        else:
+            rev = str(x)[::-1]
+            if rev == str(x):
+                return rev
+            else: False
+"
+myPow,"class Solution(object):
+    def myPow(self, x, n):
+        """"""
+        Implementation of pow(x, n), which calculates x raised to the power n (i.e. xn)
+        Algorithm:
+            x raised to n = (x raised 2) raised n/2 if n is even
+            and x raised to n = x times {(x raised 2) raised (n-1)/2} if n is odd
+        """"""
+        
+        def raiseto(base=x, exponent=abs(n)):
+            if exponent == 0:
+                return 1
+            elif exponent % 2 == 0:
+                return raiseto(base * base, exponent // 2)
+            else:
+                return base * raiseto(base * base, (exponent - 1) // 2)
+
+        raised = raiseto()
+
+        return float(raised) if n >=0 else 1/raised
+        
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n<0:
+            x = 1/x
+            n = abs(n)
+        res = 1
+        while n > 0:
+            if n%2 == 1:
+                res *= x
+            x *= x
+            n //= 2
+        return res
+    
+    
+   # 2^8 = 4^4
+   # 2^9 = 2*4^4 
+"
+myPow,"from math import inf
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n == 0:
+            return 1
+        if abs(x) == 1:
+            return 1 if n % 2 == 0 else x
+        
+        memo = {1: x}
+        isInverse = n < 0
+        m = abs(n)
+        result = 1
+        
+        while m > 0:
+            # reached lang limits
+            if result == 0.0:
+                return result
+            if result == inf:
+                break
+                
+            if m in memo:
+                result *= memo[m]
+                break
+            
+            subRes = x
+            progress = 1
+			
+			# equivalent to floor(log2(m))
+            while progress * 2 <= m:
+                subRes *= subRes
+                progress *= 2
+            
+            memo[progress] = subRes
+            result *= subRes
+            m -= progress
+            
+        return 1 / result if isInverse else result
+    
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        return x**n
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n == 0 or x == 1.0:
+            return 1.0
+        if x == 0:
+            if n < 0:
+                return float('inf')
+            else:
+                return 0.0
+        
+        if n < 0:
+            x, n = 1/x, -n
+        
+        res, num, power = 1.0, x, n
+        while power != 1:
+            if power%2 == 0:
+                num = num*num
+                power /= 2
+            else:
+                res *= num
+                power -= 1
+        
+        return res*num
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        return x**n
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        # x**n == (1/x)**(-n) 
+        # by using the property above we can transform the negetive power problem to positive power problem
+        # so that we solve the positive power situation, we also solved the negtive power situation.
+        if n < 0:
+            x = 1/x
+            n = -n
+        # We solve the positive power here:
+        power = 1
+        current_product = x
+        while n > 0:
+            # if n is odd numberm, we need to time x one more time
+            if n%2 : 
+                power = power * current_product
+            current_product = current_product * current_product
+            n = n//2
+        return power
+            
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n == 0 or abs(x) == 1: return 1 if x == 1 else 1 - 2*(n % 2)
+        p, T = 1, 1E5
+        for i in range(abs(n)):
+            p *= x
+            if (abs(p) < 1/T and n > 0) or (abs(p) > T and n < 0): return 0
+        return p if n > 0 else 1/p
+		"
+myPow,"class Solution:
+	def myPow(self, x: float, n: int) -> float:
+		import math
+		return pow(x,n)"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        
+        myres = 1
+        
+        if n == 0: return 1
+        elif n < 0: 
+            x = 1/x
+            n = -n
+            
+        curProd = x
+        k = n
+        
+        while (k > 0):
+            if k%2 == 1: myres *= curProd
+            curProd *= curProd
+            k //= 2
+        return myres
+
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        ret = 1
+        tmp = abs(n)
+        while(tmp):
+            if tmp % 2 == 1:
+                ret *= x
+                tmp -= 1
+            else:
+                x *= x
+                tmp /= 2
+                
+        return ret if n>0 else 1/ret
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        result = 1
+
+        
+        if n<0:
+            x = 1/x
+            n=-n
+        power = n
+
+        
+        while power:
+            if power&1:
+                result = result*x
+            x = x*x
+            power = power >>1
+            
+        return result
+"
+myPow,"import math
+
+class Solution(object):
+    def myPow(self, x, n):
+        """"""
+        :type x: float
+        :type n: int
+        :rtype: float
+        """"""
+        if x == 0 or x == 1 or n == 1:
+            return x
+        
+        if n == 0:
+            return 1
+
+        if n < 0:
+            x = 1.0/x
+
+        result = self.doPow(x, abs(n))
+        
+        return result
+    
+    def doPow(self, x, n):
+        # check boundary condition
+        if n == 1:
+            return x
+        
+        # compute the power value
+        powerVal = math.pow(x, 2)
+        
+        # recurse
+        result = self.doPow(powerVal, n/2)
+        
+        # handle odd n case
+        if n % 2 == 1:
+            result *= x
+        
+        return result
+"
+myPow,"class Solution:
+    def myPow(self, x, n, r=1) -> float:
+        x, n = n < 0 and 1 / x or x, abs(n)
+        return self.myPow(x * x, n // 2, r * (not n % 2 or x)) if n else r
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+
+        def function(base = x, exponent = abs(n)):
+            if exponent == 0:
+                return 1
+            elif exponent % 2 == 0:
+                return function(base * base, exponent // 2)
+            else:
+                return base * function(base * base, (exponent - 1) // 2)
+
+        f = function()
+        
+        return float(f) if n >= 0 else 1/f
+"
+myPow,"class Solution:
+
+    def myPow(self, x: float, n: int) -> float:
+        if x == 0: return 0.0
+        if x == 1 or n == 0: return 1.0
+        
+        power = abs(n)
+        stored_power = {}
+        res = self.get_positive_power(x, power, stored_power)
+        return 1/res if n < 0 else res 
+		
+    def get_positive_power(self, x, power, stored_power):
+        if power == 1: return x
+        if power == 2: return x*x
+        
+        if stored_power.get(power): return stored_power[power]
+        
+        prev_power = 1
+        next_power = 2
+        prev_val = x
+        
+        while next_power < power:
+            prev_val = prev_val*prev_val
+            stored_power[next_power] = prev_val
+            prev_power = next_power
+            next_power *= 2
+        
+        stored_power[power] = prev_val * self.get_positive_power(x, power-prev_power, stored_power)
+        return stored_power[power]
+
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        ## RC ##
+        ## APPROACH : RECURSION ##    
+        def recurse(n):
+            ans = 1
+            if(n == 0):
+                return 1
+            if(n==1):
+                return x
+            if(n == 2):
+                return x * x
+            
+            if(n%2 == 0):
+                ans = recurse(n//2)
+                return ans * ans
+            if( n%2 == 1):
+                ans = recurse(n//2) * recurse((n//2) + 1)
+                return ans
+            
+        if( n < 0 ):
+            x = 1/x
+            n = -n
+        return recurse(n)
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+            res = 1 
+            temp = abs(n)
+            while temp > 0:
+                if temp & 1:
+                    res = res * x 
+                x = x * x 
+                temp = temp >> 1 
+            if n > 0:
+                return res
+            else:   
+                return 1 / res
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n < 0:
+            return Solution.calc((1/x), -1 * n)
+        else:
+            return Solution.calc(x, n)
+    
+    @staticmethod
+    def calc(x,y):
+        if y == 0:
+            return 1
+        if y == 1:
+            return x
+        if y % 2:
+            return x * Solution.calc(x, y-1)
+        return Solution.calc(x*x, y//2)"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        return x**n
+"
+myPow,"class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        def helper(x, n):
+            if n == 0:
+                return 1
+            tmp = helper(x, n // 2)
+            if n % 2 == 0:
+                return tmp * tmp
+            if n % 2 == 1:
+                return x * tmp * tmp
+
+        if n >= 0:
+            return helper(x, n)
+
+        return 1 / helper(x, -n)
+"
+sortArray,"from itertools import accumulate
+class Solution:
+    def sortArray(self, nums):
+        # radix sort implementation, O(n) time complexity, where n == len(nums)
+        nums = [num + 50000 for num in nums] # unsorted array
+        A = [0] * len(nums) # each loop's sorted array
+        I = [0] * 10 # set up index array
+        for i in range(6): # because there are 6 digits
+            for num in nums:
+                I[num // (10 ** i) % 10] += 1 # find out how many occurrences of each digit
+            I = list(accumulate(I, lambda a, b: a + b)) # calculate the prefix sum
+            for j in reversed(range(len(nums))):
+                # invariant: The list is sorted at digit [j + 1:], waiting to be sorted at digit j
+                A[I[nums[j] // (10 ** i) % 10] - 1] = nums[j] # update A from the back
+                I[nums[j] // (10 ** i) % 10] -= 1 # update I at that position
+            nums[:], I[:] = A[:], [0] * 10 # copy result to nums to begin new loop, and refresh I
+        return [num - 50000 for num in nums]
+"
+sortArray,"class Solution:
+    def sortArray(self, N):
+        L = len(N)
+        return [N.pop(min(range(L-i), key = lambda x: N[x])) for i in range(L)]
+		
+		
+"
+sortArray,"class Solution:
+    def sortArray(self, N):
+        L, B = len(N), 1
+        while B:
+            B = 0
+            for i in range(L-1):
+                if N[i] > N[i+1]: N[i], N[i+1], B = N[i+1], N[i], 1
+        return N
+		
+		
+"
+sortArray,"class Solution:
+    def sortArray(self, N):
+        L = len(N)
+        for i in range(1,L):
+            for j in range(0,i):
+                if N[i] < N[j]:
+                    N.insert(j, N.pop(i))
+                    break
+        return N		
+		
+		
+"
+sortArray,"from bisect import insort_left
+class Solution:
+    def sortArray(self, N):
+        L = len(N)
+        for i in range(1,L): insort_left(N, N.pop(i), 0, i)
+        return N
+		
+		
+"
+sortArray,"from collections import Counter
+class Solution:
+    def sortArray(self, N):
+        C, m, M, S = Counter(N), min(N), max(N), []
+        for n in range(m,M+1): S.extend([n]*C[n])
+        return S
+		
+		
+"
+sortArray,"class Solution:
+    def sortArray(self, N):
+        def quicksort(A, I, J):
+            if J - I <= 1: return
+            p = partition(A, I, J)
+            quicksort(A, I, p), quicksort(A, p + 1, J)
+        
+        def partition(A, I, J):
+            A[J-1], A[(I + J - 1)//2], i = A[(I + J - 1)//2], A[J-1], I
+            for j in range(I,J):
+                if A[j] < A[J-1]: A[i], A[j], i = A[j], A[i], i + 1
+            A[J-1], A[i] = A[i], A[J-1]
+            return i
+        
+        quicksort(N,0,len(N))
+        return N
+		
+		
+"
+sortArray,"class Solution:
+    def sortArray(self, N):
+        def mergesort(A):
+            LA = len(A)
+            if LA == 1: return A
+            LH, RH = mergesort(A[:LA//2]), mergesort(A[LA//2:])
+            return merge(LH,RH)
+
+        def merge(LH, RH):
+            LLH, LRH = len(LH), len(RH)
+            S, i, j = [], 0, 0
+            while i < LLH and j < LRH:
+                if LH[i] <= RH[j]: i, _ = i + 1, S.append(LH[i])
+                else: j, _ = j + 1, S.append(RH[j])
+            return S + (RH[j:] if i == LLH else LH[i:])
+        
+        return mergesort(N)		
+		
+		
+"
+sortArray,"class Solution:
+    def sortArray(self, N):
+        def insertion_sort(A):
+            for i in range(1,len(A)):
+                for j in range(0,i):
+                    if A[i] < A[j]:
+                        A.insert(j, A.pop(i))
+                        break
+            return A
+        
+        def bucketsort(A):
+            buckets, m, S = [[] for _ in range(1000)], min(A), []
+            R = max(A) - m
+            if R == 0: return A
+            for a in A: buckets[999*(a-m)//R]
+            for b in buckets: S.extend(insertion_sort(b))
+            return S
+    
+        return bucketsort(N)
+        "
+sortArray,"class Solution:
+    def sortArray(self, nums):
+        # Hoare’s Partition Scheme works by initializing two indexes that start at two ends, 
+		# the two indexes move toward each other until an inversion is found
+        # the partition function will seperate the array by two, smaller than pivot, and greater than pivot
+        # and return the final position of the pivot element.
+        def partition(nums, left, right):
+            if left > right: return
+            
+            # use the left most element as the pivot element
+            pivot_index = left
+            pivot=nums[left]
+            
+            # if the element we are looking for is greater than pivot, then it is on the correct side
+            # when right pointer meet the left pointer, we know all the elements are in the correct sides
+            # just need to put the pivot to the correct position
+            while True:
+                while left < right and nums[right] >=pivot:
+                    right -=1
+            # do the opposite thing to the left hand side
+                while left < right and nums[left] <=pivot:
+                    left +=1
+            # if both of the numbers from the left hand side and the right hand side are on the wron side,
+            # we exchange them.
+                if left < right:
+                    nums[left],nums[right] = nums[right],nums[left]
+            # if all the elements are on the correct side, break the loop, just need to insert the pivot now.        
+                else:
+                    break
+            # insert the pivot to the correct position to seperate the array by two
+            nums[right],nums[pivot_index] = nums[pivot_index],nums[right]
+            return right
+        
+        def Hoare_quicksort(nums, start, end):
+            if end < start: return
+            p = partition(nums,start,end)
+            Hoare_quicksort(nums,start,p-1)
+            Hoare_quicksort(nums,p+1,end)
+            
+        Hoare_quicksort(nums,0,len(nums)-1)
+        return nums
+        
+"
+sortArray,"class Solution:
+    def sortArray(self, nums):
+
+        def partition(nums, left, right):
+            if left > right: return
+            
+            # use the middle  element as the pivot
+            pivot_index = left + (right-left)//2
+            pivot=nums[pivot_index]
+
+            while left<=right:
+                while left <= right and nums[left] <pivot:
+                    left +=1
+                while left <= right and nums[right] >pivot:
+                    right -=1
+                if left <= right:
+                    nums[left],nums[right] = nums[right],nums[left]
+                    left +=1
+                    right -=1
+                else:
+                    break
+            return (left,right)
+        
+        def Hoare_quicksort(nums, start, end):
+            if end < start: return
+            p = partition(nums,start,end)
+            Hoare_quicksort(nums,start,p[1])
+            Hoare_quicksort(nums,p[0],end)
+            
+        Hoare_quicksort(nums,0,len(nums)-1)
+        return nums
+        
+"
+sortArray,"class Solution:
+    def sortArray(self, nums):
+        # Merge Sort
+        
+        # merge takes two sorted array, and return the merged sorted array
+        # Leetcode #88
+        def merge(left, right):
+            l = len(left)-1
+            r = len(right)-1
+            end = l+r+1
+            
+            for _ in range(r+1):
+                left.append(None)
+                
+            while l>=0 and r>=0:
+                if left[l] >=right[r]:
+                    left[end]=left[l]
+                    l-=1
+                else:
+                    left[end]=right[r]
+                    r-=1
+                end-=1
+            if l ==-1:
+                for _ in range(r+1):
+                    left[_]=right[_]
+            
+            return left
+        
+        # if there is only one number, return the number
+        # if both left and right are sorted arrays, merge these two
+        if len(nums)<=1: return nums
+        mid = len(nums)//2
+        leftarray = self.sortArray(nums[:mid])
+        rightarray= self.sortArray(nums[mid:])
+        return merge(leftarray,rightarray)
+        
+    
+"
+sortArray,"class Solution:
+    def sortArray(self, nums):
+        def heapify(nums, n, i):
+            # 
+            if i > n: return
+            largest = i
+            l = 2*i+1
+            r = 2*i+2
+
+            if l < n and nums[l] > nums[largest]:largest = l
+            if r < n and nums[r] > nums[largest]:largest = r
+            # swap the largest element with the parent node of the tree
+            if largest != i: 
+                nums[i], nums[largest] = nums[largest],nums[i]
+                heapify(nums, n, largest) # 
+        
+        
+        def build_heap(nums):
+            n = len(nums)
+            lastNode = n-1
+            lastParent = (lastNode-1)//2
+            for i in range(lastParent+1)[::-1]:
+                heapify(nums, n, i)
+        build_heap(nums)
+
+        def heap_sort(nums):
+            n = len(nums)
+            for i in range(n)[::-1]:
+                nums[0],nums[i]=nums[i],nums[0]
+                heapify(nums, i, 0)
+        heap_sort(nums)
+
+        return nums
+"
+sortArray,"class Solution:
+    def sortArray(self, nums):
+        count = [0]*100000
+        for num in nums:
+            count[num+50000] += 1 # count the number of times we see the number
+        nums = []
+        for i,counter in enumerate(count):
+            for _ in range(counter):
+                nums.append(i-50000) # this line runs at most n times total
+        return nums
+    
+"
+sortArray,"class Solution:
+    def sortArray(self, nums):
+        block_size = 1;
+        while block_size <= len(nums):
+            for l in range(0, len(nums), block_size * 2):
+                r = min((l + (2 * block_size)), len(nums));
+                mid = l + block_size;
+                
+                L = nums[l:mid];
+                R = nums[mid:r];
+                
+                srt = [];
+                i = j = 0;
+                
+                while i < len(L) and j < len(R):
+                    if L[i] <= R[j]:
+                        srt.append(L[i]);
+                        i += 1;
+                    else:
+                        srt.append(R[j]);
+                        j += 1;
+                while i < len(L):
+                    srt.append(L[i]);
+                    i += 1;
+                while j < len(R):
+                    srt.append(R[j]);
+                    j += 1;
+                nums[l:r] = srt;
+            block_size = block_size * 2;
+        return nums;
+"
+sortArray,"class Solution:
+    def sortArray(self, nums):
+        
+        nums = [[num] for num in nums]
+
+        def merge(l1, l2):
+            i = 0
+            j = 0
+            new = []
+            
+            while i < len(l1) and j < len(l2):
+                if l1[i] < l2[j]:
+                    new.append(l1[i])
+                    i += 1
+                else:
+                    new.append(l2[j])
+                    j += 1
+                    
+            while i < len(l1):
+                new.append(l1[i])
+                i += 1
+                
+            while j < len(l2):
+                new.append(l2[j])
+                j += 1
+                
+            return new
+
+        
+        while len(nums) > 1:
+            new = []
+            for i in range(0, len(nums), 2):
+                if i + 1 < len(nums):
+                    new_arr = merge(nums[i], nums[i+1])
+                    new.append(new_arr)
+                else:
+                    new.append(nums[i])
+            nums = new
+            
+        return nums[0]
+"
+sortArray,"class Solution:
+    def sortArray(self, nums):
+	
+        if len(nums) <=1: return nums
+        less , greater , base = [] , [] , nums.pop()
+        for i in nums:
+            if i < base: less.append(i)
+            else: greater.append(i)
+        return self.sortArray(less) + [base] + self.sortArray(greater)
+"
