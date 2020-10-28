@@ -47,7 +47,7 @@ def FIB(N: int):
 def PALIN(x:int):
     return str(x) == str(x)[::-1] 
 
-def POW(x:float,n:float):
+def POW(x:float,n:int):
     return x**n
 
 def GCD(x:int,y:int):

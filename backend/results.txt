@@ -1,0 +1,5 @@
+Accuracy of myPow 19 prgs: 94.73684210526315
+Accuracy of isPalindrome 20 prgs: 100.0
+Accuracy of fib 22 prgs: 100.0
+Accuracy of sortArray 16 prgs: 100.0
+Accuracy till 77 prgs: 98.7012987012987
