@@ -45,6 +45,12 @@
         body.loading .modal {
             display: block;
         }
+        .d1{
+            float:left;
+        }
+        .d2{
+            overflow: hidden;
+        }
     </style>
     <title>
         Code Semantics
@@ -57,10 +63,16 @@
             </div>
             <div class="row justify-content-center align-items-center" style="height:100vh">
                 <div class="col-6">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 d1">
                         <select id="lang" class="form-control">
-                          <option selected value="python">python</option>
+                          <option selected value="python">Python</option>
                           <option value="clike">C</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 d2">
+                        <select id="model" class="form-control">
+                          <option selected value="model1">Dynamic Analysis</option>
+                          <option value="model2">Static Analysis</option>
                         </select>
                     </div>
                     <div class="form-group col-md-8">
@@ -102,6 +114,14 @@
             return strUser;
         }
 
+        model = document.getElementById("model");
+
+        function getModel()
+        {
+            var strUser = model.options[model.selectedIndex].value;
+            return strUser;
+        }
+
         function loadEditor(l)
         {
             editor=null;
@@ -116,6 +136,14 @@
             });
 
         }
+
+        loadEditor(getModel());
+
+        model.addEventListener("change",function(){
+            m=getModel();
+            editor=loadEditor(m);
+        }
+        );
 
         loadEditor(getLanguageName());
 
@@ -192,7 +220,7 @@
         function send()
         {
             var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName()}
+            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
             $.ajax( {
                   url:'http://localhost:8080/predict',
                   data:JSON.stringify(obj),

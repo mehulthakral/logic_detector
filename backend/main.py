@@ -7,8 +7,9 @@ CORS(app)
 @app.route('/predict', methods=['POST'])
 def string():
     json = request.get_json(force=True)
-
-    return jsonify(mp.predict(json['f'],json['lang']))
+    print(json,json['f'],json['lang'])
+    m1 = mp.predict(json['f'],json['lang'])
+    return jsonify(m1)
 
 
 if __name__ == '__main__':
