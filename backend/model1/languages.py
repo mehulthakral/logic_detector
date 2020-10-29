@@ -3,8 +3,8 @@ seed(0)
 import tensorflow as tf
 tf.random.set_seed(0)
 
-from keras.models import Sequential
-from keras.layers import Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 import pandas as pd 
 import numpy as np
 import random

@@ -105,6 +105,7 @@
             ajaxStart: function() { $body.addClass("loading");    },
             ajaxStop: function() { $body.removeClass("loading"); }    
         });
+        
         myTextarea=document.getElementById("code");
         lang = document.getElementById("lang");
 
@@ -114,10 +115,11 @@
             return strUser;
         }
 
-        model = document.getElementById("model");
+        
 
         function getModel()
         {
+            var model = document.getElementById("model");
             var strUser = model.options[model.selectedIndex].value;
             return strUser;
         }
@@ -137,18 +139,10 @@
 
         }
 
-        loadEditor(getModel());
-
-        model.addEventListener("change",function(){
-            m=getModel();
-            editor=loadEditor(m);
-        }
-        );
-
         loadEditor(getLanguageName());
 
         lang.addEventListener("change",function(){
-            l=getLanguageName();
+            var l=getLanguageName();
             editor=loadEditor(l);
         }
         );

@@ -1,10 +1,7 @@
 flask
-pymysql
 requests
 flask_cors
-Werkzeug
 tensorflow
-keras
 sklearn
 numpy
 pandas
