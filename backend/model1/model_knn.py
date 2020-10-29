@@ -26,5 +26,5 @@ class Model():
         for i in key:
             d[i]=val[k]
             k+=1
-        ans=self.model.predict([vec])[0]
+        #ans=self.model.predict([vec])[0]
         return d

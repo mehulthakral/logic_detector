@@ -17,7 +17,7 @@ def add_to_dataset(choice,lang="python",dataset_name="dataset.csv"):
         writer=csv.writer(file)
         writer.writerow(ans)
 
-def generate_dataset(nums=10):
+def generate_dataset(nums=5):
     l=[o for o in inspect.getmembers(func) if inspect.isfunction(o[1])]
     
     for _ in range(nums):

@@ -8,27 +8,47 @@ from keras.layers import Dense
 import pandas as pd 
 import numpy as np
 import random
+import string
 import inspect
 from typing import List, Set, Dict, Tuple, Optional
+
+def get_random_alphanumeric_string(letters_count, digits_count):
+    sample_str = ''.join((random.choice(string.ascii_letters) for i in range(letters_count)))
+    sample_str += ''.join((random.choice(string.digits) for i in range(digits_count)))
+    sample_list = list(sample_str)
+    random.shuffle(sample_list)
+    final_string = ''.join(sample_list)
+    return final_string
+
 class python:
-    def __init__(self,f,nums=1000,a=0,b=3,len_list=3) -> None:
+    def __init__(self,f,nums=1000,a=0,b=5,len_list=3,letters_count=2,digits_count=1) -> None:
+        """generates random numbers in the range [a,b]"""
+        b+=1
         self.func=f
         self.nums=nums
         self.len_list=len_list
         self.a=a
         self.b=b
+        self.letters_count=letters_count
+        self.digits_count=digits_count
         self.mappings={
             int:lambda :random.randint(a,b),
-            float:lambda : random.random(),
+            float:lambda : random.randint(a,b)+random.random(),
             bool:lambda : bool(random.randint(0,1)),
             list: lambda : [random.randint(a,b) for i in range(len_list)],
             tuple: lambda : tuple([random.randint(a,b) for i in range(len_list)]),
             set: lambda : {random.randint(a,b) for i in range(len_list)},
+            str: lambda : get_random_alphanumeric_string(self.letters_count, self.digits_count),
             List[int]: lambda :[random.randint(a,b) for i in range(len_list)],
             Tuple[int]: lambda : tuple([random.randint(a,b) for i in range(len_list)]),
             Set[int]: lambda : {random.randint(a,b) for i in range(len_list)},
-            List[float]: lambda :[random.random() for i in range(len_list)],
-            inspect.Parameter.empty:lambda : random.random()
+            List[float]: lambda :[random.randint(a,b)+random.random() for i in range(len_list)],
+            Tuple[float]: lambda :tuple([random.randint(a,b)+random.random() for i in range(len_list)]),
+            Set[float]: lambda :set([random.randint(a,b)+random.random() for i in range(len_list)]),
+            List[str]: lambda :[get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(len_list)],
+            Tuple[str]: lambda :tuple([get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(len_list)]),
+            Set[str]: lambda :set([get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(len_list)]),
+            inspect.Parameter.empty:lambda : random.randint(a,b)+random.random()
         }
 
     def data_gen(self):
@@ -109,7 +129,7 @@ class java:
 def Vector(f,lang):
     if type(f)==str: #if string is given, then exec it
         d={}
-        exec(f,{},d)
+        exec(f,globals(),d)
         f=list(d.values())[0]
     if lang=="python":
         obj=python(f)

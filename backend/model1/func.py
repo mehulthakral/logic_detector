@@ -1,8 +1,8 @@
 
 from typing import List, Set, Dict, Tuple, Optional
 
-def EQUAL(a,b):
-    return int(a==b)
+def EQUAL(a:int,b:int):
+    return a==b
 
 def MAX(l:list):
     return max(l)
