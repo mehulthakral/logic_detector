@@ -222,7 +222,7 @@
             var str=editor.getValue();
             obj={"f":str,"lang":getLanguageName(),"model":getModel()}
             $.ajax( {
-                  url:'http://localhost:8080/predict',
+                  url:'http://localhost:5000/predict',
                   data:JSON.stringify(obj),
                   method:"POST",
                   success:function(data) {
