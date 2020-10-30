@@ -1,5 +1,5 @@
 import pickle
-from ast_vectors import encode_to_ast_vectors
+from . import ast_vectors as av
 
 
 #X = [""def fib(self, N: int) -> int:\n\tglobal fpp\n\t#base condition\n\tif N <= 0:\n\t\tfpp = 1\n\t\treturn 0\n\t# fib(0)= 0\n\tfp = self.fib(N-1)\n\tf = fp+fpp\n\tfpp = fp\n\treturn f"""
@@ -15,17 +15,17 @@ from ast_vectors import encode_to_ast_vectors
 
 
 def model_NB_predict(X):
-  docs, labels = encode_to_ast_vectors(X, "unknown")
-  print("Generated vector for given code snippet")
+  docs, labels = av.encode_to_ast_vectors(X, "unknown")
+  #print("Generated vector for given code snippet")
   # print(docs,len(docs))
-  filename = 'naivebayes.sav'
+  filename = 'model2/naivebayes.sav'
   loaded_model = pickle.load(open(filename, 'rb'))
-  print("\n\n", "model loaded")
+  #print("\n\n", "model loaded")
   # print(loaded_model)
   ypred = loaded_model.predict(docs)
   # print(ypred)
 
-  return ypred  # the predicted label
+  return {ypred[0]:1}  # the predicted label
 
 
 ####
@@ -48,3 +48,7 @@ def model_NB_predict(X):
 # # print(loaded_model)
 # ypred=loaded_model.predict(docs)
 # print(ypred)
+
+def predict(f,lang):
+    result = model_NB_predict([f])
+    return result
