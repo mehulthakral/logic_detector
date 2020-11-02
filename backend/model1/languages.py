@@ -21,7 +21,7 @@ def get_random_alphanumeric_string(letters_count, digits_count):
     return final_string
 
 class python:
-    def __init__(self,f,nums=1000,a=0,b=5,len_list=3,letters_count=2,digits_count=1) -> None:
+    def __init__(self,f,nums=5000,a=0,b=11,len_list=6,letters_count=3,digits_count=2) -> None:
         """generates random numbers in the range [a,b]"""
         b+=1
         self.func=f
@@ -86,15 +86,15 @@ class python:
         else:
             op_size=1
         model = Sequential()
-        model.add(Dense(3, input_dim=len(X[0]), activation='relu'))
+        model.add(Dense(6, input_dim=len(X[0]), activation='relu'))
         model.add(Dense(6, activation='relu'))
         model.add(Dense(op_size))
 
 
         # compile the keras model
-        model.compile(loss='mse', optimizer='adam')
+        model.compile(loss='mean_squared_error', optimizer='adam')
 
-        model.fit(X, y, epochs=150, batch_size=5)
+        model.fit(X, y, epochs=15, batch_size=15)
 
         ans=[]
         for i in model.layers[1:-1]:
