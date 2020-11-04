@@ -55,3 +55,32 @@ def GCD(x:int,y:int):
        x, y = y, x % y 
   
    return x 
+
+def STR_SEARCH(text:str,pattern:str):
+    return pattern in text
+
+def COUNT_ISLANDS(graph:List[List[int]]): 
+    ROW=len(graph)
+    COL=len(graph[0])
+
+    visited = [[False for j in range(COL)]for i in range(ROW)] 
+    count = 0
+
+    def isSafe(i, j, visited): 
+        return (i >= 0 and i < ROW and j >= 0 and j < COL and not visited[i][j] and graph[i][j]) 
+
+    def DFS(i, j, visited): 
+        rowNbr = [-1, -1, -1,  0, 0,  1, 1, 1]
+        colNbr = [-1,  0,  1, -1, 1, -1, 0, 1]
+        visited[i][j] = True
+        for k in range(8): 
+            if isSafe(i + rowNbr[k], j + colNbr[k], visited): 
+                DFS(i + rowNbr[k], j + colNbr[k], visited) 
+
+    for i in range(ROW): 
+        for j in range(COL): 
+            if visited[i][j] == False and graph[i][j] == 1: 
+                DFS(i, j, visited) 
+                count += 1
+
+    return count 

@@ -20,6 +20,20 @@ def get_random_alphanumeric_string(letters_count, digits_count):
     final_string = ''.join(sample_list)
     return final_string
 
+def flatten_str(y):
+    ans=[]
+    for i in y:
+        for j in i:
+            ans.append(ord(j))
+    return ans
+
+def flatten_list(y):
+    ans=[]
+    for i in y:
+        for j in i:
+            ans.append(j)
+    return ans    
+
 class python:
     def __init__(self,f,nums=5000,a=0,b=11,len_list=6,letters_count=3,digits_count=2) -> None:
         """generates random numbers in the range [a,b]"""
@@ -35,45 +49,87 @@ class python:
             int:lambda :random.randint(a,b),
             float:lambda : random.randint(a,b)+random.random(),
             bool:lambda : bool(random.randint(0,1)),
-            list: lambda : [random.randint(a,b) for i in range(len_list)],
-            tuple: lambda : tuple([random.randint(a,b) for i in range(len_list)]),
-            set: lambda : {random.randint(a,b) for i in range(len_list)},
+            list: lambda : [random.randint(a,b) for i in range(self.len_list)],
+            tuple: lambda : tuple([random.randint(a,b) for i in range(self.len_list)]),
+            set: lambda : {random.randint(a,b) for i in range(self.len_list)},
             str: lambda : get_random_alphanumeric_string(self.letters_count, self.digits_count),
-            List[int]: lambda :[random.randint(a,b) for i in range(len_list)],
-            Tuple[int]: lambda : tuple([random.randint(a,b) for i in range(len_list)]),
-            Set[int]: lambda : {random.randint(a,b) for i in range(len_list)},
-            List[float]: lambda :[random.randint(a,b)+random.random() for i in range(len_list)],
-            Tuple[float]: lambda :tuple([random.randint(a,b)+random.random() for i in range(len_list)]),
-            Set[float]: lambda :set([random.randint(a,b)+random.random() for i in range(len_list)]),
-            List[str]: lambda :[get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(len_list)],
-            Tuple[str]: lambda :tuple([get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(len_list)]),
-            Set[str]: lambda :set([get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(len_list)]),
+            List[int]: lambda :[random.randint(a,b) for i in range(self.len_list)],
+            Tuple[int]: lambda : tuple([random.randint(a,b) for i in range(self.len_list)]),
+            Set[int]: lambda : {random.randint(a,b) for i in range(self.len_list)},
+            List[float]: lambda :[random.randint(a,b)+random.random() for i in range(self.len_list)],
+            Tuple[float]: lambda :tuple([random.randint(a,b)+random.random() for i in range(self.len_list)]),
+            Set[float]: lambda :set([random.randint(a,b)+random.random() for i in range(self.len_list)]),
+            List[str]: lambda :[get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(self.len_list)],
+            Tuple[str]: lambda :tuple([get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(self.len_list)]),
+            Set[str]: lambda :set([get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(self.len_list)]),
+            List[List[int]]: lambda : [[random.randint(0,1) for i in range(self.len_list)] for j in range(self.len_list)],
             inspect.Parameter.empty:lambda : random.randint(a,b)+random.random()
+        }
+
+        self.add_x={
+            int: lambda x,y:list.append(x,y),
+            float: lambda x,y:list.append(x,y),
+            bool: lambda x,y:list.append(x,y),
+            list:  lambda x,y:list.extend(x,y),
+            tuple: lambda x,y:list.extend(x,list(y)),
+            set: lambda x,y:list.extend(x,list(y)),
+            str: lambda x,y:list.extend(x,[ord(i) for i in y]),
+            List[int]:  lambda x,y:list.extend(x,y),
+            Tuple[int]: lambda x,y:list.extend(x,list(y)),
+            Set[int]: lambda x,y:list.extend(x,list(y)),
+            List[float]: lambda x,y:list.extend(x,y),
+            Tuple[float]: lambda x,y:list.extend(x,list(y)),
+            Set[float]: lambda x,y:list.extend(x,list(y)),
+            List[str]: lambda x,y:list.extend(x,flatten_str(y)),
+            Tuple[str]: lambda x,y:list.extend(x,flatten_str(y)),
+            Set[str]: lambda x,y:list.extend(x,flatten_str(y)),
+            List[List[int]]: lambda x,y:list.extend(x,flatten_list(y)),
+            inspect.Parameter.empty:lambda x,y:list.append(x,y)
+        }
+
+        self.add_y={
+            int:lambda x,y:list.append(x,y),
+            float:lambda x,y:list.append(x,y),
+            bool:lambda x,y:list.append(x,y),
+            list: lambda x,y:list.append(x,y),
+            tuple: lambda x,y:list.append(x,list(y)),
+            set: lambda x,y:list.append(x,list(y)),
+            str: lambda x,y:list.append(x,[ord(i) for i in y]),
+            List[int]: lambda x,y:list.append(x,y),
+            Tuple[int]: lambda x,y:list.append(x,y),
+            Set[int]: lambda x,y:list.append(x,y),
+            List[float]: lambda x,y:list.append(x,y),
+            Tuple[float]: lambda x,y:list.append(x,y),
+            Set[float]: lambda x,y:list.append(x,y),
+            List[str]: lambda x,y:list.append(x,flatten_str(y)),
+            Tuple[str]: lambda x,y:list.append(x,flatten_str(y)),
+            Set[str]: lambda x,y:list.append(x,flatten_str(y)),
+            List[List[int]]: lambda x,y:list.append(x,flatten_list(y)),
+            inspect.Parameter.empty:lambda x,y:list.append(x,y)
         }
 
     def data_gen(self):
         params=inspect.signature(self.func).parameters
         l=[]
+        action=[]
         for i in params:
             l.append(self.mappings[params[i].annotation]())
-        return l
+            action.append(self.add_x[params[i].annotation])
+        return l,action
 
     def generate_data(self):
 
         X=[]
         y=[]
         for _ in range(self.nums):
-            l=self.data_gen()
+            l,action=self.data_gen()
             
             X.append([])
             
-            for j in l:
-                if type(j)==list:
-                    X[-1].extend(j)
-                else:
-                    X[-1].append(j)
-
-            y.append(self.func(*l))
+            for i,j in zip(l,action):
+                j(X[-1],i)
+            ans=self.func(*l)
+            self.add_y[type(ans)](y,ans)
 
         return X,y
 
