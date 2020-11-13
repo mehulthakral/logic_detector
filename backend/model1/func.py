@@ -50,6 +50,12 @@ def PALIN(x:int):
 def POW(x:float,n:int):
     return x**n
 
+def ANAGRAM(s:str,t:str):
+      char_count = {}
+      for char in s: char_count[char] = char_count.get(char, 0) + 1
+      for char in t: char_count[char] = char_count.get(char, 0) - 1
+      return False not in [char_count[char] == 0 for char in char_count]
+
 def GCD(x:int,y:int):
    while(y): 
        x, y = y, x % y 
