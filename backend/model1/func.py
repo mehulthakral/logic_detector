@@ -84,3 +84,58 @@ def COUNT_ISLANDS(graph:List[List[int]]):
                 count += 1
 
     return count 
+
+def CATALAN_NUM(n:int):
+    dp = {}
+    dp[0] = 1
+    for num in range(1, n + 1):
+        res = 0
+        for i in range(1, num + 1): 
+            res = res + dp[i - 1] * dp[num - i]
+        dp[num] = res
+    return dp[n]
+
+def UGLY_NUM(num:int):
+    if num < 1: return False
+    for factor in [2,3,5]:
+        while num % factor == 0:
+            num //= factor
+    return num == 1
+
+def CYCLE_DETECT(ip:List[List[int]]):
+    numCourses = len(ip)
+    prerequisites = []
+    for i in range(len(ip)):
+        for j in range(len(ip)):
+            if(ip[i][j]!=0):
+                prerequisites.append([i,j])
+    in_degrees = [0 for x in range(numCourses)]
+    start_nodes = []
+    adj_matrix = defaultdict(list)
+    for edge in prerequisites:
+        if edge[0] == edge[1]:
+            return False
+        in_degrees[edge[1]] += 1
+        adj_matrix[edge[0]].append(edge[1])
+    
+    for course_id, in_degree in enumerate(in_degrees):
+        if in_degree == 0:
+            start_nodes.append(course_id)
+    
+    if len(start_nodes) == 0:
+        return False
+    
+    # bfs 
+    visited = set() 
+    for start_node in start_nodes:
+        queue = [start_node]
+        while queue:
+            current = queue.pop()
+            visited.add(current)
+            for child in adj_matrix[current]:
+                if child in visited:
+                    continue
+                in_degrees[child] -= 1
+                if in_degrees[child] < 1:
+                    queue.append(child)
+    return len(visited) == numCourses     

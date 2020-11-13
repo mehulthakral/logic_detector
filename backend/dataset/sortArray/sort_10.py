@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, N):
+    def sortArray(self, N:list):
         L = len(N)
         return [N.pop(min(range(L-i), key = lambda x: N[x])) for i in range(L)]
 		

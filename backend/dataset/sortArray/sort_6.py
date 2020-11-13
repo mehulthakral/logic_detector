@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, nums):
+    def sortArray(self, nums:list):
         count = [0]*100000
         for num in nums:
             count[num+50000] += 1 # count the number of times we see the number

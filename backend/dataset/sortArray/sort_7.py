@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, nums):
+    def sortArray(self, nums:list):
         block_size = 1;
         while block_size <= len(nums):
             for l in range(0, len(nums), block_size * 2):

@@ -1,7 +1,7 @@
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         if(x<0):
-            return ""
+            return False
         else:
             x1=x
             count=0
@@ -10,7 +10,7 @@ class Solution:
                 count+=1
                 x1//=10
             if(count==1):
-                return "true"
+                return True
             length=count
             count//=2
             if(length%2==0):
@@ -20,7 +20,7 @@ class Solution:
                     rev=rev*10+(s%10)
                     s=s//10
                 if(s1==rev):
-                    return "true"
+                    return True
             else:
                 s=x//(10**(count+1))
                 s1=x%(10**count)
@@ -30,4 +30,4 @@ class Solution:
                 print(rev)
                 
                 if(s1==rev):
-                    return "true"
+                    return True

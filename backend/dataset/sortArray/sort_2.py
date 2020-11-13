@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, nums):
+    def sortArray(self, nums:list):
         # Hoare’s Partition Scheme works by initializing two indexes that start at two ends, 
 		# the two indexes move toward each other until an inversion is found
         # the partition function will seperate the array by two, smaller than pivot, and greater than pivot

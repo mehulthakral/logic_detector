@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, nums):
+    def sortArray(self, nums:list):
         # Merge Sort
         
         # merge takes two sorted array, and return the merged sorted array

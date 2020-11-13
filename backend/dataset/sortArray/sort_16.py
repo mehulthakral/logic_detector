@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, N):
+    def sortArray(self, N:list):
         def mergesort(A):
             LA = len(A)
             if LA == 1: return A

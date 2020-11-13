@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, N):
+    def sortArray(self, N:list):
         L = len(N)
         for i in range(1,L):
             for j in range(0,i):

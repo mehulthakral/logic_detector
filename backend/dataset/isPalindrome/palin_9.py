@@ -1,9 +1,10 @@
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         if x < 0 or (x % 10 == 0 and x != 0): 
-            False
+            return False
         else:
             rev = str(x)[::-1]
             if rev == str(x):
-                return rev
-            else: False
+                return True
+            else: 
+                return False

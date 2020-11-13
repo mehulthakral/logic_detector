@@ -1,6 +1,6 @@
 from itertools import accumulate
 class Solution:
-    def sortArray(self, nums):
+    def sortArray(self, nums:list):
         # radix sort implementation, O(n) time complexity, where n == len(nums)
         nums = [num + 50000 for num in nums] # unsorted array
         A = [0] * len(nums) # each loop's sorted array

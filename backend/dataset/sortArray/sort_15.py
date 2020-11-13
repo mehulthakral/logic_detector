@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, N):
+    def sortArray(self, N:list):
         def quicksort(A, I, J):
             if J - I <= 1: return
             p = partition(A, I, J)

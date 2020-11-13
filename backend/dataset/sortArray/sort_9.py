@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, nums):
+    def sortArray(self, nums:list):
 	
         if len(nums) <=1: return nums
         less , greater , base = [] , [] , nums.pop()

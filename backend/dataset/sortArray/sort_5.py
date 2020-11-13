@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, nums):
+    def sortArray(self, nums:list):
         def heapify(nums, n, i):
             # 
             if i > n: return
