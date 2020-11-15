@@ -109,6 +109,7 @@ def UGLY_NUM(num:int):
     return num == 1
 
 def CYCLE_DETECT(ip:List[List[int]]):
+    from collections import defaultdict
     numCourses = len(ip)
     prerequisites = []
     for i in range(len(ip)):
