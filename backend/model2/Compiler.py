@@ -1,33 +1,34 @@
 import ast
 import dis
-with open("anag_10.py", "r") as source:
+
+"""
+with open("fibo_10.py", "r") as source:
         tree = ast.parse(source.read())
 code_obj=compile(tree, filename="<ast>", mode="exec")
 print(dis.dis(code_obj))
+"""
+
+def Bytecode(path):
+    with open(path, "r") as source:
+        tree = ast.parse(source.read())
+    code_obj=compile(tree, filename="<ast>", mode="exec")
+    return dis.dis(code_obj)
+
+inp = input()
+print(Bytecode(inp))
+
 
 """
-#with open("anag_3.py", "r") as source:
-#        source_file = source.read()
-
-def isAnagram(s, t):
-    h = {}
-    for i in s:
-        if i not in h:
-            h[i] = 0
-        h[i] += 1
-            
-    for j in t:
-        if j not in h:
-            h[j] = 0
-        h[j] -= 1
-    
-    for key in h.keys():
-        if h[key] != 0:
-            return False
-        
-    return True
-
-import pyLLVM
-
-llvm = pyLLVM.pylllvm.compiler(isAnagram)
+final = []
+with open('dataset.csv') as csvfile:
+    reader = csv.reader(csvfile, delimiter=',')
+    #print(reader)
+    for r in reader:
+        if r !=[]:
+            #print(r,"\n\n\n")
+            Bytecode(r[1])
+            #print(Bytecode(r[1]))
+            #final = r + [dis.dis(code_obj)]
+            #print(final)
+            #print("\n\n\n")
 """

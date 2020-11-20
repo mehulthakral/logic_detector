@@ -1,4 +1,4 @@
-
+import subprocess
 import os
 import csv
 
@@ -14,7 +14,11 @@ for i in entries:
             data = f.read()
             # print("file contents are \n",data)
             # print(data)
-            t=(i,data)
+            path='../dataset/'+i+'/'+j
+            # print(path)
+            output = subprocess.check_output(["python3", "./Compiler.py"],input=bytes(path,'utf-8'))
+            output = output.decode("utf-8")
+            t=(i,data,output)
            
             
 
