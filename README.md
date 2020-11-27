@@ -45,8 +45,12 @@ While giving functions with special pre conditions like strings having only digi
 
 For example : In case of a function validating IP address string, the string must not contain upper case, lower case and special characters. So in that case, the function signature will be
 
-`def func(s:str={'upper_count':0,'lower_count':0, 'special_count':0, 'digits_count': 8}):
+`def IP_VAL(s:str={'upper_count':0,'lower_count':0, 'special_count':0, 'digits_count': 8}):
   pass`
   
-So here my making upper case, lower case and special character count as 0 and digits count as 8, you are specifying the precondition as string having 8 digits with no upper case, lower case and special characters
+So here my making upper case, lower case and special character count as 0 and digits count as 8, you are specifying the precondition as string having 8 digits with no upper case, lower case and special characters.
+
+Default Precondition when no precondition is specified is
+
+`{"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3 }`
 
