@@ -1,14 +1,37 @@
 # logic_detector
 An attempt to detect logic of the program
 
-Steps:
+Steps to Install:
 
 1. Install docker
 2. Install docker-compose
-3. clone the repo
+3. Clone the repo
 4. `sudo docker-compose up --build`
-5. type `localhost:8090` in browser to access UI
-6. type code/upload file and submit. wait for a minute to get the result
+
+Steps to Train/Learn new Functions via UI :
+
+1. Type `localhost:8090` in browser to access UI
+2. Select model
+3. Type code/upload file. The Function name will be taken as label
+4. Click on Learn button
+
+Steps to Test/Predict Functions via UI:
+
+1. Type `localhost:8090` in browser to access UI
+2. Select model
+3. Type code/upload file.
+4. Click on Test Button
+
+Steps to Learn new Functions via Library function call:
+
+1. `import model1.dataset_gen as g1`
+2. `g1.add_to_dataset(function,lang)`
+
+Steps to Test/Predict Functions via Library function call:
+
+1. `import model1.predict as mp1`
+2. `m = mp1.predict(function,language)`
+
 
 Note to add a new logic detection module, 
 
