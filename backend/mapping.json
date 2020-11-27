@@ -1,0 +1,29 @@
+{
+    "sortArray" : "SORT",
+    "fib" : "FIB",
+    "isPalindrome" : "PALIN",
+    "myPow" : "POW",
+    "isAnagram" : "ANAGRAM", 
+    "strStr" : "STR_SEARCH",
+    "numIslands" : "COUNT_ISLANDS",
+    "numTrees" : "CATALAN_NUM",
+    "isUgly" : "UGLY_NUM",
+    "canFinish" : "CYCLE_GRAPH",
+
+    "canJump" : "JUMP_GAME",
+    "coinChange":"COIN_CHANGE",
+    "countPrimes":"SIEVE",
+    "hasCycle":"CYCLE_LL",
+    "inorderTraversal":"INORDER_TRAVERSAL",
+    "isValidBST":"VALID_BST",
+    "levelOrder":"LEVELORDER_TRAVERSAL",
+    "maxDepth":"HEIGHT_BT",
+    "maxPathSum":"MAX_PATH_SUM_BT",
+    "mySqrt":"SQRT",
+    "restoreIPAddresses":"RESTORE_IP",
+    "reverse":"REVERSE_ARRAY",
+    "reverseList":"REVERSE_LL",
+    "rotate":"ROTATE_LL",
+    "solveSudoku":"SUDOKU"
+
+}
