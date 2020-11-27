@@ -41,7 +41,7 @@ Note to add a new logic detection module,
 
 Note :
 
-While giving functions with special pre conditions like strings having only digits or only special characters or functions having types which are not supported by dynamic analysis model, then, will have to specify the pre conditions in dictionary passed as default arg for that parameter.
+1.  giving functions with special pre conditions like strings having only digits or only special characters or functions having types which are not supported by dynamic analysis model, then, will have to specify the pre conditions in dictionary passed as default arg for that parameter.
 
 For example : In case of a function validating IP address string, the string must not contain upper case, lower case and special characters. So in that case, the function signature will be
 
@@ -50,7 +50,17 @@ For example : In case of a function validating IP address string, the string mus
   
 So here my making upper case, lower case and special character count as 0 and digits count as 8, you are specifying the precondition as string having 8 digits with no upper case, lower case and special characters.
 
-Default Precondition when no precondition is specified is
+2. Default Precondition when no precondition is specified is
 
 `{"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3 }`
+
+So when function signature is like this,
+
+`def IP_VAL(s:str):
+  pass`
+  
+ Then, random strings of length 12 are created which have 3 upper case, 3 lower case, 3 digits and 3 special characters. If s was list, then random list of length 8 is generated.
+ 
+3. start and end specify the range of random numbers to be generated. Ex : if start=1, end=1000, then numbers in the range [1,1000] are generated. 
+
 
