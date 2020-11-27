@@ -8,6 +8,8 @@ services:
     image: backend
     ports:
       - '5000:80'
+    volumes:
+      - ./backend:/app
   frontend:
     hostname: frontend
     container_name: frontend

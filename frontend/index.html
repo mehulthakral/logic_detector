@@ -84,7 +84,8 @@
                         <input type="file" name="inputfile" id="inputfile">
                         <br>
                         <br> 
-                        <button type="button" id="sendlogin" class="btn btn-primary" onclick="send()">Submit</button>
+                        <button type="button" id="sendlogin" class="btn btn-primary" onclick="test()">Test</button>
+                        <button type="button" id="sendlogin1" class="btn btn-primary" onclick="learn()">Learn</button>
                     </div>
                     
                 </div>
@@ -211,7 +212,7 @@
 
         }
 
-        function send()
+        function test()
         {
             var str=editor.getValue();
             obj={"f":str,"lang":getLanguageName(),"model":getModel()}
@@ -221,6 +222,20 @@
                   method:"POST",
                   success:function(data) {
                     displayResult(data);
+                  }
+            });
+        }
+
+        function learn()
+        {
+            var str=editor.getValue();
+            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
+            $.ajax( {
+                  url:'http://localhost:5000/add',
+                  data:JSON.stringify(obj),
+                  method:"POST",
+                  success:function(data) {
+                    alert("Learnt the Function Successfully !")
                   }
             });
         }

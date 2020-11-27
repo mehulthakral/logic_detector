@@ -12,124 +12,126 @@ import string
 import inspect
 from typing import List, Set, Dict, Tuple, Optional
 
-def get_random_alphanumeric_string(letters_count, digits_count):
-    sample_str = ''.join((random.choice(string.ascii_letters) for i in range(letters_count)))
-    sample_str += ''.join((random.choice(string.digits) for i in range(digits_count)))
-    sample_list = list(sample_str)
-    random.shuffle(sample_list)
-    final_string = ''.join(sample_list)
-    return final_string
 
-def flatten_str(y):
-    ans=[]
-    for i in y:
-        for j in i:
-            ans.append(ord(j))
-    return ans
-
-def flatten_list(y):
-    ans=[]
-    for i in y:
-        for j in i:
-            ans.append(j)
-    return ans    
 
 class python:
-    def __init__(self,f,nums=5000,a=0,b=11,len_list=6,letters_count=3,digits_count=2) -> None:
-        """generates random numbers in the range [a,b]"""
-        b+=1
+    default_config={"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3 }
+    def __init__(self,f,nums=5000) -> None:
         self.func=f
         self.nums=nums
-        self.len_list=len_list
-        self.a=a
-        self.b=b
-        self.letters_count=letters_count
-        self.digits_count=digits_count
-        self.mappings={
-            int:lambda :random.randint(a,b),
-            float:lambda : random.randint(a,b)+random.random(),
+    def param_generator(self,t,config={}):
+        if config==inspect._empty:
+            config={}
+        def get_random_alphanumeric_string(c):
+            upper_count=c["upper_count"]
+            digits_count=c["digits_count"]
+            lower_count=c["lower_count"]
+            special_count=c["special_count"]
+            sample_str = ''.join((random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ") for i in range(upper_count)))
+            sample_str += ''.join((random.choice("abcdefghijklmnopqrstuvwxyz") for i in range(lower_count)))
+            sample_str += ''.join((random.choice("0123456789") for i in range(digits_count)))
+            sample_str += ''.join((random.choice(" *&^%$#@!~`'\",\\|[];:.><?/\t\b\v") for i in range(special_count)))
+            sample_list = list(sample_str)
+            random.shuffle(sample_list)
+            final_string = ''.join(sample_list)
+            return final_string
+        
+        def build_missing_config(c):
+            if "start" not in c:
+                c["start"]=python.default_config["start"]
+            if "end" not in c:
+                c["end"]=python.default_config["end"]
+            if "len_list" not in c:
+                c["len_list"]=python.default_config["len_list"]
+            if "upper_count" not in c:
+                c["upper_count"]=python.default_config["upper_count"]
+            if "lower_count" not in c:
+                c["lower_count"]=python.default_config["lower_count"]
+            if "digits_count" not in c:
+                c["digits_count"]=python.default_config["digits_count"]
+            if "special_count" not in c:
+                c["special_count"]=python.default_config["special_count"]
+            
+        if "generator" in config:
+            return config["generator"]
+        
+        build_missing_config(config)
+        
+        mappings={
+            int:lambda :random.randint(config["start"],config["end"]),
+            float:lambda : random.randint(config["start"],config["end"])+random.random(),
             bool:lambda : bool(random.randint(0,1)),
-            list: lambda : [random.randint(a,b) for i in range(self.len_list)],
-            tuple: lambda : tuple([random.randint(a,b) for i in range(self.len_list)]),
-            set: lambda : {random.randint(a,b) for i in range(self.len_list)},
-            str: lambda : get_random_alphanumeric_string(self.letters_count, self.digits_count),
-            List[int]: lambda :[random.randint(a,b) for i in range(self.len_list)],
-            Tuple[int]: lambda : tuple([random.randint(a,b) for i in range(self.len_list)]),
-            Set[int]: lambda : {random.randint(a,b) for i in range(self.len_list)},
-            List[float]: lambda :[random.randint(a,b)+random.random() for i in range(self.len_list)],
-            Tuple[float]: lambda :tuple([random.randint(a,b)+random.random() for i in range(self.len_list)]),
-            Set[float]: lambda :set([random.randint(a,b)+random.random() for i in range(self.len_list)]),
-            List[str]: lambda :[get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(self.len_list)],
-            Tuple[str]: lambda :tuple([get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(self.len_list)]),
-            Set[str]: lambda :set([get_random_alphanumeric_string(self.letters_count, self.digits_count) for i in range(self.len_list)]),
-            List[List[int]]: lambda : [[random.randint(0,1) for i in range(self.len_list)] for j in range(self.len_list)],
-            inspect.Parameter.empty:lambda : random.randint(a,b)+random.random()
+            list: lambda : [random.randint(config["start"],config["end"]) for i in range(config["len_list"])],
+            tuple: lambda : tuple([random.randint(config["start"],config["end"]) for i in range(config["len_list"])]),
+            set: lambda : {random.randint(config["start"],config["end"]) for i in range(config["len_list"])},
+            str: lambda : get_random_alphanumeric_string(config),
+            List[int]: lambda :[random.randint(config["start"],config["end"]) for i in range(config["len_list"])],
+            Tuple[int]: lambda : tuple([random.randint(config["start"],config["end"]) for i in range(config["len_list"])]),
+            Set[int]: lambda : {random.randint(config["start"],config["end"]) for i in range(config["len_list"])},
+            List[float]: lambda :[random.randint(config["start"],config["end"])+random.random() for i in range(config["len_list"])],
+            Tuple[float]: lambda :tuple([random.randint(config["start"],config["end"])+random.random() for i in range(config["len_list"])]),
+            Set[float]: lambda :set([random.randint(config["start"],config["end"])+random.random() for i in range(config["len_list"])]),
+            List[str]: lambda :[get_random_alphanumeric_string(config) for i in range(config["len_list"])],
+            Tuple[str]: lambda :tuple([get_random_alphanumeric_string(config) for i in range(config["len_list"])]),
+            Set[str]: lambda :set([get_random_alphanumeric_string(config) for i in range(config["len_list"])]),
+            List[List[int]]: lambda : [[random.randint(0,1) for i in range(config["len_list"])] for j in range(config["len_list"])],
+            inspect.Parameter.empty:lambda : random.randint(config["start"],config["end"])+random.random()
         }
+        
+        return mappings[t]
+    
+    def RIF(self,l):
+        def is_iterable(S):
+            try:
+                iterator = iter(S)
+            except TypeError:
+                # not iterable
+                return False
+            else:
+                # iterable
+                return True
 
-        self.add_x={
-            int: lambda x,y:list.append(x,y),
-            float: lambda x,y:list.append(x,y),
-            bool: lambda x,y:list.append(x,y),
-            list:  lambda x,y:list.extend(x,y),
-            tuple: lambda x,y:list.extend(x,list(y)),
-            set: lambda x,y:list.extend(x,list(y)),
-            str: lambda x,y:list.extend(x,[ord(i) for i in y]),
-            List[int]:  lambda x,y:list.extend(x,y),
-            Tuple[int]: lambda x,y:list.extend(x,list(y)),
-            Set[int]: lambda x,y:list.extend(x,list(y)),
-            List[float]: lambda x,y:list.extend(x,y),
-            Tuple[float]: lambda x,y:list.extend(x,list(y)),
-            Set[float]: lambda x,y:list.extend(x,list(y)),
-            List[str]: lambda x,y:list.extend(x,flatten_str(y)),
-            Tuple[str]: lambda x,y:list.extend(x,flatten_str(y)),
-            Set[str]: lambda x,y:list.extend(x,flatten_str(y)),
-            List[List[int]]: lambda x,y:list.extend(x,flatten_list(y)),
-            inspect.Parameter.empty:lambda x,y:list.append(x,y)
-        }
-
-        self.add_y={
-            int:lambda x,y:list.append(x,y),
-            float:lambda x,y:list.append(x,y),
-            bool:lambda x,y:list.append(x,y),
-            list: lambda x,y:list.append(x,y),
-            tuple: lambda x,y:list.append(x,list(y)),
-            set: lambda x,y:list.append(x,list(y)),
-            str: lambda x,y:list.append(x,[ord(i) for i in y]),
-            List[int]: lambda x,y:list.append(x,y),
-            Tuple[int]: lambda x,y:list.append(x,y),
-            Set[int]: lambda x,y:list.append(x,y),
-            List[float]: lambda x,y:list.append(x,y),
-            Tuple[float]: lambda x,y:list.append(x,y),
-            Set[float]: lambda x,y:list.append(x,y),
-            List[str]: lambda x,y:list.append(x,flatten_str(y)),
-            Tuple[str]: lambda x,y:list.append(x,flatten_str(y)),
-            Set[str]: lambda x,y:list.append(x,flatten_str(y)),
-            List[List[int]]: lambda x,y:list.append(x,flatten_list(y)),
-            inspect.Parameter.empty:lambda x,y:list.append(x,y)
-        }
-
+        def flatten(object):
+            for item in object:
+                if isinstance(item, (list, tuple, set)):
+                    yield from flatten(item)
+                elif type(item)==str:
+                    yield from list(item)
+                else:
+                    yield item
+                    
+        if not is_iterable(l):
+            l=[l]
+            
+        l=list(flatten(l))
+        
+        for i in range(len(l)):
+            if type(l[i])==str:
+                l[i]=ord(l[i])
+        return l
+        
     def data_gen(self):
         params=inspect.signature(self.func).parameters
         l=[]
-        action=[]
         for i in params:
-            l.append(self.mappings[params[i].annotation]())
-            action.append(self.add_x[params[i].annotation])
-        return l,action
+            l.append(self.param_generator(params[i].annotation,params[i].default)())
+        return l
 
     def generate_data(self):
 
         X=[]
         y=[]
         for _ in range(self.nums):
-            l,action=self.data_gen()
+            l=self.data_gen()
             
             X.append([])
             
-            for i,j in zip(l,action):
-                j(X[-1],i)
+            for i in l:
+                X[-1].extend(self.RIF(i))
+                
             ans=self.func(*l)
-            self.add_y[type(ans)](y,ans)
+            
+            y.append(self.RIF(ans))
 
         return X,y
 

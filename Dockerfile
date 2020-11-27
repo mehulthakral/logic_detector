@@ -1,6 +1,5 @@
-FROM tiangolo/uwsgi-nginx-flask:python3.7
-RUN /usr/local/bin/python -m pip install --upgrade pip
+FROM python:3.7
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-COPY ./backend /app
+CMD [ "python", "/app/main.py" ]
