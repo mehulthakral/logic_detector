@@ -13,7 +13,7 @@ class Solution:
             # Set background to int 0.
                 if grid[i][j] == '0':
                     grid[i][j] = 0
-					continue
+                    continue
                 
             # Get neighboring labels.
                 up = grid[i-1][j] if i > 0 else 0

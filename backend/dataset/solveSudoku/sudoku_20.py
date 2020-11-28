@@ -1,10 +1,8 @@
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
-       
-	   def solve(r, c):
+        def solve(r, c):
             if r == 9 and c == 9:
                 return True
-            
             if board[r][c] == '.':
                 for num in range(1, 10):
                     if can_put(r, c, num):

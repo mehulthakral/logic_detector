@@ -1,6 +1,6 @@
 class Solution:
     def reverse(self, x: int) -> int:
-		reversed_number_string = ""
+        reversed_number_string = ""
         largest_integer_32_bit = pow(2, 31)
         is_negative = False
         if x == 0:

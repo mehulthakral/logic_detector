@@ -8,6 +8,6 @@ class Solution:
             for i in range(len(haystack)+1):
                 if needle in haystack[0:i]:
                     return(i - len(needle))
-                print(haystack[0:i])
+                # print(haystack[0:i])
         else:
             return(-1)

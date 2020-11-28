@@ -1,3 +1,4 @@
+from functools import reduce
 class Solution:
     def isUgly(self, num):
             def f(n, p):

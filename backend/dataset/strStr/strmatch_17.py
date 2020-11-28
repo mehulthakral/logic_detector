@@ -1,9 +1,10 @@
+import sys
 class Solution:
 	def strStr(self, haystack, needle):
 		def f(c):
 			return ord(c)-ord('A')
 
-		n, h, d, m = len(needle), len(haystack), ord('z')-ord('A')+1, sys.maxint 
+		n, h, d, m = len(needle), len(haystack), ord('z')-ord('A')+1, float("inf")
 		if n > h: return -1
 		nd, hash_n, hash_h = d**(n-1), 0, 0   
 		for i in range(n):

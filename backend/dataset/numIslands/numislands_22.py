@@ -4,9 +4,9 @@ class Solution:
     def numIslands(self, treasureMap: List[List[str]]) -> int:
         # O(m * n) time and O(m * n) space to store the recursive stackframe calls
         m = len(treasureMap)
-		if m == 0: return 0  # dead men tell no tales
+        if m == 0: return 0  # dead men tell no tales
         n = len(treasureMap[0])
-		if n == 0: return 0  # dead men tell no tales
+        if n == 0: return 0  # dead men tell no tales
         num_islands = 0
 
         sail_down:  Traverser = lambda row, col: findTreasure(row + 1, col, treasureMap)

@@ -6,7 +6,7 @@ class Solution:
 		3. starting from p^2 and counting in increments of 2 while marking each number
 		4. Finding an unmarked number greater than p and setting it as the new value of p
 		""" 
-		number_list = [False for i in range(n+1)]
+        number_list = [False for i in range(n+1)]
         p = 2
         while p*p < n:
             if not number_list[p]:

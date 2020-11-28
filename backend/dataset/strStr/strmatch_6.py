@@ -17,4 +17,3 @@ class Solution:
         :type needle: str
         :rtype: int
         """  
-		```

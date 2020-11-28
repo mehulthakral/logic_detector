@@ -41,7 +41,7 @@ class Solution:
             
             for val in poten_vals:
                 board[a][b] = val
-				if sudoku_solver(board):      # ie. using this val is correct and doesn't cause any conflict later
+                if sudoku_solver(board):      # ie. using this val is correct and doesn't cause any conflict later
                   return True
                 board[a][b] = '.'
             return False       # backtrack
