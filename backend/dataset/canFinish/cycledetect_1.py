@@ -1,3 +1,5 @@
+from typing import List
+from collections import defaultdict
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         in_degrees = [0 for x in range(numCourses)]
@@ -30,5 +32,3 @@ class Solution:
                     if in_degrees[child] < 1:
                         queue.append(child)
         return len(visited) == numCourses     
-
-[[1,0],[2,3],[4,5]]

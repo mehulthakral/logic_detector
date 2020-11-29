@@ -1,3 +1,4 @@
+import itertools
 class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
         def split(l, r, n):    # try to split s[l:r] in half

@@ -1,3 +1,4 @@
+from typing import List
 class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:        
         def backtrack(ip, num_of_addr=4):

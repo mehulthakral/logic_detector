@@ -59,7 +59,7 @@ class Solution:
                         if grid[i][j+1] == '1':
                             self.union(i,j,i,j+1)
         
-		freq = [[0 for i in range(m)] for j in range(n)]
+        freq = [[0 for i in range(m)] for j in range(n)]
         res = 0
         for i in range(n):
             for j in range(m):

@@ -1,12 +1,13 @@
+from typing import List
 class Solution:
-   def numIslands(self, grid: List[List[str]]) -> int:
-        count = 0
-        for r,row in enumerate(grid):
-            for c,col in enumerate(row):
-                if grid[r][c] == '1':
-                    self.removeNeighbors(r,c,grid)
-                    count += 1
-        return count            
+    def numIslands(self, grid: List[List[str]]) -> int:
+            count = 0
+            for r,row in enumerate(grid):
+                for c,col in enumerate(row):
+                    if grid[r][c] == '1':
+                        self.removeNeighbors(r,c,grid)
+                        count += 1
+            return count            
     def removeNeighbors(self, r ,c, grid):
         grid[r][c] = 0 
         # print(grid)   
