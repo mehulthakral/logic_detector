@@ -28,6 +28,19 @@ def model_NB_predict(X):
   return {ypred[0]:1}  # the predicted label
 
 
+def model_KNN_predict(X):
+  docs, labels = av.encode_to_ast_vectors(X, "unknown")
+  #print("Generated vector for given code snippet")
+  # print(docs,len(docs))
+  filename = 'model2/knn.sav'
+  loaded_model = pickle.load(open(filename, 'rb'))
+  #print("\n\n", "model loaded")
+  # print(loaded_model)
+  ypred = loaded_model.predict(docs)
+  # print(ypred)
+
+  return {ypred[0]: 1}  # the predicted label
+
 ####
 #comment the above function, and uncomment the following code to test the working of the file separately
 ####
