@@ -1,6 +1,8 @@
 import subprocess
 import os
 import csv
+from ast_vectors import encode_to_ast_vectors
+import numpy as np
 
 def read_files():
     entries = os.listdir('../dataset')
@@ -48,8 +50,7 @@ def gen_vectors(tagged_pgm_list):
         labels.append(p[0])
 
 
-    from ast_vectors import encode_to_ast_vectors
-    import numpy as np
+    
     encoded_ast_count,ast_labels=encode_to_ast_vectors(docs,labels)
 
     return encoded_ast_count, ast_labels
