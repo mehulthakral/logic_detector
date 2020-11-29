@@ -146,3 +146,80 @@ def CYCLE_DETECT(ip:List[List[int]]):
                 if in_degrees[child] < 1:
                     queue.append(child)
     return len(visited) == numCourses     
+
+def SUDOKU(board={"generator":"""
+def make_board():
+    m=3
+    import random
+    n = m**2
+    board = [[None for _ in range(n)] for _ in range(n)]
+
+    def search(c=0):
+        i, j = divmod(c, n)
+        i0, j0 = i - i % m, j - j % m 
+        numbers = list(range(1, n + 1))
+        random.shuffle(numbers)
+        for x in numbers:
+            if (x not in board[i]                     
+                and all(row[j] != x for row in board) 
+                and all(x not in row[j0:j0+m]       
+                        for row in board[i0:i])): 
+                board[i][j] = x
+                if c + 1 >= n**2 or search(c + 1):
+                    return board
+        else:
+            board[i][j] = None
+            return None
+
+    x=search()
+    number_of_dots=random.randint(5,15)
+    for i in range(len(x)):
+        for j in range(len(x[0])):
+            if random.randint(0,1)==0 and number_of_dots>0:
+                x[i][j]="."
+                number_of_dots-=1
+            else:
+                x[i][j]=str(x[i][j])
+    return x """}):
+    dim = 9
+    horizontal = [set() for _ in range(dim)]
+    vertical = [set() for _ in range(dim)]
+    grid = [[set() for _ in range(3)] for _ in range(3)]
+    
+    for i in range(dim):
+        for j in range(dim):
+            curr = board[i][j]
+            if not curr == ".":
+                curr = int(curr)
+                horizontal[i].add(curr)
+                vertical[j].add(curr)
+                grid[i // 3][j // 3].add(curr)
+    
+    def search():
+        for i in range(dim):
+            for j in range(dim):
+                curr = board[i][j]
+                if curr == ".":
+                    possible_set = set([k for k in range(1, dim + 1)])
+                    possible_set -= horizontal[i]
+                    possible_set -= vertical[j]
+                    possible_set -= grid[i // 3][j // 3]
+                    if len(possible_set) == 0: 
+                        return False
+                    for potential in possible_set:
+                        board[i][j] = str(potential)
+                        horizontal[i].add(potential)
+                        vertical[j].add(potential)
+                        grid[i // 3][j // 3].add(potential)
+                        valid = search()
+                        if valid:
+                            return True
+                        else:
+                            board[i][j] = "."
+                            horizontal[i].remove(potential)
+                            vertical[j].remove(potential)
+                            grid[i // 3][j // 3].remove(potential)
+                    return False
+        return True
+    search()
+    return board

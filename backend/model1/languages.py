@@ -8,7 +8,6 @@ from tensorflow.keras.layers import Dense
 import pandas as pd 
 import numpy as np
 import random
-import string
 import inspect
 from typing import List, Set, Dict, Tuple, Optional
 
@@ -53,7 +52,14 @@ class python:
                 c["special_count"]=python.default_config["special_count"]
             
         if "generator" in config:
-            return config["generator"]
+            try:
+                temp=config["generator"]()
+                return config["generator"]
+            except:
+                d={}
+                exec(config["generator"],globals(),d)
+                f=list(d.values())[0]
+                return f
         
         build_missing_config(config)
         
@@ -151,7 +157,6 @@ class python:
 
         # compile the keras model
         model.compile(loss='mean_squared_error', optimizer='adam')
-
         model.fit(X, y, epochs=15, batch_size=15)
 
         ans=[]

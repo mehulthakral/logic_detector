@@ -24,7 +24,6 @@ def add_to_func(f,lang="python",dataset_name="model1/func.py"):
     
 
 def generate_dataset(nums=5):
-    import languages
     import func
     l=[o for o in inspect.getmembers(func) if inspect.isfunction(o[1])]
     for _ in range(nums):

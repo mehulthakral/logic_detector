@@ -20,19 +20,16 @@ def string():
 @app.route('/add', methods=['POST'])
 def add_func():
     json = request.get_json(force=True)
-    try:
-        if json['model'] == "model1":
-            choice=g1.add_to_func(json['f'],json['lang'])
-            for i in range(5):
-                g1.add_to_dataset(choice,json['lang'])
-        elif json['model'] == "model2":
-            m = mp2.predict(json['f'],json['lang'])
-        return "True"
-    except:
-        return "False"
+    if json['model'] == "model1":
+        choice=g1.add_to_func(json['f'],json['lang'])
+        for i in range(5):
+            g1.add_to_dataset(choice,json['lang'])
+    elif json['model'] == "model2":
+        m = mp2.predict(json['f'],json['lang'])
+    return "True"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0',port=80)
 
 
     

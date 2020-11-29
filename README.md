@@ -52,7 +52,7 @@ So here my making upper case, lower case and special character count as 0 and di
 
 2. Default Precondition when no precondition is specified is
 
-`{"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3 }`
+`{"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3 ,"generator": lambda : random.random}`
 
 So when function signature is like this,
 
@@ -63,4 +63,5 @@ So when function signature is like this,
  
 3. start and end specify the range of random numbers to be generated. Ex : if start=1, end=1000, then numbers in the range [1,1000] are generated. 
 
+4. generator specifies a custom random data generator for an argument. It is a callable which takes no arguments. It can also be a string which has a function inside. The function must not take any arguments.
 
