@@ -4,6 +4,8 @@
 #         self.val = x
 #         self.next = None
 
+import collections
+
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         """

@@ -1,5 +1,5 @@
 class Solution:
-    def sortArray(self, nums:list):
+    def sortArray(self, nums:list)->list:
 
         def partition(nums, left, right):
             if left > right: return

@@ -1,29 +1,383 @@
 {
-    "sortArray" : "SORT",
-    "fib" : "FIB",
-    "isPalindrome" : "PALIN",
-    "myPow" : "POW",
-    "isAnagram" : "ANAGRAM", 
-    "strStr" : "STR_SEARCH",
-    "numIslands" : "COUNT_ISLANDS",
-    "numTrees" : "CATALAN_NUM",
-    "isUgly" : "UGLY_NUM",
-    "canFinish" : "CYCLE_GRAPH",
+    "sortArray" : [
+                    "SORT",
+                    "https://leetcode.com/problems/sort-an-array/",
+                    "
+                    class Solution:
+                        def sortArray(self, nums:list)->list:
+                
+                            def partition(nums, left, right):
+                                if left > right: return
+                                
+                                # use the middle  element as the pivot
+                                pivot_index = left + (right-left)//2
+                                pivot=nums[pivot_index]
+                    
+                                while left<=right:
+                                    while left <= right and nums[left] <pivot:
+                                        left +=1
+                                    while left <= right and nums[right] >pivot:
+                                        right -=1
+                                    if left <= right:
+                                        nums[left],nums[right] = nums[right],nums[left]
+                                        left +=1
+                                        right -=1
+                                    else:
+                                        break
+                                return (left,right)
+                            
+                            def Hoare_quicksort(nums, start, end):
+                                if end < start: return
+                                p = partition(nums,start,end)
+                                Hoare_quicksort(nums,start,p[1])
+                                Hoare_quicksort(nums,p[0],end)
+                                
+                            Hoare_quicksort(nums,0,len(nums)-1)
+                            return nums
+                    "
+                ],
+    "fib" : [
+                "FIB",
+                "https://leetcode.com/problems/fibonacci-number",
+                "
+                from scipy import constants as c
 
-    "canJump" : "JUMP_GAME",
-    "coinChange":"COIN_CHANGE",
-    "countPrimes":"SIEVE",
-    "hasCycle":"CYCLE_LL",
-    "inorderTraversal":"INORDER_TRAVERSAL",
-    "isValidBST":"VALID_BST",
-    "levelOrder":"LEVELORDER_TRAVERSAL",
-    "maxDepth":"HEIGHT_BT",
-    "maxPathSum":"MAX_PATH_SUM_BT",
-    "mySqrt":"SQRT",
-    "restoreIPAddresses":"RESTORE_IP",
-    "reverse":"REVERSE_ARRAY",
-    "reverseList":"REVERSE_LL",
-    "rotate":"ROTATE_LL",
-    "solveSudoku":"SUDOKU"
+                class Solution:
+                    def fib(self, N: int) -> int:
+                        return int((c.golden ** N + 1) / 5 ** 0.5)
+                "
+            ],
+    "isPalindrome" : [
+                        "PALIN",
+                        "https://leetcode.com/problems/palindrome-number",
+                        "
+                        class Solution:
+                            def isPalindrome(self, x: int) -> bool:
+                                return str(x) == str(x)[::-1]
+                        "
+                    ],
+    "myPow" :   [
+                    "POW",
+                    "https://leetcode.com/problems/powx-n",
+                    "
+                    class Solution:
+                        def myPow(self, x: float, n: int) -> float:
+                            result = 1
 
+                            
+                            if n<0:
+                                x = 1/x
+                                n=-n
+                            power = n
+
+                            
+                            while power:
+                                if power&1:
+                                    result = result*x
+                                x = x*x
+                                power = power >>1
+                                
+                            return result
+                    "
+                ],
+    "isAnagram" : [
+                    "ANAGRAM",
+                    "https://leetcode.com/problems/valid-anagram",
+                    "
+                    from collections import Counter
+
+                        class Solution:
+                            def isAnagram(self, s: str, t: str) -> bool:
+                                return Counter(s) == Counter(t)
+                    "
+                ], 
+    "strStr" : [
+                    "STR_SEARCH",
+                    "https://leetcode.com/problems/implement-strstr",
+                    "
+                    class Solution:
+                        def strStr(self, haystack: str, needle: str) -> int:
+                            return haystack.index(needle) if needle in haystack else -1
+                    "
+                ],
+    "numIslands" : [
+                    "COUNT_ISLANDS",
+                    "https://leetcode.com/problems/number-of-islands",
+                    "
+                    from typing import List
+                    class Solution:
+                        def numIslands(self, g: List[List[int]]) -> int:
+                                n = len(g)
+                                grid = [[str(g[i][j]) for j in range(n)] for i in range(n)]
+                                count = 0
+                                for r,row in enumerate(grid):
+                                    for c,col in enumerate(row):
+                                        if grid[r][c] == '1':
+                                            self.removeNeighbors(r,c,grid)
+                                            count += 1
+                                return count            
+                        def removeNeighbors(self, r ,c, grid):
+                            grid[r][c] = 0 
+                            # print(grid)   
+                            if r+1 < len(grid) and grid[r+1][c] == '1':
+                                self.removeNeighbors(r+1,c,grid)
+                            if c+1 < len(grid[0]) and grid[r][c+1] == '1':
+                                self.removeNeighbors(r,c+1,grid)    
+                            if r-1 >= 0 and grid[r-1][c] == '1':
+                                self.removeNeighbors(r-1,c,grid)
+                            if c-1 >= 0 and grid[r][c-1] == '1':
+                                self.removeNeighbors(r,c-1,grid)  
+                    "
+                ],
+    "numTrees" : [
+                    "CATALAN_NUM",
+                    "https://leetcode.com/problems/unique-binary-search-trees",
+                    "
+                    class Solution:
+                        def numTrees(self, n: int) -> int:
+                                return self.count_bsts(1, n, {})
+                                
+                        def count_bsts(self, min_val: int, max_val: int, memo: dict) -> int:
+                            if min_val >= max_val:
+                                return 1
+
+                            elif (min_val, max_val) in memo:
+                                return memo[(min_val, max_val)]
+
+                            bsts_count = 0
+                            for val in range(min_val, max_val + 1):
+
+                                left_subtrees_count = self.count_bsts(min_val, val - 1, memo)
+                                right_subtrees_count = self.count_bsts(val + 1, max_val, memo)
+
+                                bsts_count += left_subtrees_count * right_subtrees_count
+
+                            memo[(min_val, max_val)] = bsts_count
+                                
+                            return bsts_count
+                    "
+                ],
+    "isUgly" :  [
+                    "UGLY_NUM",
+                    "https://leetcode.com/problems/ugly-number",
+                    "
+                    class Solution:
+                        def isUgly(self, n: int) -> bool:
+                            if n == 0:
+                                return False
+                            
+                            while n%2 == 0:
+                                n = n/2
+                            
+                            while n%3 == 0:
+                                n = n/3
+                            
+                            while n%5 == 0:
+                                n = n/5
+
+                            if n == 1:
+                                return True
+                                
+                            return False
+                    "
+                ],
+    "canFinish" : [
+                    "CYCLE_GRAPH",
+                    "https://leetcode.com/problems/course-schedule",
+                    "
+                    class Solution:
+                        def canFinish(self, ip:List[List[int]]) -> bool:
+                            from collections import defaultdict
+                            numCourses = len(ip)
+                            prerequisites = []
+                            for i in range(len(ip)):
+                                for j in range(len(ip)):
+                                    if(ip[i][j]!=0):
+                                        prerequisites.append([i,j])
+                            in_degrees = [0 for x in range(numCourses)]
+                            start_nodes = []
+                            adj_matrix = defaultdict(list)
+                            for edge in prerequisites:
+                                if edge[0] == edge[1]:
+                                    return False
+                                in_degrees[edge[1]] += 1
+                                adj_matrix[edge[0]].append(edge[1])
+                            
+                            for course_id, in_degree in enumerate(in_degrees):
+                                if in_degree == 0:
+                                    start_nodes.append(course_id)
+                            
+                            if len(start_nodes) == 0:
+                                return False
+                            
+                            # bfs 
+                            visited = set() 
+                            for start_node in start_nodes:
+                                queue = [start_node]
+                                while queue:
+                                    current = queue.pop()
+                                    visited.add(current)
+                                    for child in adj_matrix[current]:
+                                        if child in visited:
+                                            continue
+                                        in_degrees[child] -= 1
+                                        if in_degrees[child] < 1:
+                                            queue.append(child)
+                            return len(visited) == numCourses 
+                    "
+                ],
+
+    "canJump" : [
+                    "JUMP_GAME",
+                    "https://leetcode.com/problems/jump-game",
+                    "
+                    from typing import List
+                    class Solution:
+                        def canJump(self, nums: List[int]) -> bool:
+                            if nums[0] == 0 and len(nums) > 1:
+                                return False
+                            
+                            # maximum_dis stands for the maximum distance we can reach so far 
+                            maximum_dis = 0
+                            for i in range(len(nums)):
+                                # If the current index is beyond the maximum distance we can jump to, directly return False
+                                if i > maximum_dis:
+                                    return False
+                                
+                                # If maximum_dis larger or equal to the last index, it means we can reach the last index for sure
+                                if maximum_dis >= len(nums) - 1:
+                                    return True
+                                
+                                # Update the maximum_dis
+                                if nums[i] + i > maximum_dis:
+                                    maximum_dis = nums[i] + i
+                    "
+                ],
+    "coinChange":[
+                    "COIN_CHANGE",
+                    "https://leetcode.com/problems/coin-change",
+                    "
+                    from typing import List
+                    class Solution:
+                        def coinChange(self, coins: List[int], amount: int) -> int:
+                            if not coins or amount <= 0:
+                                return 0
+                            
+                            f = [float('inf')] * (amount + 1)
+                            f[0] = 0
+                            for i in range(1, amount + 1):
+                                for c in coins:
+                                    if i >= c:
+                                        f[i] = min(f[i], f[i - c] + 1)
+                            return f[amount] if f[amount] != float('inf') else -1
+                    "
+                ],
+    "countPrimes":  [
+                        "SIEVE",
+                        "https://leetcode.com/problems/count-primes",
+                        "
+                        class Solution:
+                            def countPrimes(self, n: int) -> int:
+                                if n <= 2:
+                                    return 0
+
+                                table = [True]*n
+                                table[0], table[1] = False,False
+
+                                i = 2
+                                while i*i < n:
+                                    if table[i]:
+                                        for j in range(i*i, n, i):
+                                            table[j] = False
+                                    i+=1
+
+                                return sum(table)
+                        "
+                    ],
+    "mySqrt":[  "SQRT",
+                "https://leetcode.com/problems/sqrtx",
+                "
+                class Solution:
+                    def mySqrt(self, x: int) -> int:
+                        a = x            
+                        while int(a) * int(a) > x:
+                            a -= (a * a - x) / (2 * a)            
+                        return int(a)
+
+                "
+            ],
+    "reverse":  [
+                    "REVERSE_INTEGER",
+                    "https://leetcode.com/problems/reverse-integer",
+                    "
+                    class Solution:
+                        def reverse(self, x: int) -> int:
+                            minLimit = -2**31
+                            maxLimit = 2**31
+                            
+                            numStr = str(x) #Conversion
+                            numStr = numStr[::-1] #Reverse digits
+                            
+                            if numStr.endswith("-"):
+                                numStr = "-" + numStr[:-1] #Remove "-" sign from the end and add it to the beginning
+
+                            number = int(numStr)
+                            if number not in range(minLimit,maxLimit): #Overflow
+                                return 0
+                            
+                            return number
+                    "
+                ],
+    "inorderTraversal":["INORDER_TRAVERSAL","https://leetcode.com/problems/binary-tree-inorder-traversal"],
+    "isValidBST":["VALID_BST","https://leetcode.com/problems/validate-binary-search-tree"],
+    "levelOrder":["LEVELORDER_TRAVERSAL","https://leetcode.com/problems/binary-tree-level-order-traversal"],
+    "maxDepth":["HEIGHT_BT","https://leetcode.com/problems/maximum-depth-of-binary-tree"],
+    "maxPathSum":["MAX_PATH_SUM_BT","https://leetcode.com/problems/binary-tree-maximum-path-sum"],
+    "solveSudoku":["SUDOKU","https://leetcode.com/problems/sudoku-solver"],
+    "restoreIPAddresses":[
+                            "RESTORE_IP",
+                            "https://leetcode.com/problems/restore-ip-addresses",
+                            "
+                            from typing import List
+                            class Solution:
+                                def restoreIpAddresses(self, s: str) -> List[str]:        
+                                    def backtrack(ip, num_of_addr=4):
+                                        if len(ip) < num_of_addr * 1 or len(ip) > num_of_addr * 3:
+                                            return []
+                                        
+                                        if num_of_addr == 1:
+                                            if (len(ip) == 1) or (len(ip) == 2 and ip[0] != '0') or \
+                                                (len(ip) == 3 and ip[0] != '0' and int(ip) <= 255):
+                                                return [ip]
+                                            
+                                            return []
+                                        
+                                        res = []
+                                        for i in range(1, 3+1):
+                                            init = backtrack(ip[:i], 1)
+                                            if init:
+                                                after = backtrack(ip[i:], num_of_addr-1)
+                                                if after:
+                                                    res.append(init + after)
+                                        
+                                        new_res = []
+                                        for i in range(len(res)):
+                                            for j in range(1, len(res[i])):
+                                                new_res.append(res[i][0] + '.' + res[i][j])
+                                        
+                                        return new_res
+                                                
+
+                                    return backtrack(s)
+                            "
+                        ],
+    "hasCycle": [
+        "CYCLE_LL",
+        "https://leetcode.com/problems/linked-list-cycle",
+        "
+
+        "
+    ],
+    "reverseList":["REVERSE_LL","https://leetcode.com/problems/reverse-linked-list"],
+    "rotate":["ROTATE_ARRAY","https://leetcode.com/problems/rotate-array"],
 }
