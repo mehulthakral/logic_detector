@@ -1,7 +1,7 @@
 class Solution:
 	def inorderTraversal(self, root: TreeNode) -> List[int]:
 		if not root:
-			return
+			return []
 		
 		# inorder: L-V-R
 		result:List[int] = []

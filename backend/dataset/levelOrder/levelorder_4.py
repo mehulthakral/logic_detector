@@ -14,5 +14,4 @@ class Solution:
                 level_order_traversal(node.right, k + 1)
                 
         level_order_traversal(root, 0)
-        return d.values()
-		```
+        return list(d.values())

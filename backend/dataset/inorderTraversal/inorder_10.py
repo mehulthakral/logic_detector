@@ -17,4 +17,4 @@ class Solution:
             else:
                 break
 
-        return ans
+        return list(ans)

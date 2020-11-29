@@ -13,5 +13,5 @@ class Solution:
             ans.append(max(node.val+right_max,left_max+node.val,node.val+right_max+left_max,node.val))
             return max(left_max+node.val,right_max+node.val,node.val)
         recur(root)
-        print(ans)
+        # print(ans)
         return max(ans)

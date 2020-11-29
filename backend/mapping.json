@@ -328,12 +328,213 @@
                             return number
                     "
                 ],
-    "inorderTraversal":["INORDER_TRAVERSAL","https://leetcode.com/problems/binary-tree-inorder-traversal"],
-    "isValidBST":["VALID_BST","https://leetcode.com/problems/validate-binary-search-tree"],
-    "levelOrder":["LEVELORDER_TRAVERSAL","https://leetcode.com/problems/binary-tree-level-order-traversal"],
-    "maxDepth":["HEIGHT_BT","https://leetcode.com/problems/maximum-depth-of-binary-tree"],
-    "maxPathSum":["MAX_PATH_SUM_BT","https://leetcode.com/problems/binary-tree-maximum-path-sum"],
-    "solveSudoku":["SUDOKU","https://leetcode.com/problems/sudoku-solver"],
+    "inorderTraversal": [
+                            "INORDER_TRAVERSAL",
+                            "https://leetcode.com/problems/binary-tree-inorder-traversal",
+                            "
+                            class Solution:
+                                def makeTree(self,i:int,lt:List[int]):
+                                    if(i>=len(lt)):
+                                        return None
+                                    root = TreeNode(lt[i])
+                                    root.left = makeTree(2*i+1,lt)
+                                    root.right = makeTree(2*i+2,lt)
+                                    return root
+                                
+                                def inorderTraversal(self, lst: List[int]) -> List[int]:
+                                    return self.original(self.makeTree(0,lst))
+                                
+                                def original(self, root: TreeNode) -> List[int]:
+                                    if root is None:
+                                        return []
+                                    
+                                    if root.left is None:
+                                        l = []
+                                    else:
+                                        l = self.original(root.left)
+                                        
+                                    if root.right is None:
+                                        r = []
+                                    else:
+                                        r = self.original(root.right)
+                                        
+                                    return l + [root.val] + r
+                            "
+                        ],
+    "isValidBST":   [
+                        "VALID_BST",
+                        "https://leetcode.com/problems/validate-binary-search-tree",
+                        "
+                        class Solution:
+                            def makeTree(self,i:int,lt:List[int]):
+                                if(i>=len(lt)):
+                                    return None
+                                root = TreeNode(lt[i])
+                                root.left = makeTree(2*i+1,lt)
+                                root.right = makeTree(2*i+2,lt)
+                                return root
+                            
+                            def isValidBST(self, lst: List[int]) -> bool:
+                                return self.original(self.makeTree(0,lst))
+                            
+                            def original(self, root: TreeNode) -> bool:
+                                curr = root
+                                stack = []
+                                while(curr):
+                                    stack.append(curr)
+                                    curr = curr.left
+                                prev = None
+                                while(stack):
+                                    top_ele = stack.pop()
+                                    if prev is not None and top_ele.val <= prev:
+                                        return False
+                                    prev = top_ele.val
+                                    next_right = top_ele.right
+                                    while(next_right):
+                                        stack.append(next_right)
+                                        next_right = next_right.left
+                                return True
+
+                        "
+                    ],
+    "levelOrder":[
+                    "LEVELORDER_TRAVERSAL",
+                    "https://leetcode.com/problems/binary-tree-level-order-traversal",
+                    "
+                    class Solution:
+                        def makeTree(self,i:int,lt:List[int]):
+                            if(i>=len(lt)):
+                                return None
+                            root = TreeNode(lt[i])
+                            root.left = makeTree(2*i+1,lt)
+                            root.right = makeTree(2*i+2,lt)
+                            return root
+                        
+                        def levelOrder(self, l: List[int]) -> List[List[int]]:
+                            return self.original(self.makeTree(0,l))
+                            
+                        def original(self, root: TreeNode) -> List[List[int]]:
+                            sol = []
+                            def _solve(node, depth=0):
+                                if node:
+                                    if depth >= len(sol):
+                                        sol.append([])
+                                    _solve(node.left, depth+1)
+                                    sol[depth].append(node.val)
+                                    _solve(node.right, depth+1)
+                            _solve(root)
+                            return sol
+                    "
+                ],
+    "maxDepth":[
+                    "HEIGHT_BT",
+                    "https://leetcode.com/problems/maximum-depth-of-binary-tree",
+                    "
+                    class Solution:
+                        def makeTree(self,i:int,lt:List[int]):
+                            if(i>=len(lt)):
+                                return None
+                            root = TreeNode(lt[i])
+                            root.left = makeTree(2*i+1,lt)
+                            root.right = makeTree(2*i+2,lt)
+                            return root
+                        
+                        def maxDepth(self, l: List[int]) -> int:
+                            return self.original(self.makeTree(0,l))
+                            
+                        def original(self, root: TreeNode) -> int:
+                            if not root:
+                                return 0
+                            
+                            left = self.original(root.left)
+                            right = self.original(root.right)
+                            
+                            return max(left, right) + 1
+                    "
+                ],
+    "maxPathSum":[
+                    "MAX_PATH_SUM_BT",
+                    "https://leetcode.com/problems/binary-tree-maximum-path-sum",
+                    "
+                    class Solution:
+                        def makeTree(self,i:int,lt:List[int]):
+                            if(i>=len(lt)):
+                                return None
+                            root = TreeNode(lt[i])
+                            root.left = makeTree(2*i+1,lt)
+                            root.right = makeTree(2*i+2,lt)
+                            return root
+                        
+                        def maxPathSum(self, l:List[int]) -> int:
+                            return self.original(self.makeTree(0,l))
+                        
+                        def original(self, root: TreeNode) -> int:
+                            self.ans = float("-inf")
+
+                            def postorder(root):
+                                if not root:  return 0
+
+                                left_val, right_val = max(0, postorder(root.left)), max(0, postorder(root.right))
+                                self.ans = max(self.ans, (root.val + left_val + right_val))
+                                return max((root.val + left_val), (root.val + right_val))
+
+                            postorder(root)
+                            return self.ans
+                    "
+                ],
+    "solveSudoku":  [
+                        "SUDOKU",
+                        "https://leetcode.com/problems/sudoku-solver",
+                        "
+                        class Solution:
+                            def solveSudoku(self, board: List[List[int]]) -> List[List[int]]:
+                                self.original(board)
+                                return board
+                                
+                            def original(self, board: List[List[str]]) -> None:
+                                def can_place(i, j, num):
+                                    # Check row
+                                    if any(num == n for n in board[i]):
+                                        return False
+                                    
+                                    # Check col
+                                    if any(num == n for n in list(zip(*board))[j]):
+                                        return False
+                                    
+                                    # Check box
+                                    start_row, start_col = (i // 3) * 3, (j // 3) * 3
+                                    for r in range(start_row, start_row + 3):
+                                        for c in range(start_col, start_col + 3):
+                                            if num == board[r][c]:
+                                                return False
+                                    return True
+                                
+                                def find_unassigned():
+                                    for r in range(len(board)):
+                                        for c in range(len(board[0])):
+                                            if board[r][c] == '.':
+                                                return r, c
+                                    return -1, -1
+                                
+                                def solve():
+                                    r, c = find_unassigned()
+                                    
+                                    if r == -1 and c == -1:
+                                        return True
+                                    
+                                    for num in [str(n) for n in range(1, 10)]:
+                                        if can_place(r, c, num):
+                                            board[r][c] = num
+                                            if solve():
+                                                return True
+                                            board[r][c] = '.'
+                                    return False
+                                
+                                if not board:
+                                    return
+                                solve()
+                        "
+                    ],
     "restoreIPAddresses":[
                             "RESTORE_IP",
                             "https://leetcode.com/problems/restore-ip-addresses",
@@ -375,9 +576,95 @@
         "CYCLE_LL",
         "https://leetcode.com/problems/linked-list-cycle",
         "
-
+        class Solution:
+            def makeList(self,l,p):
+                head = None
+                reqp = None
+                if(len(l)==0):
+                    return head
+                else:
+                    head = temp = ListNode(l[0])
+                    for i in range(1,len(l)):
+                        temp.next = ListNode(l[i])
+                        temp = temp.next
+                        if(i==p):
+                            reqp = temp
+                if(p==-1):
+                    return head
+                if(reqp==None):
+                    temp.next = head
+                else:
+                    temp.next = reqp
+                return head
+            
+            def hasCycle(self, l:List[int], p:int)->bool:
+                return self.original(self.makeList(l,p))
+            
+            def original(self, head: ListNode)->bool:
+                if head == None or head.next == None:
+                    return False
+                p = head
+                q = head.next
+                while q and q.next:
+                    if p == q:
+                        break
+                    p = p.next
+                    q = q.next.next
+                if p != q:
+                    return False
+                return True
         "
     ],
-    "reverseList":["REVERSE_LL","https://leetcode.com/problems/reverse-linked-list"],
-    "rotate":["ROTATE_ARRAY","https://leetcode.com/problems/rotate-array"],
+    "reverseList":  [
+                        "REVERSE_LL",
+                        "https://leetcode.com/problems/reverse-linked-list",
+                        "
+                        class Solution:
+                            def makeList(self,l):
+                                head = None
+                                if(len(l)==0):
+                                    return head
+                                else:
+                                    head = temp = ListNode(l[0])
+                                    for i in range(1,len(l)):
+                                        temp.next = ListNode(l[i])
+                                        temp = temp.next
+                                return head
+                            
+                            def breakList(self,head):
+                                l = []
+                                while(head!=None):
+                                    l.append(head.val)
+                                    head = head.next
+                                return l
+                            
+                            def reverseList(self,l:List[int])->List[int]:
+                                return self.breakList(self.original(self.makeList(l)))
+                                
+                            def original(self, head: ListNode) -> ListNode:
+                                if head is None or head.next is None :
+                                    return head 
+                                if head.next is not None:
+                                    last = None
+                                    point = head
+
+                                    while point is not None:
+                                        point.next, point, last = last, point.next, point
+                                        
+                                    return last
+                        "
+                    ],
+    "rotate":[
+                "ROTATE_ARRAY",
+                "https://leetcode.com/problems/rotate-array",
+                "
+                class Solution:
+                    def rotate(self, nums: List[int], k: int) -> List[int]:
+                        self.original(nums,k)
+                        return nums
+                    def original(self, nums: List[int], k: int) -> None:
+                        for _ in range(k):
+                            nums.insert(0, nums.pop())
+                "
+            ],
 }

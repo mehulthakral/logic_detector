@@ -1,3 +1,4 @@
+from collections import deque
 class Solution:
     def maxDepth(self, root:TreeNode)->int:
         stack,level,final,counter = deque(), [], [], 0
