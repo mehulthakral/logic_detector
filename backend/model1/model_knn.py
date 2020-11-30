@@ -19,12 +19,13 @@ class Model():
         X,y=self.prepare_dataset()
         self.model=KNN(n_neighbors=self.num,metric="manhattan")
         self.model.fit(X,y)
-        key=self.model.classes_
-        val=list(self.model.predict_proba([vec])[0])
-        d={}
-        k=0
-        for i in key:
-            d[i]=val[k]
-            k+=1
-        #ans=self.model.predict([vec])[0]
-        return d
+        # key=self.model.classes_
+        # val=list(self.model.predict_proba([vec])[0])
+        # d={}
+        # k=0
+        # for i in key:
+        #     d[i]=val[k]
+        #     k+=1
+        ans=self.model.predict([vec])[0]
+        # return d
+        return {ans:1}

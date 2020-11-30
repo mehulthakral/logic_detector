@@ -1,3 +1,4 @@
+from nodes import ListNode
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         l={}

@@ -1,3 +1,4 @@
+from collections import defaultdict
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         pre = defaultdict(list)

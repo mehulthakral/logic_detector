@@ -1,3 +1,4 @@
+from typing import List
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         if 0 not in nums:

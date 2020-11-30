@@ -1,3 +1,4 @@
+from collections import defaultdict
 class Solution:
     def canFinish(self, n, E):
         arrow   = defaultdict(list)

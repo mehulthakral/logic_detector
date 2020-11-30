@@ -50,12 +50,6 @@ def PALIN(x:int):
 def POW(x:float,n:int):
     return x**n
 
-def ANAGRAM(s:str,t:str):
-      char_count = {}
-      for char in s: char_count[char] = char_count.get(char, 0) + 1
-      for char in t: char_count[char] = char_count.get(char, 0) - 1
-      return False not in [char_count[char] == 0 for char in char_count]
-
 def GCD(x:int,y:int):
    while(y): 
        x, y = y, x % y 
@@ -107,45 +101,6 @@ def UGLY_NUM(num:int):
         while num % factor == 0:
             num //= factor
     return num == 1
-
-def CYCLE_DETECT(ip:List[List[int]]):
-    from collections import defaultdict
-    numCourses = len(ip)
-    prerequisites = []
-    for i in range(len(ip)):
-        for j in range(len(ip)):
-            if(ip[i][j]!=0):
-                prerequisites.append([i,j])
-    in_degrees = [0 for x in range(numCourses)]
-    start_nodes = []
-    adj_matrix = defaultdict(list)
-    for edge in prerequisites:
-        if edge[0] == edge[1]:
-            return False
-        in_degrees[edge[1]] += 1
-        adj_matrix[edge[0]].append(edge[1])
-    
-    for course_id, in_degree in enumerate(in_degrees):
-        if in_degree == 0:
-            start_nodes.append(course_id)
-    
-    if len(start_nodes) == 0:
-        return False
-    
-    # bfs 
-    visited = set() 
-    for start_node in start_nodes:
-        queue = [start_node]
-        while queue:
-            current = queue.pop()
-            visited.add(current)
-            for child in adj_matrix[current]:
-                if child in visited:
-                    continue
-                in_degrees[child] -= 1
-                if in_degrees[child] < 1:
-                    queue.append(child)
-    return len(visited) == numCourses     
 
 def SUDOKU(board={"generator":"""
 def make_board():
@@ -223,3 +178,302 @@ def make_board():
         return True
     search()
     return board
+
+def JUMP_GAME(nums: list) -> bool:
+  if nums[0] == 0 and len(nums) > 1:
+    return False
+
+  # maximum_dis stands for the maximum distance we can reach so far 
+  maximum_dis = 0
+  for i in range(len(nums)):
+    # If the current index is beyond the maximum distance we can jump to, directly return False
+    if i > maximum_dis:
+      return False
+
+    # If maximum_dis larger or equal to the last index, it means we can reach the last index for sure
+    if maximum_dis >= len(nums) - 1:
+      return True
+
+    # Update the maximum_dis
+    if nums[i] + i > maximum_dis:
+      maximum_dis = nums[i] + i
+
+def COIN_CHANGE(coins: list, amount: int) -> int:
+  if not coins or amount <= 0:
+    return 0
+
+  f = [float('inf')] * (amount + 1)
+  f[0] = 0
+  for i in range(1, amount + 1):
+    for c in coins:
+      if i >= c:
+        f[i] = min(f[i], f[i - c] + 1)
+  return f[amount] if f[amount] != float('inf') else -1
+
+def REVERSE_INTEGER(x: int) -> int:
+                            minLimit = -2**31
+                            maxLimit = 2**31
+                            
+                            numStr = str(x) #Conversion
+                            numStr = numStr[::-1] #Reverse digits
+                            
+                            if numStr.endswith("-"):
+                                numStr = "-" + numStr[:-1] #Remove "-" sign from the end and add it to the beginning
+
+                            number = int(numStr)
+                            if number not in range(minLimit,maxLimit): #Overflow
+                                return 0
+                            
+                            return number
+
+def ROTATE_ARRAY(nums: list, k: int) -> list:
+                    def original(nums: list, k: int) -> None:
+                        for _ in range(k):
+                            nums.insert(0, nums.pop())
+                    original(nums,k)
+                    return nums
+
+def REVERSE_LL(l:list)->list:
+    class ListNode:
+        def __init__(self, val=0, next=None):
+            self.val = val
+            self.next = next
+    def makeList(l):
+        head = None
+        if(len(l)==0):
+            return head
+        else:
+            head = temp = ListNode(l[0])
+            for i in range(1,len(l)):
+                temp.next = ListNode(l[i])
+                temp = temp.next
+        return head
+    
+    def breakList(head):
+        l = []
+        while(head!=None):
+            l.append(head.val)
+            head = head.next
+        return l
+        
+    def original(head: ListNode) -> ListNode:
+        if head is None or head.next is None :
+            return head 
+        if head.next is not None:
+            last = None
+            point = head
+
+            while point is not None:
+                point.next, point, last = last, point.next, point
+                
+            return last
+    return breakList(original(makeList(l)))
+
+def CYCLE_LL(l:list, p:int)->bool:
+    class ListNode:
+        def __init__(self, x):
+            self.val = x
+            self.next = None
+    def makeList(l,p):
+        head = None
+        reqp = None
+        if(len(l)==0):
+            return head
+        else:
+            head = temp = ListNode(l[0])
+            for i in range(1,len(l)):
+                temp.next = ListNode(l[i])
+                temp = temp.next
+                if(i==p):
+                    reqp = temp
+        if(p==-1):
+            return head
+        if(reqp==None):
+            temp.next = head
+        else:
+            temp.next = reqp
+        return head
+    
+    def original(head: ListNode)->bool:
+        if head == None or head.next == None:
+            return False
+        p = head
+        q = head.next
+        while q and q.next:
+            if p == q:
+                break
+            p = p.next
+            q = q.next.next
+        if p != q:
+            return False
+        return True
+    return original(makeList(l,p))
+
+def INORDER_TRAVERSAL(lst: list) -> list:
+    class TreeNode:
+        def __init__(self, val=0, left=None, right=None):
+            self.val = val
+            self.left = left
+            self.right = right
+
+    def makeTree(i:int,lt:list):
+        if(i>=len(lt)):
+            return None
+        root = TreeNode(lt[i])
+        root.left = makeTree(2*i+1,lt)
+        root.right = makeTree(2*i+2,lt)
+        return root
+
+    def original(root: TreeNode) -> list:
+        if root is None:
+            return []
+        
+        if root.left is None:
+            l = []
+        else:
+            l = original(root.left)
+            
+        if root.right is None:
+            r = []
+        else:
+            r = original(root.right)
+            
+        return l + [root.val] + r
+    return original(makeTree(0,lst))
+
+def VALID_BST(lst: list) -> bool:
+    class TreeNode:
+        def __init__(self, val=0, left=None, right=None):
+            self.val = val
+            self.left = left
+            self.right = right
+
+    def makeTree(i:int,lt:list):
+        if(i>=len(lt)):
+            return None
+        root = TreeNode(lt[i])
+        root.left = makeTree(2*i+1,lt)
+        root.right = makeTree(2*i+2,lt)
+        return root
+    
+    def original(root: TreeNode) -> bool:
+        curr = root
+        stack = []
+        while(curr):
+            stack.append(curr)
+            curr = curr.left
+        prev = None
+        while(stack):
+            top_ele = stack.pop()
+            if prev is not None and top_ele.val <= prev:
+                return False
+            prev = top_ele.val
+            next_right = top_ele.right
+            while(next_right):
+                stack.append(next_right)
+                next_right = next_right.left
+        return True
+    return original(makeTree(0,lst))
+
+def LEVELORDER_TRAVERSAL(l: list):
+    class TreeNode:
+        def __init__(self, val=0, left=None, right=None):
+            self.val = val
+            self.left = left
+            self.right = right
+
+    def makeTree(i:int,lt:list):
+        if(i>=len(lt)):
+            return None
+        root = TreeNode(lt[i])
+        root.left = makeTree(2*i+1,lt)
+        root.right = makeTree(2*i+2,lt)
+        return root
+                            
+    def original(root: TreeNode):
+        sol = []
+        def _solve(node, depth=0):
+            if node:
+                if depth >= len(sol):
+                    sol.append([])
+                _solve(node.left, depth+1)
+                sol[depth].append(node.val)
+                _solve(node.right, depth+1)
+        _solve(root)
+        return sol
+    return original(makeTree(0,l))
+
+def HEIGHT_BT(l: list):
+    class TreeNode:
+        def __init__(self, val=0, left=None, right=None):
+            self.val = val
+            self.left = left
+            self.right = right
+
+    def makeTree(i:int,lt:list):
+        if(i>=len(lt)):
+            return None
+        root = TreeNode(lt[i])
+        root.left = makeTree(2*i+1,lt)
+        root.right = makeTree(2*i+2,lt)
+        return root         
+                            
+    def original(root: TreeNode) -> int:
+        if not root:
+            return 0
+        
+        left = original(root.left)
+        right = original(root.right)
+        
+        return max(left, right) + 1
+    return original(makeTree(0,l))
+
+def MAX_PATH_SUM_BT(l: list):
+    class TreeNode:
+        def __init__(self, val=0, left=None, right=None):
+            self.val = val
+            self.left = left
+            self.right = right
+    def makeTree(i:int,lt:list):
+        if(i>=len(lt)):
+            return None
+        root = TreeNode(lt[i])
+        root.left = makeTree(2*i+1,lt)
+        root.right = makeTree(2*i+2,lt)
+        return root         
+                            
+    def original(root: TreeNode) -> int:
+        def check(node: TreeNode):
+            (lps, ls) = check(node.left) if node.left else (0, float('-inf'))
+            (rps, rs) = check(node.right) if node.right else (0, float('-inf'))
+            return max(lps + node.val, rps + node.val, node.val), max(ls, rs, lps + node.val, rps + node.val, lps + rps + node.val, node.val)
+        return check(root)[1]
+    return original(makeTree(0,l))
+
+def SQRT( x: int={"start":0,"end":1000}) -> int:
+                        a = x            
+                        while int(a) * int(a) > x:
+                            a -= (a * a - x) / (2 * a)            
+                        return int(a)
+
+def SIEVE(n: int={"start":0,"end":1000}) -> int:
+                                if n <= 2:
+                                    return 0
+
+                                table = [True]*n
+                                table[0], table[1] = False,False
+
+                                i = 2
+                                while i*i < n:
+                                    if table[i]:
+                                        for j in range(i*i, n, i):
+                                            table[j] = False
+                                    i+=1
+
+                                return sum(table)
+
+def ANAGRAM(s:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0},t:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0}):
+      char_count = {}
+      for char in s: char_count[char] = char_count.get(char, 0) + 1
+      for char in t: char_count[char] = char_count.get(char, 0) - 1
+      return False not in [char_count[char] == 0 for char in char_count]
