@@ -81,7 +81,7 @@ with open('dataset_encoded.csv') as csvfile:
 print('Splitting between training and test data')
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.3, random_state=1)
+    X, y, test_size=0.3, random_state=1000)
 
 model_NB(X_train, X_test, y_train, y_test)
 model_KNN(X_train, X_test, y_train, y_test)
