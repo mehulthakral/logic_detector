@@ -36,7 +36,7 @@ def model_NB(X_train, X_test, y_train, y_test):
 
 def model_KNN(X_train, X_test, y_train, y_test):
     print('Declaring KNN')
-    knn = KNeighborsClassifier(n_neighbors=7,distance="manhattan")
+    knn = KNeighborsClassifier(n_neighbors=7,metric="manhattan")
     print ('Fitting')
     knn.fit(X_train, y_train)
 
