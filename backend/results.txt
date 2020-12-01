@@ -1,12 +1,11 @@
-Accuracy of myPow 19 prgs: 94.73684210526315
-Accuracy of isPalindrome 20 prgs: 100.0
-Accuracy of fib 22 prgs: 100.0
-Accuracy of sortArray 16 prgs: 100.0
+Accuracy of myPow 18/19 prgs: 94.73684210526315
+Accuracy of isPalindrome 20/20 prgs: 100.0
+Accuracy of fib 22/22 prgs: 100.0
+Accuracy of sortArray 16/16 prgs: 100.0
 Accuracy till 77 prgs: 98.7012987012987
 
 Accuracy of canJump 20/20 prgs: 100.0
 Accuracy of coinChange 16/16 prgs: 100.0
-Accuracy of mySqrt 0/21 prgs: 0.0
 Accuracy of countPrimes 22/22 prgs: 100.0
 Accuracy of reverse 19/19 prgs: 100.0
 Accuracy of rotate 21/21 prgs: 100.0
@@ -15,7 +14,6 @@ Accuracy of numTrees 21/21 prgs: 100.0
 Accuracy of hasCycle 21/21 prgs: 100.0
 Accuracy of reverseList 26/26 prgs: 100.0
 Accuracy of numIslands 23/23 prgs: 100.0
-Accuracy of canFinish 14/19 prgs: 73.68421052631578
 Accuracy of strStr 19/21 prgs: 90.47619047619048
 Accuracy of inorderTraversal 21/21 prgs: 100.0
 Accuracy of isValidBST 21/21 prgs: 100.0
@@ -25,3 +23,4 @@ Accuracy of maxPathSum 20/20 prgs: 100.0
 Accuracy of solveSudoku 19/19 prgs: 100.0
 Accuracy of mySqrt 21/21 prgs: 100.0
 Accuracy of isAnagram 21/21 prgs: 100.0
+Accuracy of canFinish 17/19 prgs: 89.47
