@@ -1,5 +1,5 @@
 import pickle
-from . import ast_vectors as av
+import ast_vectors as av
 
 
 #X = [""def fib(self, N: int) -> int:\n\tglobal fpp\n\t#base condition\n\tif N <= 0:\n\t\tfpp = 1\n\t\treturn 0\n\t# fib(0)= 0\n\tfp = self.fib(N-1)\n\tf = fp+fpp\n\tfpp = fp\n\treturn f"""

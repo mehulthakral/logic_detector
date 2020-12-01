@@ -26,7 +26,7 @@ def read_files():
                 
 
                 tagged_pgm_list.append(t)
-    print(tagged_pgm_list)
+    #print(tagged_pgm_list)
 
     with open('dataset.csv', 'w') as f:
 

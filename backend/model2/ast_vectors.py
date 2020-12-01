@@ -157,7 +157,7 @@ def encode_to_ast_vectors(docs, labels):
 
     # print(ast_docs[0], "\n\n", ast_docs[1])
 
-    NUM_WORDS = 20
+    NUM_WORDS = 30
     ast_t = Tokenizer(num_words=NUM_WORDS,
                     lower=False,
                     split=' ',
@@ -169,7 +169,7 @@ def encode_to_ast_vectors(docs, labels):
 
     ordered_ast_nodes = sorted(ast_t.word_counts.items(),
                             key=lambda t: (t[1], t[0]), reverse=True)
-    N = 100
+    N = 120
     for key, value in ordered_ast_nodes[:N]:
         print("%s: %s" % (key, value))
 

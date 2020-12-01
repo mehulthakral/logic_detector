@@ -60,8 +60,9 @@ def model_KNN(X_train, X_test, y_train, y_test):
 
 ## WORKING WITH MODELS
 tagged_pgm_list = []
-X = []
-y = []
+#X = []
+#y = []
+data={}
 with open('dataset_encoded.csv') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
 
@@ -70,14 +71,21 @@ with open('dataset_encoded.csv') as csvfile:
             # print(r,"\n",len(r),"\n\n\n")
             tagged_pgm_list.append(r)
             tag = r[-1]
-            y.append(tag)
+            #y.append(tag)
             r.remove(tag)
             # print(r)
             r = [float(rr) for rr in r]
-            X.append(r)
+            #X.append(r)
+            if tag not in data:
+                data[tag]=[]
+                data[tag].append([])
+                data[tag].append([])
+            data[tag][0].append(r)
+            data[tag][1].append(tag)
+            
 
 # print(X,y)
-
+"""
 print('Splitting between training and test data')
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -85,3 +93,29 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 model_NB(X_train, X_test, y_train, y_test)
 model_KNN(X_train, X_test, y_train, y_test)
+"""
+
+print('Splitting between training and test data')
+X_final_train=[]
+y_final_train=[]
+
+for i in data:
+    X_train, X_test, y_train, y_test = train_test_split(data[i][0], data[i][1], test_size=0.3, random_state=1000)
+    X_final_train+=X_train
+    y_final_train+=y_train
+    data[i][0] = X_test
+    data[i][1] = y_test
+
+#print(X_final_train,y_final_train)
+nb = MultinomialNB()
+nb.fit(X_final_train, y_final_train)
+
+for i in data:
+    print(i," NB Accuracy: ",nb.score(data[i][0], data[i][1]))
+
+knn = KNeighborsClassifier(n_neighbors=7,metric="manhattan")
+knn.fit(X_train, y_train)
+
+for i in data:
+    y_pred = knn.predict(data[i][0])
+    print(i,"KNN Accuracy: ",accuracy_score(data[i][0], y_pred))
