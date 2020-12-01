@@ -35,8 +35,8 @@ Steps to Test/Predict Functions via Library function call:
 To determine accuracy label wise for dynamic model:
 
 1. `cd backend`
-2. Add the labels for which accuracy has to be determined in the labels dictionary in dataset_server.py. Available labels can be reffered from mapping.json 
-3. Run `python dataset_server.py` and the results would be added to results.txt 
+2. Add the labels for which accuracy has to be determined in the labels list in dataset_server.py. Available labels can be reffered from mapping.json 
+3. Run `python dataset_server.py` and the results can be seen in results.txt 
 
 Note to add a new logic detection module, 
 
