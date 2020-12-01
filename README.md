@@ -32,6 +32,11 @@ Steps to Test/Predict Functions via Library function call:
 1. `import model1.predict as mp1`
 2. `m = mp1.predict(function,language)`
 
+To determine accuracy label wise for dynamic model:
+
+1. `cd backend`
+2. Add the labels for which accuracy has to be determined in the labels dictionary in dataset_server.py. Available labels can be reffered from mapping.json 
+3. Run `python dataset_server.py` and the results would be added to results.txt 
 
 Note to add a new logic detection module, 
 
