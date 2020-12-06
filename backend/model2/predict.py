@@ -1,6 +1,6 @@
 import pickle
 import ast_vectors as av
-
+import json
 
 #X = [""def fib(self, N: int) -> int:\n\tglobal fpp\n\t#base condition\n\tif N <= 0:\n\t\tfpp = 1\n\t\treturn 0\n\t# fib(0)= 0\n\tfp = self.fib(N-1)\n\tf = fp+fpp\n\tfpp = fp\n\treturn f"""
 #     ]
@@ -63,5 +63,13 @@ def model_KNN_predict(X):
 # print(ypred)
 
 def predict(f,lang):
-    result = model_NB_predict([f])
-    return result
+    result1 = model_NB_predict([f])
+    result2 = model_KNN_predict([f])
+    #f1=open("NB_Accuracy.json","r")
+    #nb_acc = json.load(f1)
+    nb_acc = {"canFinish": 1.0, "canJump": 0.8333333333333334, "coinChange": 0.8, "countPrimes": 0.42857142857142855, "fib": 0.7142857142857143, "hasCycle": 0.7142857142857143, "inorderTraversal": 0.7142857142857143, "isAnagram": 0.14285714285714285, "isPalindrome": 0.6666666666666666, "isUgly": 1.0, "isValidBST": 0.7142857142857143, "levelOrder": 1.0, "maxDepth": 0.42857142857142855, "maxPathSum": 0.6666666666666666, "myPow": 0.0, "mySqrt": 0.5714285714285714, "numIslands": 0.5714285714285714, "numTrees": 0.14285714285714285, "restoreIpAddresses": 0.8333333333333334, "reverse": 0.6666666666666666, "reverseList": 0.875, "rotate": 0.2857142857142857, "solveSudoku": 1.0, "sortArray": 1.0, "strStr": 0.2857142857142857}
+    knn_acc = {"canFinish": 0.8333333333333334, "canJump": 0.8333333333333334, "coinChange": 0.6, "countPrimes": 1.0, "fib": 0.5714285714285714, "hasCycle": 0.8571428571428571, "inorderTraversal": 0.8571428571428571, "isAnagram": 1.0, "isPalindrome": 0.16666666666666666, "isUgly": 0.8333333333333334, "isValidBST": 0.8571428571428571, "levelOrder": 1.0, "maxDepth": 0.5714285714285714, "maxPathSum": 1.0, "myPow": 0.16666666666666666, "mySqrt": 0.7142857142857143, "numIslands": 0.5714285714285714, "numTrees": 0.7142857142857143, "restoreIpAddresses": 1.0, "reverse": 0.6666666666666666, "reverseList": 1.0, "rotate": 0.0, "solveSudoku": 0.5, "sortArray": 0.4, "strStr": 0.14285714285714285}
+    if nb_acc[list(result1.keys())[0]] > knn_acc[list(result2.keys())[0]]:
+      return result1
+    else:
+      return result2
