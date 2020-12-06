@@ -37,7 +37,7 @@ def model_NB(X_train, X_test, y_train, y_test):
 
 def model_KNN(X_train, X_test, y_train, y_test):
     print('Declaring KNN')
-    knn = KNeighborsClassifier(n_neighbors=7,metric="manhattan")
+    knn = KNeighborsClassifier(n_neighbors=1,metric="manhattan")
     print ('Fitting')
     knn.fit(X_train, y_train)
 
@@ -113,7 +113,7 @@ for i in data:
     #nb_acc[i]=precision_score(data[i][1],y_pred_nb, average='weighted')
     nb_acc[i]=accuracy_score(data[i][1],y_pred_nb)
 
-knn = KNeighborsClassifier(n_neighbors=7,metric="manhattan")
+knn = KNeighborsClassifier(n_neighbors=1,metric="manhattan")
 knn.fit(X_final_train, y_final_train)
 
 knn_acc={}
