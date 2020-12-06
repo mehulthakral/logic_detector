@@ -477,3 +477,120 @@ def ANAGRAM(s:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_co
       for char in s: char_count[char] = char_count.get(char, 0) + 1
       for char in t: char_count[char] = char_count.get(char, 0) - 1
       return False not in [char_count[char] == 0 for char in char_count]
+
+def CYCLE_GRAPH(ip:List[List[int]]={"start":0,"end":1}) -> bool:
+                            from collections import defaultdict
+                            numCourses = len(ip)
+                            prerequisites = []
+                            for i in range(len(ip)):
+                                for j in range(len(ip)):
+                                    if(ip[i][j]!=0):
+                                        prerequisites.append([i,j])
+                            in_degrees = [0 for x in range(numCourses)]
+                            start_nodes = []
+                            adj_matrix = defaultdict(list)
+                            for edge in prerequisites:
+                                if edge[0] == edge[1]:
+                                    return False
+                                in_degrees[edge[1]] += 1
+                                adj_matrix[edge[0]].append(edge[1])
+                            
+                            for course_id, in_degree in enumerate(in_degrees):
+                                if in_degree == 0:
+                                    start_nodes.append(course_id)
+                            
+                            if len(start_nodes) == 0:
+                                return False
+                            
+                            # bfs 
+                            visited = set() 
+                            for start_node in start_nodes:
+                                queue = [start_node]
+                                while queue:
+                                    current = queue.pop()
+                                    visited.add(current)
+                                    for child in adj_matrix[current]:
+                                        if child in visited:
+                                            continue
+                                        in_degrees[child] -= 1
+                                        if in_degrees[child] < 1:
+                                            queue.append(child)
+                            return len(visited) == numCourses 
+
+def CYCLE_GRAPH(ip:List[List[int]]={"start":0,"end":1}) -> bool:
+                            from collections import defaultdict
+                            numCourses = len(ip)
+                            prerequisites = []
+                            for i in range(len(ip)):
+                                for j in range(len(ip)):
+                                    if(ip[i][j]!=0):
+                                        prerequisites.append([i,j])
+                            in_degrees = [0 for x in range(numCourses)]
+                            start_nodes = []
+                            adj_matrix = defaultdict(list)
+                            for edge in prerequisites:
+                                if edge[0] == edge[1]:
+                                    return False
+                                in_degrees[edge[1]] += 1
+                                adj_matrix[edge[0]].append(edge[1])
+                            
+                            for course_id, in_degree in enumerate(in_degrees):
+                                if in_degree == 0:
+                                    start_nodes.append(course_id)
+                            
+                            if len(start_nodes) == 0:
+                                return False
+                            
+                            # bfs 
+                            visited = set() 
+                            for start_node in start_nodes:
+                                queue = [start_node]
+                                while queue:
+                                    current = queue.pop()
+                                    visited.add(current)
+                                    for child in adj_matrix[current]:
+                                        if child in visited:
+                                            continue
+                                        in_degrees[child] -= 1
+                                        if in_degrees[child] < 1:
+                                            queue.append(child)
+                            return len(visited) == numCourses 
+
+def CYCLE_GRAPH(ip:List[List[int]]={"start":0,"end":1}) -> bool:
+                            from collections import defaultdict
+                            numCourses = len(ip)
+                            prerequisites = []
+                            for i in range(len(ip)):
+                                for j in range(len(ip)):
+                                    if(ip[i][j]!=0):
+                                        prerequisites.append([i,j])
+                            in_degrees = [0 for x in range(numCourses)]
+                            start_nodes = []
+                            adj_matrix = defaultdict(list)
+                            for edge in prerequisites:
+                                if edge[0] == edge[1]:
+                                    return False
+                                in_degrees[edge[1]] += 1
+                                adj_matrix[edge[0]].append(edge[1])
+                            
+                            for course_id, in_degree in enumerate(in_degrees):
+                                if in_degree == 0:
+                                    start_nodes.append(course_id)
+                            
+                            if len(start_nodes) == 0:
+                                return False
+                            
+                            # bfs 
+                            visited = set() 
+                            for start_node in start_nodes:
+                                queue = [start_node]
+                                while queue:
+                                    current = queue.pop()
+                                    visited.add(current)
+                                    for child in adj_matrix[current]:
+                                        if child in visited:
+                                            continue
+                                        in_degrees[child] -= 1
+                                        if in_degrees[child] < 1:
+                                            queue.append(child)
+                            return len(visited) == numCourses 
