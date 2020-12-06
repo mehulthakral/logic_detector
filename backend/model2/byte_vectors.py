@@ -2,7 +2,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 import csv
 import numpy as np
 def encode_byte_vector(byte_snip,byte_labels):
-    NUM_WORDS = 20
+    NUM_WORDS = 30
     byte_t = Tokenizer(num_words=NUM_WORDS,
                       lower=False,
                       split=' ',
@@ -12,7 +12,7 @@ def encode_byte_vector(byte_snip,byte_labels):
 
     ordered_ast_nodes = sorted(byte_t.word_counts.items(),
                                key=lambda t: (t[1], t[0]), reverse=True)
-    N = 100
+    N = 120
     for key, value in ordered_ast_nodes[:N]:
         print("%s: %s" % (key, value))
 
