@@ -90,7 +90,8 @@
                     
                 </div>
                 <div class="col-4">
-                    <div id="output">
+                    <span class="align-text-top"><h2>Output : </h2></span>
+                    <div id="output" style="height:80vh">
                        
                     </div>
                 </div>
@@ -168,7 +169,7 @@
             return color;
         }
 
-        function displayResult(obj)
+        /*function displayResult(obj)
         {
             var output=document.getElementById("output");
             output.innerHTML='<canvas id="bar-chart-horizontal" width="800" height="450"></canvas>';
@@ -210,8 +211,19 @@
                 }
             });
 
-        }
+        }*/
 
+        function displayResult(obj)
+        {
+            var output=document.getElementById("output");
+            var list=[]
+            for(var i in obj)
+            {
+                list.push([obj[i],i])
+            }
+            output.innerHTML="<span class='align-middle'><center><h1>"+list[0][1]+"</h1></center></span>"
+
+        }
         function test()
         {
             var str=editor.getValue();
@@ -235,7 +247,8 @@
                   data:JSON.stringify(obj),
                   method:"POST",
                   success:function(data) {
-                    alert("Learnt the Function Successfully !")
+                    var output=document.getElementById("output");
+                    output.innerHTML="<span class='align-middle'><center><h1>Learnt the function successfully !</h1></center></span>"
                   }
             });
         }
