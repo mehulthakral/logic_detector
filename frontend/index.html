@@ -15,7 +15,7 @@
         height: 600px;
         color: black;
         direction: ltr;
-        width:900px;
+        width:800px;
         font-size: x-large;
         border-radius: 8px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -57,48 +57,133 @@
     </title>
     <body>
 
-        <div class="">
-            <div class="row page-header justify-content-center align-items-center">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark justify-content-center" >
+            <!-- Navbar content -->
+            <a class="navbar-brand" href="#"><h2>Capstone Phase 1: Code Semantic Detection</h2></a>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+
+           
+               
+                
+        </nav>
+        <br><br>
+        <br><br>
+        
+       <div><br><br></div>
+            <!-- <div class="row page-header justify-content-center align-items-center">
                 <h1>Code Semantics</h1>
-            </div>
-            <div class="row justify-content-center align-items-center" style="height:100vh">
+            </div> -->
+            <div class="row justify-content-center align-items-start" style="height:100vh">
                 <div class="col-6">
-                    <div class="form-group col-md-4 d1">
-                        <select id="lang" class="form-control">
-                          <option selected value="python">Python</option>
-                          <option value="clike">C</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4 d2">
-                        <select id="model" class="form-control">
-                          <option selected value="model1">Dynamic Analysis</option>
-                          <option value="model2">Static Analysis</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-8">
+                    
+                    <div class="form-group ">
                         <!--<div id="code" style="height:600px; width: 900px;"  class="shadow-lg p-3 mb-5 bg-white rounded" contenteditable="true">int i=1;</div>-->
+                        <p><h4>Your Code Area</h4>
+                        </p>
                         <textarea id="code"></textarea>
                         <br>
-                        <br>
-                        OR
-                        <input type="file" name="inputfile" id="inputfile">
-                        <br>
-                        <br> 
-                        <button type="button" id="sendlogin" class="btn btn-primary" onclick="test()">Test</button>
-                        <button type="button" id="sendlogin1" class="btn btn-primary" onclick="learn()">Learn</button>
+                        
+                        
+                        <!-- <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" onclick="learn()">Add New Function</button> -->
                     </div>
                     
                 </div>
-                <div class="col-4">
-                    <span class="align-text-top"><h2>Output : </h2></span>
-                    <div id="output" style="height:80vh">
-                       
+                <br>
+                <class class="col-4">
+                    <div class="form group col-md-8">
+                        <br>
+                        <br>
+                        <br>
+                        <h4>Please type the code in area provided on the left OR 
+                        <br><br>
+                        <input type="file" name="inputfile" id="inputfile">
+                        </h4>
+                        
+                        
+                        
                     </div>
+                    <div class="form-group col-md-8">
+                        <br>
+                        <br>
+                        <br>
+                        <h4>Choose input code language: </h4>
+                        <select id="lang" class="form-control">
+                            
+                            <option selected value="python">Python</option>
+                            
+                            <!-- <option value="clike">C</option> -->
+                            
+                        </select>
+                        
+                        <br>
+                        <h4>Choose the model: </h4>
+                        <select id="model" class="form-control">
+                            
+                            <option selected value="model1">Dynamic Analysis</option>
+                            <option value="model2">Static Analysis</option>
+                        </select>
+                        
+                        <br>
+                        <button type="button" id="sendlogin" class="btn btn-success btn-lg" onclick="test()">Predict</button>
+                    </div>
+                    <br><br>
+                    <span class="align-text-top"><h4>The predicted label is : </h4></span>
+                    <div id="output" style="height:40vh">  </div>                   
+                    </class>
                 </div>
             </div>
-
+        
+        <div class="text-center"><br>
+            <h4><b>Project Guide:</b> Prof. NS Kumar</h4>
+            <p>
+        
+            <h4><b>Team:</b></h4>
+            <table class="table table-borderless text-center">
+                <tr>
+                    <td>
+                        <h5>Bhavna Arora</h5>
+                    </td>
+                    <td>
+                        <h5> PES1201700062</h5>
+                    </td>
+                </tr><br>
+                <tr>
+                    <td>
+                        <h5>GR Dheemanth</h5>
+                    </td>
+                    <td>
+                        <h5> PES1201700229
+                    </td>
+                    </h5>
+                    </td>
+                </tr><br>
+                <tr>
+                    <td>
+                        <h5>Skanda V C</h5>
+                    </td>
+                    <td>
+                        <h5>PES1201700987</h5>
+                    </td>
+                </tr><br>
+                <tr>
+                    <td>
+                        <h5>Mehul Thakral </h5>
+                    </td>
+                    <td>
+                        <h5>PES1201701122</h5>
+                    </td>
+                </tr><br>
+            </table>
+        
+            </p>
         </div>
-        <div class="modal"><!-- Place at bottom of page --></div>
+        <br>
+        <br>
+        
+        <div class="modal"><!-- Place at bottom of page -->   </div>
     </body>
     <script>
         $body = $("body");
