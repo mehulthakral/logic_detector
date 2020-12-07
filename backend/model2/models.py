@@ -153,7 +153,14 @@ for i in pred_label_knn:
     label_acc_knn[i]=len(correct)/len(pred_label_knn[i])
 
 #print(label_acc_nb,label_acc_knn)
+with open("KNN_Probabilities.json", "w") as outfile: 
+    json.dump(label_acc_knn, outfile)
 
+with open("NB_Probabilities.json", "w") as outfile: 
+    json.dump(label_acc_nb, outfile)
+
+model_NB(X_final_train, X_final_test, y_final_train, y_final_test)
+model_KNN(X_final_train, X_final_test, y_final_train, y_final_test)
 
 av_acc={}
 for i in data:
