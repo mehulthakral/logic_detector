@@ -85,9 +85,6 @@
                         </p>
                         <textarea id="code"></textarea>
                         <br>
-                        
-                        
-                        <!-- <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" onclick="learn()">Add New Function</button> -->
                     </div>
                     
                 </div>
@@ -120,7 +117,7 @@
                         
                         <br>
                         <h4>Choose the model: </h4>
-                        <select id="model" class="form-control">
+                        <select id="model" onchange="view_button(this)" class="form-control">
                             
                             <option selected value="model1">Dynamic Analysis</option>
                             <option value="model2">Static Analysis</option>
@@ -128,6 +125,7 @@
                         
                         <br>
                         <button type="button" id="sendlogin" class="btn btn-success btn-lg" onclick="test()">Predict</button>
+                        <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" onclick="learn()">Learn</button>
                     </div>
                     <br><br>
                     <span class="align-text-top"><h4>The predicted label is : </h4></span>
@@ -224,6 +222,20 @@
                 });
             });
 
+        }
+
+        function view_button(obj)
+        {
+            var value = obj.value;  
+            var learn=document.getElementById("sendlogin1");
+            if(value=="model1")
+            {
+                learn.style="";
+            }
+            else 
+            {
+                learn.style="display: none;";
+            }
         }
 
         loadEditor(getLanguageName());

@@ -3,7 +3,10 @@ import inspect
 from typing import List, Set, Dict, Tuple, Optional
 
 def add_to_dataset(choice,lang="python",dataset_name="model1/dataset.csv"):
-    from . import languages
+    try:
+        from . import languages
+    except:
+        import languages
     name,f=choice
 
     ans=languages.Vector(f,lang)
@@ -24,12 +27,12 @@ def add_to_func(f,lang="python",dataset_name="model1/func.py"):
     return f.__name__,f
     
 
-def generate_dataset(nums=5):
+def generate_dataset(nums=5,lang="python",dataset_name="model1/dataset.csv"):
     import func
     l=[o for o in inspect.getmembers(func) if inspect.isfunction(o[1])]
-    for _ in range(nums):
-        for i in l:
-            add_to_dataset(i,"python","dataset.csv") 
+    for i in l:
+        for _ in range(nums):
+            add_to_dataset(i,lang,dataset_name) 
 
 if __name__=="__main__":
-    generate_dataset()
+    generate_dataset(5,"python","dataset.csv")
