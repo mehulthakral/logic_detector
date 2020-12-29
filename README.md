@@ -57,14 +57,14 @@ So here my making upper case, lower case and special character count as 0 and di
 
 2. Default Precondition when no precondition is specified is
 
-`{"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3 ,"generator": lambda : random.random}`
+`{"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3 ,"wspace_count":3,"generator": lambda : random.random}`
 
 So when function signature is like this,
 
 `def IP_VAL(s:str):
   pass`
   
- Then, random strings of length 12 are created which have 3 upper case, 3 lower case, 3 digits and 3 special characters. If s was list, then random list of length 8 is generated.
+ Then, random strings of length 15 are created which have 3 upper case, 3 lower case, 3 digits and 3 special characters and 3 whitespaces. If s was list, then random list of length 8 is generated.
  
 3. start and end specify the range of random numbers to be generated. Ex : if start=1, end=1000, then numbers in the range [1,1000] are generated. 
 

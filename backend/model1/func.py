@@ -4,9 +4,6 @@ from typing import List, Set, Dict, Tuple, Optional
 def EQUAL(a:int,b:int):
     return a==b
 
-def MAX(l:list):
-    return max(l)
-
 def MIN(l:list):
     return min(l)
 
@@ -594,3 +591,6 @@ def CYCLE_GRAPH(ip:List[List[int]]={"start":0,"end":1}) -> bool:
                                         if in_degrees[child] < 1:
                                             queue.append(child)
                             return len(visited) == numCourses 
+
+def MAX(l:list):
+    return max(l)

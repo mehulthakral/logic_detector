@@ -5,3 +5,4 @@ tensorflow==2.3.0
 sklearn
 numpy
 pandas==1.1.2
+pebble

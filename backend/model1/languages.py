@@ -14,11 +14,12 @@ from typing import List, Set, Dict, Tuple, Optional
 
 
 class python:
-    default_config={"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3 }
+    default_config={"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3,"wspace_count":3}
     def __init__(self,f,nums=5000) -> None:
         self.func=f
         self.nums=nums
-    def param_generator(self,t,config={}):
+    @staticmethod
+    def param_generator(t,config={}):
         if config==inspect._empty:
             config={}
         def get_random_alphanumeric_string(c):
@@ -26,10 +27,12 @@ class python:
             digits_count=c["digits_count"]
             lower_count=c["lower_count"]
             special_count=c["special_count"]
+            wspace_count=c["wspace_count"]
             sample_str = ''.join((random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ") for i in range(upper_count)))
             sample_str += ''.join((random.choice("abcdefghijklmnopqrstuvwxyz") for i in range(lower_count)))
             sample_str += ''.join((random.choice("0123456789") for i in range(digits_count)))
-            sample_str += ''.join((random.choice(" *&^%$#@!~`'\",\\|[];:.><?/\t\b\v") for i in range(special_count)))
+            sample_str += ''.join((random.choice("*&^%$#@!~`'\",\\|[];:.><?/\t\b\v") for i in range(special_count)))
+            sample_str += ''.join((random.choice(" ") for i in range(wspace_count)))
             sample_list = list(sample_str)
             random.shuffle(sample_list)
             final_string = ''.join(sample_list)
@@ -50,6 +53,8 @@ class python:
                 c["digits_count"]=python.default_config["digits_count"]
             if "special_count" not in c:
                 c["special_count"]=python.default_config["special_count"]
+            if "wspace_count" not in c:
+                c["wspace_count"]=python.default_config["wspace_count"]
             
         if "generator" in config:
             try:
@@ -120,7 +125,7 @@ class python:
         params=inspect.signature(self.func).parameters
         l=[]
         for i in params:
-            l.append(self.param_generator(params[i].annotation,params[i].default)())
+            l.append(python.param_generator(params[i].annotation,params[i].default)())
         return l
 
     def generate_data(self):
