@@ -1,6 +1,9 @@
 import pickle
-from . import ast_vectors as av
 import json
+try:
+  from . import ast_vectors as av
+except:
+  import ast_vectors as av
 
 #X = [""def fib(self, N: int) -> int:\n\tglobal fpp\n\t#base condition\n\tif N <= 0:\n\t\tfpp = 1\n\t\treturn 0\n\t# fib(0)= 0\n\tfp = self.fib(N-1)\n\tf = fp+fpp\n\tfpp = fp\n\treturn f"""
 #     ]
@@ -84,4 +87,4 @@ def predict(f,lang):
     result={}
     result[mappings[list(res.keys())[0]][0]] = res[list(res.keys())[0]]
 
-    return result
+    return list(result.keys())[0]

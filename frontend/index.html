@@ -7,9 +7,29 @@
     <script  src="require.js"></script>
     <link rel="stylesheet" href="lib/codemirror.css">
     <link rel="stylesheet" href="theme/material-palenight.css">
+    <link rel="stylesheet" href="theme/code-prettify-theme.css">
     <link href="theme/styles.css" rel="stylesheet" />
-    
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <style>
+        table td{
+            color:white;
+            font-size: xx-large;
+            border: 1px solid white;
+        }
+        table th{
+            color:white;
+            font-size: large;
+            border: 1px solid white;
+        }
+        .vertical-center {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
         .CodeMirror {
         font-family: monospace;
         height: 600px;
@@ -57,132 +77,62 @@
     </title>
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark justify-content-center" >
-            <!-- Navbar content -->
-            <a class="navbar-brand" href="#"><h2>Capstone Phase 1: Code Semantic Detection</h2></a>
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
-
-           
-               
-                
-        </nav>
-        <br><br>
-        <br><br>
-        
-       <div><br><br></div>
-            <!-- <div class="row page-header justify-content-center align-items-center">
-                <h1>Code Semantics</h1>
-            </div> -->
-            <div class="row justify-content-center align-items-start" style="height:100vh">
-                <div class="col-6">
-                    
-                    <div class="form-group ">
-                        <!--<div id="code" style="height:600px; width: 900px;"  class="shadow-lg p-3 mb-5 bg-white rounded" contenteditable="true">int i=1;</div>-->
-                        <p><h4>Your Code Area</h4>
-                        </p>
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark justify-content-center">
+                <!-- Navbar content -->
+                <a class="navbar-brand" href="#"><h2>Capstone Phase 1: Code Semantic Detection</h2></a>   
+            </nav>
+            <br><br><br><br>
+            <div class="row justify-content-center align-items-start" style="margin-left: 2px;margin-right: 2px;height:80%; width:100%;">
+                <div class="col-6" style="height:100%; width:50%;">
+                    <span class="align-text-top"><h4>Code Area </h4></span>
+                    <div class="form-group" style="height:100%; width:100%;">
                         <textarea id="code"></textarea>
                         <br>
                     </div>
                     
                 </div>
-                <br>
-                <class class="col-4">
-                    <div class="form group col-md-8">
+                <div class="col-6">
+
+                    <div>
+                        <div>
+                            <span class="align-text-top"><h4>Output Area </h4></span>
+                            <div id="output" style="height:60vh;background-color: rgb(44, 41, 41);border-radius: 20px;color:white">  </div> 
+                        </div>
                         <br>
                         <br>
-                        <br>
-                        <h4>Please type the code in area provided on the left OR 
-                        <br><br>
-                        <input type="file" name="inputfile" id="inputfile">
-                        </h4>
-                        
-                        
-                        
-                    </div>
-                    <div class="form-group col-md-8">
-                        <br>
-                        <br>
-                        <br>
-                        <h4>Choose input code language: </h4>
-                        <select id="lang" class="form-control">
-                            
-                            <option selected value="python">Python</option>
-                            
-                            <!-- <option value="clike">C</option> -->
-                            
-                        </select>
-                        
-                        <br>
-                        <h4>Choose the model: </h4>
-                        <select id="model" onchange="view_button(this)" class="form-control">
-                            
-                            <option selected value="model1">Dynamic Analysis</option>
-                            <option value="model2">Static Analysis</option>
-                        </select>
-                        
-                        <br>
-                        <button type="button" id="sendlogin" class="btn btn-success btn-lg" onclick="test()">Predict</button>
-                        <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" onclick="learn()">Learn</button>
-                    </div>
-                    <br><br>
-                    <span class="align-text-top"><h4>The predicted label is : </h4></span>
-                    <div id="output" style="height:40vh">  </div>                   
-                    </class>
+                        <div class="row justify-content-center align-items-start">
+                            <br>
+                            <div class="col-6">
+                                <h4>Please type the code in code area provided on the left <br> <br>OR 
+                                <br><br>
+                                <input type="file" name="inputfile" id="inputfile">
+                                </h4>
+                            </div>
+                            <br>
+                            <div class="col-6">
+                                <h4>Choose the model: </h4>
+                                <br>
+                                <select id="model" style="width: 200px;" onchange="view_button(this)" class="form-control">
+                                    
+                                    <option selected value="model1">Dynamic Analysis</option>
+                                    <option value="model2">Static Analysis</option>
+                                </select>
+                                <br>
+                                <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="test()">Predict</button>
+                                <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="learn()">Learn</button>
+                                <button type="button" id="sendlogin2" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="optimize()">Optimize</button>
+                            </div>
+                        </div>
+                    </div>         
                 </div>
             </div>
         
-        <div class="text-center"><br>
-            <h4><b>Project Guide:</b> Prof. NS Kumar</h4>
-            <p>
-        
-            <h4><b>Team:</b></h4>
-            <table class="table table-borderless text-center">
-                <tr>
-                    <td>
-                        <h5>Bhavna Arora</h5>
-                    </td>
-                    <td>
-                        <h5> PES1201700062</h5>
-                    </td>
-                </tr><br>
-                <tr>
-                    <td>
-                        <h5>GR Dheemanth</h5>
-                    </td>
-                    <td>
-                        <h5> PES1201700229
-                    </td>
-                    </h5>
-                    </td>
-                </tr><br>
-                <tr>
-                    <td>
-                        <h5>Skanda V C</h5>
-                    </td>
-                    <td>
-                        <h5>PES1201700987</h5>
-                    </td>
-                </tr><br>
-                <tr>
-                    <td>
-                        <h5>Mehul Thakral </h5>
-                    </td>
-                    <td>
-                        <h5>PES1201701122</h5>
-                    </td>
-                </tr><br>
-            </table>
-        
-            </p>
-        </div>
-        <br>
-        <br>
-        
         <div class="modal"><!-- Place at bottom of page -->   </div>
     </body>
+    <!--<h4>Choose input code language: </h4>-->
+    <select id="lang" style="display: none;" class="form-control">
+        <option selected value="python">Python</option>
+    </select>
     <script>
         $body = $("body");
 
@@ -220,6 +170,7 @@
                 theme:"material-palenight",
                 autoCloseBrackets: true
                 });
+            editor.setSize("100%","100%");
             });
 
         }
@@ -257,80 +208,33 @@
             fr.readAsText(this.files[0]); 
         });
 
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        /*function displayResult(obj)
-        {
-            var output=document.getElementById("output");
-            output.innerHTML='<canvas id="bar-chart-horizontal" width="800" height="450"></canvas>';
-            var list=[]
-            for(var i in obj)
-            {
-                list.push([obj[i],i])
-            }
-            list.sort();
-            list.reverse();
-            data_=[]
-            categories_=[]
-            colors_=[]
-            for(var i in list)
-            {
-                data_.push(list[i][0]);
-                categories_.push(list[i][1]);
-                colors_.push(getRandomColor())
-            }
-            
-            new Chart(document.getElementById("bar-chart-horizontal"), {
-                type: 'horizontalBar',
-                data: {
-                labels: categories_,
-                datasets: [
-                    {
-                    label: "Classes",
-                    backgroundColor: colors_,
-                    data: data_
-                    }
-                ]
-                },
-                options: {
-                    legend: { display: false },
-                    title: {
-                        display: true,
-                        text: 'Predicted Classes and their probabilities'
-                    }
-                }
-            });
-
-        }*/
-
         function displayResult(obj)
         {
             var output=document.getElementById("output");
-            var list=[]
-            for(var i in obj)
+            var str="<br><div class='vertical-center'><table class='table' ><thead><tr><th scope='col'>#</th><th scope='col'>Given Function Name</th><th scope='col'>Prediction</th></tr></thead><tbody>"
+            for(var i=0;i<obj.length;i++)
             {
-                list.push([obj[i],i])
+                num=i+1
+                str+="<tr><th scope='row'>"+num+"</th><td>"+obj[i][0]+"</td><td>"+obj[i][1]+"</td></tr>"
             }
-            output.innerHTML="<span class='align-middle'><center><h1>"+list[0][1]+"</h1></center></span>"
-
+            str+="</tbody></table></div>"
+            console.log(str)
+            output.innerHTML=str;
         }
         function test()
         {
             var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
+            obj={"f":str,"lang":"python","model":getModel()}
             $.ajax( {
                   url:'http://localhost:5000/predict',
                   data:JSON.stringify(obj),
                   method:"POST",
                   success:function(data) {
                     displayResult(data);
+                  },
+                  error: function(xhr, textStatus, errorThrown){
+                    var output=document.getElementById("output");
+                    output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
                   }
             });
         }
@@ -338,17 +242,46 @@
         function learn()
         {
             var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
+            obj={"f":str,"lang":"python","model":getModel()}
             $.ajax( {
-                  url:'http://localhost:5000/add',
+                  url:'http://localhost:5000/learn',
                   data:JSON.stringify(obj),
                   method:"POST",
                   success:function(data) {
                     var output=document.getElementById("output");
-                    output.innerHTML="<span class='align-middle'><center><h1>Learnt the function successfully !</h1></center></span>"
+                    output.innerHTML="<br><div class='vertical-center'><h1>Learnt the function successfully !</h1></div>"
+                  },
+                  error: function(xhr, textStatus, errorThrown){
+                    var output=document.getElementById("output");
+                    output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
                   }
             });
         }
+        function optimize()
+        {
+            var str=editor.getValue();
+            obj={"f":str,"lang":"python","model":getModel()}
+            $.ajax( {
+                  url:'http://localhost:5000/optimize',
+                  data:JSON.stringify(obj),
+                  method:"POST",
+                  success:function(data) {
+                    var output=document.getElementById("output");
+                    var str="";
+                    for(var i=0;i<data.length;i++)
+                    {
+                        str+="<br><pre class='prettyprint linenums' style='font-size:large;'>"+data[i]+"</pre><br>"
+                    }                    
+                    output.innerHTML=str;
+                    PR.prettyPrint(); 
+                  },
+                  error: function(xhr, textStatus, errorThrown){
+                    var output=document.getElementById("output");
+                    output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
+                  }
+            });
+        }
+
 
     </script>
    

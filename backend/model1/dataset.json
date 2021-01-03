@@ -1,0 +1,1 @@
+{"MAX": ["n", [[0.0, "1"], [18.634724640692486, "x0"]], "def MAX(l:list):\n    return max(l)\n"], "MIN": ["n", [[0.0, "1"], [17.682065142214576, "x0"]], "def MIN(l:list):\n    return min(l)\n"]}
