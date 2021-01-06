@@ -168,7 +168,9 @@
                 lineNumbers: true,
                 mode: l,
                 theme:"material-palenight",
-                autoCloseBrackets: true
+                autoCloseBrackets: true,
+                indentUnit:4,
+                indentWithTabs:true
                 });
             editor.setSize("100%","100%");
             });
@@ -267,6 +269,7 @@
                   method:"POST",
                   success:function(data) {
                     var output=document.getElementById("output");
+                    output.style.overflow='auto';
                     var str="";
                     for(var i=0;i<data.length;i++)
                     {

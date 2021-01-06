@@ -1,18 +1,36 @@
 import model1.predict as mp1
-import model2.predict as mp2
-import model1.dataset_gen as g1
-import model1.parser as p
+import model1.dataset as g1
 import model1.optimize as op1
+import model2.predict as mp2
+
 from flask import Flask,jsonify,request
 from flask_cors import CORS
+from typing import List, Set, Dict, Tuple, Optional
+import inspect
+import importlib
 
 app = Flask(__name__)
 CORS(app)
 
+def parse(f):
+    obj=open("temp.py","w")
+    obj.write(f)
+    obj.close()
+    import temp
+    temp=importlib.reload(temp)
+    methods=[]
+    for _,k in inspect.getmembers(temp):
+        if inspect.isfunction(k):
+            methods.append((k,inspect.getsource(k)))
+        elif inspect.isclass(k):
+            obj=k()
+            methods += [(getattr(obj, m),inspect.getsource(getattr(k, m))) for m in dir(obj) if ((not m.startswith('__')) and (inspect.isfunction(getattr(obj, m)) or (inspect.ismethod(getattr(obj, m)))))]
+    return methods
+
 @app.route('/predict', methods=['POST'])
 def PREDICT():
     json = request.get_json(force=True)
-    methods=p.parse(json['f'])
+    methods=parse(json['f'])
     m=[]
     if json['model'] == "model1": #dynamic analysis
         for i in methods:
@@ -41,27 +59,27 @@ def PREDICT():
 def LEARN():
     json = request.get_json(force=True)
     if json['model'] == "model1":
-        methods=p.parse(json['f'])
+        methods=parse(json['f'])
         for i in methods:
             for j in range(5):
-                g1.add_to_csv_dataset((i.__name__,i),json['lang'])
-                g1.add_to_json_dataset((i.__name__,i),json['lang'])
+                g1.csv_dataset.add((i.__name__,i),json['lang'])
+                g1.json_dataset.add((i.__name__,i),json['lang'])
         return "True"
     elif json['model'] == "model2":
         return "True"
     else:
-        methods=p.parse(json['f'])
+        methods=parse(json['f'])
         for i in methods:
             for j in range(5):
-                g1.add_to_csv_dataset((i.__name__,i),json['lang'])
-                g1.add_to_json_dataset((i.__name__,i),json['lang'])
+                g1.csv_dataset.add((i.__name__,i),json['lang'])
+                g1.json_dataset.add((i.__name__,i),json['lang'])
         return "True"
 
 
 @app.route('/optimize', methods=['POST'])
 def OPTIMIZE():
     json = request.get_json(force=True)
-    methods=p.parse(json['f'])
+    methods=parse(json['f'])
     m=[]
     if json['model'] == "model1": #dynamic analysis
         for i in methods:

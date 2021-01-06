@@ -6,80 +6,194 @@ import time
 import inspect
 import random
 from pebble import concurrent
-import json
+from scipy.optimize import curve_fit
+from sklearn.model_selection import train_test_split
+import warnings
+warnings.filterwarnings('ignore')
 try:
     import param_gen
 except:
     from . import param_gen
 
 np.random.seed(0)
-random.seed(10)
+random.seed(10)        
+
+def get_approx_upper_bound(a):
+    if a==[]:
+        return "1"
+    num=a[-1][1]
+    return num
+
+def get_degree(a):
+    if a==[]:
+        return "1"
+    num=a[-1][1]
+    if num=="1": # in case of "1"
+        return 0
+    num=num.split("^")
+    if len(num)==1: # in case of "n"
+        return 1
+    deg=num[-1]
+    if deg=="n": #in case of "2^n"
+        return 7
+    return int(deg) #in other cases
+    
+
+def greater_vector(a,b):
+    for i in reversed(range(len(a))):
+        if (get_degree(a)>get_degree(b)) and (a[i][0]>b[i][0]):
+            return True 
+    return False 
 
 class python:
 
-    def __init__(self,func,approx_upper_bound=None,time_limit=1) -> None:
+    def __init__(self,func,approx_upper_bound=None) -> None:
         self.func=func
-        self.time_limit=time_limit
-        d={"1":10**8,"logn":10**7,"n":10**6,"n1":10**6,"nlogn":10**5,"n2":10**4,"n3":1000,"2n":25,"n!":10,"mn":10**4}
-        d1={"1":1,"logn":1,"n":2,"n1":2,"nlogn":2,"n2":3,"n3":4,"2n":6,"n!":9,"mn":3}
+        self.time_limit=1
+        d={"1":10**8,"log(n)":10**7,"logn":10**7,"n":10**6,"n^1":10**6,"nlog(n)":10**5,"nlogn":10**5,"n^2":10**4,"n^3":1000,"2^n":25,"n!":10,"nm":10**4}
+        d1={"1":1,"log(n)":1,"logn":1,"n":1,"n^1":1,"nlog(n)":2,"nlogn":2,"n^2":2,"n^3":3,"2^n":7,"n!":9,"nm":2}
+        self.approx_upper_bound=approx_upper_bound
         if approx_upper_bound in d:
             self.high=d[approx_upper_bound]
-            self.flag=True
             self.min_data=20
             self.max_degree=d1[approx_upper_bound]
         else:
-            self.min_data=5
-            self.flag=False
+            self.min_data=12
             self.high=10**6
             self.max_degree=9
+        self.criteria=r2_score
+        self.criteria_min=-np.inf
 
     def find_model(self,x,y):
-        def isclose(a,b,tol=10000):
-            a=int(a*tol)
-            b=int(b*tol)
-            if a==b:
-                return True 
-            return False
-        model=None
-        prev_poly_r2=0
-        for deg in range(1,self.max_degree):
-
+        
+        def str_replace(s):
+            d={"x0":"n","x1":"m","x2":"k"}
+            for i in d:
+                s=s.replace(i,d[i])
+            s=''.join(s.split())
+            return s
+        
+        def normalize(model):
+            coef,desc=model
+            ans=[]
+            for i in range(len(coef)):
+                if coef[i]<0.1:
+                    continue
+                ans.append([coef[i],str_replace(desc[i])])
+            if ans==[]:
+                return [[1,"1"]]
+            return ans
+        
+        def find_polynomial_model(x_train,y_train,x_test,y_test,deg,pos=True):
             # Train features
-            poly_features = PolynomialFeatures(degree=deg)
-            x_poly_train = poly_features.fit_transform(x)
-
+            poly = PolynomialFeatures(degree=deg)
+            x_poly_train = poly.fit_transform(x_train)
+            
             # Linear regression
-            poly_reg = LinearRegression(fit_intercept=True,normalize=True,n_jobs=-1)
-            poly_reg.fit(x_poly_train, y)
+            linear = LinearRegression(fit_intercept=True,normalize=True,n_jobs=-1,positive=True)
+            linear.fit(x_poly_train, y_train)
 
             # Compare with test data
-            x_poly_test = poly_features.fit_transform(x)
-            poly_predict = poly_reg.predict(x_poly_test)
-            poly_r2 = r2_score(y, poly_predict)
-            if poly_r2<prev_poly_r2 or isclose(prev_poly_r2,poly_r2):
-                return model
-            model=poly_features,poly_reg
-            prev_poly_r2=poly_r2
-        return model
+            x_poly_test = poly.fit_transform(x_test)
+            poly_predict = linear.predict(x_poly_test)
+            criteria_num = self.criteria(y_test, poly_predict)
+            coef=linear.coef_
+            named_features=poly.get_feature_names()
+            
+            model=[list(coef),list(named_features)]
+            return criteria_num,normalize(model)
+            
+        def find_log_model(x_train,y_train,x_test,y_test):
+            if len(x_train[0])>1:
+                return self.criteria_min,[[0,"1"],[0,"log(n)"]]
+            x_train=np.log2(x_train)
+            x_test=np.log2(x_test)
+            criteria_num,details=find_polynomial_model(x_train,y_train,x_test,y_test,1)
+            if len(details)==1:
+                details[0]=[details[0][0],"log(n)"]
+            else:
+                details[1]=[details[1][0],"log(n)"]
+            return criteria_num,details
         
+        def find_n_log_model(x_train,y_train,x_test,y_test):
+            if len(x_train[0])>1:
+                return self.criteria_min,[[0,"1"],[0,"nlog(n)"]]
+            x_train=x_train*np.log2(x_train)
+            x_test=x_test*np.log2(x_test)
+            criteria_num,details=find_polynomial_model(x_train,y_train,x_test,y_test,1)
+            if len(details)==1:
+                details[0]=[details[0][0],"nlog(n)"]
+            else:
+                details[1]=[details[1][0],"nlog(n)"]
+            return criteria_num,details
+        
+        
+        def find_exp_model(x_train,y_train,x_test,y_test):
+            if len(x_train[0])>1:
+                return self.criteria_min,[[0,"1"],[0,"2^n"]]
+            x_train=x_train.flatten()
+            x_test=x_test.flatten()
+            def func(x,a,b):
+                return a+b*np.power(2,x)
+            try:
+                coef, pcov = curve_fit(func, x_train, y_train,bounds=((0, 0), (np.inf, np.inf)))
+                y_predict=func(x_test, *coef)
+                criteria_num = self.criteria(y_test, y_predict)
+                return criteria_num,[[coef[0],"1"],[coef[1],"2^n"]]
+            except:
+                return self.criteria_min,[[0,"1"],[0,"2^n"]]
+        
+        def func_gen(j):
+            return lambda x_train,y_train,x_test,y_test: find_polynomial_model(x_train,y_train,x_test,y_test,j)
+        
+        x=np.array(x)
+        y=np.array(y)
+        x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.4)
+        pipe_line=[func_gen(i) for i in range(2,self.max_degree)]
+        pipe_line+=[find_exp_model]
+        best_model=find_polynomial_model(x_train,y_train,x_test,y_test,1)
+        #print(best_model[0])
+        for f in pipe_line:
+            model=f(x_train,y_train,x_test,y_test)
+            #print(model[0])
+            if model[0]>best_model[0]:
+                model=list(model)
+                best_model=model.copy()
+        """      
+        approx=get_approx_upper_bound(best_model[1])
+        
+        if approx=="1": 
+            model=find_log_model(x_train,y_train,x_test,y_test)
+            print(model[0])
+            if self.approx_upper_bound=="log(n)":
+                return model[1]
+            elif model[0]>=best_model[0] :
+                return model[1]
+            else:
+                return best_model[1]
+        elif approx=="n^2":
+            model=find_n_log_model(x_train,y_train,x_test,y_test)
+            print(model[0])
+            if self.approx_upper_bound=="nlog(n)" or self.approx_upper_bound=="n^2":
+                return model[1]
+            elif model[0]>=best_model[0] :
+                return model[1]
+            else:
+                return best_model[1]
+        """
+        return best_model[1]
+    
 
-    def find_coef(self,model):
-        ridge = model[1]
-        poly= model[0]
-        coef=ridge.coef_
-        named_features=poly.get_feature_names()
-        return coef,named_features
-
-    def find_time(self,data):
+    def find_metrics(self,data): #time has been implemented
         def helper(data):
             start = time.process_time_ns()
             self.func(*data)
             end = time.process_time_ns()
             return end-start 
         helper = concurrent.process(timeout=self.time_limit)(helper)
-        future = helper(data)
+        time_data = helper(data)
         try:
-            result = future.result()  # blocks until results are ready
+            result = time_data.result()  # blocks until results are ready
             return result
         except:
             return None
@@ -117,13 +231,13 @@ class python:
         y=[]
         for i in range(len(l)):
             data=[self.param_generator(random.randint(8,20),l[j].annotation,l[j].default) for j in range(len(l))]
-            if not self.flag:
+            if self.approx_upper_bound==None:
                 low=2
                 high=self.high
                 while low<=high:
                     mid=low+(high-low)//2
                     data[i]=self.param_generator(mid,l[i].annotation,l[i].default)
-                    time_taken=self.find_time(data)
+                    time_taken=self.find_metrics(data)
                     if time_taken==None:
                         high=mid-1
                     else:
@@ -142,7 +256,7 @@ class python:
             while j<=self.min_data:
                 temp=random.randint(2,low)
                 data[i]=self.param_generator(temp,l[i].annotation,l[i].default)
-                time_taken=self.find_time(data)
+                time_taken=self.find_metrics(data)
                 if time_taken==None:
                     low=low-int(0.1*low) 
                     continue
@@ -159,79 +273,44 @@ class python:
                 j+=1       
         return x,y    
     
-    def generate_model(self):
+    def generate_vector(self):
         x,y= self.generate_data()
         model=self.find_model(x,y)
-        return model 
-    
-    def normalize(self,model):
-        coef,desc=self.find_coef(model)
-        coef=list(coef)
-        desc=list(desc)
-        pos=len(coef)
-        for i in reversed(range(len(coef))):
-            if coef[i]>1:
-                pos=i 
-                break
-        coef=coef[:pos+1]
-        desc=desc[:pos+1]
-        ans=[[coef[i],desc[i]] for i in range(len(coef))]
-        return ans
-    
-    def generate_time_vector(self):
-        return self.normalize(self.generate_model())
-    
-def parse_dataset(func_label):
-    try:
-        fobj=open("model1/dataset.json")
-    except:
-        fobj=open("dataset.json")
-    obj=json.loads(fobj.read())
-    fobj.close()
-    if func_label in obj:
-        return obj[func_label]
-    return None,None,None
-
-def greater_time_vector(a,b):
-    if len(a)>len(b):
-        return True 
-    elif len(b)>len(a):
-        return False 
-    else:
-        for i in reversed(range(len(a))):
-            if a[i][0]>b[i][0]:
-                return True 
-        return False             
-
-def get_approx_upper_bound(a):
-    if a==[]:
-        return "1"
-    num=a[-1][1]
-    num=num.split()
-    max_deg=0
-    for i in range(len(num)):
-        temp=num[i].split("^")
-        deg=temp[-1]
-        if len(temp)==1:
-            if deg=="1":
-                max_deg+=0
-            else:
-                max_deg+=1
-        else:
-            max_deg+=int(deg)
-    if max_deg>=9:
-        return "n!"
-    if max_deg>=6:
-        return "2n"
-    if max_deg==1:
-        return "n"
-    return "n"+str(max_deg)
-        
+        return model        
 
 if __name__=="__main__":
+    def order_const(x:int):
+        x=0
+        for i in range(10000):
+            x+=1
+    def order_log_n(arr:list):
+        x=10
+        low = 0
+        high = len(arr) - 1
+        mid = 0
+    
+        while low <= high: 
+    
+            mid = (high + low) // 2
+    
+            # Check if x is present at mid 
+            if arr[mid] < x: 
+                low = mid + 1
+    
+            # If x is greater, ignore left half 
+            elif arr[mid] > x: 
+                high = mid - 1
+    
+            # If x is smaller, ignore right half 
+            else: 
+                return mid 
+    
+        # If we reach here, then the element was not present 
+        return -1
+    
     def order_n_power_1(l:list):
         y=0
-        for i in range(len(l)):
+        for i in range(2*len(l)):
             y+=1
         return False
     def order_n_log_n(l:list):
@@ -258,7 +337,7 @@ if __name__=="__main__":
             for j in range(n):
                 temp+=1
              
-    obj=python(order_n_power_1,"n")
-    time_vector=obj.generate_time_vector()
-    print(get_approx_upper_bound(time_vector))
+    obj=python(order_n_power_3)
+    time_vector=obj.generate_vector()
+    print(time_vector)
         
