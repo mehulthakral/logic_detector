@@ -61,18 +61,22 @@ def LEARN():
     if json['model'] == "model1":
         methods=parse(json['f'])
         for i in methods:
+            func_obj=i[0]
+            func_source_code=i[1]
             for j in range(5):
-                g1.csv_dataset.add((i.__name__,i),json['lang'])
-                g1.json_dataset.add((i.__name__,i),json['lang'])
+                g1.csv_dataset.add((func_obj.__name__,func_obj),json['lang'])
+            g1.json_dataset.add((func_obj.__name__,func_obj),json['lang'])
         return "True"
     elif json['model'] == "model2":
         return "True"
     else:
         methods=parse(json['f'])
         for i in methods:
+            func_obj=i[0]
+            func_source_code=i[1]
             for j in range(5):
-                g1.csv_dataset.add((i.__name__,i),json['lang'])
-                g1.json_dataset.add((i.__name__,i),json['lang'])
+                g1.csv_dataset.add((func_obj.__name__,func_obj),json['lang'])
+            g1.json_dataset.add((func_obj.__name__,func_obj),json['lang'])
         return "True"
 
 

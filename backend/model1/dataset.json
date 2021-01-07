@@ -18,5 +18,15 @@
 			]
 		],
 		"def MAX(l:list):\n    return max(l)\n"
+	],
+	"SORT": [
+		"n",
+		[
+			[
+				140.63165773467765,
+				"n"
+			]
+		],
+		"def SORT(l:list):\n\tl.sort()\n\treturn l\n"
 	]
 }

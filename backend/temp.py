@@ -1,14 +1,3 @@
-def f(l:list):
-	m=l[0]
-	for i in l:
-		if i>m:
-			m=i
-	return m
-
-def g(l:list):
-	m=l[0]
-	for i in l:
-		if i<m:
-			m=i
-	return m
-			
+def SORT(N:list):
+	L = len(N)
+	return [N.pop(min(range(L-i), key = lambda x: N[x])) for i in range(L)]
