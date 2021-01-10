@@ -5,6 +5,8 @@ import numpy as np
 import time
 import inspect
 import random
+import statistics
+from memory_profiler import memory_usage
 from pebble import concurrent
 from scipy.optimize import curve_fit
 from sklearn.model_selection import train_test_split
@@ -184,7 +186,7 @@ class python:
         return best_model[1]
     
 
-    def find_metrics(self,data): #time has been implemented
+    def find_time(self,data): #time has been implemented
         def helper(data):
             start = time.process_time_ns()
             self.func(*data)
@@ -197,6 +199,11 @@ class python:
             return result
         except:
             return None
+
+    def find_mem(self,data):
+        res = max(memory_usage((self.func,[*data]),timeout = self.time_limit))*1024.0 
+        print("Memory used: ",res)
+        return res
     
     def param_generator(self,num,t,config={}):
         if config==inspect._empty:
@@ -229,6 +236,7 @@ class python:
             l.append(config)
         x=[]
         y=[]
+        y1=[]
         for i in range(len(l)):
             data=[self.param_generator(random.randint(8,20),l[j].annotation,l[j].default) for j in range(len(l))]
             if self.approx_upper_bound==None:
@@ -237,7 +245,8 @@ class python:
                 while low<=high:
                     mid=low+(high-low)//2
                     data[i]=self.param_generator(mid,l[i].annotation,l[i].default)
-                    time_taken=self.find_metrics(data)
+                    time_taken=self.find_time(data)
+                    mem_taken = self.find_mem(data)
                     if time_taken==None:
                         high=mid-1
                     else:
@@ -249,6 +258,7 @@ class python:
                                 ans.append(j)
                         x.append(ans)
                         y.append(time_taken)
+                        y1.append(mem_taken)
                         low=mid+1
             else:
                 low=self.high
@@ -256,7 +266,8 @@ class python:
             while j<=self.min_data:
                 temp=random.randint(2,low)
                 data[i]=self.param_generator(temp,l[i].annotation,l[i].default)
-                time_taken=self.find_metrics(data)
+                time_taken=self.find_time(data)
+                mem_taken = self.find_mem(data)
                 if time_taken==None:
                     low=low-int(0.1*low) 
                     continue
@@ -269,14 +280,16 @@ class python:
                         ans.append(m)
                 x.append(ans)
                 y.append(time_taken)  
+                y1.append(mem_taken)
                 low=low-int(0.1*low)   
                 j+=1       
-        return x,y    
+        return x,y,y1    
     
     def generate_vector(self):
-        x,y= self.generate_data()
-        model=self.find_model(x,y)
-        return model        
+        x,y,y1= self.generate_data()
+        time_model=self.find_model(x,y)
+        mem_model=self.find_model(x,y1)
+        return time_model, mem_model        
 
 if __name__=="__main__":
     def order_const(x:int):
@@ -338,6 +351,7 @@ if __name__=="__main__":
                 temp+=1
              
     obj=python(order_n_power_3)
-    time_vector=obj.generate_vector()
+    time_vector,mem_vector=obj.generate_vector()
     print(time_vector)
+    print(mem_vector)
         

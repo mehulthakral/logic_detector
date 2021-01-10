@@ -1,3 +1,5 @@
-def SORT(N:list):
-	L = len(N)
-	return [N.pop(min(range(L-i), key = lambda x: N[x])) for i in range(L)]
+def func(data:list):
+    temp = []
+    for i in data:
+        temp.append(i)
+    return min(data)

@@ -29,7 +29,8 @@ def optimize(f,lang="python"):
         return inspect.getsource(f)
     approx_upper_bound,dataset_time_vector,dataset_function_source_str=obj[func_label]
     pobj=optimizer.python(f,approx_upper_bound)
-    func_time_vector=pobj.generate_vector()
+    func_time_vector,func_mem_vector = pobj.generate_vector()
+    print(func_mem_vector)
     if optimizer.greater_vector(dataset_time_vector,func_time_vector):
         return inspect.getsource(f)
     else:
