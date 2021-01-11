@@ -3,7 +3,7 @@ import inspect
 from typing import List, Set, Dict, Tuple, Optional
 import json
 class csv_dataset:
-    def add(choice,lang="python"):
+    def add(self,choice,lang="python"):
         try:
             from . import predictor
         except:
@@ -23,7 +23,7 @@ class csv_dataset:
                 writer=csv.writer(file)
                 writer.writerow(ans)       
 
-    def generate(nums=5,lang="python"):
+    def generate(self,nums=5,lang="python"):
         import func
         functions=[o for o in inspect.getmembers(func) if inspect.isfunction(o[1])]
         for i in functions:

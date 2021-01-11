@@ -6,7 +6,8 @@ import time
 import inspect
 import random
 import statistics
-from memory_profiler import memory_usage
+import tracemalloc
+# from memory_profiler import memory_usage
 from pebble import concurrent
 from scipy.optimize import curve_fit
 from sklearn.model_selection import train_test_split
@@ -186,24 +187,24 @@ class python:
         return best_model[1]
     
 
-    def find_time(self,data): #time has been implemented
+    def find_metrics(self,data): #time has been implemented
         def helper(data):
+            tracemalloc.start()
             start = time.process_time_ns()
             self.func(*data)
+            current, peak = tracemalloc.get_traced_memory()
             end = time.process_time_ns()
-            return end-start 
+            tracemalloc.stop()
+            return end-start, peak
         helper = concurrent.process(timeout=self.time_limit)(helper)
         time_data = helper(data)
         try:
-            result = time_data.result()  # blocks until results are ready
-            return result
-        except:
-            return None
-
-    def find_mem(self,data):
-        res = max(memory_usage((self.func,[*data]),timeout = self.time_limit))*1024.0 
-        print("Memory used: ",res)
-        return res
+            time_res,mem_res = time_data.result()  # blocks until results are ready
+            print("Peak Memory:",mem_res)
+            return time_res,mem_res
+        except Exception as e:
+            print(e)
+            return None,None
     
     def param_generator(self,num,t,config={}):
         if config==inspect._empty:
@@ -245,8 +246,7 @@ class python:
                 while low<=high:
                     mid=low+(high-low)//2
                     data[i]=self.param_generator(mid,l[i].annotation,l[i].default)
-                    time_taken=self.find_time(data)
-                    mem_taken = self.find_mem(data)
+                    time_taken, mem_taken = self.find_metrics(data)
                     if time_taken==None:
                         high=mid-1
                     else:
@@ -266,8 +266,7 @@ class python:
             while j<=self.min_data:
                 temp=random.randint(2,low)
                 data[i]=self.param_generator(temp,l[i].annotation,l[i].default)
-                time_taken=self.find_time(data)
-                mem_taken = self.find_mem(data)
+                time_taken, mem_taken =self.find_metrics(data)
                 if time_taken==None:
                     low=low-int(0.1*low) 
                     continue
@@ -350,7 +349,7 @@ if __name__=="__main__":
             for j in range(n):
                 temp+=1
              
-    obj=python(order_n_power_3)
+    obj=python(order_n_power_1)
     time_vector,mem_vector=obj.generate_vector()
     print(time_vector)
     print(mem_vector)
