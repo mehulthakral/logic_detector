@@ -1,0 +1,39 @@
+{
+	"MIN": [
+		"n",
+		[
+			5.05955734829194,
+			1.0,
+			0,
+			0,
+			"def MIN(l:list):\n\treturn min(l)\n"
+		]
+	],
+	"MAX": [
+		"n",
+		[
+			5.175034148664334,
+			1.0,
+			0,
+			0,
+			"def MAX(l:list):\n\treturn max(l)\n"
+		]
+	],
+	"SORT": [
+		"n",
+		[
+			6.0749086373099495,
+			4.224666562940693,
+			0,
+			0,
+			"def SORT(l:list):\n\tl.sort()\n\treturn l\n"
+		],
+		[
+			25.260418606408827,
+			1.0,
+			0,
+			0,
+			"def SORT(arr:list):\n\tn = len(arr) \n  \n\tfor i in range(n): \n\n\t\tfor j in range(0, n-i-1): \n\n\t\t\tif arr[j] > arr[j+1] : \n\t\t\t\tarr[j], arr[j+1] = arr[j+1], arr[j]\n\treturn arr\n"
+		]
+	]
+}

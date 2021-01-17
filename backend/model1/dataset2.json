@@ -1,0 +1,39 @@
+{
+	"MIN": [
+		"n",
+		[
+			"time_val",
+            "mem_val",
+            "red_val",
+            "cyclo_val",
+            "def MIN(l:list):\n    return min(l)\n"
+        ],
+        [
+			"time1_val",
+            "mem1_val",
+            "red1_val",
+            "cyclo1_val",
+            "def MIN(l:list):\n    return min(l)\n"
+        ]
+	],
+	"MAX": [
+		"n",
+		[
+			[
+				18.70049877618172,
+				"n"
+			]
+		],
+		"def MAX(l:list):\n    return max(l)\n"
+	],
+	"SORT": [
+		"n",
+		[
+			[
+				140.63165773467765,
+				"n"
+			]
+		],
+		"def SORT(l:list):\n\tl.sort()\n\treturn l\n"
+	]
+}

@@ -7,7 +7,7 @@ import inspect
 import random
 import statistics
 import tracemalloc
-# from memory_profiler import memory_usage
+from math import sqrt
 from pebble import concurrent
 from scipy.optimize import curve_fit
 from sklearn.model_selection import train_test_split
@@ -40,7 +40,6 @@ def get_degree(a):
     if deg=="n": #in case of "2^n"
         return 7
     return int(deg) #in other cases
-    
 
 def greater_vector(a,b):
     for i in reversed(range(len(a))):
@@ -48,22 +47,33 @@ def greater_vector(a,b):
             return True 
     return False 
 
+def get_integral(v):
+    integrals = {"1":1000000.0,"log(n)":5565705.518096749,"logn":5565705.518096749,"n":499999999999.99994,"n^1":499999999999.99994,"nlog(n)":2891426379524.1875,"nlogn":2891426379524.1875,"n^2":3.333333333333333e+17,"n^3":2.5e+23,"n^4":1.9999999999999995e+29,"nm":3.333333333333333e+17}
+    res = 0
+    for i in v:
+        res = res + (i[0]*integrals[i[1]])/10**6
+    return pow(res,1/10)
+
+def get_metric_val(l):
+    weights=[0.2,0.8,0,0]
+    return sqrt(pow(weights[0]*l[0],2)+pow(weights[1]*l[1],2)+pow(weights[2]*l[2],2)+pow(weights[3]*l[3],2))
+
 class python:
 
     def __init__(self,func,approx_upper_bound=None) -> None:
         self.func=func
         self.time_limit=1
         d={"1":10**8,"log(n)":10**7,"logn":10**7,"n":10**6,"n^1":10**6,"nlog(n)":10**5,"nlogn":10**5,"n^2":10**4,"n^3":1000,"2^n":25,"n!":10,"nm":10**4}
-        d1={"1":1,"log(n)":1,"logn":1,"n":1,"n^1":1,"nlog(n)":2,"nlogn":2,"n^2":2,"n^3":3,"2^n":7,"n!":9,"nm":2}
+        # d1={"1":1,"log(n)":1,"logn":1,"n":1,"n^1":1,"nlog(n)":2,"nlogn":2,"n^2":2,"n^3":3,"2^n":7,"n!":9,"nm":2}
         self.approx_upper_bound=approx_upper_bound
         if approx_upper_bound in d:
             self.high=d[approx_upper_bound]
             self.min_data=20
-            self.max_degree=d1[approx_upper_bound]
+            # self.max_degree=d1[approx_upper_bound]
         else:
             self.min_data=12
             self.high=10**6
-            self.max_degree=9
+        self.max_degree=9
         self.criteria=r2_score
         self.criteria_min=-np.inf
 
