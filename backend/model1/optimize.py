@@ -34,12 +34,12 @@ def optimize(f,lang="python"):
     dataset_min_metric_val = optimizer.get_metric_val(dataset_list[0])
     dataset_function_source_str = dataset_list[0][4]
 
-    pobj=optimizer.python(f,approx_upper_bound)
+    pobj=optimizer.optimizer(f,approx_upper_bound)
     func_time_vector,func_mem_vector = pobj.generate_vector()
     print(func_mem_vector)
     integral = optimizer.get_integral
     func_metric_val = optimizer.get_metric_val([integral(func_time_vector),integral(func_mem_vector),0,0])
-
+    print(dataset_min_metric_val,func_metric_val)
     if dataset_min_metric_val>=func_metric_val:
         return inspect.getsource(f)
     else:

@@ -110,15 +110,28 @@
                             </div>
                             <br>
                             <div class="col-6">
-                                <h4>Choose the model: </h4>
-                                <br>
-                                <select id="model" style="width: 200px;" onchange="view_button(this)" class="form-control">
-                                    
-                                    <option selected value="model1">Dynamic Analysis</option>
-                                    <option value="model2">Static Analysis</option>
-                                </select>
-                                <br>
-                                <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="test()">Predict</button>
+                                <div>
+                                    <h4>Choose the model: </h4>
+                                    <br>
+                                    <select id="model" style="width: 200px;" onchange="view_button(this)" class="form-control">
+                                        
+                                        <option selected value="model1">Dynamic Analysis</option>
+                                        <option value="model2">Static Analysis</option>
+                                    </select>
+                                    <br>
+                                </div>
+                                
+                                <div>
+                                    <h4>Choose the language: </h4>
+                                    <select id="lang" style="width: 200px;" class="form-control">
+
+                                        <option selected value="python">Python</option>
+                                        <option value="clike">C++</option>
+            
+                                    </select>
+                                    <br>
+                                </div>
+                                <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="predict()">Predict</button>
                                 <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="learn()">Learn</button>
                                 <button type="button" id="sendlogin2" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="optimize()">Optimize</button>
                             </div>
@@ -194,6 +207,7 @@
         loadEditor(getLanguageName());
 
         lang.addEventListener("change",function(){
+            editor.CodeMirror.toTextArea();
             var l=getLanguageName();
             editor=loadEditor(l);
         }
@@ -223,10 +237,10 @@
             console.log(str)
             output.innerHTML=str;
         }
-        function test()
+        function predict()
         {
             var str=editor.getValue();
-            obj={"f":str,"lang":"python","model":getModel()}
+            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
             $.ajax( {
                   url:'http://localhost:5000/predict',
                   data:JSON.stringify(obj),
@@ -244,7 +258,7 @@
         function learn()
         {
             var str=editor.getValue();
-            obj={"f":str,"lang":"python","model":getModel()}
+            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
             $.ajax( {
                   url:'http://localhost:5000/learn',
                   data:JSON.stringify(obj),
@@ -262,7 +276,7 @@
         function optimize()
         {
             var str=editor.getValue();
-            obj={"f":str,"lang":"python","model":getModel()}
+            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
             $.ajax( {
                   url:'http://localhost:5000/optimize',
                   data:JSON.stringify(obj),

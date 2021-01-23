@@ -9,7 +9,7 @@ except:
 def predict(f,lang="python"):
 
     mobj=model.Model()
-    vobj=predictor.python(f)
+    vobj=predictor.predictor(f)
     vec =vobj.generate_vector()
     return mobj.predict(vec)
 

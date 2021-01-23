@@ -7,14 +7,14 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import inspect
 from typing import List, Set, Dict, Tuple, Optional
+import cppyy
+from cppyy.gbl.std import vector,pair
 try:
     import param_gen
 except:
-    from . import param_gen
+    from . import param_gen 
 
-
-
-class python:
+class predictor:
     def __init__(self,f,nums=5000) -> None:
         self.func=f
         self.nums=nums
@@ -50,7 +50,7 @@ class python:
         return l
         
     def data_gen(self):
-        params=inspect.signature(self.func).parameters
+        params=param_gen.signature(self.func)
         l=[]
         for i in params:
             l.append(param_gen.param_generator(params[i].annotation,params[i].default)())
@@ -98,4 +98,4 @@ class python:
             temp=list(temp.flatten())
             ans.extend(temp)
 
-        return ans
+        return ans    

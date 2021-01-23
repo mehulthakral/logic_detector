@@ -6,13 +6,15 @@ import model2.predict as mp2
 from flask import Flask,jsonify,request
 from flask_cors import CORS
 from typing import List, Set, Dict, Tuple, Optional
+import cppyy
+from cppyy.gbl.std import vector,pair
 import inspect
 import importlib
 
 app = Flask(__name__)
 CORS(app)
 
-def parse(f):
+def parse_py(f):
     obj=open("temp.py","w")
     obj.write(f)
     obj.close()
@@ -27,10 +29,30 @@ def parse(f):
             methods += [(getattr(obj, m),inspect.getsource(getattr(k, m))) for m in dir(obj) if ((not m.startswith('__')) and (inspect.isfunction(getattr(obj, m)) or (inspect.ismethod(getattr(obj, m)))))]
     return methods
 
+def parse_clike(f):
+    try:
+        cppyy.cppdef("using namespace std;")
+        cppyy.cppdef(f)
+    except:
+        t=0
+    try:
+        cppyy.gbl.somerandommemebr
+    except:
+        cppyy.gbl
+    methods=[]
+    for _,k in list(inspect.getmembers(cppyy.gbl)):
+        if str(type(k))=="<class 'cppyy.CPPOverload'>" and (not _.startswith("__")) :
+            methods.append((k,""))
+
+    return methods
+
 @app.route('/predict', methods=['POST'])
 def PREDICT():
     json = request.get_json(force=True)
-    methods=parse(json['f'])
+    if json["lang"]=="python":
+        methods=parse_py(json['f'])
+    else:
+        methods=parse_clike(json['f'])
     m=[]
     if json['model'] == "model1": #dynamic analysis
         for i in methods:
@@ -59,7 +81,10 @@ def PREDICT():
 def LEARN():
     json = request.get_json(force=True)
     if json['model'] == "model1":
-        methods=parse(json['f'])
+        if json["lang"]=="python":
+            methods=parse_py(json['f'])
+        else:
+            methods=parse_clike(json['f'])
         for i in methods:
             func_obj=i[0]
             func_source_code=i[1]
@@ -70,7 +95,7 @@ def LEARN():
     elif json['model'] == "model2":
         return "True"
     else:
-        methods=parse(json['f'])
+        methods=parse_py(json['f'])
         for i in methods:
             func_obj=i[0]
             func_source_code=i[1]
@@ -83,7 +108,10 @@ def LEARN():
 @app.route('/optimize', methods=['POST'])
 def OPTIMIZE():
     json = request.get_json(force=True)
-    methods=parse(json['f'])
+    if json["lang"]=="python":
+        methods=parse_py(json['f'])
+    else:
+        methods=parse_clike(json['f'])
     m=[]
     if json['model'] == "model1": #dynamic analysis
         for i in methods:
@@ -106,7 +134,7 @@ def OPTIMIZE():
     return jsonify(m)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5000)
+    app.run(host='0.0.0.0',port=5000,debug=True)
 
 
     

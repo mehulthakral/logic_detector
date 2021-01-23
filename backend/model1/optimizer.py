@@ -11,6 +11,9 @@ from math import sqrt
 from pebble import concurrent
 from scipy.optimize import curve_fit
 from sklearn.model_selection import train_test_split
+from typing import List, Set, Dict, Tuple, Optional
+import cppyy
+from cppyy.gbl.std import vector,pair
 import warnings
 warnings.filterwarnings('ignore')
 try:
@@ -55,10 +58,10 @@ def get_integral(v):
     return pow(res,1/10)
 
 def get_metric_val(l):
-    weights=[0.2,0.8,0,0]
-    return sqrt(pow(weights[0]*l[0],2)+pow(weights[1]*l[1],2)+pow(weights[2]*l[2],2)+pow(weights[3]*l[3],2))
+    weights=[1,0,0,0]
+    return sqrt(weights[0]*pow(l[0],2)+weights[1]*pow(l[1],2)+weights[2]*pow(l[2],2)+weights[3]*pow(l[3],2))
 
-class python:
+class optimizer:
 
     def __init__(self,func,approx_upper_bound=None) -> None:
         self.func=func
@@ -172,32 +175,10 @@ class python:
             if model[0]>best_model[0]:
                 model=list(model)
                 best_model=model.copy()
-        """      
-        approx=get_approx_upper_bound(best_model[1])
-        
-        if approx=="1": 
-            model=find_log_model(x_train,y_train,x_test,y_test)
-            print(model[0])
-            if self.approx_upper_bound=="log(n)":
-                return model[1]
-            elif model[0]>=best_model[0] :
-                return model[1]
-            else:
-                return best_model[1]
-        elif approx=="n^2":
-            model=find_n_log_model(x_train,y_train,x_test,y_test)
-            print(model[0])
-            if self.approx_upper_bound=="nlog(n)" or self.approx_upper_bound=="n^2":
-                return model[1]
-            elif model[0]>=best_model[0] :
-                return model[1]
-            else:
-                return best_model[1]
-        """
         return best_model[1]
     
 
-    def find_metrics(self,data): #time has been implemented
+    def find_metrics(self,data): #time and memory has been implemented
         def helper(data):
             tracemalloc.start()
             start = time.process_time_ns()
@@ -240,7 +221,7 @@ class python:
             else:
                 # iterable
                 return True
-        params=inspect.signature(self.func).parameters #mapping proxy
+        params=param_gen.signature(self.func)
         l=[] #list of parameters
         for k in params:
             config=params[k]

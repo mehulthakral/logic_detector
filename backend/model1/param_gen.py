@@ -1,8 +1,63 @@
 import random
 from typing import List, Set, Dict, Tuple, Optional
+import cppyy
+from cppyy.gbl.std import vector,pair
 import inspect
 
 default_config={"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3,"wspace_count":3}
+
+class parameter:
+    def __init__(self,annotation,default={}):
+        self.annotation=annotation
+        self.default=default
+        
+def signature(f):
+    try:
+        temp=inspect.signature(f).parameters
+        return temp
+    except:
+        s=f.__doc__
+        mappings={"int":int,
+                    "long":int,
+                    "float":float,
+                    "double":float,
+                    "bool":bool,
+                    "std::string":str,
+                    "char":str,
+                    "std::vector<int>":List[int],
+                    "std::vector<long>":List[int],
+                    "std::vector<float>":List[float],
+                    "std::vector<double>":List[float],
+                    "std::vector<bool>":List[bool],
+                    "std::vector<std::string>":List[str],
+                    "std::vector<char>":List[str],
+                    "std::vector<std::vector<std::string>>":vector(vector(str)),
+                    "std::vector<std::vector<int>>":vector(vector(int)),
+                    "std::vector<std::vector<char>>":vector(vector(str)),
+                    "std::vector<std::vector<std::string> >":vector(vector(str)),
+                    "std::vector<std::vector<char> >":vector(vector(str)),
+                    "std::vector<std::vector<int> >":vector(vector(int)),
+                    "std::list<int>":List[int],
+                    "std::list<long>":List[int],
+                    "std::list<float>":List[float],
+                    "std::list<double>":List[float],
+                    "std::list<bool>":List[bool],  
+                    "std::list<std::string>":List[str], 
+                    "std::list<char>":List[str],                       
+                    "std::set<int>":Set[int],
+                    "std::set<long>":Set[int],
+                    "std::set<float>":Set[float],
+                    "std::set<double>":Set[float],
+                    "std::set<bool>":Set[bool], 
+                    "std::set<std::string>":Set[str],  
+                    "std::set<char>":Set[str],                        
+        }
+        s=s[s.find("(")+1:-1].split(",")
+        parameters={}
+        for i in s:
+            temp=i.strip().split()
+            parameters[temp[1]]=parameter(mappings[temp[0]],{})
+        return parameters
 
 def param_generator(t,config={}):
     
@@ -72,6 +127,9 @@ def param_generator(t,config={}):
         Tuple[str]: lambda :tuple([get_random_alphanumeric_string(config) for i in range(config["len_list"])]),
         Set[str]: lambda :set([get_random_alphanumeric_string(config) for i in range(config["len_list"])]),
         List[List[int]]: lambda : [[random.randint(0,1) for i in range(config["len_list"])] for j in range(config["len_list"])],
+        List[List[str]]: lambda : [[str(random.randint(0,1)) for i in range(config["len_list"])] for j in range(config["len_list"])],
+        vector(vector(int)):lambda : [[random.randint(0,1) for i in range(config["len_list"])] for j in range(config["len_list"])],
+        vector(vector(int)):lambda : [[random.randint(0,1) for i in range(config["len_list"])] for j in range(config["len_list"])],
         inspect.Parameter.empty:lambda : random.randint(config["start"],config["end"])+random.random()
     }
     

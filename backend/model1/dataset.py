@@ -10,7 +10,7 @@ class csv_dataset:
             import predictor
         name,f=choice
 
-        vobj=predictor.python(f)
+        vobj=predictor.predictor(f)
         ans =vobj.generate_vector()
 
         ans.append(name)
@@ -67,7 +67,7 @@ class json_dataset:
         if name in obj:
             # dataset_time_vector,dataset_function_source_str = obj[name]
             # approx_upper_bound = optimizer.get_approx_upper_bound(dataset_time_vector)
-            # pobj = optimizer.python(f,approx_upper_bound)
+            # pobj = optimizer.optimizer(f,approx_upper_bound)
             # function_time_vector,func_mem_vector = pobj.generate_vector()
             # if optimizer.greater_time_vector(dataset_time_vector,function_time_vector):
             #     dataset_function_source_str = inspect.getsource(f)
@@ -81,7 +81,7 @@ class json_dataset:
             dataset_min_metric_val = optimizer.get_metric_val(dataset_list[0])
             dataset_function_source_str = dataset_list[0][4]
 
-            pobj=optimizer.python(f,approx_upper_bound)
+            pobj=optimizer.optimizer(f,approx_upper_bound)
             func_time_vector,func_mem_vector = pobj.generate_vector()
             print(func_time_vector,func_mem_vector)
             func_time_metric_val = optimizer.get_integral(func_time_vector)
@@ -96,7 +96,7 @@ class json_dataset:
             
         else:
             print("Not available in dataset")
-            pobj=optimizer.python(f)
+            pobj=optimizer.optimizer(f)
             func_time_vector,func_mem_vector = pobj.generate_vector()
             print(func_time_vector,func_mem_vector)
             approx_upper_bound=optimizer.get_approx_upper_bound(func_time_vector)
