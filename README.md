@@ -49,11 +49,11 @@ Note :
 
 1. function above can be any callable. To call C/C++ functions, use the python module cppyy.
 
-`import model1.predict as mp1<br>
-import cppyy<br>
-c_func_str="int test(int a){ return a+1;}"<br>
-cppyy.cppdef(c_func_str)<br>
-m = mp1.predict(cppyy.gbl.test)`
+`import model1.predict as mp1`
+`import cppyy`
+`c_func_str="int test(int a){ return a+1;}"`
+`cppyy.cppdef(c_func_str)`
+`m = mp1.predict(cppyy.gbl.test)`
 
 2.  giving functions with special pre conditions like strings having only digits or only special characters or functions having types which are not supported by dynamic analysis model, then, will have to specify the pre conditions in dictionary passed as default arg for that parameter.
 
