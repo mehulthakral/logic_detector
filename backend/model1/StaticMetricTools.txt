@@ -1,0 +1,7 @@
+1.for c,cpp,python
+pip install metrics metrics.bumpversion metrics.gitinfo metrics.pylint metrics.pytest-cov
+https://pypi.org/project/metrics/
+
+2.for python
+sudo apt-get install radon <OR> pip install radon
+https://radon.readthedocs.io/en/latest/api.html
