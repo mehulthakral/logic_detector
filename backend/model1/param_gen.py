@@ -17,13 +17,20 @@ def signature(f):
         return temp
     except:
         s=f.__doc__
-        mappings={"int":int,
+        mappings={  "int":int,
                     "long":int,
                     "float":float,
                     "double":float,
                     "bool":bool,
                     "std::string":str,
                     "char":str,
+                    "const int&":int,
+                    "const long&":int,
+                    "const float&":float,
+                    "const double&":float,
+                    "const bool&":bool,
+                    "const std::string&":str,
+                    "const char&":str,
                     "std::vector<int>":List[int],
                     "std::vector<long>":List[int],
                     "std::vector<float>":List[float],
@@ -31,32 +38,62 @@ def signature(f):
                     "std::vector<bool>":List[bool],
                     "std::vector<std::string>":List[str],
                     "std::vector<char>":List[str],
+                    "const std::vector<int>&":List[int],
+                    "const std::vector<long>&":List[int],
+                    "const std::vector<float>&":List[float],
+                    "const std::vector<double>&":List[float],
+                    "const std::vector<bool>&":List[bool],
+                    "const std::vector<std::string>&":List[str],
+                    "const std::vector<char>&":List[str],
                     "std::vector<std::vector<std::string>>":vector(vector(str)),
                     "std::vector<std::vector<int>>":vector(vector(int)),
                     "std::vector<std::vector<char>>":vector(vector(str)),
                     "std::vector<std::vector<std::string> >":vector(vector(str)),
                     "std::vector<std::vector<char> >":vector(vector(str)),
                     "std::vector<std::vector<int> >":vector(vector(int)),
+                    "const std::vector<std::vector<std::string>>&":vector(vector(str)),
+                    "const std::vector<std::vector<int>>&":vector(vector(int)),
+                    "const std::vector<std::vector<char>>&":vector(vector(str)),
+                    "const std::vector<std::vector<std::string> >&":vector(vector(str)),
+                    "const std::vector<std::vector<char> >&":vector(vector(str)),
+                    "const std::vector<std::vector<int> >&":vector(vector(int)),
                     "std::list<int>":List[int],
                     "std::list<long>":List[int],
                     "std::list<float>":List[float],
                     "std::list<double>":List[float],
                     "std::list<bool>":List[bool],  
                     "std::list<std::string>":List[str], 
-                    "std::list<char>":List[str],                       
+                    "std::list<char>":List[str], 
+                    "const std::list<int>&":List[int],
+                    "const std::list<long>&":List[int],
+                    "const std::list<float>&":List[float],
+                    "const std::list<double>&":List[float],
+                    "const std::list<bool>&":List[bool],  
+                    "const std::list<std::string>&":List[str], 
+                    "const std::list<char>&":List[str],                         
                     "std::set<int>":Set[int],
                     "std::set<long>":Set[int],
                     "std::set<float>":Set[float],
                     "std::set<double>":Set[float],
                     "std::set<bool>":Set[bool], 
                     "std::set<std::string>":Set[str],  
-                    "std::set<char>":Set[str],                        
+                    "std::set<char>":Set[str], 
+                    "const std::set<int>&":Set[int],
+                    "const std::set<long>&":Set[int],
+                    "const std::set<float>&":Set[float],
+                    "const std::set<double>&":Set[float],
+                    "const std::set<bool>&":Set[bool], 
+                    "const std::set<std::string>&":Set[str],  
+                    "const std::set<char>&":Set[str],                       
         }
         s=s[s.find("(")+1:-1].split(",")
         parameters={}
         for i in s:
             temp=i.strip().split()
-            parameters[temp[1]]=parameter(mappings[temp[0]],{})
+            if temp[0]=="const":
+                parameters[temp[2]]=parameter(mappings[temp[0]+" "+temp[1]],{})
+            else:
+                parameters[temp[1]]=parameter(mappings[temp[0]],{})
         return parameters
 
 def param_generator(t,config={}):
