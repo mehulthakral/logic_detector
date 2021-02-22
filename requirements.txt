@@ -7,3 +7,5 @@ numpy
 pandas
 pebble
 cppyy
+radon
+lizard
