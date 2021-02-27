@@ -2,15 +2,11 @@ import model1.predict as mp1
 import model1.dataset as g1
 import model1.optimize as op1
 import model2.predict as mp2
-
 from flask import Flask,jsonify,request
 from flask_cors import CORS
 from typing import List, Set, Dict, Tuple, Optional
-import cppyy
-from cppyy.gbl.std import vector,pair
 import inspect
-import importlib
-
+import sys
 app = Flask(__name__)
 CORS(app)
 
@@ -18,8 +14,7 @@ def parse_py(f):
     obj=open("temp.py","w")
     obj.write(f)
     obj.close()
-    import temp
-    temp=importlib.reload(temp)
+    temp=__import__("temp")
     methods=[]
     for _,k in inspect.getmembers(temp):
         if inspect.isfunction(k):
@@ -30,20 +25,20 @@ def parse_py(f):
     return methods
 
 def parse_clike(f):
+    cppyy=__import__("cppyy")
     try:
         cppyy.cppdef("using namespace std;")
         cppyy.cppdef(f)
     except:
-        t=0
+        pass
     try:
-        cppyy.gbl.somerandommemebr
+        cppyy.gbl.some_random_member #force load the functions defined earlier
     except:
         cppyy.gbl
     methods=[]
     for _,k in list(inspect.getmembers(cppyy.gbl)):
         if str(type(k))=="<class 'cppyy.CPPOverload'>" and (not _.startswith("__")) :
             methods.append((k,""))
-
     return methods
 
 @app.route('/predict', methods=['POST'])
@@ -134,7 +129,7 @@ def OPTIMIZE():
     return jsonify(m)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5000,debug=True)
+    app.run(host='0.0.0.0',port=5000,threaded=False, processes=3)
 
 
     
