@@ -79,7 +79,7 @@ class json_dataset:
             dataset_list = obj[func_label][1:]
             sorted(dataset_list, key=optimizer.get_metric_val)
             dataset_min_metric_val = optimizer.get_metric_val(dataset_list[0])
-            dataset_function_source_str = dataset_list[0][4]
+            # dataset_function_source_str = dataset_list[0][4]
 
             pobj=optimizer.optimizer(f,approx_upper_bound)
             func_time_vector,func_mem_vector = pobj.generate_vector()

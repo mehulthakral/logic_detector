@@ -274,5 +274,9 @@ def evaluate():
             f.write("Accuracy of "+ label + " " + str(lcorrect)+"/"+str(ltotal)+" prgs: " + str((float(lcorrect)/ltotal)*100)+"\n")
     
     return  (float(correct)/total)*100
+
+# def add_prgs():
+
+
 # print(test())
-print(evaluate())
+# print(evaluate())
