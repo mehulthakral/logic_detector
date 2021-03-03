@@ -62,7 +62,13 @@ class json_dataset:
         except:
             import optimizer
             
-        name,f=choice
+        name, f, label, fn_src = None, None, None, None
+
+        if(len(choice)==2):
+            name,f=choice
+        else:
+            name, f, label, fn_src = choice
+
         obj=json_dataset.read()
         if name in obj:
             # dataset_time_vector,dataset_function_source_str = obj[name]
@@ -91,6 +97,11 @@ class json_dataset:
             if dataset_min_metric_val>=func_metric_val:
                 print("Better than dataset")
             func_source_str = inspect.getsource(f)
+            # print("Before: ",func_source_str)
+            if(label):
+                func_source_str = func_source_str.replace("global f",fn_src)
+                func_source_str = func_source_str.replace("f(",label+'(')
+            print(func_source_str)
             obj[name].append([func_time_metric_val,func_mem_metric_val,0,0,func_source_str])
             json_dataset.write(obj)
             
@@ -103,6 +114,11 @@ class json_dataset:
             func_time_metric_val = optimizer.get_integral(func_time_vector)
             func_mem_metric_val = optimizer.get_integral(func_mem_vector)
             func_source_str=inspect.getsource(f)
+            # print("Before: ",func_source_str)
+            if(label):
+                func_source_str = func_source_str.replace("global f",fn_src)
+                func_source_str = func_source_str.replace("f(",label+'(')
+            print(func_source_str)
             obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,0,0,func_source_str]]
             json_dataset.write(obj)
               

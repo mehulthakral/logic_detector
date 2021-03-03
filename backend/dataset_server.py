@@ -5,6 +5,8 @@ import model1.predict as mp
 import json
 from typing import List
 import collections, itertools
+import model1.dataset as g1
+import inspect
 
 class ListNode:
     def __init__(self, x):
@@ -60,6 +62,10 @@ class Adaptor:
     def __init__(self):
         pass
     
+    def fib(self,n:int)->int:
+        global f
+        return f(n)
+        
     def makeList(self,l):
         head = None
         if(len(l)==0):
@@ -275,8 +281,44 @@ def evaluate():
     
     return  (float(correct)/total)*100
 
-# def add_prgs():
+def add_prgs():
+
+    map = json.load(open("mapping.json"))
+
+    labels = ["fib"]
+    for label in labels:
+        prgs = os.listdir('dataset'+'/'+label)
+        prgs.sort()
+        if '__pycache__' in prgs:
+            prgs.remove('__pycache__')
+        
+        for prg in prgs:
+            if(prg!="fibo_1.py"):
+                continue
+
+            print("Adding " + prg)
+            loader = importlib.machinery.SourceFileLoader('dataset'+'/'+label, 'dataset'+'/'+label+'/'+prg)
+            handle = loader.load_module('dataset'+'/'+label)
+            s = handle.Solution()
+            a = Adaptor()
+            global f
+            f = getattr(s, label)
+            # res = mp.predict(getattr(a,label),"python")
+            fn_src = ""
+            for m in dir(s):
+                if ((not m.startswith('__')) and (inspect.isfunction(getattr(s, m)) or (inspect.ismethod(getattr(s, m))))):
+                    src = inspect.getsource(getattr(s, m))
+                    if(len(fn_src)>0):
+                        fn_src += "\t"
+                    fn_src += src.replace("\n","\n\t")
+                    fn_src += '\n'
+            # print(fn_src)
+            
+            g1.json_dataset.add((map[label][0],getattr(a,label),label,fn_src),"python")
+
+    print("Programs added successfully!")
 
 
 # print(test())
 # print(evaluate())
+add_prgs()
