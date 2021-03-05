@@ -71,17 +71,23 @@
         .d2{
             overflow: hidden;
         }
+
+        .modal-backdrop {
+        z-index: -1;
+        }
     </style>
     <title>
         Code Semantics
     </title>
     <body>
-
+            <div>
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark justify-content-center">
                 <!-- Navbar content -->
-                <a class="navbar-brand" href="#"><h2>Capstone Phase 1: Code Semantic Detection</h2></a>   
+                <a class="navbar-brand" href="#"><h2>Capstone Phase 1: Code Semantic Detection and Optimisation</h2></a>   
             </nav>
+            </div>
             <br><br><br><br>
+
             <div class="row justify-content-center align-items-start" style="margin-left: 2px;margin-right: 2px;height:80%; width:100%;">
                 <div class="col-6" style="height:100%; width:50%;">
                     <span class="align-text-top"><h4>Code Area </h4></span>
@@ -107,6 +113,11 @@
                                 <br><br>
                                 <input type="file" name="inputfile" id="inputfile">
                                 </h4>
+                                <br>
+                                <input class="form-check-input" type="checkbox" value="" id="myCheck" onclick="open_modal()">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Add custom weights
+                                </label>
                             </div>
                             <br>
                             <div class="col-6">
@@ -134,6 +145,49 @@
                                 <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="predict()">Predict</button>
                                 <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="learn()">Learn</button>
                                 <button type="button" id="sendlogin2" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="optimize()">Optimize</button>
+                                <br>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog model-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <br><br><br>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <!-- <h4 class="modal-title" id="myModalLabel" style="color:maroon">Weights for obtaining Composite Metric
+                                            </h4> -->
+                                        </div>
+                            
+                                        <div class="modal-body">
+                                            <b style="color: darkgrey"> ----- Enter a value between 1 to 100 ----- </b><br><br>
+                                            <form onsubmit="optimze()">
+                                                <label required>Weight for Time: *</label>
+                                                <input type="range" id="time_wt" name="time_wt" min="1" max="100" value=1 required onchange="updateTextInput(this.value,'time_val');">
+                                                <span id ="time_val" class="textInput">1</span>
+                                                <br><br>
+                                                <label required>Weight for Mem: *</label>
+                                                <input type="range" id="mem_wt" name="mem_wt" min="1" max="100" value=1 required onchange="updateTextInput(this.value,'mem_val');">
+                                                <span id ="mem_val" class="textInput">1</span>
+                                                <br><br>
+                                                <label required>Weight for Cyclo: *</label>
+                                                <input type="range" id="cyclo_wt" name="cyclo_wt" min="1" max="100" value=1 required onchange="updateTextInput(this.value,'cyclo_val');">
+                                                <span id = "cyclo_val" class="textInput">1</span>
+                                                <br><br>
+                                                <label required>Weight for Redundancy: *</label>
+                                                <input type="range" id="red_wt" name="red_wt" min="1" max="100" value=1 required onchange="updateTextInput(this.value,'red_val');">
+                                                <span id="red_val" class="textInput">1</span>
+                                                <br><br>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" onclick="getWeights()"
+                                                        data-dismiss="modal">Close</button>
+                                                    <!-- <input type="submit" class="btn btn-default" value="Save" name="modal_submit"> -->
+                            
+                                                </div>
+                                            </form>
+                                        </div>
+                            
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>         
@@ -273,10 +327,49 @@
                   }
             });
         }
+        function open_modal()
+        {
+            var checkBox = document.getElementById("myCheck");
+            if (checkBox.checked == true) {
+                $('#myModal').modal("show");
+            }
+            else {
+                $('#myModal').modal('hide');
+            }
+        }
+        function updateTextInput(val,metric) {
+                
+                let output = document.getElementById(metric);
+                output.innerText = val;
+            }
+        function getWeights(){
+            var checkBox = document.getElementById("myCheck");
+            res=[]
+            if (checkBox.checked == true) {
+                let t=document.getElementById("time_wt").value;
+                let m = document.getElementById("mem_wt").value;
+                let c = document.getElementById("cyclo_wt").value;
+                let r = document.getElementById("red_wt").value;
+            
+                res.push(parseInt(t));
+                res.push(parseInt(m));
+                res.push(parseInt(c));
+                res.push(parseInt(r));
+
+                console.log("weights:",res);
+                return res;
+            }
+            else{
+                return [1,1,1,1] //return the default weights 
+            }
+        }
         function optimize()
         {
             var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
+            // $('#myModal').modal("toggle");
+            // var wt=getWeights();
+            // console.log(wt)
+            obj={"f":str,"lang":getLanguageName(),"model":getModel(),"weights": getWeights()}
             $.ajax( {
                   url:'http://localhost:5000/optimize',
                   data:JSON.stringify(obj),

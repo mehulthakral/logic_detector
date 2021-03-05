@@ -1,8 +1,10 @@
-def fib(N: int) -> int:
-        if N == 0:
-            return 0
-        if N == 1:
-            return 1
-
-        if N > 1:
-            return fib(N - 1) + fib(N - 2)
+void bubbleSort(int arr[], int n)  
+{  
+    int i, j;  
+    for (i = 0; i < n-1; i++)      
+      
+    // Last i elements are already in place  
+    for (j = 0; j < n-i-1; j++)  
+        if (arr[j] > arr[j+1])  
+            swap(&arr[j], &arr[j+1]);  
+}  
