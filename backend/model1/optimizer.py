@@ -57,8 +57,8 @@ def get_integral(v):
         res = res + (i[0]*integrals[i[1]])/10**6
     return pow(res,1/10)
 
-def get_metric_val(l):
-    weights=[1,0,0,0]
+def get_metric_val(l,weights):
+    # weights=[1,0,0,0]
     return sqrt(weights[0]*pow(l[0],2)+weights[1]*pow(l[1],2)+weights[2]*pow(l[2],2)+weights[3]*pow(l[3],2))
 
 class optimizer:

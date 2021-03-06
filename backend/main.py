@@ -112,19 +112,19 @@ def OPTIMIZE():
         for i in methods:
             func_obj=i[0]
             func_source_code=i[1]
-            m.append(op1.optimize(func_obj,json['lang']))
+            m.append(op1.optimize(func_obj,json['lang'],json["weights"]))
             
     elif json['model'] == "model2": #static analysis
         for i in methods:
             func_obj=i[0]
             func_source_code=i[1]
-            m.append(mp2.predict(func_source_code,json['lang']))
+            m.append(mp2.predict(func_source_code,json['lang'],json["weights"]))
             
     else: #default is dynamic analysis
         for i in methods:
             func_obj=i[0]
             func_source_code=i[1]
-            m.append(op1.optimize(func_obj,json['lang']))
+            m.append(op1.optimize(func_obj,json['lang'],json["weights"]))
             
     return jsonify(m)
 

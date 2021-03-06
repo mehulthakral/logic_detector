@@ -1,9 +1,9 @@
 import lizard
 
 def cyclomatic_complexity(fnc_str,lang):
-    if lang=="py":
+    if lang=="python":
         i = lizard.analyze_file.analyze_source_code("input.py", fnc_str)
-    if lang=="cpp":
+    else:
         i = lizard.analyze_file.analyze_source_code("input.cpp", fnc_str)
 
     """ iterate over funcs in the input snippet """
@@ -19,9 +19,9 @@ def cyclomatic_complexity(fnc_str,lang):
 
 
 def otherMetrics(fnc_str,lang):
-    if lang == "py":
+    if lang == "python":
         i = lizard.analyze_file.analyze_source_code("input.py", fnc_str)
-    if lang=="cpp":
+    else:
         i = lizard.analyze_file.analyze_source_code("input.cpp", fnc_str)
     
     # print(i.__dict__)
@@ -62,8 +62,8 @@ def bubble(arr: list):
 
     
     print(otherMetrics(code1,"cpp"))
-    print(otherMetrics(code2, "py"))
+    print(otherMetrics(code2, "python"))
     print(cyclomatic_complexity(code1,"cpp"))
-    print(cyclomatic_complexity(code2,"py"))
+    print(cyclomatic_complexity(code2,"python"))
     # print(i.function_list[0].__dict__)
     # print(i.function_list[1].__dict__)
