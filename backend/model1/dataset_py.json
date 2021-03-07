@@ -1,0 +1,66 @@
+{
+	"MIN": [
+		"n",
+		[
+			5.05955734829194,
+			1.0,
+			1,
+			0,
+			"def MIN(l:list):\n\treturn min(l)\n"
+		]
+	],
+	"MAX": [
+		"n",
+		[
+			5.175034148664334,
+			1.0,
+			1,
+			0,
+			"def MAX(l:list):\n\treturn max(l)\n"
+		]
+	],
+	"SORT": [
+		"n",
+		[
+			6.0749086373099495,
+			4.224666562940693,
+			0,
+			0,
+			"def SORT(l:list):\n\tl.sort()\n\treturn l\n"
+		],
+		[
+			25.260418606408827,
+			1.0,
+			0,
+			0,
+			"def SORT(arr:list):\n\tn = len(arr) \n  \n\tfor i in range(n): \n\n\t\tfor j in range(0, n-i-1): \n\n\t\t\tif arr[j] > arr[j+1] : \n\t\t\t\tarr[j], arr[j+1] = arr[j+1], arr[j]\n\treturn arr\n"
+		]
+	],
+	"FIB": [
+		"n",
+		[
+			7.96265436046521,
+			5.352987754583296,
+			4,
+			0,
+			"def FIB(N: int) -> int:\n        res = [0,1]\n        if N == 0:\n            return res[0]\n        elif N==1:\n            return res[1]\n        for i in range(2,N+1):\n            res.append(res[-1] + res[-2])            \n        return res[-1]\n"
+		],
+		[
+			5.283594986239876,
+			3.155293762097791,
+			1,
+			0,
+			"    def fib(n:int)->int:\n            def fib(N: int) -> int:\n\t        return int((c.golden ** N + 1) / 5 ** 0.5)\n\t\n\n        return fib(n)\n"
+		]
+	],
+	"STR_SEARCH": [
+		"m",
+		[
+			7.342564859126719,
+			4.573066231211232,
+			1,
+			0,
+			"    def strStr(a:str,b:str):\n            def kmp_algo(needle):\n\t        len_needle = len(needle)\n\t        dp = [0] * len(needle)\n\t        \n\t        i = 1\n\t        j = 0\n\t        \n\t        while i < len_needle:\n\t            while j > 0 and needle[j] != needle[i]:\n\t                j = dp[j-1]\n\t            if needle[i] == needle[j]:\n\t                j += 1\n\t                dp[i] = j\n\t\n\t            i += 1\n\t        return dp\n\t\n\t    def strStr(haystack: str, needle: str) -> int:\n\t        if haystack == needle:\n\t            return 0\n\t        \n\t        if not needle:\n\t            return 0\n\t        \n\t        len_needle = len(needle)\n\t        len_haystack = len(haystack)\n\t\n\t        dp = kmp_algo(needle)\n\t        \n\t        i = 0\n\t        j = 0\n\t        \n\t        while i < len_haystack:\n\t            while j > 0 and haystack[i] != needle[j]:\n\t                j = dp[j-1]\n\t\n\t            if haystack[i] == needle[j]:\n\t                j += 1            \n\t            i += 1\n\t\n\t            if j == len_needle:\n\t                return i - j\n\t\n\t        return -1\n\t\n\n        return strStr(a,b)\n"
+		]
+	]
+}

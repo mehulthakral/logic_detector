@@ -285,7 +285,7 @@ def add_prgs():
 
     map = json.load(open("mapping.json"))
 
-    labels = ["fib"]
+    labels = ["strStr"]
     for label in labels:
         prgs = os.listdir('dataset'+'/'+label)
         prgs.sort()
@@ -293,7 +293,7 @@ def add_prgs():
             prgs.remove('__pycache__')
         
         for prg in prgs:
-            if(prg!="fibo_1.py"):
+            if(prg!="strmatch_9.py"):
                 continue
 
             print("Adding " + prg)
@@ -310,6 +310,7 @@ def add_prgs():
                     src = inspect.getsource(getattr(s, m))
                     if(len(fn_src)>0):
                         fn_src += "\t"
+ 
                     fn_src += src.replace("\n","\n\t")
                     fn_src += '\n'
             # print(fn_src)

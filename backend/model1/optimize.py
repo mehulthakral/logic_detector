@@ -25,7 +25,7 @@ def change_func_name(func_str,func_name):
 
 def optimize(f,lang="python",weights=[1,0,0,0]):
     func_label=predict.predict(f,lang)
-    obj=dataset.json_dataset.read()
+    obj=dataset.json_dataset.read(lang)
     if func_label not in obj:
         return inspect.getsource(f)
 

@@ -33,11 +33,19 @@ class csv_dataset:
 
 class json_dataset:
     @staticmethod
-    def read():
-        try:
-            fobj=open("model1/dataset1.json")
-        except:
-            fobj=open("dataset1.json")
+    def read(lang="python"):
+        fobj = None
+        if(lang=="python"):
+            try:
+                fobj=open("model1/dataset_py.json")
+            except:
+                fobj=open("dataset_py.json")
+        else:
+            try:
+                fobj=open("model1/dataset_cpp.json")
+            except:
+                fobj=open("dataset_cpp.json")
+
         data=fobj.read()
         if data=="":
             return {}
@@ -46,11 +54,19 @@ class json_dataset:
         return obj
     
     @staticmethod
-    def write(obj):
-        try:
-            fobj=open("model1/dataset1.json","w")
-        except:
-            fobj=open("dataset1.json","w")
+    def write(obj,lang="python"):
+        fobj = None
+        if(lang=="python"):
+            try:
+                fobj=open("model1/dataset_py.json","w")
+            except:
+                fobj=open("dataset_py.json","w")
+        else:
+            try:
+                fobj=open("model1/dataset_cpp.json","w")
+            except:
+                fobj=open("dataset_cpp.json","w")
+
         data=json.dumps(obj,indent="\t")
         fobj.write(data)
         fobj.close()  
@@ -59,8 +75,10 @@ class json_dataset:
     def add(choice,lang="python"):
         try:
             from . import optimizer
+            from . import cyclomatic
         except:
             import optimizer
+            import cyclomatic
             
         name, f, label, fn_src = None, None, None, None
 
@@ -69,41 +87,34 @@ class json_dataset:
         else:
             name, f, label, fn_src = choice
 
-        obj=json_dataset.read()
+        obj=json_dataset.read(lang)
         if name in obj:
-            # dataset_time_vector,dataset_function_source_str = obj[name]
-            # approx_upper_bound = optimizer.get_approx_upper_bound(dataset_time_vector)
-            # pobj = optimizer.optimizer(f,approx_upper_bound)
-            # function_time_vector,func_mem_vector = pobj.generate_vector()
-            # if optimizer.greater_time_vector(dataset_time_vector,function_time_vector):
-            #     dataset_function_source_str = inspect.getsource(f)
-            #     obj[name]=[approx_upper_bound,function_time_vector,dataset_function_source_str]
-            #     json_dataset.write(obj)
 
+            print("Available in the dataset")
             func_label = name
             approx_upper_bound = obj[func_label][0]
-            dataset_list = obj[func_label][1:]
-            sorted(dataset_list, key=optimizer.get_metric_val)
-            dataset_min_metric_val = optimizer.get_metric_val(dataset_list[0])
-            # dataset_function_source_str = dataset_list[0][4]
 
             pobj=optimizer.optimizer(f,approx_upper_bound)
             func_time_vector,func_mem_vector = pobj.generate_vector()
             print(func_time_vector,func_mem_vector)
             func_time_metric_val = optimizer.get_integral(func_time_vector)
             func_mem_metric_val = optimizer.get_integral(func_mem_vector)
-            func_metric_val = optimizer.get_metric_val([func_time_metric_val,func_mem_metric_val,0,0])
-
-            if dataset_min_metric_val>=func_metric_val:
-                print("Better than dataset")
+            cyclo = cyclomatic.cyclomatic_complexity
+            
             func_source_str = inspect.getsource(f)
             # print("Before: ",func_source_str)
+
             if(label):
                 func_source_str = func_source_str.replace("global f",fn_src)
                 func_source_str = func_source_str.replace("f(",label+'(')
+                func_source_str = func_source_str.replace("self, ","")
+                func_source_str = func_source_str.replace("self,","")
+                func_source_str = func_source_str.replace("self.","")
+
             print(func_source_str)
-            obj[name].append([func_time_metric_val,func_mem_metric_val,0,0,func_source_str])
-            json_dataset.write(obj)
+            func_cyclo_metric_val = cyclo(func_source_str, lang)[f.__name__]
+            obj[name].append([func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,0,func_source_str])
+            json_dataset.write(obj,lang)
             
         else:
             print("Not available in dataset")
@@ -113,14 +124,21 @@ class json_dataset:
             approx_upper_bound=optimizer.get_approx_upper_bound(func_time_vector)
             func_time_metric_val = optimizer.get_integral(func_time_vector)
             func_mem_metric_val = optimizer.get_integral(func_mem_vector)
+            cyclo = cyclomatic.cyclomatic_complexity
             func_source_str=inspect.getsource(f)
             # print("Before: ",func_source_str)
+
             if(label):
                 func_source_str = func_source_str.replace("global f",fn_src)
                 func_source_str = func_source_str.replace("f(",label+'(')
+                func_source_str = func_source_str.replace("self, ","")
+                func_source_str = func_source_str.replace("self,","")
+                func_source_str = func_source_str.replace("self.","")
+
             print(func_source_str)
-            obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,0,0,func_source_str]]
-            json_dataset.write(obj)
+            func_cyclo_metric_val = cyclo(func_source_str, lang)[f.__name__]
+            obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,0,func_source_str]]
+            json_dataset.write(obj,lang)
               
     @staticmethod
     def generate(nums=1,lang="python"):
