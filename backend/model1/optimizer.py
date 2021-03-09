@@ -210,17 +210,54 @@ class optimizer:
             config["special_count"]=num
             config.pop("generator",None)
             return param_gen.param_generator(t,config)()
+        
+    def is_iterable(self,S):
+        try:
+            iterator = iter(S)
+        except TypeError:
+            # not iterable
+            return False
+        else:
+            # iterable
+            return True
+    
+    def perform_variations(self,data):
+        def rotate(arr,k,t):
+            if t==0:
+                #rotate left
+                return arr[k:]+arr[:k]
+            else:
+                return arr[-k:]+arr[:-k]
+            
+        for j in range(len(data)):
+            if self.is_iterable(data[j]):
+                choice=random.randint(0,6)
+                if choice==0:
+                    #do nothing. retain
+                    data[j]
+                elif choice==1:
+                    data[j]=sorted(data[j])
+                elif choice==2:
+                    data[j]=list(reversed(data[j]))
+                elif choice==3:
+                    k=random.randint(0,len(data[j]))
+                    t=random.randint(0,1)
+                    data[j]=rotate(data[j],k,t)
+                elif choice==4:
+                    data[j]=sorted(reversed(data[j]))
+                elif choice==5:
+                    data[j]=sorted(data[j])
+                    k=random.randint(0,len(data[j]))
+                    t=random.randint(0,1)
+                    data[j]=rotate(data[j],k,t)  
+                elif choice==6:
+                    data[j]=sorted(reversed(data[j]))
+                    k=random.randint(0,len(data[j]))
+                    t=random.randint(0,1)
+                    data[j]=rotate(data[j],k,t)                      
+        return data
     
     def generate_data(self):
-        def is_iterable(S):
-            try:
-                iterator = iter(S)
-            except TypeError:
-                # not iterable
-                return False
-            else:
-                # iterable
-                return True
         params=param_gen.signature(self.func)
         l=[] #list of parameters
         for k in params:
@@ -237,13 +274,14 @@ class optimizer:
                 while low<=high:
                     mid=low+(high-low)//2
                     data[i]=self.param_generator(mid,l[i].annotation,l[i].default)
+                    data[i]=self.perform_variations(data[i])
                     time_taken, mem_taken = self.find_metrics(data)
                     if time_taken==None:
                         high=mid-1
                     else:
                         ans=[]
                         for j in data:
-                            if is_iterable(j):
+                            if self.is_iterable(j):
                                 ans.append(len(j))
                             else:
                                 ans.append(j)
@@ -264,7 +302,7 @@ class optimizer:
                 
                 ans=[]
                 for m in data:
-                    if is_iterable(m):
+                    if self.is_iterable(m):
                         ans.append(len(m))
                     else:
                         ans.append(m)
@@ -340,7 +378,7 @@ if __name__=="__main__":
             for j in range(n):
                 temp+=1
              
-    obj=python(order_n_power_1)
+    obj=optimizer(order_n_power_1)
     time_vector,mem_vector=obj.generate_vector()
     print(time_vector)
     print(mem_vector)

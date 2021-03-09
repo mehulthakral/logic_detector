@@ -108,25 +108,32 @@ def OPTIMIZE():
     else:
         methods=parse_clike(json['f'])
     m=[]
-    if json['model'] == "model1": #dynamic analysis
-        for i in methods:
-            func_obj=i[0]
-            func_source_code=i[1]
-            m.append(op1.optimize(func_obj,json['lang'],json["weights"]))
-            
-    elif json['model'] == "model2": #static analysis
-        for i in methods:
-            func_obj=i[0]
-            func_source_code=i[1]
-            m.append(mp2.predict(func_source_code,json['lang'],json["weights"]))
-            
-    else: #default is dynamic analysis
-        for i in methods:
-            func_obj=i[0]
-            func_source_code=i[1]
-            m.append(op1.optimize(func_obj,json['lang'],json["weights"]))
+    for i in methods:
+        func_obj=i[0]
+        func_source_code=i[1]
+        m.append(op1.optimize(func_obj,json['lang'],json["weights"]))
             
     return jsonify(m)
+
+@app.route('/rank', methods=['POST'])
+def RANK():
+    json = request.get_json(force=True)
+    if json["lang"]=="python":
+        methods=parse_py(json['f'])
+    else:
+        methods=parse_clike(json['f'])
+    
+    return jsonify(op1.rank(methods,json['lang'],json["weights"]))
+
+@app.route('/compare', methods=['POST'])
+def COMPARE():
+    json = request.get_json(force=True)
+    if json["lang"]=="python":
+        methods=parse_py(json['f'])
+    else:
+        methods=parse_clike(json['f'])
+    
+    return jsonify(op1.compare(methods,json['lang'],json["weights"]))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000,threaded=False, processes=3)
