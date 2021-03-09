@@ -22,7 +22,7 @@ except:
     from . import param_gen
 
 np.random.seed(0)
-random.seed(10)        
+random.seed(0)        
 
 def get_approx_upper_bound(a):
     if a==[]:
@@ -228,34 +228,47 @@ class optimizer:
                 return arr[k:]+arr[:k]
             else:
                 return arr[-k:]+arr[:-k]
-            
-        for j in range(len(data)):
-            if self.is_iterable(data[j]):
-                choice=random.randint(0,6)
-                if choice==0:
-                    #do nothing. retain
-                    data[j]
-                elif choice==1:
-                    data[j]=sorted(data[j])
-                elif choice==2:
-                    data[j]=list(reversed(data[j]))
-                elif choice==3:
-                    k=random.randint(0,len(data[j]))
-                    t=random.randint(0,1)
-                    data[j]=rotate(data[j],k,t)
-                elif choice==4:
-                    data[j]=sorted(reversed(data[j]))
-                elif choice==5:
-                    data[j]=sorted(data[j])
-                    k=random.randint(0,len(data[j]))
-                    t=random.randint(0,1)
-                    data[j]=rotate(data[j],k,t)  
-                elif choice==6:
-                    data[j]=sorted(reversed(data[j]))
-                    k=random.randint(0,len(data[j]))
-                    t=random.randint(0,1)
-                    data[j]=rotate(data[j],k,t)                      
-        return data
+        if random.randint(0,1)==0:
+            return data  
+        
+        choice=random.randint(0,7)
+        
+        if type(data) in (list,tuple,vector[int],str,vector[str],vector[float]):
+            type_data=type(data)
+            if choice==0:
+                return data
+            if choice==1:
+                data=sorted(data)
+            elif choice==2:
+                data=list(reversed(data))
+            elif choice==3:
+                k=random.randint(0,len(data))
+                t=random.randint(0,1)
+                data=rotate(data,k,t)
+            elif choice==4:
+                data=list(reversed(sorted(data)))
+            elif choice==5:
+                data=sorted(data)
+                k=random.randint(0,len(data))
+                t=random.randint(0,1)
+                data=rotate(data,k,t)  
+            elif choice==6:
+                data=list(reversed(sorted(data)))
+                k=random.randint(0,len(data))
+                t=random.randint(0,1)
+                data=rotate(data,k,t) 
+            else:
+                data=list(reversed(data))
+                k=random.randint(0,len(data))
+                t=random.randint(0,1)
+                data=rotate(data,k,t)     
+                            
+            if type_data==str:
+                return ''.join(data)
+            else:
+                return type_data(data)
+        else:
+            return data
     
     def generate_data(self):
         params=param_gen.signature(self.func)
@@ -295,6 +308,7 @@ class optimizer:
             while j<=self.min_data:
                 temp=random.randint(2,low)
                 data[i]=self.param_generator(temp,l[i].annotation,l[i].default)
+                data[i]=self.perform_variations(data[i])
                 time_taken, mem_taken =self.find_metrics(data)
                 if time_taken==None:
                     low=low-int(0.1*low) 

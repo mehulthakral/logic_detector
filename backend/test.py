@@ -104,7 +104,7 @@ def quickSort(arr:list):
             # partition and after partition 
             helper(low, pi-1) 
             helper(pi+1, high) 
-    
+    helper(0,len(arr)-1)
     return arr
 
 def mergeSort(arr:list):
