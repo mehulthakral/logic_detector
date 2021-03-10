@@ -3,7 +3,9 @@ import inspect
 from typing import List, Set, Dict, Tuple, Optional
 import json
 class csv_dataset:
-    def add(self,choice,lang="python"):
+    
+    @staticmethod
+    def add(choice,lang="python"):
         try:
             from . import predictor
         except:
@@ -21,9 +23,10 @@ class csv_dataset:
         except:
             with open("dataset.csv","a",newline='') as file:
                 writer=csv.writer(file)
-                writer.writerow(ans)       
-
-    def generate(self,nums=5,lang="python"):
+                writer.writerow(ans)   
+                    
+    @staticmethod
+    def generate(nums=3,lang="python"):
         import func
         functions=[o for o in inspect.getmembers(func) if inspect.isfunction(o[1])]
         for i in functions:
@@ -148,5 +151,4 @@ class json_dataset:
             json_dataset.add(i,lang)
 
 if __name__=="__main__":
-    import func
-    json_dataset.add(("MAX",func.MAX))
+    csv_dataset.generate()

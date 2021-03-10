@@ -6,13 +6,12 @@ from flask import Flask,jsonify,request
 from flask_cors import CORS
 from typing import List, Set, Dict, Tuple, Optional
 import inspect
-import sys
 app = Flask(__name__)
 CORS(app)
 
 def parse_py(f):
     obj=open("temp.py","w")
-    obj.write(f)
+    obj.write("from typing import List, Set, Dict, Tuple, Optional"+"\n"+f)
     obj.close()
     temp=__import__("temp")
     methods=[]

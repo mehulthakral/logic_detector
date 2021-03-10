@@ -15,7 +15,7 @@ except:
     from . import param_gen 
 
 class predictor:
-    def __init__(self,f,nums=5000) -> None:
+    def __init__(self,f,nums=500) -> None:
         self.func=f
         self.nums=nums
     
@@ -83,14 +83,13 @@ class predictor:
         else:
             op_size=1
         model = Sequential()
-        model.add(Dense(6, input_dim=len(X[0]), activation='relu'))
-        model.add(Dense(6, activation='relu'))
+        model.add(Dense(20, input_dim=len(X[0]), activation='relu'))
+        model.add(Dense(20, activation='relu'))
         model.add(Dense(op_size))
 
-
         # compile the keras model
-        model.compile(loss='mean_squared_error', optimizer='adam')
-        model.fit(X, y, epochs=15, batch_size=15)
+        model.compile(loss='mean_squared_error',optimizer="adam")
+        model.fit(X, y, epochs=5, batch_size=50)
 
         ans=[]
         for i in model.layers[1:-1]:

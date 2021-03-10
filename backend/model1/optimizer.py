@@ -71,10 +71,10 @@ class optimizer:
         self.approx_upper_bound=approx_upper_bound
         if approx_upper_bound in d:
             self.high=d[approx_upper_bound]
-            self.min_data=20
+            self.min_data=10
             # self.max_degree=d1[approx_upper_bound]
         else:
-            self.min_data=12
+            self.min_data=10
             self.high=10**6
         self.max_degree=9
         self.criteria=r2_score
@@ -231,12 +231,10 @@ class optimizer:
         if random.randint(0,1)==0:
             return data  
         
-        choice=random.randint(0,7)
+        choice=random.randint(1,7)
         
         if type(data) in (list,tuple,vector[int],str,vector[str],vector[float]):
             type_data=type(data)
-            if choice==0:
-                return data
             if choice==1:
                 data=sorted(data)
             elif choice==2:
@@ -281,30 +279,28 @@ class optimizer:
         y1=[]
         for i in range(len(l)):
             data=[self.param_generator(random.randint(8,20),l[j].annotation,l[j].default) for j in range(len(l))]
-            if self.approx_upper_bound==None:
-                low=2
-                high=self.high
-                while low<=high:
-                    mid=low+(high-low)//2
-                    data[i]=self.param_generator(mid,l[i].annotation,l[i].default)
-                    data[i]=self.perform_variations(data[i])
-                    time_taken, mem_taken = self.find_metrics(data)
-                    if time_taken==None:
-                        high=mid-1
-                    else:
-                        ans=[]
-                        for j in data:
-                            if self.is_iterable(j):
-                                ans.append(len(j))
-                            else:
-                                ans.append(j)
-                        x.append(ans)
-                        y.append(time_taken)
-                        y1.append(mem_taken)
-                        low=mid+1
-            else:
-                low=self.high
+            low=2
+            high=self.high
+            while low<=high:
+                mid=low
+                data[i]=self.param_generator(mid,l[i].annotation,l[i].default)
+                data[i]=self.perform_variations(data[i])
+                time_taken, mem_taken = self.find_metrics(data)
+                if time_taken==None:
+                    break
+                else:
+                    ans=[]
+                    for j in data:
+                        if self.is_iterable(j):
+                            ans.append(len(j))
+                        else:
+                            ans.append(j)
+                    x.append(ans)
+                    y.append(time_taken)
+                    y1.append(mem_taken)
+                    low=low*2
             j=1
+            low//=2
             while j<=self.min_data:
                 temp=random.randint(2,low)
                 data[i]=self.param_generator(temp,l[i].annotation,l[i].default)
