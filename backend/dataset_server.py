@@ -247,7 +247,7 @@ def evaluate():
 
     map = json.load(open("mapping.json"))
     # labels = list(map.keys())-['fib','sortArray','isPalindrome','myPow','canFinish','restoreIPAddresses',"canJump",'countPrimes',"coinChange","mySqrt","countPrimes","reverse","rotate","isUgly","numTrees","hasCycle","reverseList","numIslands","canFinish","strStr","isAnagram","inorderTraversal","isValidBST","levelOrder","maxDepth","maxPathSum","solveSudoku",'isAnagram']
-    labels = ["canFinish"]
+    labels = ["coinChange"]
     # print(map["canFinish"][0])
     total = 0
     correct = 0
@@ -269,7 +269,7 @@ def evaluate():
             global f
             f = getattr(s, label)
             res = mp.predict(getattr(a,label),"python")
-            oplabel = max(res,key=res.get)
+            oplabel = res
             if(oplabel==map[label][0]):
                 correct +=1
                 lcorrect += 1
@@ -321,5 +321,5 @@ def add_prgs():
 
 
 # print(test())
-# print(evaluate())
-add_prgs()
+print(evaluate())
+#add_prgs()

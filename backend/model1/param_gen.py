@@ -4,7 +4,7 @@ import cppyy
 from cppyy.gbl.std import vector,pair
 import inspect
 
-default_config={"start":0,"end":15,"len_list":15,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3,"wspace_count":3}
+default_config={"start":0,"end":11,"len_list":8,"upper_count":3,"lower_count":3,"digits_count":3,"special_count":3,"wspace_count":3}
 
 class parameter:
     def __init__(self,annotation,default={}):
