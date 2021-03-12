@@ -115,7 +115,7 @@ class json_dataset:
                 func_source_str = func_source_str.replace("self.","")
 
             print(func_source_str)
-            func_cyclo_metric_val = cyclo(func_source_str, lang)[f.__name__]
+            func_cyclo_metric_val = max(cyclo(func_source_str, lang).values())
             obj[name].append([func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,0,func_source_str])
             json_dataset.write(obj,lang)
             
@@ -139,7 +139,7 @@ class json_dataset:
                 func_source_str = func_source_str.replace("self.","")
 
             print(func_source_str)
-            func_cyclo_metric_val = cyclo(func_source_str, lang)[f.__name__]
+            func_cyclo_metric_val = max(cyclo(func_source_str, lang).values())
             obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,0,func_source_str]]
             json_dataset.write(obj,lang)
               
