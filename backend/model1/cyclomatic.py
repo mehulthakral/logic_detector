@@ -60,10 +60,12 @@ def bubble(arr: list):
     return arr
             """
 
+    code3 = "    def strStr(a:str,b:str):\n            def kmp_algo(needle):\n\t        len_needle = len(needle)\n\t        dp = [0] * len(needle)\n\t        \n\t        i = 1\n\t        j = 0\n\t        \n\t        while i < len_needle:\n\t            while j > 0 and needle[j] != needle[i]:\n\t                j = dp[j-1]\n\t            if needle[i] == needle[j]:\n\t                j += 1\n\t                dp[i] = j\n\t\n\t            i += 1\n\t        return dp\n\t\n\t    def strStr(haystack: str, needle: str) -> int:\n\t        if haystack == needle:\n\t            return 0\n\t        \n\t        if not needle:\n\t            return 0\n\t        \n\t        len_needle = len(needle)\n\t        len_haystack = len(haystack)\n\t\n\t        dp = kmp_algo(needle)\n\t        \n\t        i = 0\n\t        j = 0\n\t        \n\t        while i < len_haystack:\n\t            while j > 0 and haystack[i] != needle[j]:\n\t                j = dp[j-1]\n\t\n\t            if haystack[i] == needle[j]:\n\t                j += 1            \n\t            i += 1\n\t\n\t            if j == len_needle:\n\t                return i - j\n\t\n\t        return -1\n\t\n\n        return strStr(a,b)\n"
     
-    print(otherMetrics(code1,"cpp"))
-    print(otherMetrics(code2, "python"))
-    print(cyclomatic_complexity(code1,"cpp"))
-    print(cyclomatic_complexity(code2,"python"))
+    # print(otherMetrics(code1,"cpp"))
+    # print(otherMetrics(code2, "python"))
+    # print(cyclomatic_complexity(code1,"cpp"))
+    # print(cyclomatic_complexity(code2,"python"))
+    print(cyclomatic_complexity(code3,"python"))
     # print(i.function_list[0].__dict__)
     # print(i.function_list[1].__dict__)

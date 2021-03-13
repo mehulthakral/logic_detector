@@ -321,5 +321,5 @@ def add_prgs():
 
 
 # print(test())
-print(evaluate())
-#add_prgs()
+# print(evaluate())
+add_prgs()
