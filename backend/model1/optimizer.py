@@ -284,7 +284,7 @@ class optimizer:
             while low<=high:
                 mid=low
                 data[i]=self.param_generator(mid,l[i].annotation,l[i].default)
-                data[i]=self.perform_variations(data[i])
+                #data[i]=self.perform_variations(data[i])
                 time_taken, mem_taken = self.find_metrics(data)
                 if time_taken==None:
                     break
@@ -304,7 +304,7 @@ class optimizer:
             while j<=self.min_data:
                 temp=random.randint(2,low)
                 data[i]=self.param_generator(temp,l[i].annotation,l[i].default)
-                data[i]=self.perform_variations(data[i])
+                #data[i]=self.perform_variations(data[i])
                 time_taken, mem_taken =self.find_metrics(data)
                 if time_taken==None:
                     low=low-int(0.1*low) 
