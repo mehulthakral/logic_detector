@@ -1,22 +1,47 @@
-from radon.visitors import ComplexityVisitor
+from radon.visitors import ComplexityVisitor, HalsteadVisitor
 from radon.raw import analyze
+from radon.metrics import h_visit, h_visit_ast
+
 
 def cyclomatic_complexity(fnc_str):
     v = ComplexityVisitor.from_code(fnc_str)
     allfunc = v.functions
     #print(allfunc)
-    funcs={}
+    funcs = {}
     for f in allfunc:
-        funcs[f[0]]=f[-1]
+        funcs[f[0]] = f[-1]
         # print(f[0], " ", f[-1])
     return funcs
+
+
+def halstead(fnc_str):
+
+    vis = h_visit(fnc_str)
+    # print(vis)
+    res = {}
+    keys = ["h1", "h2", "N1", "N2", "vocabulary", "length",
+            "calculated_length", "volume", "difficulty", "effort", "time", "bugs"]
+
+    """ vis[0] returns for combined for multiple functions, ==> the total report """
+    # print((vis[0], "\n", type(vis[0]))
+    value = vis[0]
+    res = dict(zip(keys, value))
+    return res
+
+    """ vis[1] contains list of each func separately """
+    # res={}
+    # for name, value in vis[1]:
+    #     # print(name, value[0],len(value))
+    #     res=dict(zip(keys, value))
+    #     print(res)
+
 
 def other_metrics(fnc_str):
     stats = analyze(fnc_str)
     return stats
 
-if __name__=="__main__":
-    
+
+if __name__ == "__main__":
 
     code_sample = """
 def factorial(n):
@@ -38,9 +63,9 @@ def SORT(arr: list):
     return arr
         """
 
-    
-    print(other_metrics(code_sample))
-    print(cyclomatic_complexity(code_sample))
+    # print(other_metrics(code_sample))
+    # print(cyclomatic_complexity(code_sample))
+    print(halstead(code_sample))
 
 
 # def factorial(n):
