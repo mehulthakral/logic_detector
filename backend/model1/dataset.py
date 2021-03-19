@@ -79,9 +79,11 @@ class json_dataset:
         try:
             from . import optimizer
             from . import cyclomatic
+            from . import pymetrics
         except:
             import optimizer
             import cyclomatic
+            import pymetrics
             
         name, f, label, fn_src = None, None, None, None
 
@@ -108,15 +110,18 @@ class json_dataset:
             # print("Before: ",func_source_str)
 
             if(label):
+                func_source_str = func_source_str.replace("\n    ","\n")
+                func_source_str = func_source_str.replace("    def","def",1)
                 func_source_str = func_source_str.replace("global f",fn_src)
-                func_source_str = func_source_str.replace("f(",label+'(')
+                func_source_str = func_source_str.replace(" f(",' '+label+'(')
                 func_source_str = func_source_str.replace("self, ","")
                 func_source_str = func_source_str.replace("self,","")
                 func_source_str = func_source_str.replace("self.","")
 
             print(func_source_str)
-            func_cyclo_metric_val = max(cyclo(func_source_str, lang).values())
-            obj[name].append([func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,0,func_source_str])
+            func_cyclo_metric_val = sum(cyclo(func_source_str, lang).values())
+            func_diff_metric_val = pymetrics.halstead(func_source_str)["difficulty"]
+            obj[name].append([func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,func_diff_metric_val,func_source_str])
             json_dataset.write(obj,lang)
             
         else:
@@ -132,15 +137,18 @@ class json_dataset:
             # print("Before: ",func_source_str)
 
             if(label):
+                func_source_str = func_source_str.replace("\n    ","\n")
+                func_source_str = func_source_str.replace("    def","def",1)
                 func_source_str = func_source_str.replace("global f",fn_src)
-                func_source_str = func_source_str.replace("f(",label+'(')
+                func_source_str = func_source_str.replace(" f(",' '+label+'(')
                 func_source_str = func_source_str.replace("self, ","")
                 func_source_str = func_source_str.replace("self,","")
                 func_source_str = func_source_str.replace("self.","")
 
             print(func_source_str)
-            func_cyclo_metric_val = max(cyclo(func_source_str, lang).values())
-            obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,0,func_source_str]]
+            func_cyclo_metric_val = sum(cyclo(func_source_str, lang).values())
+            func_diff_metric_val = pymetrics.halstead(func_source_str)["difficulty"]
+            obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,func_diff_metric_val,func_source_str]]
             json_dataset.write(obj,lang)
               
     @staticmethod

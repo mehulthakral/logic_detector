@@ -65,7 +65,19 @@ class Adaptor:
     def fib(self,n:int)->int:
         global f
         return f(n)
-        
+
+    def sortArray(self,l:list)->list:
+        global f
+        return f(l)
+
+    def isPalindrome(self,n:int)->bool:
+        global f
+        return f(n)
+
+    def myPow(self, x: float, n: int) -> float:
+        global f
+        return f(x,n)
+
     def makeList(self,l):
         head = None
         if(len(l)==0):
@@ -143,12 +155,50 @@ class Adaptor:
         return f(n)
 
     def hasCycle(self,l:List[int],p:int):
+        def makeListCycle(l,p):
+            head = None
+            reqp = None
+            if(len(l)==0):
+                return head
+            else:
+                head = temp = ListNode(l[0])
+                for i in range(1,len(l)):
+                    temp.next = ListNode(l[i])
+                    temp = temp.next
+                    if(i==p):
+                        reqp = temp
+            if(p==-1):
+                return head
+            if(reqp==None):
+                temp.next = head
+            else:
+                temp.next = reqp
+            return head
+
         global f
-        return f(self.makeListCycle(l,p))
+        return f(makeListCycle(l,p))
 
     def reverseList(self,l:List[int]):
+        def makeList(l):
+            head = None
+            if(len(l)==0):
+                return head
+            else:
+                head = temp = ListNode(l[0])
+                for i in range(1,len(l)):
+                    temp.next = ListNode(l[i])
+                    temp = temp.next
+            return head
+
+        def breakList(head):
+            l = []
+            while(head!=None):
+                l.append(head.val)
+                head = head.next
+            return l
+
         global f
-        return self.breakList(f(self.makeList(l)))
+        return breakList(f(makeList(l)))
 
     def isAnagram(self,a:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0}, b:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0}):
         global f
@@ -217,24 +267,64 @@ def make_board():
         return [[int(myBoard[i][j]) for j in range(len(board))] for i in range(len(board))]
 
     def inorderTraversal(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+        
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
     def isValidBST(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
     def levelOrder(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
     def maxDepth(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
     def maxPathSum(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
 def evaluate():
     # labels = os.listdir('dataset_working')
@@ -284,16 +374,20 @@ def evaluate():
 def add_prgs():
 
     map = json.load(open("mapping.json"))
-
-    labels = ["strStr"]
+    labels = ["solveSudoku"]
+    # done = ["sortArray","rotate","fib","isPalindrome","myPow","isUgly",countPrimes","mySqrt","reverse","numTrees","isAnagram","strStr","canJump","coinChange","numIslands","canFinish","hasCycle","reverseList","inorderTraversal","isValidBST","maxDepth","maxPathSum","levelOrder"]
     for label in labels:
         prgs = os.listdir('dataset'+'/'+label)
         prgs.sort()
         if '__pycache__' in prgs:
             prgs.remove('__pycache__')
-        
+
         for prg in prgs:
-            if(prg!="strmatch_9.py"):
+            fobj=open("random.json")
+            data=fobj.read()
+            obj=json.loads(data)
+            fobj.close()
+            if(prg in obj or prg!="sudoku_4.py"):
                 continue
 
             print("Adding " + prg)
@@ -304,18 +398,38 @@ def add_prgs():
             global f
             f = getattr(s, label)
             # res = mp.predict(getattr(a,label),"python")
+
+            # func_source_str = inspect.getsource(getattr(a,label))
+            # fobj=open("random.json","w")
+            # func_source_str = func_source_str.replace("\n    ","\n")
+            # func_source_str = func_source_str.replace("    def","def",1)
+            # # print(func_source_str)
+            # data=json.dumps(func_source_str,indent="\t")
+            # fobj.write(data)
+            # fobj.close()  
+
             fn_src = ""
+            # f = 0
             for m in dir(s):
                 if ((not m.startswith('__')) and (inspect.isfunction(getattr(s, m)) or (inspect.ismethod(getattr(s, m))))):
                     src = inspect.getsource(getattr(s, m))
-                    if(len(fn_src)>0):
-                        fn_src += "\t"
+                    # src = src.replace("\n    ","\n")
+                    # src = src.replace("    def","def",1)
+                    # print(src)
+                    if(len(fn_src)==0):
+                        # fn_src += "\t"
+                        src = src.replace("    def","def",1)
  
-                    fn_src += src.replace("\n","\n\t")
+                    # fn_src += src.replace("\n","\n\t")
+                    fn_src += src
                     fn_src += '\n'
             # print(fn_src)
-            
             g1.json_dataset.add((map[label][0],getattr(a,label),label,fn_src),"python")
+            fobj=open("random.json","w")
+            obj.append(prg)
+            data=json.dumps(obj,indent="\t")
+            fobj.write(data)
+            fobj.close() 
 
     print("Programs added successfully!")
 

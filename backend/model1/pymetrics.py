@@ -63,10 +63,131 @@ def SORT(arr: list):
     return arr
         """
 
+    code_sample1 = """def strStr(a:str,b:str):
+    def kmp_algo(needle):
+        len_needle = len(needle)
+        dp = [0] * len(needle)
+        
+        i = 1
+        j = 0
+        
+        while i < len_needle:
+            while j > 0 and needle[j] != needle[i]:
+                j = dp[j-1]
+            if needle[i] == needle[j]:
+                j += 1
+                dp[i] = j
+
+            i += 1
+        return dp
+
+    def strStr(haystack: str, needle: str) -> int:
+        if haystack == needle:
+            return 0
+        
+        if not needle:
+            return 0
+        
+        len_needle = len(needle)
+        len_haystack = len(haystack)
+
+        dp = kmp_algo(needle)
+        
+        i = 0
+        j = 0
+        
+        while i < len_haystack:
+            while j > 0 and haystack[i] != needle[j]:
+                j = dp[j-1]
+
+            if haystack[i] == needle[j]:
+                j += 1            
+            i += 1
+
+            if j == len_needle:
+                return i - j
+
+        return -1
+
+
+    return strStr(a,b)"""
+
+    code_sample2 = """def strStr(a:str,b:str):
+    def strStr(text: str, pat: str) -> int:
+        if text==pat:
+            return 0
+        if pat=="":
+            return 0
+        def patlps(pat,lps,m):
+            left=0
+            i=1
+            while i<m:
+                if pat[left]==pat[i]:
+                    left+=1
+                    lps[i]=left
+                    i+=1
+                else:
+                    if left!=0:
+                        left=lps[left-1]
+                    else:
+                        lps[i]=0
+                        i+=1
+        n=len(text)
+        m=len(pat)
+        lps=[0]*m
+        patlps(pat,lps,m)
+        j=0
+        i=0
+        while i<n:
+            if pat[j]==text[i]:
+                i+=1
+                j+=1
+            if j==m:
+                return i-j
+            elif i<n and pat[j]!=text[i]:
+                if j!=0:
+                    j=lps[j-1]
+                else:
+                    i+=1
+        return -1
+
+
+    return strStr(a,b)"""
+
+    code_sample3 = """def strStr(a:str,b:str):
+    def strStr(text: str, pat: str) -> int:
+        if text==pat:
+            return 0
+        if pat=="":
+            return 0
+        n=len(text)
+        m=len(pat)
+        lps=[0]*m
+        j=0
+        i=0
+        while i<n:
+            if pat[j]==text[i]:
+                i+=1
+                j+=1
+            if j==m:
+                return i-j
+            elif i<n and pat[j]!=text[i]:
+                if j!=0:
+                    j=lps[j-1]
+                else:
+                    i+=1
+        return -1
+
+
+    return strStr(a,b)"""
+
+    code_sample4 = "def MIN(l:list)->int:\n\treturn min(l)\n"
+
     # print(other_metrics(code_sample))
     # print(cyclomatic_complexity(code_sample))
-    print(halstead(code_sample))
-
+    # print(halstead(code_sample))
+    print(code_sample4)
+    print(halstead(code_sample4))
 
 # def factorial(n):
 #     if n < 2:

@@ -15,7 +15,7 @@ class Solution:
 		self.boxs_values = {}  # {box: sudoku values set}
 
 	def solveSudoku(self, board: List[List[str]]) -> None:
-		
+
 		# 1. Initialization: Store all board values
 		for i in range(self.size):
 			self.rows_values[i] = set()
