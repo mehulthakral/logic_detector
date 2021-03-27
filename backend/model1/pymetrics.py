@@ -3,7 +3,7 @@ from radon.raw import analyze
 from radon.metrics import h_visit, h_visit_ast
 
 
-def cyclomatic_complexity(fnc_str):
+def cyclomatic_complexity(fnc_str,lang="python"):
     v = ComplexityVisitor.from_code(fnc_str)
     allfunc = v.functions
     #print(allfunc)
@@ -14,7 +14,7 @@ def cyclomatic_complexity(fnc_str):
     return funcs
 
 
-def halstead(fnc_str):
+def halstead(fnc_str,lang="python"):
 
     vis = h_visit(fnc_str)
     # print(vis)

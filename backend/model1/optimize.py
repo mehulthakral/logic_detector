@@ -27,26 +27,26 @@ def change_func_name(func_str, func_name):
     return func_str[0]+"def "+func_str[1]
 
 
-def optimize(f, lang="python", weights=[1, 0, 0, 0]):
+def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
+    f,func_str=func_tuple
     func_label = predict.predict(f, lang)
     obj = dataset.json_dataset.read(lang)
     if func_label not in obj:
-        return inspect.getsource(f)
+        return func_str
 
-    approx_upper_bound = obj[func_label][0]
+
     dataset_list = obj[func_label][1:]
     dataset_list.sort(key=lambda x: optimizer.get_metric_val(x, weights))
     dataset_min_metric_val = optimizer.get_metric_val(dataset_list[0], weights)
     dataset_function_source_str = dataset_list[0][4]
 
-    pobj = optimizer.optimizer(f, approx_upper_bound)
+    pobj = optimizer.optimizer(func_tuple,lang)
     func_time_vector, func_mem_vector = pobj.generate_vector()
     # print(func_mem_vector)
     integral = optimizer.get_integral
-    func_str = inspect.getsource(f)
     cyclo = cyclomatic.cyclomatic_complexity
     metric_vector = [integral(func_time_vector), integral(
-        func_mem_vector), cyclo(func_str, lang)[f.__name__], pymetrics.halstead(func_str)["difficulty"]]
+        func_mem_vector), cyclo(func_str, lang)[f.__name__], pymetrics.halstead(func_str,lang)["difficulty"]]
     print(metric_vector)
     func_metric_val = optimizer.get_metric_val(metric_vector, weights)
     print(dataset_min_metric_val, func_metric_val)
@@ -73,11 +73,11 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
         if func_label not in obj:
             ans.append([float("inf"), func_str])
         else:
-            approx_upper_bound = obj[func_label][0]
-            pobj = optimizer.optimizer(f, approx_upper_bound)
+
+            pobj = optimizer.optimizer((f,func_str), lang)
             func_time_vector, func_mem_vector = pobj.generate_vector()
             metric_vector = [integral(func_time_vector), integral(
-                func_mem_vector), cyclo(func_str, lang)[f.__name__], 0]
+                func_mem_vector), cyclo(func_str, lang)[f.__name__], pymetrics.halstead(func_str,lang)["difficulty"]]
             func_metric_val = optimizer.get_metric_val(metric_vector, weights)
             ans.append([func_metric_val, func_str, True])
             if func_label not in s:
@@ -109,13 +109,11 @@ def compare(f_arr, lang="python", weights=[1, 0, 0, 0]):
     ans = []
     integral = optimizer.get_integral
     cyclo = cyclomatic.cyclomatic_complexity
-
     for f, func_str in f_arr:
-        approx_upper_bound = "n"
-        pobj = optimizer.optimizer(f, approx_upper_bound)
+        pobj = optimizer.optimizer((f,func_str), lang)
         func_time_vector, func_mem_vector = pobj.generate_vector()
         metric_vector = [integral(func_time_vector), integral(
-            func_mem_vector), cyclo(func_str, lang)[f.__name__], 0]
+            func_mem_vector), cyclo(func_str, lang)[f.__name__],pymetrics.halstead(func_str,lang)["difficulty"]]
         func_metric_val = optimizer.get_metric_val(metric_vector, weights)
         f_name = f.__name__
         ans.append([func_metric_val, f_name])

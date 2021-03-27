@@ -14,7 +14,8 @@ def bubbleSort(arr:list):
             if arr[j] > arr[j+1] : 
                 arr[j], arr[j+1] = arr[j+1], arr[j] 
     return arr
-                
+
+         
 def bubbleSortOptimized(arr:list): 
     n = len(arr) 
   
