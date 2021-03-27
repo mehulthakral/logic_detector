@@ -200,6 +200,8 @@ class optimizer:
     def param_generator(self,num,t,config={}):
         if config==inspect._empty:
             config={}
+        if "generator" in config:
+            return param_gen.param_generator(t,config)()
         if t==int:
             return num
         else:
