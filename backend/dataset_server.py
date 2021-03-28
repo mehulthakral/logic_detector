@@ -387,7 +387,7 @@ def add_prgs():
             data=fobj.read()
             obj=json.loads(data)
             fobj.close()
-            if(prg in obj or prg!="sudoku_4.py"):
+            if(prg in obj):
                 continue
 
             print("Adding " + prg)

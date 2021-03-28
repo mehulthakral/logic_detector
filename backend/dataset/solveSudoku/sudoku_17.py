@@ -9,10 +9,7 @@ class Solution:
         row, col, cube, empties = self._boardStats(board)
         self._solveSudoku(board, row, col, cube, empties)
 
-    @staticmethod
-    def _boardStats(
-        board: List[List[str]],
-    ) -> Tuple[List[int], List[int], List[List[int]], List[Tuple[int, int]]]:
+    def _boardStats(self, board: List[List[str]]) -> Tuple[List[int], List[int], List[List[int]],List[Tuple[int, int]]]:
         """
         :param board:
         :return: masks of included digits in rows, columns, 3x3

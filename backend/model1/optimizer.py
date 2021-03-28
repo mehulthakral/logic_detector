@@ -1,4 +1,5 @@
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import RobustScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 import numpy as np
@@ -13,6 +14,8 @@ from sklearn.model_selection import train_test_split
 from typing import List, Set, Dict, Tuple, Optional
 import cppyy
 from cppyy.gbl.std import vector,pair
+import copy
+import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 try:
@@ -58,9 +61,22 @@ def get_integral(v):
         res = res + (i[0]*integrals[i[1]])/10**6
     return pow(res,1/10)
 
+def scale(l):
+    temp = copy.deepcopy(l)
+    for i in range(len(l)):
+        if len(l[i])>4:
+            l[i].pop()
+    df = pd.DataFrame(l, columns =['time', 'memory', 'cyclo', 'diff'])
+    scaler = RobustScaler()
+    scaled_df = pd.DataFrame(scaler.fit_transform(df),columns=['time','memory','cyclo','diff'])
+    l = scaled_df.values.tolist()
+    for i in range(len(l)):
+        l[i].append(temp[i][4])
+    return l
+
 def get_metric_val(l,weights):
     # weights=[1,0,0,0]
-    return sqrt(weights[0]*pow(l[0],2)+weights[1]*pow(l[1],2)+weights[2]*pow(l[2],2)+weights[3]*pow(l[3],2))
+    return weights[0]*l[0]+weights[1]*l[1]+weights[2]*l[2]+weights[3]*l[3]
 
 class optimizer:
 

@@ -1,3 +1,6 @@
+from typing import List, List
+import collections
+import itertools
 class Solution:
     def solveSudoku(self, B: List[List[str]]) -> None:
     	N, S = range(9), list('123456789')
