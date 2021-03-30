@@ -98,12 +98,14 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
                 if Mode == "Test":
                     test_ans =[]
                     for i in range(len(scaled_dataset_list)):
-                        test_ans.append([ans[i+1][0],ans[i+1][1]] + dataset_list[i])
+                        test_ans.append([func_label] + dataset_list[i] + [ans[i+1][0],ans[i+1][1]])
                     #print(test_ans)
-                    df = pd.DataFrame(test_ans,columns=["Composite Metric","Code","Time","Space","Cyclomatic","Halstead"])
+                    df = pd.DataFrame(test_ans,columns=["Label", "Time", "Space", "Cyclomatic", "Halstead", "Composite Metric", "Code"])
                     df.Code = df.Code.apply(lambda x : x.replace('\n', '\\n')) 
                     df.index+=1
-                    df.to_csv(r'Model_Output.csv', index = True, header=True)
+                    df["Index"] = df.index
+                    df['Model_Rank'] = df['Composite Metric'].rank()
+                    df.to_csv("model1/Model_Output.csv", index = False, header=True)
     ans.sort()
     count = 0
     new_ans = ans[:top_no]
