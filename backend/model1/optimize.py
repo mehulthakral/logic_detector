@@ -12,7 +12,9 @@ except:
     import pymetrics
 
 import inspect
+import pandas as pd
 
+Mode = "Test" #Test or Exec
 
 def change_func_name(func_str, func_name):
     func_str = func_str.split("def", 1)
@@ -93,6 +95,15 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
                 for i in scaled_dataset_list:
                     func_metric_val = optimizer.get_metric_val(i, weights)
                     ans.append([func_metric_val, i[-1]])
+                if Mode == "Test":
+                    test_ans =[]
+                    for i in range(len(scaled_dataset_list)):
+                        test_ans.append([ans[i+1][0],ans[i+1][1]] + dataset_list[i])
+                    #print(test_ans)
+                    df = pd.DataFrame(test_ans,columns=["Composite Metric","Code","Time","Space","Cyclomatic","Halstead"])
+                    df.Code = df.Code.apply(lambda x : x.replace('\n', '\\n')) 
+                    df.index+=1
+                    df.to_csv(r'Model_Output.csv', index = True, header=True)
     ans.sort()
     count = 0
     new_ans = ans[:top_no]
