@@ -1,529 +1,538 @@
 <html>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script  src="require.js"></script>
-    <link rel="stylesheet" href="lib/codemirror.css">
-    <link rel="stylesheet" href="theme/material-palenight.css">
-    <link rel="stylesheet" href="theme/code-prettify-theme.css">
-    <link href="theme/styles.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <style>
-        table td{
-            color:white;
-            font-size: xx-large;
-            border: 1px solid white;
-        }
-        table th{
-            color:white;
-            font-size: large;
-            border: 1px solid white;
-        }
-        .vertical-center {
-            width: 50%;
-            height: 50%;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
-        .CodeMirror {
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="require.js"></script>
+<link rel="stylesheet" href="lib/codemirror.css">
+<link rel="stylesheet" href="theme/material-palenight.css">
+<link rel="stylesheet" href="theme/code-prettify-theme.css">
+<link href="theme/styles.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+<style>
+    table td {
+        color: white;
+        font-size: xx-large;
+        border: 1px solid white;
+    }
+
+    table th {
+        color: white;
+        font-size: large;
+        border: 1px solid white;
+    }
+
+    .vertical-center {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .CodeMirror {
         font-family: monospace;
         height: 600px;
         color: black;
         direction: ltr;
-        width:800px;
+        width: 800px;
         font-size: x-large;
         border-radius: 8px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        }
-        .modal {
-            display:    none;
-            position:   fixed;
-            z-index:    1000;
-            top:        0;
-            left:       0;
-            height:     100%;
-            width:      100%;
-            background: rgba( 255, 255, 255, .8 ) 
-                        url('http://i.stack.imgur.com/FhHRx.gif') 
-                        50% 50% 
-                        no-repeat;
-        }
+    }
 
-        /* When the body has the loading class, we turn
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+    }
+
+    /* When the body has the loading class, we turn
         the scrollbar off with overflow:hidden */
-        body.loading .modal {
-            overflow: hidden;   
-        }
+    body.loading .modal {
+        overflow: hidden;
+    }
 
-        /* Anytime the body has the loading class, our
+    /* Anytime the body has the loading class, our
         modal element will be visible */
-        body.loading .modal {
-            display: block;
-        }
-        .d1{
-            float:left;
-        }
-        .d2{
-            overflow: hidden;
-        }
+    body.loading .modal {
+        display: block;
+    }
 
-        .modal-backdrop {
+    .d1 {
+        float: left;
+    }
+
+    .d2 {
+        overflow: hidden;
+    }
+
+    .modal-backdrop {
         z-index: -1;
-        }
-    </style>
-    <title>
-        Code Semantics
-    </title>
-    <body>
-            <div>
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark justify-content-center">
-                <!-- Navbar content -->
-                <a class="navbar-brand" href="#"><h2>Capstone Phase 1: Code Semantic Detection and Optimisation</h2></a>   
-            </nav>
+    }
+</style>
+<title>
+    Code Semantics
+</title>
+
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark justify-content-center">
+            <!-- Navbar content -->
+            <a class="navbar-brand" href="#">
+                <h2>Capstone Phase 1: Code Semantic Detection and Optimisation</h2>
+            </a>
+        </nav>
+    </div>
+    <br><br><br><br>
+
+    <div class="row justify-content-center align-items-start"
+        style="margin-left: 2px;margin-right: 2px;height:80%; width:100%;">
+        <div class="col-6" style="height:100%; width:50%;">
+            <span class="align-text-top">
+                <h4>Code Area </h4>
+            </span>
+            <div class="form-group" style="height:100%; width:100%;">
+                <textarea id="code"></textarea>
+                <br>
             </div>
-            <br><br><br><br>
 
-            <div class="row justify-content-center align-items-start" style="margin-left: 2px;margin-right: 2px;height:80%; width:100%;">
-                <div class="col-6" style="height:100%; width:50%;">
-                    <span class="align-text-top"><h4>Code Area </h4></span>
-                    <div class="form-group" style="height:100%; width:100%;">
-                        <textarea id="code"></textarea>
-                        <br>
+        </div>
+        <div class="col-6">
+
+            <div>
+                <div>
+                    <span class="align-text-top">
+                        <h4>Output Area </h4>
+                    </span>
+                    <div id="output"
+                        style="height:60vh;background-color: rgb(44, 41, 41);border-radius: 20px;color:white;overflow:auto">
                     </div>
-                    
                 </div>
-                <div class="col-6">
-
-                    <div>
+                <br>
+                <br>
+                <div class="row justify-content-center align-items-start">
+                    <br>
+                    <div class="col-6">
+                        <h4>Please type the code in code area provided on the left <br> <br>OR
+                            <br><br>
+                            <input type="file" name="inputfile" id="inputfile">
+                        </h4>
+                        <br>
+                        <input class="form-check-input" type="checkbox" value="" id="myCheck" onclick="openModal(1)">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Add custom weights
+                        </label>
+                    </div>
+                    <br>
+                    <div class="col-6">
                         <div>
-                            <span class="align-text-top"><h4>Output Area </h4></span>
-                            <div id="output" style="height:60vh;background-color: rgb(44, 41, 41);border-radius: 20px;color:white;overflow:auto">  </div> 
-                        </div>
-                        <br>
-                        <br>
-                        <div class="row justify-content-center align-items-start">
+                            <h4>Choose the model: </h4>
                             <br>
-                            <div class="col-6">
-                                <h4>Please type the code in code area provided on the left <br> <br>OR 
-                                <br><br>
-                                <input type="file" name="inputfile" id="inputfile">
-                                </h4>
-                                <br>
-                                <input class="form-check-input" type="checkbox" value="" id="myCheck" onclick="openModal(1)">
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Add custom weights
-                                </label>
-                            </div>
-                            <br>
-                            <div class="col-6">
-                                <div>
-                                    <h4>Choose the model: </h4>
-                                    <br>
-                                    <select id="model" style="width: 200px;" onchange="viewButton(this)" class="form-control">
-                                        
-                                        <option selected value="model1">Dynamic Analysis</option>
-                                        <option value="model2">Static Analysis</option>
-                                    </select>
-                                    <br>
-                                </div>
-                                
-                                <div>
-                                    <h4>Choose the language: </h4>
-                                    <select id="lang" style="width: 200px;" class="form-control">
+                            <select id="model" style="width: 200px;" onchange="viewButton(this)" class="form-control">
 
-                                        <option selected value="python">Python</option>
-                                        <option value="clike">C++</option>
-            
-                                    </select>
-                                    <br>
-                                </div>
-                                <select class="btn btn-lg dropdown-toggle " name='user-action' id='usr-action' >
-                                    <option value="Predict" selected>Predict</option>
-                                    <option value="Learn">Learn</option>
-                                    <option value="Optimize">Optimize</option>
-                                    <option value="Compare">Compare</option>
-                                    <option value="Rank">Rank</option>
-                                </select>
-                                <button type="button" id="sendlogin" class="btn btn-primary btn-lg" style="margin-right:1.0em"
-                                    onclick="userAction()">GO</button>
-                                <!-- <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="predict()">Predict</button>
+                                <option selected value="model1">Dynamic Analysis</option>
+                                <option value="model2">Static Analysis</option>
+                            </select>
+                            <br>
+                        </div>
+
+                        <div>
+                            <h4>Choose the language: </h4>
+                            <select id="lang" style="width: 200px;" class="form-control">
+
+                                <option selected value="python">Python</option>
+                                <option value="clike">C++</option>
+
+                            </select>
+                            <br>
+                        </div>
+                        <select class="btn btn-lg dropdown-toggle " name='user-action' id='usr-action'>
+                            <option value="Predict" selected>Predict</option>
+                            <option value="Learn">Learn</option>
+                            <option value="Optimize">Optimize</option>
+                            <option value="Compare">Compare</option>
+                            <option value="Rank">Rank</option>
+                        </select>
+                        <button type="button" id="sendlogin" class="btn btn-primary btn-lg" style="margin-right:1.0em"
+                            onclick="userAction()">GO</button>
+                        <!-- <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="predict()">Predict</button>
                                 <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="learn()">Learn</button>
                                 <button type="button" id="sendlogin2" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="optimize()">Optimize</button>
                                 <button type="button" id="sendlogin3" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="rank()">Rank</button>
                                 <button type="button" id="sendlogin4" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="compare()">Compare</button> -->
-                                <br><br><br>
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog model-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <br><br><br>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <!-- <h4 class="modal-title" id="myModalLabel" style="color:maroon">Weights for obtaining Composite Metric
+                        <br><br><br>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog model-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <br><br><br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <!-- <h4 class="modal-title" id="myModalLabel" style="color:maroon">Weights for obtaining Composite Metric
                                             </h4> -->
-                                        </div>
-                            
-                                        <div class="modal-body">
-                                            <b style="color: darkgrey"> ----- Enter a value between 0 to 100 ----- </b><br><br>
-                                            <form onsubmit="optimze()">
-                                                <label required>Weight for Time: *</label>
-                                                <input type="range" id="time_wt" name="time_wt" min="0" max="100" value=1 required onchange="updateTextInput(this.value,'time_val');">
-                                                <span id ="time_val" class="textInput">1</span>
-                                                <br><br>
-                                                <label required>Weight for Mem: *</label>
-                                                <input type="range" id="mem_wt" name="mem_wt" min="0" max="100" value=0 required onchange="updateTextInput(this.value,'mem_val');">
-                                                <span id ="mem_val" class="textInput">0</span>
-                                                <br><br>
-                                                <label required>Weight for Cyclo: *</label>
-                                                <input type="range" id="cyclo_wt" name="cyclo_wt" min="0" max="100" value=0 required onchange="updateTextInput(this.value,'cyclo_val');">
-                                                <span id = "cyclo_val" class="textInput">0</span>
-                                                <br><br>
-                                                <label required>Weight for Redundancy: *</label>
-                                                <input type="range" id="red_wt" name="red_wt" min="0" max="100" value=0 required onchange="updateTextInput(this.value,'red_val');">
-                                                <span id="red_val" class="textInput">0</span>
-                                                <br><br>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" onclick="getWeights()"
-                                                        data-dismiss="modal">Close</button>
-                                                    <!-- <input type="submit" class="btn btn-default" value="Save" name="modal_submit"> -->
-                            
-                                                </div>
-                                            </form>
-                                        </div>
-                            
-                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Modal2 -->
-                            <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog model-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <br><br><br>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <!-- <h4 class="modal-title" id="myModalLabel" style="color:maroon">Weights for obtaining Composite Metric
-                                            </h4> -->
-                                        </div>
-                            
-                                        <div class="modal-body" >
-                                            <div id="modal2_id" style="height:60vh;background-color: rgb(44, 41, 41);border-radius: 20px;color:white;overflow:auto">
+                                <div class="modal-body">
+                                    <b style="color: darkgrey"> ----- Enter a value between 0 to 100 ----- </b><br><br>
+                                    <form onsubmit="optimze()">
+                                        <label required>Weight for Time: *</label>
+                                        <input type="range" id="time_wt" name="time_wt" min="0" max="100" value=1
+                                            required onchange="updateTextInput(this.value,'time_val');">
+                                        <span id="time_val" class="textInput">1</span>
+                                        <br><br>
+                                        <label required>Weight for Mem: *</label>
+                                        <input type="range" id="mem_wt" name="mem_wt" min="0" max="100" value=0 required
+                                            onchange="updateTextInput(this.value,'mem_val');">
+                                        <span id="mem_val" class="textInput">0</span>
+                                        <br><br>
+                                        <label required>Weight for Cyclo: *</label>
+                                        <input type="range" id="cyclo_wt" name="cyclo_wt" min="0" max="100" value=0
+                                            required onchange="updateTextInput(this.value,'cyclo_val');">
+                                        <span id="cyclo_val" class="textInput">0</span>
+                                        <br><br>
+                                        <label required>Weight for Redundancy: *</label>
+                                        <input type="range" id="red_wt" name="red_wt" min="0" max="100" value=0 required
+                                            onchange="updateTextInput(this.value,'red_val');">
+                                        <span id="red_val" class="textInput">0</span>
+                                        <br><br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" onclick="getWeights()"
+                                                data-dismiss="modal">Close</button>
+                                            <!-- <input type="submit" class="btn btn-default" value="Save" name="modal_submit"> -->
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" onclick="getWeights()"
-                                                    data-dismiss="modal">Close</button>
-                                                <!-- <input type="submit" class="btn btn-default" value="Save" name="modal_submit"> -->
-                        
-                                            </div>
                                         </div>
-                            
-                                    </div>
+                                    </form>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
-                    </div>         
+                    </div>
+
+                    <!-- Modal2 -->
+                    <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog model-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <br><br><br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <!-- <h4 class="modal-title" id="myModalLabel" style="color:maroon">Weights for obtaining Composite Metric
+                                            </h4> -->
+                                </div>
+
+                                <div class="modal-body">
+                                    <div id="modal2_id"
+                                        style="height:60vh;background-color: rgb(44, 41, 41);border-radius: 20px;color:white;overflow:auto">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="getWeights()"
+                                            data-dismiss="modal">Close</button>
+                                        <!-- <input type="submit" class="btn btn-default" value="Save" name="modal_submit"> -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        
-        <div class="modal"><!-- Place at bottom of page -->   </div>
-    </body>
-    <!--<h4>Choose input code language: </h4>-->
-    <select id="lang" style="display: none;" class="form-control">
-        <option selected value="python">Python</option>
-    </select>
-    <script>
-        $body = $("body");
+        </div>
+    </div>
 
-        $(document).on({
-            ajaxStart: function() { $body.addClass("loading");    },
-            ajaxStop: function() { $body.removeClass("loading"); }    
-        });
-        
-        myTextarea=document.getElementById("code");
-        lang = document.getElementById("lang");
+    <div class="modal">
+        <!-- Place at bottom of page -->
+    </div>
+</body>
+<!--<h4>Choose input code language: </h4>-->
+<select id="lang" style="display: none;" class="form-control">
+    <option selected value="python">Python</option>
+</select>
+<script>
+    $body = $("body");
 
-        function getLanguageName()
-        {
-            var strUser = lang.options[lang.selectedIndex].value;
-            return strUser;
-        }
+    $(document).on({
+        ajaxStart: function () { $body.addClass("loading"); },
+        ajaxStop: function () { $body.removeClass("loading"); }
+    });
 
-        function getModel()
-        {
-            var model = document.getElementById("model");
-            var strUser = model.options[model.selectedIndex].value;
-            return strUser;
-        }
+    myTextarea = document.getElementById("code");
+    lang = document.getElementById("lang");
 
-        function loadEditor(l)
-        {
-            editor=null;
-            require(["lib/codemirror", "mode/"+l+"/"+l,"addon/edit/closebrackets"], function(CodeMirror) {
+    function getLanguageName() {
+        var strUser = lang.options[lang.selectedIndex].value;
+        return strUser;
+    }
 
-            editor=CodeMirror.fromTextArea(myTextarea, {
+    function getModel() {
+        var model = document.getElementById("model");
+        var strUser = model.options[model.selectedIndex].value;
+        return strUser;
+    }
+
+    function loadEditor(l) {
+        editor = null;
+        require(["lib/codemirror", "mode/" + l + "/" + l, "addon/edit/closebrackets"], function (CodeMirror) {
+
+            editor = CodeMirror.fromTextArea(myTextarea, {
                 lineNumbers: true,
                 mode: l,
-                theme:"material-palenight",
+                theme: "material-palenight",
                 autoCloseBrackets: true,
-                indentUnit:4,
-                indentWithTabs:true
-                });
-            editor.setSize("100%","100%");
+                indentUnit: 4,
+                indentWithTabs: true
             });
-
-        }
-
-        function viewButton(obj)
-        {
-            var value = obj.value;  
-            var learn=document.getElementById("sendlogin1");
-            var optimize=document.getElementById("sendlogin2");
-            var rank=document.getElementById("sendlogin3");
-            var compare=document.getElementById("sendlogin4");
-
-            if(value=="model1")
-            {
-                learn.style="";
-                optimize.style="";
-                rank.style="";
-                compare.style="";
-            }
-            else 
-            {
-                learn.style="display: none;";
-                optimize.style="display: none;";
-                rank.style="display: none;";
-                compare.style="display: none;";
-            }
-        }
-
-        loadEditor(getLanguageName());
-
-        lang.addEventListener("change",function(){
-            editor.CodeMirror.toTextArea();
-            var l=getLanguageName();
-            editor=loadEditor(l);
-        }
-        );
-
-        document.getElementById('inputfile') 
-            .addEventListener('change', function() { 
-              
-            var fr=new FileReader(); 
-            fr.onload=function(){ 
-                editor.setValue(fr.result); 
-            } 
-              
-            fr.readAsText(this.files[0]); 
+            editor.setSize("100%", "100%");
         });
 
-        function displayResult(obj,heading)
-        {
-            var output=document.getElementById("output");
-            var str="<br><div class='vertical-center'><table class='table' ><thead><tr><th scope='col'>#</th><th scope='col'>"+heading[0]+"</th><th scope='col'>"+heading[1]+"</th></tr></thead><tbody>"
-            for(var i=0;i<obj.length;i++)
-            {
-                var num=i+1;
-                if(obj[i].length==2)
-                    str+="<tr><th scope='row'>"+num+"</th><td>"+obj[i][0]+"</td><td>"+obj[i][1]+"</td></tr>"
-                else
-                    str+="<tr><th scope='row'>"+obj[i][2]+"</th><td>"+obj[i][0]+"</td><td>"+obj[i][1]+"</td></tr>"
-            }
-            str+="</tbody></table></div>"
-            console.log(str)
-            output.innerHTML=str;
-        }
-        function predict()
-        {
-            var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
-            $.ajax( {
-                  url:'http://localhost:5000/predict',
-                  data:JSON.stringify(obj),
-                  method:"POST",
-                  success:function(data) {
-                    displayResult(data,["Given Function Name","Prediction"]);
-                  },
-                  error: function(xhr, textStatus, errorThrown){
-                    var output=document.getElementById("output");
-                    output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
-                  }
-            });
-        }
+    }
 
-        function learn()
-        {
-            var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
-            $.ajax( {
-                  url:'http://localhost:5000/learn',
-                  data:JSON.stringify(obj),
-                  method:"POST",
-                  success:function(data) {
-                    var output=document.getElementById("output");
-                    output.innerHTML="<br><div class='vertical-center'><h1>Learnt the function successfully !</h1></div>"
-                  },
-                  error: function(xhr, textStatus, errorThrown){
-                    var output=document.getElementById("output");
-                    output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
-                  }
-            });
-        }
+    function viewButton(obj) {
+        var value = obj.value;
+        var learn = document.getElementById("sendlogin1");
+        var optimize = document.getElementById("sendlogin2");
+        var rank = document.getElementById("sendlogin3");
+        var compare = document.getElementById("sendlogin4");
 
-        function openModal(modal_num,data_key=0)
-        {
-            var checkBox = document.getElementById("myCheck");
-            if(modal_num==1)
-            {
-                if (checkBox.checked == true) {
-                    $('#myModal1').modal("show");
-                }
-                else {
-                    $('#myModal1').modal('hide');
-                }
-            }
-            else{
-                var data=JSON.parse(localStorage.getItem("functions"));
-                document.getElementById("modal2_id").innerHTML="<br><pre class='prettyprint linenums' style='font-size:large;'>"+data[data_key]+"</pre><br>";
-                PR.prettyPrint(); 
-                $('#myModal2').modal("show");
+        if (value == "model1") {
+            learn.style = "";
+            optimize.style = "";
+            rank.style = "";
+            compare.style = "";
+        }
+        else {
+            learn.style = "display: none;";
+            optimize.style = "display: none;";
+            rank.style = "display: none;";
+            compare.style = "display: none;";
+        }
+    }
+
+    loadEditor(getLanguageName());
+
+    lang.addEventListener("change", function () {
+        editor.CodeMirror.toTextArea();
+        var l = getLanguageName();
+        editor = loadEditor(l);
+    }
+    );
+
+    document.getElementById('inputfile')
+        .addEventListener('change', function () {
+
+            var fr = new FileReader();
+            fr.onload = function () {
+                editor.setValue(fr.result);
             }
 
-        }
+            fr.readAsText(this.files[0]);
+        });
 
-        function updateTextInput(val,metric) {
-                
-                let output = document.getElementById(metric);
-                output.innerText = val;
+    function displayResult(obj, heading) {
+        var output = document.getElementById("output");
+        var str = "<br><div class='vertical-center'><table class='table' ><thead><tr><th scope='col'>#</th><th scope='col'>" + heading[0] + "</th><th scope='col'>" + heading[1] + "</th></tr></thead><tbody>"
+        for (var i = 0; i < obj.length; i++) {
+            var num = i + 1;
+            if (obj[i].length == 2)
+                str += "<tr><th scope='row'>" + num + "</th><td>" + obj[i][0] + "</td><td>" + obj[i][1] + "</td></tr>"
+            else
+                str += "<tr><th scope='row'>" + obj[i][2] + "</th><td>" + obj[i][0] + "</td><td>" + obj[i][1] + "</td></tr>"
         }
+        str += "</tbody></table></div>"
+        console.log(str)
+        output.innerHTML = str;
+    }
+    function predict() {
+        var str = editor.getValue();
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel() }
+        $.ajax({
+            url: 'http://localhost:5000/predict',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                displayResult(data, ["Given Function Name", "Prediction"]);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
+            }
+        });
+    }
 
-        function getWeights(){
-            var checkBox = document.getElementById("myCheck");
-            res=[]
+    function learn() {
+        var str = editor.getValue();
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel() }
+        $.ajax({
+            url: 'http://localhost:5000/learn',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'><h1>Learnt the function successfully !</h1></div>"
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
+            }
+        });
+    }
+
+    function openModal(modal_num, data_key = 0) {
+        var checkBox = document.getElementById("myCheck");
+        if (modal_num == 1) {
             if (checkBox.checked == true) {
-                let t=document.getElementById("time_wt").value;
-                let m = document.getElementById("mem_wt").value;
-                let c = document.getElementById("cyclo_wt").value;
-                let r = document.getElementById("red_wt").value;
-            
-                res.push(parseInt(t));
-                res.push(parseInt(m));
-                res.push(parseInt(c));
-                res.push(parseInt(r));
-
-                console.log("weights:",res);
-                return res;
+                $('#myModal1').modal("show");
             }
-            else{
-                return [1,0,0,0] //return the default weights 
+            else {
+                $('#myModal1').modal('hide');
             }
         }
-
-        function optimize()
-        {
-            var str=editor.getValue();
-            // $('#myModal').modal("toggle");
-            // var wt=getWeights();
-            // console.log(wt)
-            obj={"f":str,"lang":getLanguageName(),"model":getModel(),"weights": getWeights()}
-            $.ajax( {
-                  url:'http://localhost:5000/optimize',
-                  data:JSON.stringify(obj),
-                  method:"POST",
-                  success:function(data) {
-                    var output=document.getElementById("output");
-                    output.style.overflow='auto';
-                    var str="";
-                    for(var i=0;i<data.length;i++)
-                    {
-                        str+="<br><pre class='prettyprint linenums' style='font-size:large;'>"+data[i]+"</pre><br>"
-                    }                    
-                    output.innerHTML=str;
-                    PR.prettyPrint(); 
-                  },
-                  error: function(xhr, textStatus, errorThrown){
-                    var output=document.getElementById("output");
-                    output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
-                  }
-            });
+        else {
+            var data = JSON.parse(localStorage.getItem("functions"));
+            document.getElementById("modal2_id").innerHTML = "<br><pre class='prettyprint linenums' style='font-size:large;'>" + data[data_key] + "</pre><br>";
+            PR.prettyPrint();
+            $('#myModal2').modal("show");
         }
 
-        function rank()
-        {
-            localStorage.clear();
-            var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel(),"weights": getWeights()}
-            $.ajax( {
-                  url:'http://localhost:5000/rank',
-                  data:JSON.stringify(obj),
-                  method:"POST",
-                  success:function(data) {
-                    var new_data={};
+    }
 
-                    for(var i=0;i<data.length;i++)
-                    {
-                        var num=i+1;
-                        if(data[i].length==3)
-                        {
-                            var index_="index"+data[i][2];
-                            new_data[index_]=data[i][1];
-                            data[i][1]='<button type="button" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="openModal(2,\''+index_+'\')">Show</button>';
-                        }
-                        else 
-                        {
-                            var index_="index"+num;
-                            new_data[index_]=data[i][1];
-                            data[i][1]='<button type="button" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="openModal(2,\''+index_+'\')">Show</button>';
-                        }
+    function updateTextInput(val, metric) {
+
+        let output = document.getElementById(metric);
+        output.innerText = val;
+    }
+
+    function getWeights() {
+        var checkBox = document.getElementById("myCheck");
+        res = []
+        if (checkBox.checked == true) {
+            let t = document.getElementById("time_wt").value;
+            let m = document.getElementById("mem_wt").value;
+            let c = document.getElementById("cyclo_wt").value;
+            let r = document.getElementById("red_wt").value;
+
+            res.push(parseInt(t));
+            res.push(parseInt(m));
+            res.push(parseInt(c));
+            res.push(parseInt(r));
+
+            console.log("weights:", res);
+            return res;
+        }
+        else {
+            return [1, 0, 0, 0] //return the default weights 
+        }
+    }
+
+    function optimize() {
+        var str = editor.getValue();
+        // $('#myModal').modal("toggle");
+        // var wt=getWeights();
+        // console.log(wt)
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel(), "weights": getWeights() }
+        $.ajax({
+            url: 'http://localhost:5000/optimize',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                var output = document.getElementById("output");
+                output.style.overflow = 'auto';
+                var str = "";
+                for (var i = 0; i < data.length; i++) {
+                    str += "<br><pre class='prettyprint linenums' style='font-size:large;'>" + data[i] + "</pre><br>"
+                }
+                output.innerHTML = str;
+                PR.prettyPrint();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
+            }
+        });
+    }
+
+    function rank() {
+        localStorage.clear();
+        var str = editor.getValue();
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel(), "weights": getWeights() }
+        $.ajax({
+            url: 'http://localhost:5000/rank',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                var new_data = {};
+
+                for (var i = 0; i < data.length; i++) {
+                    var num = i + 1;
+                    if (data[i].length == 3) {
+                        var index_ = "index" + data[i][2];
+                        new_data[index_] = data[i][1];
+                        data[i][1] = '<button type="button" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="openModal(2,\'' + index_ + '\')">Show</button>';
                     }
-                    localStorage.setItem("functions",JSON.stringify(new_data));
-                    displayResult(data,["Composite Metric Value","Function"]);
-                  },
-                  error: function(xhr, textStatus, errorThrown){
-                    var output=document.getElementById("output");
-                    output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
-                  }
-            });
-        }
+                    else {
+                        var index_ = "index" + num;
+                        new_data[index_] = data[i][1];
+                        data[i][1] = '<button type="button" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="openModal(2,\'' + index_ + '\')">Show</button>';
+                    }
+                }
+                localStorage.setItem("functions", JSON.stringify(new_data));
+                displayResult(data, ["Composite Metric Value", "Function"]);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
+            }
+        });
+    }
 
-        function compare()
-        {
-            var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel(),"weights": getWeights()}
-            $.ajax( {
-                  url:'http://localhost:5000/compare',
-                  data:JSON.stringify(obj),
-                  method:"POST",
-                  success:function(data) {
-                    displayResult(data,["Composite Metric Value","Function Name"]);
-                  },
-                  error: function(xhr, textStatus, errorThrown){
-                    var output=document.getElementById("output");
-                    output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
-                  }
-            });
-        }
+    function compare() {
+        var str = editor.getValue();
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel(), "weights": getWeights() }
+        $.ajax({
+            url: 'http://localhost:5000/compare',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                displayResult(data, ["Composite Metric Value", "Function Name"]);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
+            }
+        });
+    }
 
-        function userAction()
-        {
-            var uaction=document.getElementById('usr-action');
-            var action= $("#usr-action").val();
-            console.log($("#usr-action").val(),typeof(action))
-            if (action==="Predict") {predict();}
-            else if(action==="Learn") {learn();}
-            else if(action==="Rank") {rank();}
-            else if(action==="Optimize"){optimize();}
-            else {compare();}
-        }
+    function userAction() {
+        var uaction = document.getElementById('usr-action');
+        var action = $("#usr-action").val();
+        console.log($("#usr-action").val(), typeof (action))
+        if (action === "Predict") { predict(); }
+        else if (action === "Learn") { learn(); }
+        else if (action === "Rank") { rank(); }
+        else if (action === "Optimize") { optimize(); }
+        else { compare(); }
+    }
 
-    </script>
-   
+</script>
+
 </html>
