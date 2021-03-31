@@ -1,11 +1,11 @@
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import RobustScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 import numpy as np
 import time
 import inspect
 import random
-import statistics
 import tracemalloc
 from math import sqrt
 from pebble import concurrent
@@ -14,12 +14,16 @@ from sklearn.model_selection import train_test_split
 from typing import List, Set, Dict, Tuple, Optional
 import cppyy
 from cppyy.gbl.std import vector,pair
+import copy
+import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 try:
     import param_gen
+    import cpp_executor
 except:
     from . import param_gen
+    from . import cpp_executor
 
 np.random.seed(0)
 random.seed(0)        
@@ -57,25 +61,32 @@ def get_integral(v):
         res = res + (i[0]*integrals[i[1]])/10**6
     return pow(res,1/10)
 
+def scale(l):
+    temp = copy.deepcopy(l)
+    for i in range(len(l)):
+        if len(l[i])>4:
+            l[i].pop()
+    df = pd.DataFrame(l, columns =['time', 'memory', 'cyclo', 'diff'])
+    scaler = RobustScaler()
+    scaled_df = pd.DataFrame(scaler.fit_transform(df),columns=['time','memory','cyclo','diff'])
+    l = scaled_df.values.tolist()
+    for i in range(len(l)):
+        l[i].append(temp[i][4])
+    return l
+
 def get_metric_val(l,weights):
     # weights=[1,0,0,0]
-    return sqrt(weights[0]*pow(l[0],2)+weights[1]*pow(l[1],2)+weights[2]*pow(l[2],2)+weights[3]*pow(l[3],2))
+    return weights[0]*l[0]+weights[1]*l[1]+weights[2]*l[2]+weights[3]*l[3]
 
 class optimizer:
 
-    def __init__(self,func,approx_upper_bound=None) -> None:
-        self.func=func
+    def __init__(self,func_tuple,lang="python") -> None:
+        self.func=func_tuple[0]
+        self.func_str=func_tuple[1]
+        self.lang=lang
         self.time_limit=1
-        d={"1":10**8,"log(n)":10**7,"logn":10**7,"n":10**6,"m":10**6,"n^1":10**6,"nlog(n)":10**5,"nlogn":10**5,"n^2":10**4,"n^3":1000,"2^n":25,"n!":10,"nm":10**4}
-        # d1={"1":1,"log(n)":1,"logn":1,"n":1,"n^1":1,"nlog(n)":2,"nlogn":2,"n^2":2,"n^3":3,"2^n":7,"n!":9,"nm":2}
-        self.approx_upper_bound=approx_upper_bound
-        if approx_upper_bound in d:
-            self.high=d[approx_upper_bound]
-            self.min_data=10
-            # self.max_degree=d1[approx_upper_bound]
-        else:
-            self.min_data=10
-            self.high=10**6
+        self.min_data=10
+        self.high=10**6
         self.max_degree=9
         self.criteria=r2_score
         self.criteria_min=-np.inf
@@ -180,13 +191,21 @@ class optimizer:
 
     def find_metrics(self,data): #time and memory has been implemented
         def helper(data):
-            tracemalloc.start()
-            start = time.process_time_ns()
-            self.func(*data)
-            current, peak = tracemalloc.get_traced_memory()
-            end = time.process_time_ns()
-            tracemalloc.stop()
-            return end-start, peak
+            if self.lang=="python":
+                tracemalloc.start()
+                start = time.process_time_ns()
+                self.func(*data)
+                current, peak = tracemalloc.get_traced_memory()
+                end = time.process_time_ns()
+                tracemalloc.stop()
+                return end-start, peak
+            else:
+                params=param_gen.signature(self.func)
+                l=[] #list of parameters
+                for k in params:
+                    config=params[k].annotation
+                    l.append(config)
+                return cpp_executor.execute(self.func_str,self.func.__name__,l,data)
         helper = concurrent.process(timeout=self.time_limit)(helper)
         time_data = helper(data)
         try:
@@ -200,6 +219,8 @@ class optimizer:
     def param_generator(self,num,t,config={}):
         if config==inspect._empty:
             config={}
+        if "generator" in config:
+            return param_gen.param_generator(t,config)()
         if t==int:
             return num
         else:
@@ -221,53 +242,6 @@ class optimizer:
             # iterable
             return True
     
-    def perform_variations(self,data):
-        def rotate(arr,k,t):
-            if t==0:
-                #rotate left
-                return arr[k:]+arr[:k]
-            else:
-                return arr[-k:]+arr[:-k]
-        if random.randint(0,1)==0:
-            return data  
-        
-        choice=random.randint(1,7)
-        
-        if type(data) in (list,tuple,vector[int],str,vector[str],vector[float]):
-            type_data=type(data)
-            if choice==1:
-                data=sorted(data)
-            elif choice==2:
-                data=list(reversed(data))
-            elif choice==3:
-                k=random.randint(0,len(data))
-                t=random.randint(0,1)
-                data=rotate(data,k,t)
-            elif choice==4:
-                data=list(reversed(sorted(data)))
-            elif choice==5:
-                data=sorted(data)
-                k=random.randint(0,len(data))
-                t=random.randint(0,1)
-                data=rotate(data,k,t)  
-            elif choice==6:
-                data=list(reversed(sorted(data)))
-                k=random.randint(0,len(data))
-                t=random.randint(0,1)
-                data=rotate(data,k,t) 
-            else:
-                data=list(reversed(data))
-                k=random.randint(0,len(data))
-                t=random.randint(0,1)
-                data=rotate(data,k,t)     
-                            
-            if type_data==str:
-                return ''.join(data)
-            else:
-                return type_data(data)
-        else:
-            return data
-    
     def generate_data(self):
         params=param_gen.signature(self.func)
         l=[] #list of parameters
@@ -284,7 +258,6 @@ class optimizer:
             while low<=high:
                 mid=low
                 data[i]=self.param_generator(mid,l[i].annotation,l[i].default)
-                #data[i]=self.perform_variations(data[i])
                 time_taken, mem_taken = self.find_metrics(data)
                 if time_taken==None:
                     break
@@ -306,7 +279,6 @@ class optimizer:
                     break
                 temp=random.randint(2,low)
                 data[i]=self.param_generator(temp,l[i].annotation,l[i].default)
-                #data[i]=self.perform_variations(data[i])
                 time_taken, mem_taken =self.find_metrics(data)
                 if time_taken==None:
                     low=low-int(0.1*low) 

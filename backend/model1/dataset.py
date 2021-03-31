@@ -85,21 +85,15 @@ class json_dataset:
             import cyclomatic
             import pymetrics
             
-        name, f, label, fn_src = None, None, None, None
-
-        if(len(choice)==2):
-            name,f=choice
-        else:
-            name, f, label, fn_src = choice
+        name, f, label, fn_src = choice
 
         obj=json_dataset.read(lang)
         if name in obj:
 
             print("Available in the dataset")
             func_label = name
-            approx_upper_bound = obj[func_label][0]
 
-            pobj=optimizer.optimizer(f,approx_upper_bound)
+            pobj=optimizer.optimizer((f,fn_src),lang)
             func_time_vector,func_mem_vector = pobj.generate_vector()
             print(func_time_vector,func_mem_vector)
             func_time_metric_val = optimizer.get_integral(func_time_vector)
@@ -120,13 +114,13 @@ class json_dataset:
 
             print(func_source_str)
             func_cyclo_metric_val = sum(cyclo(func_source_str, lang).values())
-            func_diff_metric_val = pymetrics.halstead(func_source_str)["difficulty"]
+            func_diff_metric_val = pymetrics.halstead(func_source_str,lang)["difficulty"]
             obj[name].append([func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,func_diff_metric_val,func_source_str])
             json_dataset.write(obj,lang)
             
         else:
             print("Not available in dataset")
-            pobj=optimizer.optimizer(f)
+            pobj=optimizer.optimizer((f,fn_src),lang)
             func_time_vector,func_mem_vector = pobj.generate_vector()
             print(func_time_vector,func_mem_vector)
             approx_upper_bound=optimizer.get_approx_upper_bound(func_time_vector)
@@ -147,14 +141,14 @@ class json_dataset:
 
             print(func_source_str)
             func_cyclo_metric_val = sum(cyclo(func_source_str, lang).values())
-            func_diff_metric_val = pymetrics.halstead(func_source_str)["difficulty"]
+            func_diff_metric_val = pymetrics.halstead(func_source_str,lang)["difficulty"]
             obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,func_diff_metric_val,func_source_str]]
             json_dataset.write(obj,lang)
               
     @staticmethod
     def generate(nums=1,lang="python"):
         import func 
-        functions=[o for o in inspect.getmembers(func) if inspect.isfunction(o[1])]
+        functions=[[o[0],o[1],o[1].__name__,inspect.getsource(o[1])] for o in inspect.getmembers(func) if inspect.isfunction(o[1])]
         for i in functions:
             json_dataset.add(i,lang)
 

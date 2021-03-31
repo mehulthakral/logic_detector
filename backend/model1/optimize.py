@@ -12,7 +12,9 @@ except:
     import pymetrics
 
 import inspect
+import pandas as pd
 
+Mode = "Test" #Test or Exec
 
 def change_func_name(func_str, func_name):
     func_str = func_str.split("def", 1)
@@ -27,28 +29,32 @@ def change_func_name(func_str, func_name):
     return func_str[0]+"def "+func_str[1]
 
 
-def optimize(f, lang="python", weights=[1, 0, 0, 0]):
+def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
+    f,func_str=func_tuple
     func_label = predict.predict(f, lang)
     obj = dataset.json_dataset.read(lang)
     if func_label not in obj:
-        return inspect.getsource(f)
+        return func_str
 
-    approx_upper_bound = obj[func_label][0]
+
     dataset_list = obj[func_label][1:]
-    dataset_list.sort(key=lambda x: optimizer.get_metric_val(x, weights))
-    dataset_min_metric_val = optimizer.get_metric_val(dataset_list[0], weights)
-    dataset_function_source_str = dataset_list[0][4]
 
-    pobj = optimizer.optimizer(f, approx_upper_bound)
+    pobj = optimizer.optimizer(func_tuple,lang)
     func_time_vector, func_mem_vector = pobj.generate_vector()
     # print(func_mem_vector)
     integral = optimizer.get_integral
-    func_str = inspect.getsource(f)
     cyclo = cyclomatic.cyclomatic_complexity
     metric_vector = [integral(func_time_vector), integral(
-        func_mem_vector), cyclo(func_str, lang)[f.__name__], pymetrics.halstead(func_str)["difficulty"]]
+        func_mem_vector), cyclo(func_str, lang)[f.__name__], pymetrics.halstead(func_str,lang)["difficulty"]]
     print(metric_vector)
-    func_metric_val = optimizer.get_metric_val(metric_vector, weights)
+    dataset_list.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],func_str])
+    scaled_dataset_list = optimizer.scale(dataset_list)
+    # print(scaled_dataset_list)
+    func_metric_val = optimizer.get_metric_val(scaled_dataset_list[-1][:4], weights)
+    scaled_dataset_list.pop()
+    scaled_dataset_list.sort(key=lambda x: optimizer.get_metric_val(x, weights))
+    dataset_min_metric_val = optimizer.get_metric_val(scaled_dataset_list[0], weights)
+    dataset_function_source_str = scaled_dataset_list[0][4]
     print(dataset_min_metric_val, func_metric_val)
 
     if dataset_min_metric_val >= func_metric_val:
@@ -73,18 +79,33 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
         if func_label not in obj:
             ans.append([float("inf"), func_str])
         else:
-            approx_upper_bound = obj[func_label][0]
-            pobj = optimizer.optimizer(f, approx_upper_bound)
+
+            pobj = optimizer.optimizer((f,func_str), lang)
             func_time_vector, func_mem_vector = pobj.generate_vector()
             metric_vector = [integral(func_time_vector), integral(
-                func_mem_vector), cyclo(func_str, lang)[f.__name__], 0]
-            func_metric_val = optimizer.get_metric_val(metric_vector, weights)
+                func_mem_vector), cyclo(func_str, lang)[f.__name__], pymetrics.halstead(func_str,lang)["difficulty"]]
+            dataset_list = obj[func_label][1:]
+            dataset_list.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],func_str])
+            scaled_dataset_list = optimizer.scale(dataset_list)
+            func_metric_val = optimizer.get_metric_val(scaled_dataset_list[-1][:4], weights)
+            scaled_dataset_list.pop()
             ans.append([func_metric_val, func_str, True])
             if func_label not in s:
                 s.add(func_label)
-                for i in obj[func_label][1:]:
+                for i in scaled_dataset_list:
                     func_metric_val = optimizer.get_metric_val(i, weights)
                     ans.append([func_metric_val, i[-1]])
+                if Mode == "Test":
+                    test_ans =[]
+                    for i in range(len(scaled_dataset_list)):
+                        test_ans.append([func_label] + dataset_list[i] + [ans[i+1][0],ans[i+1][1]])
+                    #print(test_ans)
+                    df = pd.DataFrame(test_ans,columns=["Label", "Time", "Space", "Cyclomatic", "Halstead", "Composite Metric", "Code"])
+                    df.Code = df.Code.apply(lambda x : x.replace('\n', '\\n')) 
+                    df.index+=1
+                    df["Index"] = df.index
+                    df['Model_Rank'] = df['Composite Metric'].rank()
+                    df.to_csv("model1/Model_Output.csv", index = False, header=True)
     ans.sort()
     count = 0
     new_ans = ans[:top_no]
@@ -107,17 +128,21 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
 
 def compare(f_arr, lang="python", weights=[1, 0, 0, 0]):
     ans = []
+    metric_values = []
     integral = optimizer.get_integral
     cyclo = cyclomatic.cyclomatic_complexity
-
     for f, func_str in f_arr:
-        approx_upper_bound = "n"
-        pobj = optimizer.optimizer(f, approx_upper_bound)
+        pobj = optimizer.optimizer((f,func_str), lang)
         func_time_vector, func_mem_vector = pobj.generate_vector()
         metric_vector = [integral(func_time_vector), integral(
-            func_mem_vector), cyclo(func_str, lang)[f.__name__], 0]
-        func_metric_val = optimizer.get_metric_val(metric_vector, weights)
-        f_name = f.__name__
+            func_mem_vector), cyclo(func_str, lang)[f.__name__],pymetrics.halstead(func_str,lang)["difficulty"]]
+        metric_values.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],f.__name__])
+
+    scaled_metric_values = optimizer.scale(metric_values)
+    
+    for values in scaled_metric_values:
+        func_metric_val = optimizer.get_metric_val(values[:4], weights)
+        f_name = values[4]
         ans.append([func_metric_val, f_name])
 
     ans.sort()

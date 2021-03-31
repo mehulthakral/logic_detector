@@ -1,6 +1,6 @@
 import lizard
 
-def cyclomatic_complexity(fnc_str,lang):
+def cyclomatic_complexity(fnc_str,lang="python"):
     if lang=="python":
         i = lizard.analyze_file.analyze_source_code("input.py", fnc_str)
     else:

@@ -37,7 +37,7 @@ def parse_clike(f):
     methods=[]
     for _,k in list(inspect.getmembers(cppyy.gbl)):
         if str(type(k))=="<class 'cppyy.CPPOverload'>" and (not _.startswith("__")) :
-            methods.append((k,""))
+            methods.append((k,f))
     return methods
 
 @app.route('/predict', methods=['POST'])
@@ -110,7 +110,7 @@ def OPTIMIZE():
     for i in methods:
         func_obj=i[0]
         func_source_code=i[1]
-        m.append(op1.optimize(func_obj,json['lang'],json["weights"]))
+        m.append(op1.optimize((func_obj,func_source_code),json['lang'],json["weights"]))
             
     return jsonify(m)
 
