@@ -142,12 +142,21 @@
                                     </select>
                                     <br>
                                 </div>
-                                <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="predict()">Predict</button>
+                                <select class="btn btn-lg dropdown-toggle " name='user-action' id='usr-action' >
+                                    <option value="Predict" selected>Predict</option>
+                                    <option value="Learn">Learn</option>
+                                    <option value="Optimize">Optimize</option>
+                                    <option value="Compare">Compare</option>
+                                    <option value="Rank">Rank</option>
+                                </select>
+                                <button type="button" id="sendlogin" class="btn btn-primary btn-lg" style="margin-right:1.0em"
+                                    onclick="userAction()">GO</button>
+                                <!-- <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="predict()">Predict</button>
                                 <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="learn()">Learn</button>
                                 <button type="button" id="sendlogin2" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="optimize()">Optimize</button>
                                 <button type="button" id="sendlogin3" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="rank()">Rank</button>
-                                <button type="button" id="sendlogin4" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="compare()">Compare</button>
-                                <br>
+                                <button type="button" id="sendlogin4" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="compare()">Compare</button> -->
+                                <br><br><br>
                             </div>
                             <!-- Modal -->
                             <div class="modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -501,6 +510,18 @@
                     output.innerHTML="<br><div class='vertical-center'>Syntax Error !</div>"
                   }
             });
+        }
+
+        function userAction()
+        {
+            var uaction=document.getElementById('usr-action');
+            var action= $("#usr-action").val();
+            console.log($("#usr-action").val(),typeof(action))
+            if (action==="Predict") {predict();}
+            else if(action==="Learn") {learn();}
+            else if(action==="Rank") {rank();}
+            else if(action==="Optimize"){optimize();}
+            else {compare();}
         }
 
     </script>

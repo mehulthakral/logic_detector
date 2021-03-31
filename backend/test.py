@@ -88,8 +88,7 @@ def quickSort(arr:list):
         arr[i+1], arr[high] = arr[high], arr[i+1] 
         return (i+1) 
   
-  
-  
+   
     def helper(low, high): 
         if len(arr) == 1: 
             return arr 
