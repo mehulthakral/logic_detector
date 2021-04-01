@@ -7,7 +7,7 @@ from skcriteria.madm import simple
 
 #Source: https://towardsdatascience.com/ranking-algorithms-know-your-multi-criteria-decision-solving-techniques-20949198f23e
 
-def rank_label(df_lab,  wgt = [1,0,0,0]):
+def rank_label(df_lab,  wgt):
 
   criteria_data = Data(
       df_lab.iloc[:, 1:5],          # the pandas dataframe
@@ -21,6 +21,7 @@ def rank_label(df_lab,  wgt = [1,0,0,0]):
 
   # weighted sum, sumNorm
   dm = simple.WeightedSum(mnorm="sum")
+  #print(dm.tolist())
   dec = dm.decide(criteria_data)
   #print(dec)
   df_lab_copy.loc[:, 'rank_weightedSum_sumNorm_inverse'] = dec.rank_
@@ -81,5 +82,5 @@ if Input_Type == "dataset":
 elif Input_Type == "Model_Output":
   df = pd.read_csv('Model_Output.csv')
   df_lab = df
-  rank = rank_label(df_lab, [100,100,0,0])
+  rank = rank_label(df_lab, [75,100,25,50])
   rank.to_csv(r'Ranked.csv', index = False, header=True)

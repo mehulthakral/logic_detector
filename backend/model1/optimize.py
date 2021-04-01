@@ -93,14 +93,15 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
             if func_label not in s:
                 s.add(func_label)
                 for i in scaled_dataset_list:
+                    print(i[:4])
                     func_metric_val = optimizer.get_metric_val(i, weights)
                     ans.append([func_metric_val, i[-1]])
                 if Mode == "Test":
                     test_ans =[]
                     for i in range(len(scaled_dataset_list)):
-                        test_ans.append([func_label] + dataset_list[i] + [ans[i+1][0],ans[i+1][1]])
+                        test_ans.append([func_label] + dataset_list[i] + [ans[i+1][0],ans[i+1][1]] + scaled_dataset_list[i][:4])
                     #print(test_ans)
-                    df = pd.DataFrame(test_ans,columns=["Label", "Time", "Space", "Cyclomatic", "Halstead", "Composite Metric", "Code"])
+                    df = pd.DataFrame(test_ans,columns=["Label", "Time", "Space", "Cyclomatic", "Halstead", "Composite Metric", "Code", "Scaled_Time", "Scaled_Space", "Scaled_Cyclomatic", "Scaled_Halstead"])
                     df.Code = df.Code.apply(lambda x : x.replace('\n', '\\n')) 
                     df.index+=1
                     df["Index"] = df.index
