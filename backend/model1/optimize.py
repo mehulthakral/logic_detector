@@ -93,7 +93,6 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
             if func_label not in s:
                 s.add(func_label)
                 for i in scaled_dataset_list:
-                    print(i[:4])
                     func_metric_val = optimizer.get_metric_val(i, weights)
                     ans.append([func_metric_val, i[-1]])
                 if Mode == "Test":
@@ -125,6 +124,40 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
                 new_ans.append(ans[i])
 
         return new_ans
+
+
+def rank_test(func_label, lang="python", weights=[1, 0, 0, 0]):
+    ans = []
+    obj = dataset.json_dataset.read(lang)
+
+    top_no = len(obj)
+
+    integral = optimizer.get_integral
+    cyclo = cyclomatic.cyclomatic_complexity
+    s = set()
+    if func_label not in obj:
+        print("Label not present in dataset")
+    else:
+        dataset_list = obj[func_label][1:]
+        scaled_dataset_list = optimizer.scale(dataset_list)
+        func_metric_val = optimizer.get_metric_val(scaled_dataset_list[-1][:4], weights)
+        scaled_dataset_list.pop()
+        if func_label not in s:
+            s.add(func_label)
+            for i in scaled_dataset_list:
+                func_metric_val = optimizer.get_metric_val(i, weights)
+                ans.append([func_metric_val, i[-1]])
+            test_ans =[]
+            for i in range(len(scaled_dataset_list)):
+                test_ans.append([func_label] + dataset_list[i] + [ans[i][0],ans[i][1]] + scaled_dataset_list[i][:4])
+                #print(test_ans)
+                df = pd.DataFrame(test_ans,columns=["Label", "Time", "Space", "Cyclomatic", "Halstead", "Composite Metric", "Code", "Scaled_Time", "Scaled_Space", "Scaled_Cyclomatic", "Scaled_Halstead"])
+                df.Code = df.Code.apply(lambda x : x.replace('\n', '\\n')) 
+                df.index+=1
+                df["Index"] = df.index
+                df['Model_Rank'] = df['Composite Metric'].rank()
+                df.to_csv("Model_Output.csv", index = False, header=True)
+    return
 
 
 def compare(f_arr, lang="python", weights=[1, 0, 0, 0]):

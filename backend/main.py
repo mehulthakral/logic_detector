@@ -118,10 +118,12 @@ def OPTIMIZE():
 def RANK():
     json = request.get_json(force=True)
     if json["lang"]=="python":
+        print(json['f'])
         methods=parse_py(json['f'])
     else:
         methods=parse_clike(json['f'])
-    
+    print(json['lang'],json['weights'])
+    print(methods)
     return jsonify(op1.rank(methods,json['lang'],json["weights"]))
 
 @app.route('/compare', methods=['POST'])
