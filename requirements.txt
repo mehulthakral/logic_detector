@@ -9,3 +9,4 @@ pebble
 cppyy
 radon
 lizard
+valgrind
