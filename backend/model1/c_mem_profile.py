@@ -42,6 +42,7 @@ def c_mem_val():
             mem_val = line.split(" ")[-3].split(",")
             mem_val = int(("").join(mem_val))
             print(mem_val)
+    mem_val=mem_val/1024 # convert bytes to Kib
     return mem_val
 
 if __name__=="__main__":
