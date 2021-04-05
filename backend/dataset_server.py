@@ -439,8 +439,8 @@ def optimize_evaluate():
     obj=json.loads(data)
     fobj.close()
 
-    del obj["MIN"]
-    del obj["MAX"]
+    #del obj["MIN"]
+    #del obj["MAX"]
     # print(obj.keys())
     overall_sum = 0.0
     for key in obj.keys():

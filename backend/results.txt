@@ -26,28 +26,31 @@ Accuracy of isAnagram 21/21 prgs: 100.0
 Accuracy of canFinish 17/19 prgs: 89.47
 
 --------- Optimization Accuracy --------
-Accuracy of SORT 72/81 combs: 88.88888888888889
-Accuracy of STR_SEARCH 67/81 combs: 82.71604938271605
-Accuracy of ROTATE_ARRAY 4/81 combs: 4.938271604938271
+
+Accuracy of MIN 73/81 combs: 90.12345679012346
+Accuracy of MAX 73/81 combs: 90.12345679012346
+Accuracy of SORT 79/81 combs: 97.53086419753086
+Accuracy of STR_SEARCH 73/81 combs: 90.12345679012346
+Accuracy of ROTATE_ARRAY 60/81 combs: 74.07407407407408
 Accuracy of FIB 80/81 combs: 98.76543209876543
-Accuracy of PALIN 0/81 combs: 0.0
-Accuracy of POW 48/81 combs: 59.25925925925925
-Accuracy of UGLY_NUM 54/81 combs: 66.66666666666666
-Accuracy of SIEVE 9/81 combs: 11.11111111111111
-Accuracy of SQRT 0/81 combs: 0.0
-Accuracy of REVERSE_INTEGER 0/81 combs: 0.0
-Accuracy of CATALAN_NUM 76/81 combs: 93.82716049382715
-Accuracy of ANAGRAM 48/81 combs: 59.25925925925925
-Accuracy of JUMP_GAME 33/81 combs: 40.74074074074074
-Accuracy of COIN_CHANGE 38/81 combs: 46.913580246913575
-Accuracy of COUNT_ISLANDS 52/81 combs: 64.19753086419753
-Accuracy of CYCLE_GRAPH 31/81 combs: 38.2716049382716
-Accuracy of CYCLE_LL 64/81 combs: 79.01234567901234
-Accuracy of REVERSE_LL 18/81 combs: 22.22222222222222
-Accuracy of INORDER_TRAVERSAL 45/81 combs: 55.55555555555556
-Accuracy of VALID_BST 56/81 combs: 69.1358024691358
-Accuracy of HEIGHT_BT 15/81 combs: 18.51851851851852
-Accuracy of MAX_PATH_SUM_BT 34/81 combs: 41.9753086419753
-Accuracy of LEVELORDER_TRAVERSAL 76/81 combs: 93.82716049382715
-Accuracy of SUDOKU 48/81 combs: 59.25925925925925
-Overall Accuracy: 49.79423868312758
+Accuracy of PALIN 81/81 combs: 100.0
+Accuracy of POW 81/81 combs: 100.0
+Accuracy of UGLY_NUM 80/81 combs: 98.76543209876543
+Accuracy of SIEVE 38/81 combs: 46.913580246913575
+Accuracy of SQRT 81/81 combs: 100.0
+Accuracy of REVERSE_INTEGER 81/81 combs: 100.0
+Accuracy of CATALAN_NUM 81/81 combs: 100.0
+Accuracy of ANAGRAM 81/81 combs: 100.0
+Accuracy of JUMP_GAME 68/81 combs: 83.9506172839506
+Accuracy of COIN_CHANGE 80/81 combs: 98.76543209876543
+Accuracy of COUNT_ISLANDS 70/81 combs: 86.41975308641975
+Accuracy of CYCLE_GRAPH 68/81 combs: 83.9506172839506
+Accuracy of CYCLE_LL 81/81 combs: 100.0
+Accuracy of REVERSE_LL 63/81 combs: 77.77777777777779
+Accuracy of INORDER_TRAVERSAL 53/81 combs: 65.4320987654321
+Accuracy of VALID_BST 69/81 combs: 85.18518518518519
+Accuracy of HEIGHT_BT 59/81 combs: 72.8395061728395
+Accuracy of MAX_PATH_SUM_BT 56/81 combs: 69.1358024691358
+Accuracy of LEVELORDER_TRAVERSAL 81/81 combs: 100.0
+Accuracy of SUDOKU 81/81 combs: 100.0
+Overall Accuracy: 88.84140550807219

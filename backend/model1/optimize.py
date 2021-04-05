@@ -137,11 +137,12 @@ def rank_test(func_label, lang="python", weights=[1, 0, 0, 0]):
     s = set()
     if func_label not in obj:
         print("Label not present in dataset")
+        return "No Label"
     else:
         dataset_list = obj[func_label][1:]
         scaled_dataset_list = optimizer.scale(dataset_list)
         func_metric_val = optimizer.get_metric_val(scaled_dataset_list[-1][:4], weights)
-        scaled_dataset_list.pop()
+        #scaled_dataset_list.pop()
         if func_label not in s:
             s.add(func_label)
             for i in scaled_dataset_list:
@@ -151,13 +152,13 @@ def rank_test(func_label, lang="python", weights=[1, 0, 0, 0]):
             for i in range(len(scaled_dataset_list)):
                 test_ans.append([func_label] + dataset_list[i] + [ans[i][0],ans[i][1]] + scaled_dataset_list[i][:4])
                 #print(test_ans)
-                df = pd.DataFrame(test_ans,columns=["Label", "Time", "Space", "Cyclomatic", "Halstead", "Composite Metric", "Code", "Scaled_Time", "Scaled_Space", "Scaled_Cyclomatic", "Scaled_Halstead"])
-                df.Code = df.Code.apply(lambda x : x.replace('\n', '\\n')) 
-                df.index+=1
-                df["Index"] = df.index
-                df['Model_Rank'] = df['Composite Metric'].rank()
-                df.to_csv("Model_Output.csv", index = False, header=True)
-    return
+            df = pd.DataFrame(test_ans,columns=["Label", "Time", "Space", "Cyclomatic", "Halstead", "Composite Metric", "Code", "Scaled_Time", "Scaled_Space", "Scaled_Cyclomatic", "Scaled_Halstead"])
+            df.Code = df.Code.apply(lambda x : x.replace('\n', '\\n')) 
+            df.index+=1
+            df["Index"] = df.index
+            df['Model_Rank'] = df['Composite Metric'].rank(method="dense")
+            #df.to_csv("Model_Output.csv", index = False, header=True)
+            return df
 
 
 def compare(f_arr, lang="python", weights=[1, 0, 0, 0]):

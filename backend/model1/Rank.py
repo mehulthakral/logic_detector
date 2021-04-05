@@ -5,6 +5,7 @@ import json
 from skcriteria.madm import simple
 import inspect
 import itertools
+import numpy as np
 
 import optimize as op1
 
@@ -77,14 +78,31 @@ def Basic_tests(weights):
 
   return strong_dom
 
+def Combine(df1,df2):
+  df1=df.sort_values(wgt[i][1])
+  df2=df.sort_values(wgt[i+1][1])
+  s1 = pd.merge(df1, df2, how='inner')
+  print(df1)
+  print(s1)
+
 def Greedy(df, weights):
-  n = int(len(df)/5)
+  total=int(len(df))
+  cw=np.count_nonzero(weights)
+  if cw==0:
+    cw+=1
+  n = (total-int(total/(7-cw)))/cw
+  n=int(n)
+  #print(n,weights,total-cw*n)
   metrics=["Scaled_Time","Scaled_Space","Scaled_Cyclomatic","Scaled_Halstead"]
   wgt=list(zip(weights,metrics))
   wgt.sort(reverse=True)
-  for i in wgt:
-      df=df.sort_values(i[1])
+  for i in range(len(wgt)):
+    if wgt[i][0]!=0:
+      #if wgt[i][0]!=wgt[i+1][0]:
+      df=df.sort_values(wgt[i][1])
       df.drop(df.tail(n).index,inplace=True)
+      #else:
+        
 
   #print(df.iloc[:, 7:12])
   #df.to_csv(r'Greedy.csv', index = False, header=True)
@@ -116,9 +134,6 @@ if Input_Type == "dataset":
     rank = rank_label(df_lab)
     result = pd.concat([result,rank])
 
-  #print(result)
-
-  #print(df_lab_copy)
   result.to_csv(r'Ranked.csv', index = False, header=True)
 
 elif Input_Type == "Model":
@@ -138,8 +153,8 @@ elif Input_Type == "labelled":
     for i in obj:
       labels.append(i)
   
-  op1.rank_test('SORT','python',init_wgt)
   labelled={}
+  
   for label in labels:
     lab=[]
     print(label)
@@ -147,9 +162,9 @@ elif Input_Type == "labelled":
       temp={}
       weights = list(weights)
       temp["Weights"]=weights
-      op1.rank_test(label,'python',weights)
-      df = pd.read_csv('Model_Output.csv')
-      df_lab = df
+      df_lab = op1.rank_test(label,'python',weights)
+      #print(df_lab)
+      #df = pd.read_csv('Model_Output.csv')
       rank = rank_label(df_lab, weights)
       #rank.to_csv(r'Ranked.csv', index = False, header=True)
       greedy_df = Greedy(rank, weights)
@@ -165,7 +180,29 @@ elif Input_Type == "labelled":
       lab.append(temp)
     labelled[label]=lab
     #print(labelled)
+  """
+  lab=[]
+  label="SORT"
+  print(label)
+  for weights in comb:
+    temp={}
+    weights = list(weights)
+    temp["Weights"]=weights
+    df_lab = op1.rank_test(label,'python',weights)
+    rank = rank_label(df_lab, weights)
+    greedy_df = Greedy(rank, weights)
+    res=[]
+    for key, val in greedy_df.iterrows():
+      iters={}
+      iters["Code"]=val[6]
+      iters["Index"]=val[11]
+      iters["Model_Rank"]=val[12]
+      res.append(iters)
+    temp["Results"]=res
+    lab.append(temp)
+  labelled[label]=lab
+  """
 
   with open('Labelled.json', 'w') as outfile:
     json.dump(labelled, outfile, indent="\t")
-  print(labelled)
+  #print(labelled)
