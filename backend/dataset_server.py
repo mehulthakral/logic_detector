@@ -433,7 +433,31 @@ def add_prgs():
 
     print("Programs added successfully!")
 
+def optimize_evaluate():
+    fobj=open("model1/Labelled.json")
+    data=fobj.read()
+    obj=json.loads(data)
+    fobj.close()
+
+    del obj["MIN"]
+    del obj["MAX"]
+    # print(obj.keys())
+    overall_sum = 0.0
+    for key in obj.keys():
+        print(key, len(obj[key]))
+        total, correct = 0,0
+        for comb in obj[key]:
+            total += 1
+            found_value = [dictionary for dictionary in comb["Results"] if dictionary["Model_Rank"] == 1.0]
+            if(len(found_value)>0):
+                correct += 1
+        with open("results.txt",'a') as f:
+            f.write("Accuracy of "+ key + " " + str(correct)+"/"+str(total)+" combs: " + str((float(correct)/total)*100)+"\n")
+        overall_sum += (float(correct)/total)*100
+    with open("results.txt",'a') as f:
+            f.write("Overall Accuracy: " + str(float(overall_sum)/len(obj))+"\n")
 
 # print(test())
 # print(evaluate())
-add_prgs()
+# add_prgs()
+optimize_evaluate()
