@@ -223,7 +223,7 @@ class Adaptor:
         f(l,k)
         return l
 
-    def strStr(self,a:str,b:str):
+    def strStr(self,a:str={"upper_count":0,"lower_count":5,"digits_count":0,"special_count":0}, b:str={"upper_count":0,"lower_count":5,"digits_count":0,"special_count":0}):
         global f
         return f(a,b)
 
@@ -457,7 +457,58 @@ def optimize_evaluate():
     with open("results.txt",'a') as f:
             f.write("Overall Accuracy: " + str(float(overall_sum)/len(obj))+"\n")
 
+def test_performance():
+    # labels = os.listdir('dataset_working')
+    # # labels.remove(os.path.basename(__file__))
+    # labels.remove('isAnagram')
+    # labels.remove('myPow')
+    # labels.remove('isPalindrome')
+    # labels.remove('fib')
+    
+
+    map = json.load(open("mapping.json"))
+    accuracy = json.load(open("label_accuracy.json"))
+    labels = ["isAnagram","strStr"]
+    # done = ["sortArray","rotate","fib","isPalindrome","myPow","isUgly","countPrimes","mySqrt","reverse","numTrees","isAnagram","strStr","canJump","coinChange","numIslands","canFinish","hasCycle","reverseList","inorderTraversal","isValidBST","maxDepth","maxPathSum","levelOrder","solveSudoku"]
+    # print(map["canFinish"][0])
+    total = 0
+    correct = 0
+    for label in labels:
+        prgs = os.listdir('dataset'+'/'+label)
+        prgs.sort()
+        if '__pycache__' in prgs:
+            prgs.remove('__pycache__')
+        ltotal = 0
+        lcorrect = 0
+        frontend_label = map[label][0]
+        for prg in prgs:
+            total += 1
+            ltotal += 1
+            print("Evaluating " + prg)
+            loader = importlib.machinery.SourceFileLoader('dataset'+'/'+label, 'dataset'+'/'+label+'/'+prg)
+            handle = loader.load_module('dataset'+'/'+label)
+            s = handle.Solution()
+            a = Adaptor()
+            global f
+            f = getattr(s, label)
+            res = mp.predict(getattr(a,label),"python")
+            oplabel = res
+            if(oplabel==map[label][0]):
+                lcorrect += 1
+            print(res,label)
+            # print("Accuracy till "+ str(total)+" prgs: " + str((float(correct)/total)*100) )
+        val = (float(lcorrect)*(accuracy[frontend_label]/100)/ltotal)*100
+        correct += float(lcorrect)*(accuracy[frontend_label]/100)
+        with open("results.txt",'a') as f:
+            f.write("Accuracy of "+ frontend_label + " " + str(lcorrect)+"/"+str(ltotal)+" prgs: " + str(val)+"\n")
+    
+    with open("results.txt",'a') as f:
+            f.write("Overall Accuracy: " + str((float(correct)/total)*100)+"\n")
+
+    return  (float(correct)/total)*100
+
 # print(test())
 # print(evaluate())
 # add_prgs()
-optimize_evaluate()
+# optimize_evaluate()
+test_performance()

@@ -54,3 +54,31 @@ Accuracy of MAX_PATH_SUM_BT 56/81 combs: 69.1358024691358
 Accuracy of LEVELORDER_TRAVERSAL 81/81 combs: 100.0
 Accuracy of SUDOKU 81/81 combs: 100.0
 Overall Accuracy: 88.84140550807219
+
+--------- Test Performance ------------
+
+Accuracy of SORT 16/16 prgs: 97.53086419753086
+Accuracy of ROTATE_ARRAY 21/21 prgs: 74.07407407407408
+Accuracy of FIB 22/22 prgs: 98.76543209876542
+Accuracy of PALIN 19/19 prgs: 100.0
+Accuracy of POW 19/19 prgs: 100.0
+Accuracy of UGLY_NUM 20/20 prgs: 98.76543209876543
+Accuracy of SIEVE 22/22 prgs: 46.913580246913575
+Accuracy of SQRT 21/21 prgs: 100.0
+Accuracy of REVERSE_INTEGER 19/19 prgs: 100.0
+Accuracy of CATALAN_NUM 21/21 prgs: 100.0
+Accuracy of JUMP_GAME 20/20 prgs: 83.9506172839506
+Accuracy of COIN_CHANGE 16/16 prgs: 98.76543209876543
+Accuracy of COUNT_ISLANDS 23/23 prgs: 86.41975308641975
+Accuracy of CYCLE_GRAPH 19/19 prgs: 83.9506172839506
+Accuracy of CYCLE_LL 21/21 prgs: 100.0
+Accuracy of REVERSE_LL 26/26 prgs: 77.77777777777779
+Accuracy of INORDER_TRAVERSAL 21/21 prgs: 65.4320987654321
+Accuracy of VALID_BST 21/21 prgs: 85.18518518518519
+Accuracy of HEIGHT_BT 21/21 prgs: 72.8395061728395
+Accuracy of MAX_PATH_SUM_BT 20/20 prgs: 69.1358024691358
+Accuracy of LEVELORDER_TRAVERSAL 20/20 prgs: 100.0
+Accuracy of SUDOKU 19/19 prgs: 100.0
+Accuracy of ANAGRAM 21/21 prgs: 100.0
+Accuracy of STR_SEARCH 21/21 prgs: 90.12345679012347
+Overall Accuracy: 88.84140550807219
