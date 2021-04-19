@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+    
     bool hasCycle(ListNode *head) {
         int test=-1*999999;
         while(head)

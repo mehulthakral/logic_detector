@@ -1,3 +1,5 @@
+class Solution {
+public:
 int mySqrt(int x) {
 	long long start = 1, end = x;
 	while (start <= end) {
@@ -12,3 +14,4 @@ int mySqrt(int x) {
 	}
 	return start - 1;
 }
+};

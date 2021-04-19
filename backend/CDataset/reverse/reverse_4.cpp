@@ -1,3 +1,5 @@
+class Solution {
+public:
 int reverse(int x) {
     int ans = 0, copy = abs(x);
 
@@ -9,3 +11,4 @@ int reverse(int x) {
 
     return x < 0 ? -ans : ans;
 }
+};

@@ -1,3 +1,5 @@
+class Solution {
+public:
 double myPow(double x, int n) {
     double temp;
     if(n==0){
@@ -16,3 +18,4 @@ double myPow(double x, int n) {
         }
     }
 }
+};

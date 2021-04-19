@@ -1,5 +1,10 @@
 class Solution {
-public:
+public:class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool isValidBST(TreeNode* root) {
         TreeNode *curNode = root, *preNode;
         long long last_val = LLONG_MIN;

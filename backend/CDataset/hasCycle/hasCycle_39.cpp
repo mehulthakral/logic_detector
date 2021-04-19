@@ -6,6 +6,12 @@ Reference Video : https://www.youtube.com/watch?v=MFOAbpfrJ8g
 */
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     bool hasCycle(ListNode *head) {
         if(head==nullptr)
             return false;

@@ -1,5 +1,12 @@
 class Solution {
 public:
+#include<vector>
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool flag = true;
     vector<int> dfs(TreeNode * root)
     {

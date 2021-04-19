@@ -1,3 +1,13 @@
+class Solution {
+public:
+    #include<vector>
+
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     vector<vector<int>> levelOrder(TreeNode* root) {
        vector<vector<int>> res;
        if(!root) return res;
@@ -17,3 +27,4 @@
         }
         return res;
     }
+};

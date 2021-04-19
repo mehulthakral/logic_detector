@@ -1,4 +1,14 @@
- vector<vector<int>> levelOrder(TreeNode* root) {
+class Solution {
+public:
+    #include<vector>
+
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+vector<vector<int>> levelOrder(TreeNode* root) {
        queue<TreeNode*> Q;
         vector<vector<int>> res;
         if(root == nullptr) return res;
@@ -19,3 +29,4 @@
         }
         return res;
     }
+};

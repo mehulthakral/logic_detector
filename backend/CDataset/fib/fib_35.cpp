@@ -1,3 +1,5 @@
+class Solution {
+public:
 int fib(int n) {
 	size_t a = 0;
 	size_t b = 1;
@@ -9,3 +11,4 @@ int fib(int n) {
 	}
 	return a;
 }
+};

@@ -1,6 +1,22 @@
-    ListNode* reverseList(ListNode* head,ListNode* prev=NULL) {
-        if(head==NULL){return prev;}
-        ListNode*temp = head->next;
+class Solution {
+public:
+
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+  ListNode* helper(ListNode* head, ListNode* prev) {
+        if (!head) return prev;
+        ListNode* next = head->next;
         head->next = prev;
-        return reverseList(temp,head);
+        return helper(next, head);
+      
+        
     }
+    
+    ListNode* reverseList(ListNode* head) {       
+        return helper (head, NULL);
+        
+    }
+};

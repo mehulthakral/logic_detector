@@ -1,3 +1,5 @@
+class Solution {
+public:
 double myPow(double x, int n)
 {
 	unsigned int m = (n > 0)?n:-n;
@@ -15,3 +17,4 @@ double myPow(double x, int n)
 	}
 
 }
+};

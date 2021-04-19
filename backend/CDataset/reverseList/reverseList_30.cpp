@@ -1,6 +1,12 @@
 // Recursive Using Extra Memory(Queue)
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     ListNode* reverseList(ListNode* head) {
         queue<int> tmp;
         helper(head, tmp);

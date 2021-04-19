@@ -1,3 +1,5 @@
+class Solution {
+public:
 void solveSudoku(vector<vector<char>>& board) {
     helper(board, 0);
 }
@@ -24,3 +26,4 @@ bool isValidFill(vector<vector<char>>& b, int i, int j, char fill) {
     }            
     return true;
 }
+};

@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool isUgly(int n)
 {
 	if(!n) return false;
@@ -6,3 +8,4 @@ bool isUgly(int n)
 	for( ; !(n%5); n/=5);
 	return n==1;
 }
+};

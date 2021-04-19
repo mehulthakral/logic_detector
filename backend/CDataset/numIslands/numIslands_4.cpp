@@ -1,3 +1,5 @@
+class Solution {
+public:
 int numIslands(vector<vector<char>>& grid) {
         int count = 0;
         for(int i = 0; i < grid.size(); i++)
@@ -29,3 +31,4 @@ int numIslands(vector<vector<char>>& grid) {
             depthFirstSearch(grid, x, y - 1);
         }
     }
+};

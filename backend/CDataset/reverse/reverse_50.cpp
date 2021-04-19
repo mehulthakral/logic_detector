@@ -1,3 +1,5 @@
+class Solution {
+public:
 int reverse(int x) {
     long result = 0;
     while(x != 0)
@@ -7,3 +9,4 @@ int reverse(int x) {
     }
     return (result > INT_MAX || result < INT_MIN)? 0 : result;
 }
+};

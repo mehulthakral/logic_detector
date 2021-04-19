@@ -1,4 +1,13 @@
-vector<int> inorderTraversal(TreeNode *root) {
+class Solution {
+public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    vector<int> inorderTraversal(TreeNode *root) {
         stack<TreeNode*> stack;
         vector<int> vals;
         while(!stack.empty() or root) {
@@ -13,3 +22,4 @@ vector<int> inorderTraversal(TreeNode *root) {
         }
         return vals;
     }
+};

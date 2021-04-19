@@ -1,3 +1,5 @@
+class Solution {
+public:
     bool isPalindrome(int x) {
         if(x==0)return true;
         int n=x;
@@ -13,3 +15,4 @@
         }
         return r==n;
     }
+};

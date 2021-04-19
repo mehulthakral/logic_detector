@@ -1,4 +1,6 @@
 // @return x^n.
+class Solution {
+public:
 int pow(int x, int n) {
 	// ...
 	int ret = 1;
@@ -40,3 +42,4 @@ int fib(int n) {
 	}
 	return r01;
 }
+};

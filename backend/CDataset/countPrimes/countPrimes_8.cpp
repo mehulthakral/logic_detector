@@ -1,4 +1,5 @@
- int countPrimes(int n) {
+class Solution {
+public:int countPrimes(int n) {
         if(n<=1) return 0;
  
         vector<bool> isPrime(n,true);
@@ -15,4 +16,4 @@
         }
         return count(isPrime.begin(),isPrime.end(),true);
 }
-        
+};

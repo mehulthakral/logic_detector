@@ -1,3 +1,5 @@
+class Solution {
+public:
 class UnionFind {
 private:
     vector<int> parent;
@@ -33,9 +35,6 @@ public:
         return find(p) == find(q);
     }
 };
-
-class Solution {
-public:
     int numIslands(vector<vector<char>> &grid) {
         if (grid.empty()) return 0;
         int d[2][2]{{1, 0},

@@ -11,7 +11,13 @@
  */
 class Solution {
 public:
-    
+    #include<algorithm>>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int ans=INT_MIN;
     int solve(TreeNode *trav){
         if(!trav)return 0;

@@ -1,5 +1,10 @@
 class Solution {
-    public:
+    public:class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
         bool isValidBST(TreeNode *root) {
             long long min = LLONG_MIN, max = LLONG_MAX;
             return isValidBST(root, min, max);

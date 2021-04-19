@@ -1,4 +1,11 @@
-bool hasCycle(ListNode *head) {
+class Solution {
+public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+    bool hasCycle(ListNode *head) {
         ListNode *slow, *fast;
         if(head==NULL || head->next == NULL)
             return false;
@@ -12,3 +19,4 @@ bool hasCycle(ListNode *head) {
         }
         return false;
     }
+};

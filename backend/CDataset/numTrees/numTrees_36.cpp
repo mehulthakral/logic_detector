@@ -1,3 +1,5 @@
+class Solution {
+public:
 int numTrees(int n) 
 {
 	vector<int> t(n + 1, 0);
@@ -13,3 +15,4 @@ int numTrees(int n)
 	}
 	return t[n];
 }
+};

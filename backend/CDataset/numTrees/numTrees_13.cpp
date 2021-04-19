@@ -1,3 +1,5 @@
+class Solution {
+public:
     int numTrees(int n) {
         vector<int> dp(n + 10, 0);
         dp[0] = 1; // Null tree is still a tree
@@ -9,3 +11,4 @@
         }
         return dp[n];
     }
+};

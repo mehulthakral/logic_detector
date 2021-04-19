@@ -1,4 +1,11 @@
-bool hasCycle(struct ListNode *head) 
+class Solution {
+public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+    bool hasCycle(struct ListNode *head) 
 {
     if (!head || !head->next)
         return false;
@@ -16,3 +23,4 @@ bool hasCycle(struct ListNode *head)
     
     return false;
 }
+};

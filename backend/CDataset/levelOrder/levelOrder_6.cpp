@@ -1,6 +1,13 @@
 class Solution {
 public:
 
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
 void bfs(TreeNode*root , vector<int>&v,vector<vector<int>>&qwer){
 queue<TreeNode*>q;
 if(root==NULL){

@@ -1,3 +1,5 @@
+class Solution {
+public:
 int numTrees(int n)
     {
     	if (n <= 0)
@@ -14,3 +16,4 @@ int numTrees(int n)
     	}
     	return dic[n];
     }
+};

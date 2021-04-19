@@ -1,14 +1,30 @@
 class Solution {
 public:
-    int fib(int n) {
-        if(n==0|| n==1)
-            return n;
-        int a[n+1];
-        a[0]=0;
-        a[1]=1;
-        for(auto i=2;i<=n;i++){
-            a[i]=a[i-1]+a[i-2];
-        }
-        return a[n];
+
+Solution() {
+
+    res[0] = 0;
+    res[1] = 1;
+         
+    int xNm2 = 0;
+    int xNm1 = 1;
+    int xN = 0;
+    
+    for(int i = 2; i <= 30; i++)
+    {
+        xN = xNm1 + xNm2;
+        xNm2 = xNm1;
+        xNm1 = xN;
+        
+        res[i] = xN;
     }
+}
+
+int fib(int N) {
+    return res[N];
+}
+
+static int res[31];
 };
+
+int Solution::res[31];

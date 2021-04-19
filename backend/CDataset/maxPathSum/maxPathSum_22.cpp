@@ -10,6 +10,12 @@
 class Solution
 {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int maxPathSum(TreeNode* root)
     {
         if (!root)

@@ -1,5 +1,6 @@
 class Solution {
 public:
+    #include<vector>
     void rotate(vector<int>& nums, int k) {
         reverse(nums.begin(),nums.end());                   // reverse the array
         reverse(nums.begin(),nums.begin()+k%nums.size());  // reverse the first k ele

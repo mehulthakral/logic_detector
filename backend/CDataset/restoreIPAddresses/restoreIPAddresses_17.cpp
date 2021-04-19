@@ -1,3 +1,5 @@
+class Solution {
+public:
     void restoreIpAddresses(vector<string> &v, string s, int pos, int dot, string r)
     {
         if(dot==4)
@@ -48,3 +50,4 @@ vector<string> restoreIpAddresses(string s) {
 
     return ret;
 }
+};

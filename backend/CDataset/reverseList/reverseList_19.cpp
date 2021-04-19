@@ -1,4 +1,13 @@
-    
+class Solution {
+public:
+
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
+
     ListNode* helper(ListNode* prevN,ListNode* nextN){
         ListNode* cur = nextN->next;
         nextN->next = prevN;
@@ -9,3 +18,4 @@
         if(head) return helper(NULL, head);
         return head;
     }
+};

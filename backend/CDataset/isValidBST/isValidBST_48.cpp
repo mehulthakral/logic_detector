@@ -9,6 +9,13 @@
  */
 class Solution {
 public:
+#include<vector>
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool isValidBST(TreeNode* root) {
         bool result = true;
         vector<int> v;

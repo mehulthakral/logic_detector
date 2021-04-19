@@ -1,3 +1,5 @@
+class Solution {
+public:
 void kmp(string haystack, string needle, vector<int> &psl, int &pos, bool build = true) {
     int hl = haystack.length(), nl = needle.length();
     if (nl == 0) {
@@ -28,3 +30,4 @@ int strStr(string haystack, string needle) {
     kmp(haystack, needle, psl, pos, false);
     return pos;
 }
+};

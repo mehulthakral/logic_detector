@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int count = 0, maxi = 0;
     int dep(TreeNode* root) {
         count++;

@@ -1,4 +1,6 @@
- void DFS(vector<vector<char>>& grid, int i, int j){
+class Solution {
+public:
+void DFS(vector<vector<char>>& grid, int i, int j){
 	    if(i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size()) return;
 	    if('0' == grid[i][j]) return;
 	    grid[i][j] = '0';
@@ -18,3 +20,4 @@
 				}
 		return counter;
 	}
+};

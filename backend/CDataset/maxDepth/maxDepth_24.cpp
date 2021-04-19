@@ -1,4 +1,13 @@
-void magic(TreeNode* node,int cd,int &md)
+class Solution {
+public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    void magic(TreeNode* node,int cd,int &md)
     {
         if(cd>md)
             md=cd;
@@ -15,3 +24,4 @@ void magic(TreeNode* node,int cd,int &md)
         magic(root,currentdepth,maxdepth);
         return maxdepth;
     }
+};

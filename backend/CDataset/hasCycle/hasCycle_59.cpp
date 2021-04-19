@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     bool hasCycle(ListNode *head) {
         if(head == nullptr) return false;
         //p1 move two steps every time, p2 move one step every time 

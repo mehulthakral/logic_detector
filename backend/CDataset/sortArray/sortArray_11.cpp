@@ -1,3 +1,5 @@
+class Solution {
+public:
 vector<int> sortArray(vector<int>& arr) {
         int max = *max_element(arr.begin(), arr.end()); 
         int min = *min_element(arr.begin(), arr.end()); 
@@ -16,3 +18,4 @@ vector<int> sortArray(vector<int>& arr) {
                 arr[i] = output[i]; 
         return arr;
    }
+};

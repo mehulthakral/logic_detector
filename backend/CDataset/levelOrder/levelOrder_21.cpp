@@ -1,3 +1,13 @@
+class Solution {
+public:
+    #include<vector>
+
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 	int height(TreeNode* root){
         if(!root) return 0;
         return 1+max(height(root->left),height(root->right));
@@ -15,3 +25,4 @@
         helper(ans,root,0);
         return ans;
     }
+};

@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool isUgly(int num) {
 	if (num <= 0)
 		return false;
@@ -13,3 +15,4 @@ bool isUgly(int num) {
 		return true;
 	return false;
 }
+};

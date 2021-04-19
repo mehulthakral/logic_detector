@@ -8,6 +8,22 @@
  * };
  */
 class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if(root==NULL)
+            return ans;
+        
+        leveltraversal(root,0); // Function call
+        
+        return ans;   
+    }
 private:
     vector<vector<int>> ans;  // Answer vector, to be retuned
     void leveltraversal(TreeNode* root, int level)
@@ -31,13 +47,4 @@ private:
         if(root->right!=NULL)   // Traversing Right Child
             leveltraversal(root->right,level+1);
     } 
-public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        if(root==NULL)
-            return ans;
-        
-        leveltraversal(root,0); // Function call
-        
-        return ans;   
-    }
 };

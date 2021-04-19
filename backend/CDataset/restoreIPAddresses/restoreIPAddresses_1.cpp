@@ -1,5 +1,6 @@
 class Solution {
 public:
+    #include<vector>
     bool isValid(string s){
         int num = stoi(s);
         if(num > 255)

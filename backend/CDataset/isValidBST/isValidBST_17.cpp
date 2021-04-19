@@ -1,5 +1,11 @@
 class Solution {
 public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool isValid(TreeNode* root,TreeNode* min,TreeNode* max)
     {
         if(root == NULL) return true;

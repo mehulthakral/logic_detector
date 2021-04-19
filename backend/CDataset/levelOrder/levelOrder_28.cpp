@@ -8,14 +8,15 @@
  * };
  */
 class Solution {
-private:
-    vector<vector<int>> solution;
-    void swap(queue<TreeNode*>&a,queue<TreeNode*>&b){
-        queue<TreeNode*> temp = a;
-        a = b;
-        b = temp;
-    }
+
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
     vector<vector<int>> levelOrder(TreeNode* root) {
         if(root){
            queue<TreeNode*> q1;
@@ -36,5 +37,12 @@ public:
             } 
         }
         return solution;
+    }
+    private:
+    vector<vector<int>> solution;
+    void swap(queue<TreeNode*>&a,queue<TreeNode*>&b){
+        queue<TreeNode*> temp = a;
+        a = b;
+        b = temp;
     }
 };

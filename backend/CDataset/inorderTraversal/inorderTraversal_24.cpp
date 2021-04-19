@@ -1,5 +1,13 @@
 class Solution {
 public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    
     stack <TreeNode * > s;
     void mypush(TreeNode * node) // pushes a node and all its left members onto stack
     {

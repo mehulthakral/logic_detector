@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool row[9][9]={}, col[9][9]={}, block[9][9]={};
 void solveSudoku(vector<vector<char>>& board) {
     int num, k;
@@ -31,3 +33,4 @@ bool Helper(vector<vector<char>>& b, int ind){
         return false;
     }
 }
+};

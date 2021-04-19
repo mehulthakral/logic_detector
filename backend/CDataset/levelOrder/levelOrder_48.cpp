@@ -1,5 +1,12 @@
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
 vector<vector> levelOrder(TreeNode* root) {
 TreeNode* temp;
 vector<vector> ans;

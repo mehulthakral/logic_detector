@@ -1,4 +1,6 @@
- int mySqrt(int x)
+class Solution {
+public:
+int mySqrt(int x)
 {
     long mid ;  // because we have to do mid*mid 
     if(x ==0 || x==1) return x;
@@ -16,3 +18,4 @@
     }
     return i;
 }
+};

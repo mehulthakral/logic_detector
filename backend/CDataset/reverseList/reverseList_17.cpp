@@ -1,3 +1,12 @@
+class Solution {
+public:
+
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
 ListNode* reverseList (ListNode *head) 
     {
         // traverse the head, and add every node to a new list starting from the end
@@ -24,3 +33,4 @@ ListNode* reverseList (ListNode *head)
         // reversed already points to the beggining of the reversed list
         return reversed;
     }
+};

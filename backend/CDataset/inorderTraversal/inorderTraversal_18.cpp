@@ -1,5 +1,20 @@
 class Solution {
-    
+
+public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        
+        inOrder(root, ans);
+        
+        return ans;
+    }    
     private:
     void inOrder(TreeNode* root, vector<int> &vec){
         
@@ -11,12 +26,4 @@ class Solution {
         
     }
     
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        
-        inOrder(root, ans);
-        
-        return ans;
-    }
 };

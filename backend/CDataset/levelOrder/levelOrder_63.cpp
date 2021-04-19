@@ -1,3 +1,13 @@
+class Solution {
+public:
+    #include<vector>
+
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 vector<vector<int>> levelOrder(TreeNode* root) {
     vector<vector<int>> result;
     if (!root) return result;
@@ -17,3 +27,4 @@ void Helper(TreeNode* root, vector<vector<int>> &result, int h){
     Helper(root->left, result, h+1);
     Helper(root->right, result, h+1);
 }
+};

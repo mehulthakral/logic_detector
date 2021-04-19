@@ -8,6 +8,15 @@
  * };
  */
  
+
+class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 struct DepthNode : public TreeNode
 {
     static constexpr TreeNode* SENTINEL = reinterpret_cast<TreeNode*>(0xDEAD71EE);
@@ -22,8 +31,6 @@ struct DepthNode : public TreeNode
     }
 };
  
-class Solution {
-public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         if (root == NULL)
         {

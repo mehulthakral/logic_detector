@@ -1,3 +1,11 @@
+class Solution {
+public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 pair<bool, pair<int,int>> dfs(TreeNode* root){
     
     pair<bool, pair<int,int>> my_pair = {true, {root->val, root->val}};
@@ -38,3 +46,4 @@ bool isValidBST(TreeNode* root) {
 
     return dfs(root).first;
 }
+};

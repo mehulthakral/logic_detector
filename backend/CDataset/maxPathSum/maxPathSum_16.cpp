@@ -3,6 +3,13 @@ static auto _ = [] { std::ios::sync_with_stdio(0); std::cin.tie(0); std::cout.ti
 
 class Solution {
 public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int helper(TreeNode* root, int &maxsum) {
         if(!root) return 0;
         int l = helper(root->left, maxsum);

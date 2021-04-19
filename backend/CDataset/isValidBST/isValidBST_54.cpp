@@ -8,7 +8,36 @@
  * };
  */
 class Solution {
-private:
+
+public:
+#include<vector>
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    bool isValidBST(TreeNode* root) {
+        vector<int> array;
+        initialize(root);
+        while(hasNext())
+        {
+            array.push_back(next());
+        }
+        int n = array.size();
+        int i;
+        if(n==0)
+            return true;
+        int tempvalue = array[0];
+        for(i=1; i<n; i++)
+        {
+            if(array[i] <= tempvalue)
+                return false;
+            tempvalue = array[i];
+        }
+        return true;
+    }
+    private:
     TreeNode *node;
     vector<TreeNode*> leftMostNodes;
     
@@ -38,26 +67,5 @@ private:
         value = node->val;
         node = node->right;
         return value;
-    }
-public:
-    bool isValidBST(TreeNode* root) {
-        vector<int> array;
-        initialize(root);
-        while(hasNext())
-        {
-            array.push_back(next());
-        }
-        int n = array.size();
-        int i;
-        if(n==0)
-            return true;
-        int tempvalue = array[0];
-        for(i=1; i<n; i++)
-        {
-            if(array[i] <= tempvalue)
-                return false;
-            tempvalue = array[i];
-        }
-        return true;
     }
 };

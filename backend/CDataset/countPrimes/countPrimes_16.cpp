@@ -1,3 +1,5 @@
+class Solution {
+public:
 int countPrimes(int n) {
         if(n < 2) return 0;
         vector<bool> isPrime(n, true);
@@ -7,3 +9,4 @@ int countPrimes(int n) {
         }
         return accumulate(isPrime.cbegin() + 2, isPrime.cend(), 0);
     }
+};

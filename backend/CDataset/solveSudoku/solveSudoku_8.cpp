@@ -1,3 +1,5 @@
+class Solution {
+public:
 vector<vector<pair<int, int>>> start_pair{ {{0,0},{0,3},{0,6}},
 	{{3,0},{3,3},{3,6}},
 	{{6,0},{6,3},{6,6}}};
@@ -91,11 +93,6 @@ bool solveSudokuUtil(vector<vector<char>>& board, int idx)
 
 	return false;
 }
-
-
-
-class Solution {
-public:
 void solveSudoku(vector<vector<char>>& board) {
 	solveSudokuUtil(board, 0);
 }

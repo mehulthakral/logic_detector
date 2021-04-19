@@ -1,3 +1,5 @@
+class Solution {
+public:
 int reverse(int x) {
 	string a = to_string(x);
 	string res = "";
@@ -12,3 +14,4 @@ int reverse(int x) {
 	}
 	return stoi(res);
 }
+};

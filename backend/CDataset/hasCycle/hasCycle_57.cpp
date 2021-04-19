@@ -1,19 +1,19 @@
- public boolean hasCycle(ListNode head) {
-       ListNode slow = head;
-       ListNode fast = head;
-        
-       while(slow!=null && fast!= null && fast.next != null){
-           
-           slow = slow.next;
-           fast = fast.next.next;
-           
-           if(slow == fast){
-               return true;
-           }  
-       } 
-            
+class Solution {
+public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+    bool hasCycle(ListNode *head) {
+        while(head != NULL)
+        {
+            if((head -> next) == (ListNode*)0xa) return true;
+            auto k = head -> next;
+            head -> next = (ListNode*)0xa;
+            head = k;
+        }
         return false;
-        
-        
-    }
 
+    }
+};

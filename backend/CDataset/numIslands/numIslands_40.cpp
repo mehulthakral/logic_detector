@@ -1,3 +1,5 @@
+class Solution {
+public:
 int numIslands(vector<vector<char>>& grid) {
   int N = grid.size();
   int count = 0;
@@ -32,3 +34,4 @@ int find(int x, vector<int>& parent) {
 }
 
 inline int idx(int row, int col, int nrows) { return col * nrows + row; }
+};

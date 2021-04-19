@@ -1,5 +1,13 @@
 class Solution {
 public:
+
+#include<vector>
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     vector<int> order;
     bool isValidBST(TreeNode* root) {
         if (!root) return true;

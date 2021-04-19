@@ -11,6 +11,13 @@
  */
 class Solution {
 public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     void __max(TreeNode*, int&);
     int maxPathSum(TreeNode* root) {
         int mx = root -> val;

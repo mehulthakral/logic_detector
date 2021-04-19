@@ -1,3 +1,13 @@
+class Solution {
+public:
+    #include<vector>
+
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 void traverse(TreeNode* node, vector<vector<int>> &result, int level){
         if(!node) return;
         if (result.size() < level+1)
@@ -11,3 +21,4 @@ void traverse(TreeNode* node, vector<vector<int>> &result, int level){
         traverse(root, result, 0);
         return result;
     }
+};

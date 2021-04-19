@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool solveSudoku(int *sequence, int begin, short *rows, short *cols, short *subs,
                  const int *row_index, const int *col_index, const int *sub_index)
 {
@@ -56,3 +58,4 @@ void solveSudoku(vector<vector<char>> &board)
         }
     }
 }
+};

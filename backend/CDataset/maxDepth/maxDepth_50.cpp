@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int maxDepth(TreeNode* root) {
         int depth = 0;
         if (!root) return depth;

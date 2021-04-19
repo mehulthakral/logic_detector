@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool canJump(vector<int>& nums) {
     unsigned int maxReach = 0;
     for (unsigned int i = 0; i < nums.size(); i++) {
@@ -9,3 +11,4 @@ bool canJump(vector<int>& nums) {
     }
     return true;
 }
+};

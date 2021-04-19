@@ -24,4 +24,4 @@ int reverse(int x) {
 	}
 	result=isPositive*result;
 	return result;
-}
+};

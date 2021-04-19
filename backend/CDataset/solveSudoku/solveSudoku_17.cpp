@@ -1,10 +1,10 @@
+class Solution {
+public:
 typedef struct
 {
     short x;
     short y;
 }POS;
-class Solution {
-public:
     void solveSudoku(vector<vector<char> >& board) {
         solve(board);
     }

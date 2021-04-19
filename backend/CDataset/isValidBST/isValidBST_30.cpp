@@ -1,5 +1,11 @@
 class Solution {
 public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool isValidBST(TreeNode* root, long int minValue = numeric_limits<long int>::min(), long int maxValue = numeric_limits<long int>::max()) 
     {
         return !root ? true : minValue < root->val && maxValue > root->val ? 

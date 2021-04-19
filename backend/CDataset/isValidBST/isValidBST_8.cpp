@@ -1,6 +1,12 @@
 class Solution {
 public:
-
+#include<vector>
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 void inorder(TreeNode* root,vector<int>&v)
 {
     if(root==NULL)

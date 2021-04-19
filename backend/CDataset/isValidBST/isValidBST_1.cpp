@@ -1,6 +1,12 @@
 class Solution {
 public:
-     bool helper(TreeNode* root , long long minV = -10000000000,long long maxV = 10000000000)
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    bool helper(TreeNode* root , long long minV = -10000000000,long long maxV = 10000000000)
     {
         if(root == NULL) return true;
         bool left = helper(root->left,minV,root->val);

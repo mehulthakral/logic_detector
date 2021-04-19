@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int dfs(TreeNode* root, int &globalmax)
     {
         if(root==NULL) return 0;

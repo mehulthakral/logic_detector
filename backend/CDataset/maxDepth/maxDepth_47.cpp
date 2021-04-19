@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 int maxDepth(TreeNode* root) {
     //return solution1(root);   //DFS
     return solution2(root);     //BFS

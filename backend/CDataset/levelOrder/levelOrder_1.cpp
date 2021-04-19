@@ -1,5 +1,14 @@
 class Solution {
 public:
+    #include<vector>
+
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
     vector<vector<int>> levelOrder(TreeNode* root) {
         
         if(!root) {

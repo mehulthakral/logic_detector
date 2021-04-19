@@ -1,4 +1,11 @@
-bool checkValid(TreeNode* root, TreeNode* lower_bound, TreeNode* upper_bound){
+class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };bool checkValid(TreeNode* root, TreeNode* lower_bound, TreeNode* upper_bound){
         if (root == NULL) {
             return true;
         }
@@ -21,4 +28,5 @@ bool checkValid(TreeNode* root, TreeNode* lower_bound, TreeNode* upper_bound){
     
     bool isValidBST(TreeNode* root) {
         return checkValid(root, NULL, NULL);
-    }`
+    }
+};

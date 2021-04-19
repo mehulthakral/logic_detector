@@ -1,4 +1,5 @@
-int coinChange(vector<int>& coins, int amount) { 
+class Solution {
+public:int coinChange(vector<int>& coins, int amount) { 
         int dp[amount+1];
         dp[0] = 0;    
         for(int e=1;e<amount+1;e++)
@@ -14,3 +15,4 @@ int coinChange(vector<int>& coins, int amount) {
         
         return dp[amount];
     }
+};

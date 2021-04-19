@@ -1,18 +1,17 @@
+//Jump Game
+//O(1) space solution
 class Solution {
 public:
-    int jump(vector<int>& nums) {
-        int n=nums.size();
-        if(n<=1) return 0;
+    bool canJump(vector<int>& nums) {
+        if (nums.size() == 0) return false;
+        if (nums.size() == 1) return true;
         
-        int jumps=0, currreach=0, maxreach=0;
-        for(int i=0; i<n; i++){
-            if(currreach<i){
-                jumps++;
-                currreach=maxreach;
-            }
-            maxreach=max(maxreach, i + nums[i]);
+        int n = nums.size();
+        int jump = 0;
+        for (int i = 1; i < n; i++) {
+            jump = max(nums[i-1], jump) - 1;
+            if (jump < 0) return false;
         }
-        return jumps;
-        
+        return true;
     }
 };

@@ -14,21 +14,3 @@ public:
        return p==x;
     }
 };
-
-
-//can someone tell why below one is not working
-class Solution {
-public:
-    bool isPalindrome(int x) {
-        
-        if(x<0) return false;
-   
-        long int p=0;
-        while(x>0)
-        {
-            p=(p*10) + (x%10);
-            x=x/10;
-        }
-       return p==x;
-    }
-};

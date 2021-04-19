@@ -10,6 +10,12 @@
  */
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     ListNode* reverseList(ListNode* head) {
         if(head==NULL || head->next==NULL) return head;
         //Take two nodes one to point and other to traverse with

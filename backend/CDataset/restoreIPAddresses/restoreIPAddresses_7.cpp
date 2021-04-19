@@ -1,3 +1,5 @@
+class Solution {
+public:
 vector<string> restoreIpAddresses(string s) {
         if (s.empty()) return {};
         vector<string> res;
@@ -27,3 +29,4 @@ vector<string> restoreIpAddresses(string s) {
             dfs(prefix + segment + ".", step+1, end, res, str);
         }
     }
+};

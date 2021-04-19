@@ -1,4 +1,5 @@
-bool canJump(vector<int>& a) {
+class Solution {
+public:bool canJump(vector<int>& a) {
         int n = a.size();
         int currrent_max = 0;
         
@@ -12,3 +13,4 @@ bool canJump(vector<int>& a) {
         }
         return true;
     }
+};

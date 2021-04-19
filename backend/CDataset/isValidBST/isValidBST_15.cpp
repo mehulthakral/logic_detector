@@ -1,4 +1,15 @@
 class Solution {
+public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+	bool isValidBST(TreeNode* root)
+	{
+		return inorder_evaluation(root);
+	}
 private:
 	bool inorder_evaluation(TreeNode* current)
 	{
@@ -27,9 +38,4 @@ private:
 		return true;
 	}
 	
-public:
-	bool isValidBST(TreeNode* root)
-	{
-		return inorder_evaluation(root);
-	}
 };

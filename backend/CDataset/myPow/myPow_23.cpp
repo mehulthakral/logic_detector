@@ -1,3 +1,5 @@
+class Solution {
+public:
 double solve(double x,long n) {
         if(n==0) return 1.0;
         if(n==1) return x;
@@ -11,3 +13,4 @@ double solve(double x,long n) {
         if(n<0) return 1.0/ans;
         return ans;
     }
+};

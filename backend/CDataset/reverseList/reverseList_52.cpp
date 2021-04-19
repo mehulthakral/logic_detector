@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     ListNode* reverseList(ListNode* head) {
         ListNode* dummy = new ListNode(0); // to direct the node to reversed list
         ListNode* a = head, *prev = dummy;

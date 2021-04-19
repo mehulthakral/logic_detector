@@ -1,3 +1,5 @@
+class Solution {
+public:
 int strStr(string haystack, string needle) {
     if(haystack.size() == 0 && needle.size() == 0) return 0;
     int pos = 0, diff = static_cast<int>(haystack.size()-needle.size());
@@ -9,3 +11,4 @@ int strStr(string haystack, string needle) {
     }
     return -1;
 }
+};

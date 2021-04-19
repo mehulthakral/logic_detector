@@ -9,6 +9,13 @@
  */
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
     int height(TreeNode* root){
         if( !root )
             return NULL;

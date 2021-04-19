@@ -1,4 +1,16 @@
 class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    int maxPathSum(TreeNode* root) {
+        int max = INT_MIN;
+        maxPathSumHelper(root, &max);
+        return max;
+    }
 private:
     int maxPathSumHelper(TreeNode* root, int* max)
     {   
@@ -21,11 +33,5 @@ private:
         else if(right > left && right > 0)
             two = two + right;
         return two;
-    }
-public:
-    int maxPathSum(TreeNode* root) {
-        int max = INT_MIN;
-        maxPathSumHelper(root, &max);
-        return max;
     }
 };

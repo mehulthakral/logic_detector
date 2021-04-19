@@ -1,3 +1,5 @@
+class Solution {
+public:
 int reverse(int x) {
         int p=x>0?x:-x;     
              // p is the abs value
@@ -15,3 +17,4 @@ int reverse(int x) {
              //check overflow
         return result;
     }
+};

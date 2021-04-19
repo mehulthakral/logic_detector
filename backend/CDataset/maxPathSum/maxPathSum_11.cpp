@@ -1,4 +1,17 @@
 class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    int maxPathSum(TreeNode* root) {
+        int maxdownsum;
+        int h;
+        helper(root, maxdownsum, h);
+        return rst;
+    }
 private:
     int rst = INT_MIN;
     
@@ -20,11 +33,4 @@ private:
         rst = max(rst, max(ldownsum, 0) + max(rdownsum, 0) + root->val);
     }
     
-public:
-    int maxPathSum(TreeNode* root) {
-        int maxdownsum;
-        int h;
-        helper(root, maxdownsum, h);
-        return rst;
-    }
 };

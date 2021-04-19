@@ -1,5 +1,11 @@
 class Solution {
 public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     //as long as this is smaller than the lowest minimum of integer then is fine.
     long int previousValue = -2147483650;
     

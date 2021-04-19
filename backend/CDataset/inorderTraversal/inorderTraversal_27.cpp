@@ -1,5 +1,13 @@
 class Solution {
 public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    
     vector<int> ans;
     vector<int> inorderTraversal(TreeNode* root) {
         make(root);

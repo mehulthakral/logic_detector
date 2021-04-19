@@ -1,6 +1,13 @@
 class Solution {
 private:
     
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
     // Map sorts by key, maintains 
     // our levels in order
     map<int, vector<int>> ourLevels;

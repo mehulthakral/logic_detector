@@ -1,3 +1,5 @@
+class Solution {
+public:
 class UF
 {
 public:
@@ -47,8 +49,6 @@ private:
 	vector<int> id;
 	vector<int> sz;
 };
-class Solution {
-public:
     int numIslands(vector<vector<char>>& grid) {
         int rows = grid.size();
         if(rows == 0) return 0;

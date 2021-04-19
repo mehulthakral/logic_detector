@@ -1,3 +1,5 @@
+class Solution {
+public:
 void helper(string& s, const int sz, int pos, int count, string path, vector<string>& ret)
 {
 	if (!count)
@@ -34,3 +36,4 @@ vector<string> restoreIpAddresses(string s)
 	helper(s, sz, 0, 4, "", ret);
 	return ret;
 }
+};

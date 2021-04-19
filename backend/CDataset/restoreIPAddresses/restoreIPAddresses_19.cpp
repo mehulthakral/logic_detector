@@ -1,3 +1,5 @@
+class Solution {
+public:
 vector<string> restoreIpAddresses(string s) {
 		vector<string> result;
 		string solution = "";
@@ -34,3 +36,4 @@ vector<string> restoreIpAddresses(string s) {
 				return;
 		}
 	}
+};

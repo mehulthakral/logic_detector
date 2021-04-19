@@ -4,7 +4,8 @@
  *  each time I jump 1 index.
  *  This way, if I have more zeroes than I can jump, my max jump value will
  *  become 0 before I reach the last index.
- */
+ */class Solution {
+public:
 bool canJump(vector<int>& nums) 
 {
     if (nums.empty()) return false;
@@ -26,3 +27,4 @@ bool canJump(vector<int>& nums)
     
     return true;
 }
+ };

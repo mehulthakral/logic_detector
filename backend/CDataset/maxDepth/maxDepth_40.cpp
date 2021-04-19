@@ -7,10 +7,17 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- #include <algorithm>
- 
+
 class Solution {
-public:
+public: 
+#include <algorithm>
+ 
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int maxDepth(TreeNode* root) {
         if (root == NULL) {
 		    return 0;

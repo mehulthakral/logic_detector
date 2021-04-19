@@ -1,3 +1,5 @@
+class Solution {
+public:
 double square(double x)
 {
     return x*x;
@@ -23,3 +25,4 @@ double myPow(double x, int n)
 
 	return out;
 }
+};

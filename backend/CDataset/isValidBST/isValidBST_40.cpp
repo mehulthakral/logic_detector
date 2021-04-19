@@ -1,5 +1,11 @@
 class Solution {
 public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool bInit = true;
     bool Validate(TreeNode* node, int& nValue) {        
         if(node == nullptr) return true;

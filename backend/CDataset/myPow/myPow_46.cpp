@@ -1,3 +1,5 @@
+class Solution {
+public:
 double myPow(double x, int n) 
 {
     stack<bool> s;
@@ -13,3 +15,4 @@ double myPow(double x, int n)
 	
     return out;
 }
+};

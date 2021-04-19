@@ -1,11 +1,15 @@
-bool hasCycle(ListNode head) {
-ListNodeh=head;
-unordered_set<ListNode*>s;
-while (h != NULL) {
-if (s.find(h) != s.end())
-return true;
-s.insert(h);
-h = h->next;
+class Solution {
+public:
+
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+bool hasCycle(ListNode *head) {
+	for(ListNode *fast = head, *slow = head; fast && fast->next;)
+		if((fast = fast->next->next) == (slow = slow->next))
+			return true;
+	return false;
 }
-return false;
-}
+};

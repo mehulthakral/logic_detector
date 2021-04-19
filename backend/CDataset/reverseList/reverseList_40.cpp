@@ -10,6 +10,12 @@
  */
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     ListNode* reverseList(ListNode* head) {
         if(head==NULL)
             return NULL;

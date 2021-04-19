@@ -1,19 +1,13 @@
-int i,j,count=0;
-if(needle==haystack){
-    return 0;
-}
-for(i=0;i<haystack.size();i++){
-    for(j=0;j<needle.size();j++){
-        if(haystack[i+j] == needle[j]){
-            count++;
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int m = haystack.size(), n = needle.size(), p = 0;
+        while (p + n - 1 < m) {
+            if (haystack.substr(p, n) == needle) {
+                return p;
+            }
+            while (p++ + n - 1 < m && haystack[p] != needle[0]);
         }
-        if(count==needle.size()){
-            return i;
-        }
-        if(haystack[i+j] != needle[j]){
-            count = 0;
-            break;
-        }
+        return -1;
     }
-}
-return -1;
+};

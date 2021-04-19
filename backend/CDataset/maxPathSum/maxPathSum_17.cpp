@@ -9,6 +9,13 @@
  */
 class Solution {
 public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int maxPathSum(TreeNode* root) {
         int currentSum = INT_MIN;
         int maxSum = INT_MIN;

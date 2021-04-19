@@ -9,6 +9,12 @@
  */
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int maxDepth(TreeNode* root) {
 		if(!root)    // Return depth as '0' if the root is NULL.
 			return 0;

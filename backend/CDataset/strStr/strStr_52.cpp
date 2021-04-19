@@ -1,3 +1,5 @@
+class Solution {
+public:
 int strStr(string haystack, string needle) {
 	int n=haystack.length(), m=needle.length();
 	for(int i=0;i<n-m+1;i++){
@@ -10,3 +12,4 @@ int strStr(string haystack, string needle) {
 	}
 	return -1;
 }
+};

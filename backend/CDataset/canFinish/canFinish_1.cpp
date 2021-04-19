@@ -1,5 +1,6 @@
 class Solution {
 public:
+    #include<vector>
     vector<bool> vist; //int d=0;
     bool dfs(int p,vector<bool> &vis,vector<int> adj[]){
         //d++; cout<<d<<endl;

@@ -1,5 +1,12 @@
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
     vector<vector<int>> levelOrder(TreeNode* root) {
         queue<pair<TreeNode*,int>>q;
         map<int,vector<int>>m;

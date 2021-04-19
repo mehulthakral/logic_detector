@@ -1,11 +1,26 @@
-//Runtime: 0 ms, faster than 100.00% of C++ online submissions for Fibonacci Number.
-//Memory Usage: 8.3 MB, less than 42.43% of C++ online submissions for Fibonacci Number.
-int fib(N){
-if(N<2) return N;
-int a=0,b=1,c=0;
-for(int i=2;i<N+1;i++){
-c=a+b;
-a=b;
-b=c;
+class Solution {
+public:
+
+int fib(int N) {
+    
+    if(N == 0) return 0;
+    if(N == 1) return 1;
+    
+    if(res[N-1] == 0)
+    {
+        res[N-1] = fib(N-1);
+    }
+    
+    if(res[N-2] == 0)
+    {
+        res[N-2] = fib(N-2);
+    }
+    
+    return res[N-1] + res[N-2]; 
 }
-return c;
+private:
+
+static std::vector<int> res;
+};
+
+std::vector Solution::res = std::vector(30, 0);

@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int maxPathSum(TreeNode* root) {
         int ans=INT_MIN;
         findMaxPath(root,ans);

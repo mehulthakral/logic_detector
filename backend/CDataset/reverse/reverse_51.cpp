@@ -1,3 +1,5 @@
+class Solution {
+public:
 int reverse(int x) {
 	int ch[40] = {};
 	int i = 0;
@@ -32,3 +34,4 @@ int reverse(int x) {
 
 	return reverse*flag;
 }
+};

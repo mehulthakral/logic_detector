@@ -1,14 +1,23 @@
 class Solution {
 public:
-bool hasCycle(ListNode head) {
-ListNode temp=head;
-int flag=0;
-while(temp)
-{
-flag++;
-temp=temp->next;
-if(flag>=10000)return true;
-}
-return false;
-}
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
+    bool hasCycle(ListNode *head) {
+        ListNode *slow = head, *fast = head;
+        while(fast && fast->next)
+        {
+            fast = fast->next;
+            if(!fast->next)//last node pointing to nulll
+                return false;
+            fast = fast->next;
+            slow = slow->next;
+            if(slow == fast)//cycle detected
+                return true;
+        }
+        return false;
+    }
 };

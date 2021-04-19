@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool isAnagram(string s, string t) {
         
         sort(s.begin(), s.end());
@@ -5,3 +7,4 @@ bool isAnagram(string s, string t) {
         
         return (s == t);
     }
+};

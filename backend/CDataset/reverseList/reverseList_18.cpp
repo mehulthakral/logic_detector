@@ -1,4 +1,13 @@
-*ListNode* reverseList(ListNode* head) {
+class Solution {
+public:
+
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
+ListNode* reverseList(ListNode* head) {
         ListNode *prevNode = NULL;
         
         while(head != NULL){
@@ -9,3 +18,4 @@
         }
     return prevNode;
     }
+};

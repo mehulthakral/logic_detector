@@ -1,3 +1,5 @@
+class Solution {
+public:
 double myPow(double x, int n) 
 {
 	auto out{1.0};
@@ -9,3 +11,4 @@ double myPow(double x, int n)
 	
     return out;
 }
+};

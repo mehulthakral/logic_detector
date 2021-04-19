@@ -1,4 +1,11 @@
-//recursive solution with "&" trick
+class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };//recursive solution with "&" trick
 bool isValidBST(TreeNode* root) {
     if (!root)
         return true;
@@ -14,30 +21,4 @@ bool isValidBST(TreeNode* root, TreeNode* &prev) {
     prev = root;
     return !root->right || isValidBST(root->right, prev);
 }
-
-
-//morris traversal based solution
-public boolean isValidBST(TreeNode root) {
-    long prev = Integer.MIN_VALUE;
-    --prev;
-	TreeNode buf;
-	while (root != null) {
-		if (root.left != null) {
-			buf = root.left;
-			while (buf.right != null){
-				buf = buf.right;
-			}
-			buf.right = root;
-			buf = root.left;
-			root.left = null;
-			root = buf;
-		}
-		else {
-		    if (root.val <= prev)
-			    return false;
-			prev = root.val;
-			root = root.right;
-		}
-	}
-	return true;
-}
+};

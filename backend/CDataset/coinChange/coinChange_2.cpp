@@ -1,27 +1,17 @@
 class Solution {
-    int dp[12][10001]={};
-public:
-    int solve(vector<int>& coins,int index,int amount){
-        //Base Cases
-        if(amount==0)
-            return 0;
-        if(amount<0 || index<0)
-            return -1;
-        
-        //If calculated previously ,return directly
-        if(dp[index][amount])
-            return dp[index][amount];
-        
-        //Calculate result for amount and store in dp matrix before returning result
-        int coins1=solve(coins,index-1,amount);
-        int coins2=solve(coins,index,amount-coins[index]);
-        if(coins1==-1 && coins2==-1)
-            return dp[index][amount]=-1;
-        if(coins1!=-1 && coins2!=-1)
-            return dp[index][amount]=min(coins1,coins2+1);
-        return dp[index][amount]=(coins1==-1 ? coins2+1 : coins1);
-    }
-    int coinChange(vector<int>& coins, int amount) {
-        return solve(coins,coins.size()-1,amount);
+public:    int coinChange(vector<int>& coins, int amount) {
+        if(coins.size()==0)return 0;
+        vector<int> dp(amount+1);             //Note that dp[0]=0 because for amount 0 there is no possible way to pay using the given coins
+        for(int i=1;i<=amount;i++)
+        {
+            int t=INT_MAX/2;                     //we cannot use INT_MAX cuz anything above INT_MAX will cause an overflow.
+            for(int j=0;j<coins.size();j++)
+            {
+                if(i-coins[j]>=0)
+                    t=min(t,dp[i-coins[j]]+1);
+            }
+            dp[i]=t;
+        }
+        return dp[amount]>=INT_MAX/2?-1:dp[amount];      //Sometimes it impossible to get an amount using the coins given eg: amount 3 using coins 2 and 5.
     }
 };

@@ -1,4 +1,6 @@
+class Solution {
 public:
+
     double myPow(double x, int n) {
         // If the power is zero, then no need to proceed.
 		if(n==0){

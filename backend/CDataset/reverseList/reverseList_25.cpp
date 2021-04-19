@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     ListNode* reverseList(ListNode* head) {
 	//consider prev,curr,next as three boxes beneath 1 2 3 4 5 linked list
 	//To reverse the address , first copy what current node is pointing and then assign to its prev node

@@ -1,5 +1,10 @@
 class Solution {
-    public:
+    public:class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     	bool isValidBST(TreeNode* root, int upper, bool hasupper, int lower, bool haslower) {
     		if ((root->left != NULL && (root->left->val >= root->val || (haslower &&root->left->val <= lower))) ||
     			(root->right != NULL && (root->right->val <= root->val ||( hasupper && root->right->val >= upper))) ||

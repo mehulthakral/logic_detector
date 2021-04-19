@@ -1,3 +1,5 @@
+class Solution {
+public:
 vector<string> restoreIpAddresses(string s) {
     vector<string> result;
     string currentAddr;
@@ -50,3 +52,4 @@ void restoreIpAddressesRecursive(const string& s, int i, string& currentAddr, in
         }
     }
 }
+};

@@ -1,3 +1,5 @@
+class Solution {
+public:
     int numIslands(vector<vector<char>>& grid) {
     const int row = grid.size();
     if (0 == row) return 0;
@@ -18,3 +20,4 @@ void dfs(vector<vector<char>> &grid, int i, int j) {
     vector<pair<int, int>> dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     for (auto dir : dirs) dfs(grid, i + dir.first, j + dir.second);
 }
+};

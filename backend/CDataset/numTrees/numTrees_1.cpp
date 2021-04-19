@@ -1,5 +1,6 @@
 class Solution {
 public:
+    #include<vector>
     int numTrees(int n) {
         vector<int> dp(n+1);
         dp[0]=1;

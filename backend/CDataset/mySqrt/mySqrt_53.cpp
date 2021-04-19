@@ -1,4 +1,6 @@
- int mySqrt(int x) {
+class Solution {
+public:
+int mySqrt(int x) {
         if(x==0) return 0;
         long start=1, end=x;
         while(start<=end)   {
@@ -9,3 +11,4 @@
         }
         return start-1; //start points right next to the answer, hence, we return start-1
     }
+};

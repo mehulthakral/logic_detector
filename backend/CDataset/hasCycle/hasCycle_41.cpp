@@ -1,5 +1,12 @@
 class Solution {
-public:
+public:    
+class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
+
     bool hasCycle(ListNode *head) {
         ListNode* slow=head;
         ListNode* fast=head;

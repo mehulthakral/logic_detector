@@ -1,5 +1,11 @@
 class Solution {
 public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 int flag = 1;
 void valid(TreeNode *cur,long long int min,long long int max) {
 	if (!flag)

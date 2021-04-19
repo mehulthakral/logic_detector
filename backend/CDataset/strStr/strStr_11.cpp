@@ -1,3 +1,5 @@
+class Solution {
+public:
 int strStr(string haystack, string needle) {
         if(strstr(haystack.c_str(),needle.c_str()))
         {
@@ -8,3 +10,4 @@ int strStr(string haystack, string needle) {
         }
         return -1;
     }
+};

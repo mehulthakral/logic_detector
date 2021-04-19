@@ -1,5 +1,11 @@
 class Solution {
 public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool isValidBST(TreeNode* root) {
         if(!root) return true;
         if(!isValid(root->left, root->val, true) || !isValid(root->right, root->val, false)) return false;

@@ -15,6 +15,12 @@ static int speedup=[](){
 
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 	int maxi=INT_MIN;
 
 	int maxSum(TreeNode* root) {

@@ -1,4 +1,11 @@
-bool hasCycle(ListNode *h) 
+class Solution {
+public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+	bool hasCycle(ListNode *h) 
 {             
 	for(auto p{h}, q{h}; p and p->next; )
 	{
@@ -8,3 +15,4 @@ bool hasCycle(ListNode *h)
 	}
 	return false;
 }
+};

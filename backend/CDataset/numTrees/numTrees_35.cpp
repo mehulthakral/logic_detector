@@ -1,3 +1,5 @@
+class Solution {
+public:
 int numTrees(int n) {
         // let C[i] be the number of unique binary search trees with 1 to i
         vector<int> C(n+1,1);
@@ -10,3 +12,4 @@ int numTrees(int n) {
         }
         return C[n];
     }
+};

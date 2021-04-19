@@ -1,5 +1,12 @@
 class Solution {
 private: 
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+
 vector<vector<int>> abc;
 public:
 void helper(TreeNode* root, int level) {

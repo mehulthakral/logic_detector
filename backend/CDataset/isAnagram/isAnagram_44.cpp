@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool isAnagram(string s, string t) {
         
         if(s.length() != t.length())
@@ -18,3 +20,4 @@ bool isAnagram(string s, string t) {
         return true;
         
     }
+};

@@ -1,3 +1,5 @@
+class Solution {
+public:
 int fib(int n) {
         vector<int> dp(n+1,-1);
         return findFib(n,dp);
@@ -10,3 +12,4 @@ int fib(int n) {
         dp[n]=findFib(n-1,dp) + findFib(n-2,dp);
         return dp[n];
     }
+};

@@ -1,4 +1,19 @@
 class Solution {
+
+public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    bool isValidBST(TreeNode* root) {
+        
+        inorder(root);
+        
+        return flag;
+        
+    }
     
     bool flag = true;
     stack<int> s;
@@ -19,15 +34,6 @@ class Solution {
         else{
             return;
         }
-    }
-    
-public:
-    bool isValidBST(TreeNode* root) {
-        
-        inorder(root);
-        
-        return flag;
-        
     }
     
 };

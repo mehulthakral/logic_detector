@@ -1,5 +1,11 @@
 class Solution {
 public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool isValidBST(TreeNode* root) {
         stack<TreeNode*>s;
         TreeNode* pre = NULL;

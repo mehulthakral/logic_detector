@@ -1,6 +1,12 @@
 
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int maxDepth(TreeNode* root) {
         int maxDepth=0;
         stack<TreeNode *> nodes;

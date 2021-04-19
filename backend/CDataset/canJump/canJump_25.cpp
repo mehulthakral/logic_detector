@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool canJump(vector<int>& nums) {
     if(nums.empty()) return true;
     int m = nums[0];
@@ -8,3 +10,4 @@ bool canJump(vector<int>& nums) {
     }
     return true;
 }
+};

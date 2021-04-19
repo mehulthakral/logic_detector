@@ -1,3 +1,5 @@
+class Solution {
+public:
     void recur(vector<vector<char>>& grid, int row, int col) {
         grid[row][col] = '2'; // Visisted so mark to '2'
         if (row-1 >= 0 && grid[row-1][col] == '1') recur(grid, row-1, col);
@@ -17,3 +19,4 @@
         }
         return count;
     }
+};

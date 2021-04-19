@@ -1,5 +1,6 @@
 class Solution {
 public:
+    #include<vector>
     vector<int> sortArray(vector<int>& nums) {
         int counts[100001] = {0};
         // Maps negatives starting from 0

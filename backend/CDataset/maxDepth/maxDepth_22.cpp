@@ -10,7 +10,12 @@
  * };
  */
 class Solution {
-public:
+public:class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int maxDepth(TreeNode* root, int d=0) {
         return root==NULL ? d : max(maxDepth(root->left,d+1), maxDepth(root->right,d+1));
     }

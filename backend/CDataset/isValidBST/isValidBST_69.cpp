@@ -1,4 +1,10 @@
- bool isValidBST(TreeNode *root) {
+class Solution {
+public:class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };bool isValidBST(TreeNode *root) {
         // use long min and long max if the value in tree is int
         return isValidBSTRec(root, LONG_MIN, LONG_MAX);
     }
@@ -18,3 +24,4 @@
         }
         return false;
     }
+};

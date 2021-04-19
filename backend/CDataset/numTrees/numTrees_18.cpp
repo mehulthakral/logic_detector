@@ -1,3 +1,5 @@
+class Solution {
+public:
 int numTrees(int n) {
     vector<int> trees(n+1, 1);
     for(int i = 2; i <= n; i++)
@@ -10,3 +12,4 @@ int numTrees(int n) {
     }
     return trees[n];
 }
+};

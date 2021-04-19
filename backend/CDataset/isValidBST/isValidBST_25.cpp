@@ -1,6 +1,12 @@
 #define inf 1e12
 class Solution {
 public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     pair<bool,pair<long long,long long>> recursion(TreeNode* root){
         pair<bool,pair<long long,long long>> p,q;
         if(!root){

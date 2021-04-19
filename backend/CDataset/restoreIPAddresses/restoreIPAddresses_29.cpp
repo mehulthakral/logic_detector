@@ -1,3 +1,5 @@
+class Solution {
+public:
   vector<string> restoreIpAddresses(string s) {
     std::vector<std::string> ret;
     char temp[15 + 1] = {0};
@@ -32,3 +34,4 @@
     helper(s.c_str(), s.size(), temp, 0);
     return ret;
   }
+};

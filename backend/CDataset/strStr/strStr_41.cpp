@@ -1,3 +1,5 @@
+class Solution {
+public:
 int strStr(string haystack, string needle) {
         int sz_haystack = haystack.size();
     	int sz_needle = needle.size();
@@ -18,3 +20,4 @@ int strStr(string haystack, string needle) {
     	}
     	return -1;
     }
+};

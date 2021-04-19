@@ -1,3 +1,5 @@
+class Solution {
+public:
 int numTrees(int n) {
 
     int arr[n+1];
@@ -14,3 +16,4 @@ int numTrees(int n) {
     }
     return arr[n];
 }
+};

@@ -1,3 +1,5 @@
+class Solution {
+public:
 double myPow(double x, int n) {
         // T = O(log2(N)) & S = O(1)
         double ans = 1.00000;
@@ -15,3 +17,4 @@ double myPow(double x, int n) {
         if(n < 0) ans = (double)1.00000/(double)ans;
         return ans;
     }
+};

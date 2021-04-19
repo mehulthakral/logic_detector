@@ -1,3 +1,5 @@
+class Solution {
+public:
 int reverse(int x) {
         int res=0,flag=-1;
         if(x==INT_MIN) 
@@ -19,3 +21,4 @@ int reverse(int x) {
             res=-1*res;
         return res;
     }
+};

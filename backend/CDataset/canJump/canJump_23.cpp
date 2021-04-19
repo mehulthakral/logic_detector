@@ -1,19 +1,31 @@
-/*
-Logic: start with last position and backtrack
-Catch : 1. if position i can take you to dest, then reaching position is i is your goal
-        2. lets say j<i, and (a[j]+j >= i), then your new dest becomes j 
-*/
 class Solution {
 public:
-    bool canJump(int a[], int n) {
-        int dest = n-1;
-        int cur_pos = n-2;
-        while(cur_pos >= 0 && dest != 0) {
-          if (a[cur_pos] + cur_pos >= dest) {
-              dest = cur_pos;
-          }
-          cur_pos--;
-        }
-        return (dest == 0 ? true : false);
-    }
+	bool canJump(vector<int>& nums) {
+		if (nums.empty())
+			return false;
+		if (nums.size() == 1)
+			return true;
+		if (nums[0] == 0)
+			return false;
+		bool can_over;
+		for (int i = nums.size() - 2; i > 0; --i)
+		{
+			if (nums[i])
+				continue;
+			can_over = false;
+			int j;
+			for (j = i - 1; j >= 0; --j)
+			{
+				if (nums[j] > i - j)
+				{
+					can_over = true;
+					break;
+				}
+			}
+			if (!can_over)
+				return false;
+			i = j;
+		}
+		return true;
+	}
 };

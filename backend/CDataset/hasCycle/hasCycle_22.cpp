@@ -8,6 +8,12 @@
  */
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+    
     bool hasCycle(ListNode *head) 
     {
         if(head==NULL) return false;

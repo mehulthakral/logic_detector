@@ -29,4 +29,4 @@ public:
         ans(nums,0,nums.size()-1);
         return nums;
  }
- 
+};

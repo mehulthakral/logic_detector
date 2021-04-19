@@ -1,13 +1,11 @@
-bool canJump(int A[], int n) {
-    if(n == 0){
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int distance = 0;
+        for(int i = 0; i < nums.size() - 1; i++){
+            distance = max(distance, i + nums[i]);
+            if(distance == i) return false;
+        }
         return true;
     }
-    int maxReachPos = A[0];
-    for(int i = 0; i <= maxReachPos; i++){
-        if(maxReachPos >= n - 1){
-            return true;
-        }
-        maxReachPos = max(maxReachPos, i + A[i]);
-    }
-    return false;
-}
+};

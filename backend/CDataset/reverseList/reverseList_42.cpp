@@ -10,6 +10,12 @@
  */
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     ListNode* util(ListNode* prev, ListNode* cur, ListNode* next) {
         if(cur==NULL)
             return prev;

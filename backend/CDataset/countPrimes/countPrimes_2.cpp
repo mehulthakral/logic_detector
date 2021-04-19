@@ -1,4 +1,5 @@
-int countPrimes(int n) {
+class Solution {
+public:int countPrimes(int n) {
         bool sieve[n+1];
         memset(sieve, true, sizeof(sieve));
         int cnt = 0;
@@ -21,3 +22,4 @@ int countPrimes(int n) {
         return cnt;
         
     }
+};

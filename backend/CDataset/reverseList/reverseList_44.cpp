@@ -1,3 +1,11 @@
+class Solution {
+public:
+
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
 ListNode* reverseList(ListNode* head) {
 	ListNode* prev = nullptr;
 	ListNode* cur = head;
@@ -9,3 +17,4 @@ ListNode* reverseList(ListNode* head) {
 	}
 	return prev;
 }
+};

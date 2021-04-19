@@ -1,4 +1,11 @@
-	struct Tuple{
+class Solution {
+public:	class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    struct Tuple{
         TreeNode* node;
         long long l, h;
         Tuple(TreeNode* node, long long l, long long h): node(node), l(l), h(h){}
@@ -17,3 +24,4 @@
         }
         return true;
     }
+};

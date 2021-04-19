@@ -1,3 +1,5 @@
+class Solution {
+public:
 int fib(int n) {
 	vector<int> cache(n + 1, -1);
 	return fib_impl(n, cache);
@@ -14,3 +16,4 @@ int fib_impl(int n, vector<int>& cache) {
 	cache[n] = fib_impl(n - 1, cache) + fib_impl(n - 2, cache);
 	return cache[n];
 }
+};

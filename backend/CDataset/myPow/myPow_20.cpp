@@ -1,3 +1,5 @@
+class Solution {
+public:
 double myPow(double x, int n) {
        double res = 1.0;
        
@@ -17,3 +19,4 @@ double myPow(double x, int n) {
        
        return res;
    }
+};

@@ -1,3 +1,11 @@
+class Solution {
+public:
+
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
 bool hasCycle(ListNode *head) {
         unordered_set<ListNode*> seen;
         while(head){
@@ -7,3 +15,4 @@ bool hasCycle(ListNode *head) {
         }
         return false;
 		} 
+};

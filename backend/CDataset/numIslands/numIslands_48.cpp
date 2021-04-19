@@ -1,3 +1,5 @@
+class Solution {
+public:
 int numIslands(vector<vector<char>>& grid) {
         int label = 0;
         int rowNum = grid.size(), colNum = rowNum ? grid[0].size() : 0;
@@ -24,3 +26,4 @@ int numIslands(vector<vector<char>>& grid) {
         dfs(grid, row, col + 1, colNum, rowNum);
         dfs(grid, row, col - 1, colNum, rowNum);
     }
+};

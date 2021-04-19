@@ -1,4 +1,6 @@
- void rotate(vector<int>& nums, int k) {
+class Solution {
+public:
+void rotate(vector<int>& nums, int k) {
         int size;
         size = nums.size();
       
@@ -17,3 +19,4 @@
         reverse(nums.begin(), nums.begin()+k);      //reverse the numbers from beginning to kth position
         reverse(nums.begin()+k, nums.end());        //reverse the rest of the array to make it original
     }
+};

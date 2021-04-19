@@ -11,6 +11,13 @@
  */
 class Solution {
 public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     void inorder(TreeNode* root,stack<pair<TreeNode*,int>> &s,vector<int> &ans){
         while(!s.empty()){
             while(s.top().first->left && s.top().second==0){

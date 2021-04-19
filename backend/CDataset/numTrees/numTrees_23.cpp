@@ -1,3 +1,5 @@
+class Solution {
+public:
 int func(int l,int r,vector<vector<int>>&dp){
         if(r<l){return 1;}
         if(dp[l][r]!=-1)return dp[l][r];
@@ -11,3 +13,4 @@ int func(int l,int r,vector<vector<int>>&dp){
         vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
         return func(1,n,dp);
     }
+};

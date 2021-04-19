@@ -1,3 +1,13 @@
+class Solution {
+public:
+    #include<vector>
+
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 vector<vector<int>> levelOrder(TreeNode* root) {
     vector<vector<int>> ret;
     deque<TreeNode*> q;
@@ -18,3 +28,4 @@ vector<vector<int>> levelOrder(TreeNode* root) {
     }
     return ret;
 }
+};

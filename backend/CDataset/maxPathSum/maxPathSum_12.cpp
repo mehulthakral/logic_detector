@@ -1,4 +1,16 @@
 class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    int maxPathSum(TreeNode* root) {
+        int res{numeric_limits<int>::min()};
+        maxHelper(root, res);
+        return res;
+    }
 private:  
     // Partial sum is like a logger, it logs the max we've seen so far.
     int maxHelper(TreeNode* root, int& partialSum) {
@@ -11,10 +23,4 @@ private:
 	// If a path sums to negative, we don't want to return it, it won't add to our longest path
       // If a path is positive, it will have a positive impact on our max path, so we want to 
 	  // return it as opposed to returning 0.
-public:
-    int maxPathSum(TreeNode* root) {
-        int res{numeric_limits<int>::min()};
-        maxHelper(root, res);
-        return res;
-    }
 };

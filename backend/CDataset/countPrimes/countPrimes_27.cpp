@@ -1,4 +1,5 @@
- int countPrimes(int n) {
+class Solution {
+public:int countPrimes(int n) {
        int count=0;
         for (int i=2;i<n; i++) 
        {
@@ -17,3 +18,4 @@
     
        return count;
     }    
+};

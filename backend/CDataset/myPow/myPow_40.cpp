@@ -1,24 +1,9 @@
-class Solution{
+class Solution {
 public:
-double myPow(double x,int n){
-if(n==0)
+double myPow(double x, int n) 
 {
-return 1;
-}
-double p=1;
-int i;
-if (n<0)
-{
-int y=-1n;
-x=1/x;
-for (i=1;i<=y;i++)
-p=px;
-}
-else
-{
-for(i=1;i<=n;i++)
-p=p*x;
-}
-return p;
+	auto out{1.0};
+	for( ; n; out *= n&1 ? (n>0 ? x : 1.0/x) : 1.0, x *= x, n/=2);
+    return out;
 }
 };

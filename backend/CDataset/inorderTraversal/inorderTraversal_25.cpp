@@ -1,4 +1,18 @@
-void inorder(vector<int> *v,TreeNode* root)
+class Solution {
+public:
+#include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> v;
+        inorder(&v,root);
+        return v;
+    } 
+    void inorder(vector<int> *v,TreeNode* root)
 {   if(root==NULL)
         return ;
     if(root->left!=NULL)
@@ -9,11 +23,4 @@ void inorder(vector<int> *v,TreeNode* root)
     
     return;
 }
-class Solution {
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> v;
-        inorder(&v,root);
-        return v;
-    } 
 };

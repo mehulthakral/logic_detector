@@ -1,3 +1,5 @@
+class Solution {
+public:
 int strStr(string haystack, string needle) {
         
         if(needle.length()==0)
@@ -27,3 +29,4 @@ int strStr(string haystack, string needle) {
         
         return -1;
     }
+};

@@ -1,6 +1,12 @@
 // Recursive In-Place 
 class Solution {
 public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
+
     ListNode* reverseList(ListNode* head) {
         return helper(head, NULL);
     }

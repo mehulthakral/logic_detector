@@ -1,3 +1,11 @@
+class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     void recur(TreeNode* root, bool& res, int& prev, bool& firstElem) {
         if (!root) return;
         if (root->left) recur(root->left, res, prev, firstElem);
@@ -21,3 +29,4 @@
         recur(root, res, prev, firstElem);
         return res;
     }
+};

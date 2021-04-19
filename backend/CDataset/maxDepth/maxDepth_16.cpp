@@ -1,5 +1,11 @@
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     void solve(TreeNode* root,int ma,int &ans)
     {
         if(root==NULL)

@@ -1,15 +1,23 @@
 class Solution {
 public:
-    int solve(vector<int>&coins,int idx,int amt,vector<vector<int>>&dp)
-    {
-        if(amt<0 || idx>=coins.size()) return 100005;
-        if(amt==0) return 0;
-        if(dp[idx][amt]!=-1) return dp[idx][amt];
-        return dp[idx][amt] = min(1+solve(coins,idx,amt-coins[idx],dp),solve(coins,idx+1,amt,dp));
-    }
-    int coinChange(vector<int>& coins, int amount) {
-        vector<vector<int>>dp(coins.size()+5,vector<int>(amount+5,-1));
-        int ans = solve(coins,0,amount,dp); 
-        return (ans == 100005)?-1:ans;
+    int coinChange(vector<int>& coins, int amount){
+       vector<int> dp(amount+1,amount+1) ;                 //Initialise the vector of size  amount +1 with anything greater than amount
+        dp[0]=0;                                           //Base case i.e 0 can be made from 0 coins
+        sort(coins.begin(),coins.end());                   // In case if any coin is greater than the amount then we need not check for other coins rather break the loop
+        for (int i = 1; i <= amount; i++)                  //Varying all amount ,i represents different amounts i.e subproblems
+        {
+            for (int j = 0; j < coins.size(); j++)         //Varying all coins,j represents different coins
+            {  if(i>=coins[j])
+                {
+                    dp[i]=min(dp[i],dp[i-coins[j]]+1);
+                    
+                }
+             else{
+                 break;
+             }
+                  
+            }
+        }
+        return dp[amount]>=amount+1?-1:dp[amount];         //if final cell is greater than amount which is impossible then return -1 else return that cell value
     }
 };

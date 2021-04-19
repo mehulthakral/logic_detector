@@ -3,7 +3,12 @@
 //he said my codes returning true, but I even test it in my IDE,
 // no problem...so for help!
 class Solution {
-public:
+public:class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
 bool isValidBST(TreeNode* root) {
       return iVB(root,0,0);
 }

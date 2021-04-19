@@ -1,4 +1,12 @@
-	bool dfs(TreeNode* node, long long& res){
+class Solution {
+public:
+	class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+  bool dfs(TreeNode* node, long long& res){
       if(node == nullptr) return true;
       if(!dfs(node->left, res)) return false;
       if(res >= node->val) return false;
@@ -11,3 +19,4 @@
         long long res = numeric_limits<long long>::min();
         return dfs(root, res);
     }
+};

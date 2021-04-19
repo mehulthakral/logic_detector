@@ -1,9 +1,15 @@
-struct QNode{
+class Solution {
+public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    struct QNode{
     TreeNode *node;
     long long lower, upper;
 };
-class Solution {
-public:
     bool isValidBST(TreeNode* root){
         if(!root) return true;
         queue<QNode> q;

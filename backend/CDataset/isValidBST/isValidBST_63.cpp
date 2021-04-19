@@ -1,5 +1,10 @@
 class Solution {
-public:
+public:class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     bool isValidBST(TreeNode* root) {
         return helper(root, numeric_limits<long long int>::min(), numeric_limits<long long int>::max());
     }

@@ -1,3 +1,5 @@
+class Solution {
+public:
 int b, row[9][9] = {}, col[9][9] = {}, block[9][9] = {};
 void solveSudoku(vector<vector<char>>& board) {
     for(int i = 0; i < 9; i++)
@@ -35,3 +37,4 @@ bool fill(vector<vector<char>>& board, int r, int c){
         return fill(board,r,c+1);
     }
 }
+};

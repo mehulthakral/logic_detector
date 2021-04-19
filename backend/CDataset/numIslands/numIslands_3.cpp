@@ -1,4 +1,7 @@
-class UnionFind{
+class Solution {
+public:
+    #include<vector>
+    class UnionFind{
 public:
     int n, m;   
     vector < vector <int> > size;
@@ -57,9 +60,6 @@ public:
         numofcomponents--;
     }
 };
-
-class Solution {
-public:
     int numIslands(vector<vector<char>>& grid) {
          int n = grid.size();
         if (n == 0)return 0;

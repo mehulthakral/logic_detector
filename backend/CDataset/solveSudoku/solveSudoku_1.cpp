@@ -1,6 +1,6 @@
 class Solution {
 public:
-
+	#include<vector>
 	bool rakhSakteHai(vector<vector<char>>& mat, int i,int j,int n,char num){
 
 		for(int x = 0 ; x < n ; x++){

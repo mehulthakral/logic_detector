@@ -8,7 +8,12 @@
  * };
  */
 class Solution {
-public:
+public:class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int ok = true, first = true;
     bool isValidBST(TreeNode* root) {
         int prev;

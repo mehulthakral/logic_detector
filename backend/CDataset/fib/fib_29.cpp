@@ -1,4 +1,5 @@
-int fib(int N) {
+class Solution {
+public:int fib(int N) {
         vector<int> dp(N+2, 0);
         dp[1] = 1;
         for(int i = 2; i <= N; i++){
@@ -6,4 +7,4 @@ int fib(int N) {
         }    
         return dp[N];
     }
-	
+};

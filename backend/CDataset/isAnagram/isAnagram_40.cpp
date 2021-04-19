@@ -1,7 +1,22 @@
-bool isAnagram(string s, string t) {
-        if(s.size()!=t.size()) return false;
-        vector<int>c1(26,0);
-        for(int i=0;i<s.size();i++) c1[s[i]-'a']++,c1[t[i]-'a']--;
-        for(int i=0;i<26;i++) if(c1[i]) return false;
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int arr[26]={0};
+        for(char ch:s)
+        {
+            arr[ch-'a']+=1;
+        }
+        for(char ch:t)
+        {
+            arr[ch-'a']-=1;
+        }
+        for(int i=0;i<26;i++)
+        {
+            if(arr[i]!=0)
+            {
+                return false;
+            }
+        }
         return true;
     }
+};

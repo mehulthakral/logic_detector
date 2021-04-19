@@ -1,4 +1,10 @@
-    static constexpr bool hasCycle(const ListNode * const head)
+class Solution {
+public:
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };    static constexpr bool hasCycle(const ListNode * const head)
     {
 	    // Return early if the list is too short to have a cycle:
         if(!head || !head->next){
@@ -18,3 +24,4 @@
 
         return false;
     }
+};

@@ -1,8 +1,14 @@
 class Solution {
-private:
-	//vector to store values if any
-    vector<int> result;
+
 public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    
     vector<int> inorderTraversal(TreeNode* root) 
     {
 		//do traversal only if the tree is not empty
@@ -20,4 +26,7 @@ public:
 		//return the result 
         return result;
     }
+private:
+	//vector to store values if any
+    vector<int> result;
 };

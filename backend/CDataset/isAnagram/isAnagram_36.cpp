@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool isAnagram(string s, string t) {
         if(s.size()!=t.size()) return false;
         map<char,int>map;
@@ -10,4 +12,4 @@ bool isAnagram(string s, string t) {
             if(it->second!=0)return false;
         return true;
     }
-
+};

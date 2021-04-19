@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool canJump(vector<int>& nums) {
     int len = nums.size() - 1; // ignore last step
 
@@ -21,3 +23,4 @@ bool canJump(vector<int>& nums) {
     
     return true;
 }
+};

@@ -1,4 +1,11 @@
-inline void f75(TreeNode* root,double left,double right,bool& flag){
+class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };inline void f75(TreeNode* root,double left,double right,bool& flag){
 	if(flag==false) return;
 	if(root->val<right && root->val>left){
 		if(root->left) f75(root->left,left,root->val,flag);
@@ -17,3 +24,4 @@ bool isValidBST(TreeNode* root){
 	f75(root,min,max,flag);
 	return flag;
 }
+};

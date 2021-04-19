@@ -1,4 +1,11 @@
-void isValidHelper(TreeNode* root, bool& is_valid, long& low){
+class Solution {
+public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };void isValidHelper(TreeNode* root, bool& is_valid, long& low){
         
         if(root == NULL){
             return;
@@ -28,3 +35,4 @@ void isValidHelper(TreeNode* root, bool& is_valid, long& low){
         return is_valid;
         
     }
+};

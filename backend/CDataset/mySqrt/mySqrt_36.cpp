@@ -1,3 +1,5 @@
+class Solution {
+public:
     int mySqrt(int x) {
         __uint128_t i = 0; 
         for ( ; i <= x; ++i) {
@@ -7,4 +9,4 @@
         
         return i-1;
     }
-
+};

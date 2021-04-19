@@ -1,3 +1,5 @@
+class Solution {
+public:
 vector<string> restoreIpAddresses(string s) {
     vector<string> result;
     if(s.size()<4 || s.size() > 12) return result;
@@ -27,3 +29,4 @@ int stoi(string s){
     istringstream(s) >> nn;
     return nn;
 }
+};

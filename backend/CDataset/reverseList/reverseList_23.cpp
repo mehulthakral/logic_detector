@@ -1,3 +1,11 @@
+class Solution {
+public:
+
+    class ListNode{
+        public:
+        ListNode* next;
+        int val;
+    };
 ListNode* dfs(ListNode* head, ListNode* prev) {
 		if (head == nullptr)
 			return prev; // search for the last node of the list
@@ -11,4 +19,4 @@ ListNode* dfs(ListNode* head, ListNode* prev) {
     ListNode* reverseList(ListNode* head) {
        return dfs(head, nullptr);
     }
-
+};

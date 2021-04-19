@@ -1,4 +1,13 @@
-int f;
+class Solution {
+public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    int f;
 int Function(TreeNode* root){
 if(root==NULL){
 return 0;
@@ -22,3 +31,4 @@ int maxPathSum(TreeNode* root) {
     return f;
     
 }
+};

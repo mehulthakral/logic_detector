@@ -1,4 +1,15 @@
 class Solution {
+
+public:
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+		bool isValidBST(TreeNode* root) {
+        return DFS(root);
+    }
 private:
     long preVal {LONG_MIN};
     
@@ -10,9 +21,5 @@ private:
         else preVal = u->val;
         if (!DFS(u->right)) return false;
         return true;
-    }
-public:
-		bool isValidBST(TreeNode* root) {
-        return DFS(root);
     }
 };

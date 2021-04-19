@@ -1,3 +1,5 @@
+class Solution {
+public:
 bool row_wise[9][9] = { {false} };
 bool col_wise[9][9] = { {false} };
 bool box_wise[9][9] = { {false} };

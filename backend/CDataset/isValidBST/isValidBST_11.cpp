@@ -11,6 +11,13 @@
  */
 class Solution {
 public:
+#include<vector>
+class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     void inorder(vector<int> &v, TreeNode* root){
         if(root!=NULL){
             inorder(v,root->left);

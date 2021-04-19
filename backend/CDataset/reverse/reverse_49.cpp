@@ -1,3 +1,5 @@
+class Solution {
+public:
 int reverse(int x) {
     int minimum = INT_MIN, maximum = INT_MAX;
     int res = 0, sign;
@@ -14,3 +16,4 @@ int reverse(int x) {
     }
     return res*sign;
 }
+};

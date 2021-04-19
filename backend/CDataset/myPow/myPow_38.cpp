@@ -1,4 +1,6 @@
+class Solution {
 public:
+
     void calcPower(double x, int n, double& acm){
         if(n!=0){
             acm *= x;

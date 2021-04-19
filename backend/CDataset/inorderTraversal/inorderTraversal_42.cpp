@@ -8,7 +8,26 @@
  * };
  */
 class Solution {
-private:
+
+public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> result;
+        initialize(root);
+        while(hasNext())
+        {
+            result.push_back(next());
+        }
+        return result;
+    }
+    private:
     TreeNode* node;
     vector<TreeNode*> leftMostNodes;
     
@@ -40,14 +59,4 @@ private:
         return value;
     }
     
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> result;
-        initialize(root);
-        while(hasNext())
-        {
-            result.push_back(next());
-        }
-        return result;
-    }
 };

@@ -11,6 +11,12 @@
  */
 class Solution {
 public:
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
     int ans=INT_MIN;
     int solve(TreeNode* root)
     {

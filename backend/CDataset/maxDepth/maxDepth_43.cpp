@@ -1,4 +1,12 @@
-int maxDepth(TreeNode* root) {
+class Solution {
+public:
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };int maxDepth(TreeNode* root) {
     int num = 0;
     if(root){  
         num = 1; 
@@ -13,3 +21,4 @@ int maxDepth(TreeNode* root) {
     }
     return num;
 }
+};

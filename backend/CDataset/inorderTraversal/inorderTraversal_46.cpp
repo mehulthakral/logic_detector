@@ -1,28 +1,53 @@
-class Solution {
+class Solution
+{
 public:
-vector inorderTraversal(TreeNode* root) {
-
-    vector<int>v;
-    if(!root)
-        return v;
-    stack<TreeNode*>s;
-    s.push(root);
-    while(!s.empty())
+    #include<vector>
+    class TreeNode{
+        public:
+        TreeNode* left;
+        TreeNode* right;
+        int val;
+    };
+    
+    vector< int > inorderTraversal( TreeNode *root )
     {
-        TreeNode* top = s.top();
-        if(top->left)
+        vector< int > out;
+        stack< pair< int, TreeNode * > > toDo;
+        TreeNode * current = root;
+        
+        for ( ;; )
         {
-            s.push(top->left);
-            top->left=NULL;
+            if( current )
+            {
+                if( current->left )
+                {
+                    pair< int, TreeNode * > temp;
+                    temp.first  = current->val;
+                    temp.second = current->right;
+                    toDo.push( temp );
+                    current = current->left;
+                }
+                else
+                {
+                    out.push_back( current->val );
+                    if( current->right )
+                    {
+                        current = current->right;
+                    }
+                    else current = 0;
+                }
+            }
+            else
+            {
+                if( toDo.size() )
+                {
+                    out.push_back( toDo.top().first );
+                    current = toDo.top().second;
+                    toDo.pop();
+                }
+                else break;
+            }
         }
-        else
-        {
-            v.push_back(top->val);
-            s.pop();
-            if(top->right)
-                s.push(top->right);
-        }
+        return out;
     }
-    return v;
-}
 };
