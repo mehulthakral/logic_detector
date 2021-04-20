@@ -25,7 +25,7 @@ Accuracy of mySqrt 21/21 prgs: 100.0
 Accuracy of isAnagram 21/21 prgs: 100.0
 Accuracy of canFinish 17/19 prgs: 89.47
 
---------- Optimization Accuracy --------
+--------- Python Optimization Accuracy --------
 
 Accuracy of MIN 73/81 combs: 90.12345679012346
 Accuracy of MAX 73/81 combs: 90.12345679012346
@@ -55,7 +55,7 @@ Accuracy of LEVELORDER_TRAVERSAL 81/81 combs: 100.0
 Accuracy of SUDOKU 81/81 combs: 100.0
 Overall Accuracy: 88.84140550807219
 
---------- Test Performance ------------
+--------- C++ Prediction Accuracy --------
 
 Accuracy of SORT 16/16 prgs: 97.53086419753086
 Accuracy of ROTATE_ARRAY 21/21 prgs: 74.07407407407408
@@ -111,3 +111,21 @@ Accuracy of sortArray 12/12 prgs: 100.0
 Accuracy of strStr 0/60 prgs: 0.0
 Accuracy of coinChange 23/29 prgs: 79.3103448275862
 Accuracy of coinChange 22/23 prgs: 95.65217391304348
+Accuracy of strStr 60/60 prgs: 100.0
+Accuracy of mySqrt 56/57 prgs: 98.24561403508771
+Accuracy of mySqrt 56/56 prgs: 100.0
+Accuracy of isAnagram 47/47 prgs: 100.0
+Accuracy of countPrimes 30/30 prgs: 100.0
+Accuracy of coinChange 23/23 prgs: 100.0
+Accuracy of numIslands 0/62 prgs: 0.0
+Accuracy of numIslands 0/59 prgs: 0.0
+Accuracy of rotate 36/36 prgs: 100.0
+Accuracy of reverseList 47/57 prgs: 82.45614035087719
+Accuracy of reverseList 52/54 prgs: 96.29629629629629
+Accuracy of reverseList 52/52 prgs: 100.0
+Accuracy of levelOrder 63/70 prgs: 90.0
+Accuracy of levelOrder 65/65 prgs: 100.0
+Accuracy of canFinish 43/54 prgs: 79.62962962962963
+Accuracy of canFinish 46/47 prgs: 97.87234042553192
+Accuracy of hasCycle 61/61 prgs: 100.0
+Accuracy of solveSudoku 25/28 prgs: 89.28571428571429

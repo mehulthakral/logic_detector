@@ -7,27 +7,27 @@ public:
         int val;
     };
 
-vector<vector> levelOrder(TreeNode* root) {
-TreeNode* temp;
-vector<vector> ans;
-if(root==NULL)
-return ans;
-queue<TreeNode*> q;
-q.push(root);
-while(q.empty()==false){
-int count=q.size();
-vector v;
-for(int i=0;i<count;i++){
-temp=q.front();
-q.pop();
-v.push_back(temp->val);
-if(temp->left!=NULL)
-q.push(temp->left);
-if(temp->right!=NULL)
-q.push(temp->right);
-}
-ans.push_back(v);
-}
-return ans;
-}
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if (!root) {
+            return {};
+        }
+        vector<vector<int>> levels;
+        queue<TreeNode*> todo;
+        todo.push(root);
+        while (!todo.empty()) {
+            levels.push_back({});
+            for (int i = 0, n = todo.size(); i < n; i++) {
+                TreeNode* node = todo.front();
+                todo.pop();
+                levels.back().push_back(node -> val);
+                if (node -> left) {
+                    todo.push(node -> left);
+                }
+                if (node -> right) {
+                    todo.push(node -> right);
+                }
+            }
+        }
+        return levels;
+    }
 };

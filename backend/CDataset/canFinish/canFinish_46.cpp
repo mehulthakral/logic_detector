@@ -1,4 +1,5 @@
-bool iscycle(vector<int> adj[],vector<int> &vis,int id){
+class Solution {
+public:bool iscycle(vector<int> adj[],vector<int> &vis,int id){
         if(vis[id]==1)
             return true;
         if(vis[id]==0){
@@ -23,3 +24,4 @@ bool iscycle(vector<int> adj[],vector<int> &vis,int id){
         }
         return true;
     }
+};

@@ -1,63 +1,3 @@
-"""import cppyy
-from typing import List
-f = open("../CDataset/canFinish/canFinish_1.cpp")
-
-s = f.read()
-cppyy.cppdef("using namespace std;")
-cppyy.cppdef(s)
-obj = cppyy.gbl.Solution()
-obj.canFinish()
-
-def adapter(num:int, vec:List[List[int]]):
-    new_vec = cppyy.gbl.std.vector(cppyy.gbl.std.vector(int))(10)
-    return obj.canFinish(num, vec)
-"""
-
-"""
-f = open("../CDataset/isValidBST/isValidBST_1.cpp")
-
-s = f.read()
-cppyy.cppdef("using namespace std;")
-cppyy.cppdef(s)
-obj = cppyy.gbl.Solution()
-
-def Adapter(num:List[int]):
-
-    cppyy.cppdef("#include<stdlib.h>")
-    cppyy.cppdef("Solution::TreeNode* node=(Solution::TreeNode*)malloc(24);
-(*node).left=nullptr;
-(*node).right=nullptr;
-(*node).val=10;
-    ")
-
-
-    print(cppyy.gbl.size)
-    node = cppyy.ll.malloc[int](cppyy.gbl.size)
-    node.left = cppyy.nullptr
-    node.right = cppyy.nullptr
-    node.val= 10
-    
-    new_node = cppyy.ll.malloc[int](cppyy.gbl.size)
-    new_node.left = cppyy.nullptr
-    new_node.right = cppyy.nullptr
-    new_node.val=15
-
-    node.right = new_node
-    
-    node = cppyy.gbl.Solution.TreeNode()
-    node.left = cppyy.nullptr
-    node.right = cppyy.nullptr
-    node.val=10
-
-    new_node = cppyy.gbl.Solution.TreeNode()
-    new_node.left = cppyy.nullptr
-    new_node.right = cppyy.bind_object(cppyy.nullptr,cppyy.gbl.Solution.TreeNode)
-    new_node.val=15
-    
-    
-    return obj.isValidBST(cppyy.gbl.Node)
-"""
-
 import cppyy
 import cppyy.ll
 import ctypes
@@ -85,22 +25,21 @@ class Adaptor:
         obj=cppyy.gbl.Solution()
         return obj.isValidBST(tree)
     
-    #Not working
-    def canFinish(self, num:int, arr:List[List[int]]):
+    #Tested
+    def canFinish(self, ip:List[List[int]]={"start":0,"end":1}):
         prerequisites = []
-        for i in range(len(arr)):
-            for j in range(len(arr)):
-                if(arr[i][j]!=0):
+        for i in range(len(ip)):
+            for j in range(len(ip)):
+                if(ip[i][j]!=0):
                     prerequisites.append([i,j])
-                    #new_vec.push_back(cppyy.gbl.std.vector[int]([i,j]))
-
         new_vec = cppyy.gbl.std.vector(cppyy.gbl.std.vector(int))(len(prerequisites))
-
         for i in range(len(prerequisites)):
-            new_vec[i]=cppyy.gbl.std.vector[int](prerequisites[i])
-        print(new_vec,prerequisites)
+            vec=cppyy.gbl.std.vector(int)(len(prerequisites[i]))
+            for j in range(len(prerequisites[i])):
+                vec[j] = prerequisites[i][j]
+            new_vec[i]=vec
         obj=cppyy.gbl.Solution()
-        return obj.canFinish(num,new_vec)
+        return obj.canFinish(len(ip),new_vec)
     
     #Tested
     def canJump(self, arr:list):
@@ -110,7 +49,7 @@ class Adaptor:
         obj=cppyy.gbl.Solution()
         return obj.canJump(new_vec)
     
-    #Not working
+    #Tested
     def coinChange(self, arr:list, num:int):
         new_vec = cppyy.gbl.std.vector(int)(len(arr))
         for i in range(len(arr)):
@@ -119,8 +58,7 @@ class Adaptor:
         return obj.coinChange(new_vec,num)
 
     #Tested
-    #Accuracy 0.0 giving Reverse_integer
-    def countPrimes(self,num:int):
+    def countPrimes(self,num:int={"start":0,"end":1000}):
         obj=cppyy.gbl.Solution()
         return obj.countPrimes(num)
     
@@ -130,22 +68,35 @@ class Adaptor:
         return obj.fib(num)
     
     #Tested
-    #Accuracy 0.0 giving VALID_BST 
-    def hasCycle(self,l:list):
-        def newNode(val,next):
+    def hasCycle(self,l:List[int],p:int):
+        def makeList(l,p):
+            head = None
+            reqp = None
+            if(len(l)==0):
+                return head
+            else:
+                head = temp = newNode(l[0])
+                for i in range(1,len(l)):
+                    temp.next = newNode(l[i])
+                    temp = temp.next
+                    if(i==p):
+                        reqp = temp
+            if(p==-1):
+                return head
+            if(reqp==None):
+                temp.next = head
+            else:
+                temp.next = reqp
+            return head
+            
+        def newNode(val):
             #TODO Change malloc size
             node = cppyy.bind_object(cppyy.gbl.malloc(24), cppyy.gbl.Solution.ListNode)
-            node.next=next
+            node.next=cppyy.nullptr
             node.val=val 
             return node
-        
-        def makeList(i:int,lt:list):
-            if(i>=len(lt)):
-                return cppyy.nullptr
-            root = newNode(lt[i],makeList(i+1,lt))
-            return root
             
-        lst=makeList(0,l)    
+        lst=makeList(l,p)    
         obj=cppyy.gbl.Solution()
         return obj.hasCycle(lst)
     
@@ -170,8 +121,7 @@ class Adaptor:
         return obj.inorderTraversal(tree)
 
     #Tested
-    #Accuracy 0.0 giving CYCLE_GRAPH 
-    def isAnagram(self,s:str,t:str):
+    def isAnagram(self,s:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0},t:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0}):
         obj=cppyy.gbl.Solution()
         return obj.isAnagram(s,t)
     
@@ -185,7 +135,7 @@ class Adaptor:
         obj=cppyy.gbl.Solution()
         return obj.isUgly(num)
 
-    #Not working
+    #Tested
     def levelOrder(self, arr:list):
         def newNode(val,left,right):
             #TODO Change malloc size
@@ -203,7 +153,14 @@ class Adaptor:
             
         tree=makeTree(0,arr)    
         obj=cppyy.gbl.Solution()
-        return obj.levelOrder(tree)
+        new_vec = obj.levelOrder(tree)
+        new_list = []
+        for i in new_vec:
+            l=[]
+            for j in i:
+                l.append(j)
+            new_list.append(l)
+        return new_list
     
     #Tested
     def maxDepth(self,arr:list):
@@ -251,19 +208,20 @@ class Adaptor:
         return obj.myPow(x,n)
 
     #Tested
-    #Accuracy 0.0 giving UGLY_NUM 
-    def mySqrt(self,n:int):
+    def mySqrt(self,n:int={"start":0,"end":1000}):
         obj=cppyy.gbl.Solution()
         return obj.mySqrt(n)
 
-    #Not working
-    def numIslands(self,l:List[List[str]]):
-        new_vec = cppyy.gbl.std.vector(cppyy.gbl.std.vector(str))(len(l))
-
+    #Tested
+    def numIslands(self,g:List[List[int]]):
+        n = len(g)
+        l = [[str(g[i][j]) for j in range(n)] for i in range(n)]
+        new_vec = cppyy.gbl.std.vector(cppyy.gbl.std.vector("char"))(len(l))
         for i in range(len(l)):
-            l[i] = [str(j) for j in l[i]]
-            new_vec[i]=cppyy.gbl.std.vector[str](l[i])
-        print(new_vec,l)
+            vec=cppyy.gbl.std.vector("char")(len(l[i]))
+            for j in range(len(l[i])):
+                vec[j] = ord(l[i][j])
+            new_vec[i]=vec
         obj=cppyy.gbl.Solution()
         return obj.numIslands(new_vec)
 
@@ -272,17 +230,12 @@ class Adaptor:
         obj=cppyy.gbl.Solution()
         return obj.numTrees(n)
 
-    #Not working
-    def restoreIpAddresses(self,s:str):
-        obj=cppyy.gbl.Solution()
-        return obj.restoreIpAddresses(s)
-
     #Tested
     def reverse(self,n:int):
         obj=cppyy.gbl.Solution()
         return obj.reverse(n)
 
-    #Not working
+    #Tested
     def reverseList(self,l:list):
         def newNode(val,next):
             #TODO Change malloc size
@@ -296,26 +249,77 @@ class Adaptor:
                 return cppyy.nullptr
             root = newNode(lt[i],makeList(i+1,lt))
             return root
-            
+
+        def breakList(head):
+            l = []
+            while(head):
+                l.append(head.val)
+                head = head.next
+            return l    
         lst=makeList(0,l)    
         obj=cppyy.gbl.Solution()
-        return obj.reverseList(lst)
+        return breakList(obj.reverseList(lst))
     
-    #Not working
+    #Tested
     def rotate(self, arr:list, n:int):
         new_vec = cppyy.gbl.std.vector(int)(len(arr))
         for i in range(len(arr)):
             new_vec[i] = arr[i]
         obj=cppyy.gbl.Solution()
-        return obj.rotate(new_vec,n)
+        obj.rotate(new_vec,n)
+        return new_vec
     
-    #Not working
-    def solveSudoku(self, arr:list):
-        new_vec = cppyy.gbl.std.vector(int)(len(arr))
-        for i in range(len(arr)):
-            new_vec[i] = arr[i]
+    #Tested
+    def solveSudoku(self, board:List[List[int]]={"generator":"""
+def make_board():
+    m=3
+    import random
+    n = m**2
+    board = [[None for _ in range(n)] for _ in range(n)]
+
+    def search(c=0):
+        i, j = divmod(c, n)
+        i0, j0 = i - i % m, j - j % m 
+        numbers = list(range(1, n + 1))
+        random.shuffle(numbers)
+        for x in numbers:
+            if (x not in board[i]                     
+                and all(row[j] != x for row in board) 
+                and all(x not in row[j0:j0+m]       
+                        for row in board[i0:i])): 
+                board[i][j] = x
+                if c + 1 >= n**2 or search(c + 1):
+                    return board
+        else:
+            board[i][j] = None
+            return None
+
+    x=search()
+    number_of_dots=random.randint(5,15)
+    for i in range(len(x)):
+        for j in range(len(x[0])):
+            if random.randint(0,1)==0 and number_of_dots>0:
+                x[i][j]="."
+                number_of_dots-=1
+            else:
+                x[i][j]=str(x[i][j])
+    return x """}):
+        myBoard = [[str(board[i][j]) if board[i][j]!=0 else "." for j in range(len(board))] for i in range(len(board))]
+        new_vec = cppyy.gbl.std.vector(cppyy.gbl.std.vector("char"))(len(myBoard))
+        for i in range(len(myBoard)):
+            vec=cppyy.gbl.std.vector("char")(len(myBoard[i]))
+            for j in range(len(myBoard[i])):
+                vec[j] = ord(myBoard[i][j])
+            new_vec[i]=vec
         obj=cppyy.gbl.Solution()
-        return obj.solveSudoku(new_vec)
+        obj.solveSudoku(new_vec)
+        new_list = []
+        for i in new_vec:
+            l=[]
+            for j in i:
+                l.append(j)
+            new_list.append(l)
+        return [[int(new_list[i][j]) for j in range(len(board))] for i in range(len(board))]
     
     #Tested
     def sortArray(self, arr:list):
@@ -326,8 +330,7 @@ class Adaptor:
         return obj.sortArray(new_vec)
     
     #Tested
-    #Accuracy 0.0 giving CYCLE_GRAPH 
-    def strStr(self,s1:str,s2:str):
+    def strStr(self,s1:str={"upper_count":0,"lower_count":5,"digits_count":0,"special_count":0},s2:str={"upper_count":0,"lower_count":5,"digits_count":0,"special_count":0}):
         obj=cppyy.gbl.Solution()
         return obj.strStr(s1,s2)
 
@@ -347,10 +350,10 @@ func_str = handle.read()
 #print(func_str)
 print(execute(func_str, label))
 """
-f = open("../CDataset/isValidBST/isValidBST_1.cpp")
+f = open("../CDataset/canFinish/canFinish_1.cpp")
 
 s = f.read()
 cppyy.cppdef("using namespace std;")
 cppyy.cppdef(s)
-print(mp.predict(Adaptor.isValidBST))
+print(mp.predict(Adaptor.canFinish))
 """

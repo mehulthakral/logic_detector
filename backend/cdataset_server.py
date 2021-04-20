@@ -17,7 +17,7 @@ def evaluate():
 
     map = json.load(open("mapping.json"))
     # labels = list(map.keys())-['fib','sortArray','isPalindrome','myPow','canFinish','restoreIPAddresses',"canJump",'countPrimes',"coinChange","mySqrt","countPrimes","reverse","rotate","isUgly","numTrees","hasCycle","reverseList","numIslands","canFinish","strStr","isAnagram","inorderTraversal","isValidBST","levelOrder","maxDepth","maxPathSum","solveSudoku",'isAnagram']
-    labels = ["numIslands"]
+    labels = ["solveSudoku"]
     # print(map["canFinish"][0])
     total = 0
     correct = 0

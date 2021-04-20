@@ -1,4 +1,5 @@
-bool dfs(vector<vector<int>> & a, vector<int> & v, int i)
+class Solution {
+public:bool dfs(vector<vector<int>> & a, vector<int> & v, int i)
 {
 	if(v[i]==1)  return true;
 	if(v[i]==-1) return false;
@@ -23,3 +24,4 @@ bool canFinish(int n, vector<vector<int>>& p)
 
 	return out;
 }
+};

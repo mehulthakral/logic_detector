@@ -1,41 +1,28 @@
-class Solution
-{
-    int m,n, cc = 0;
-    int dx[4] = {-1, 0, 1, 0};
-    int dy[4] = {0, 1, 0, -1};
-
+class Solution {
 public:
-    bool isValid(vector> &grid, int x, int y)
-    {
-        m = grid.size(), n = grid[0].size();
-        if (x < 0 || x >= m || y < 0 || y >= n)
-            return false;
-
-        if (grid[x][y] == '0')
-            return false;
-
-        return true;
-    }
-
-    void dfs(vector> &grid, int x, int y)
-    {
-        grid[x][y]='0';
-
-        for (int i = 0; i < 4; i++)
-            if (isValid(grid, x + dx[i], y + dy[i]))
-                dfs(grid, x + dx[i], y + dy[i]);
-    }
-
-    int numIslands(vector> &grid)
-    {
-        m = grid.size(), n = grid[0].size();
-        for (int i = 0; i < m; i++)
-        {
-            for (int j = 0; j < n; j++)
-                if (grid[i][j] == '1')
-                    dfs(grid, i, j), cc++;
+    int numIslands(vector<vector<char>>& grid) {
+        int m = grid.size(), n = m ? grid[0].size() : 0, islands = 0, offsets[] = {0, 1, 0, -1, 0};
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '1') {
+                    islands++;
+                    grid[i][j] = '0';
+                    queue<pair<int, int>> todo;
+                    todo.push({i, j});
+                    while (!todo.empty()) {
+                        pair<int, int> p = todo.front();
+                        todo.pop();
+                        for (int k = 0; k < 4; k++) {
+                            int r = p.first + offsets[k], c = p.second + offsets[k + 1];
+                            if (r >= 0 && r < m && c >= 0 && c < n && grid[r][c] == '1') {
+                                grid[r][c] = '0';
+                                todo.push({r, c});
+                            }
+                        }
+                    }
+                }
+            }
         }
-
-        return cc;
+        return islands;
     }
 };

@@ -1,4 +1,5 @@
-bool dfs(vector<int> adj[],vector<bool> &visited,vector<bool> &current,
+class Solution {
+public:bool dfs(vector<int> adj[],vector<bool> &visited,vector<bool> &current,
          int currentNode){
     visited[currentNode]=true;
     current[currentNode]=true;
@@ -41,3 +42,4 @@ bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
     }
     return true;
 }
+};

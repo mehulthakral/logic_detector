@@ -1,32 +1,17 @@
 class Solution {
-public:
-    
-    bool isprime(int num){
-        
-        if(num==1) return false;
-        
-        for(int i=2;i*i<=num;i++){
-            
-            if(num%i==0) return false;
-        }
-        
-        return true;
-    }
-    int countPrimes(int n) {
-        
-        
-        int ans=0;
-        
-        for(int i=1;i<n;i++){
-           
-            if(isprime(i)){
-                
-                cout<<i<<" ";
-                ans++;
+public:int countPrimes(int n) {
+        if(n <= 2) return 0;
+        vector<bool> isPrime(n, true);
+        int total = (n - 2);
+        for(int i = 2; i*i < n; i++) {
+            if(!isPrime[i]) continue;
+            for(int j = i; i*j < n; j ++) {    // j = i*i; j < n; j += i
+                if(isPrime[j*i]) {
+                    isPrime[j*i] = false; total--;
+                }
             }
         }
-        
-        return ans;
-        
+        // return accumulate(isPrime.cbegin() + 2, isPrime.cend(), 0);
+        return total;
     }
 };
