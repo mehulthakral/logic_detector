@@ -1,4 +1,6 @@
 <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -15,19 +17,38 @@
 <link rel="stylesheet" href="theme/code-prettify-theme.css">
 <link href="theme/styles.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
 <style>
     table td {
         color: white;
-        font-size: xx-large;
-        border: 1px solid white;
+        font-size: small;
+        /* border: 1px solid white; */
     }
 
     table th {
         color: white;
-        font-size: large;
-        border: 1px solid white;
+        font-size: medium;
+        /* border: 1px solid white; */
     }
+    table.scroll {
+    /* width: 100%; */ /* Optional */
+    /* border-collapse: collapse; */
+    border-spacing: 0;
+    border: 0.5px solid white;
+    overflow-wrap: normal;
+}
+table.scroll tbody,
+table.scroll thead { display: block; }
 
+thead tr th { 
+    height: 10%;
+    line-height: 10%;
+    /* text-align: left; */
+}
+.tb-scroll {
+  overflow-y: scroll;
+  height: 100px;
+}
     .vertical-center {
         width: 50%;
         height: 50%;
@@ -40,13 +61,14 @@
 
     .CodeMirror {
         font-family: monospace;
-        height: 600px;
+        height: 10%;
         color: black;
         direction: ltr;
-        width: 800px;
-        font-size: x-large;
+        width: 50%;
+        font-size: small;
         border-radius: 8px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        
     }
 
     .modal {
@@ -57,20 +79,31 @@
         left: 0;
         height: 100%;
         width: 100%;
-        background: rgba(255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+        background: rgba(255, 255, 255, 0.671) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
     }
 
+    .pop-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, .8)
+    }
     /* When the body has the loading class, we turn
         the scrollbar off with overflow:hidden */
     body.loading .modal {
         overflow: hidden;
+        display: block;
     }
 
     /* Anytime the body has the loading class, our
         modal element will be visible */
-    body.loading .modal {
+    /* body.loading .modal {
         display: block;
-    }
+    } */
 
     .d1 {
         float: left;
@@ -83,126 +116,204 @@
     .modal-backdrop {
         z-index: -1;
     }
+
+    
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}   
+/* Style the form - display items horizontally */
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+/* Add some margins for each label */
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+/* Style the input fields */
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* Style the submit button */
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
 </style>
 <title>
     Code Semantics
 </title>
+</head>
 
 <body>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark justify-content-center">
+        <nav class="navbar navbar-dark fixed-top bg-dark justify-content-center">
             <!-- Navbar content -->
-            <a class="navbar-brand" href="#">
-                <h2>Capstone Phase 2: Code Semantic Detection and Optimisation</h2>
-            </a>
+            <div style="align-content: center; color: rgb(221, 216, 208);">
+               <h4>Code Semantic Detection & Optimization</h4>
+               
+               
+            </div>
+            <!-- <a class="navbar-brand" href="#">
+                <h5>Capstone Phase 2: Code Semantic Detection and Optimisation</h5>
+            </a> -->
         </nav>
     </div>
-    <br><br><br><br>
+    <br><br>
+    <form class="form-inline justify-content-center" style="padding-left: 1%; margin: 1%; ">
+
+                
+        <div class="form-group" style="margin-left: 1%;">
+                <label for="lang">Model: </label>
+                <select id="model"  onchange="viewButton(this)" class="form-control btn btn-md">
+                    <option selected value="model1">Dynamic Analysis</option>
+                    <option value="model2">Static Analysis</option>
+                </select>
+        </div> 
+        <div class="form-group" style="margin-left: 1%;">
+            <label for="lang"> Language: </label>
+            <select id="lang"  class="form-control btn btn-md">
+                <option selected value="python">Python</option>
+                <option value="clike">C++</option>
+            </select>
+        </div>
+        
+        <div class = "form-group" style="margin-left: 1%;">  
+            <label for="lang"> Action: </label>
+            <select class="form-control btn btn-md dropdown-toggle " name='user-action' id='usr-action'>
+                <option value="Predict" selected>Predict</option>
+                <option value="Learn">Learn</option>
+                <option value="Optimize">Optimize</option>
+                <option value="Compare">Compare</option>
+                <option value="Rank">Rank</option>
+            </select>
+        </div>
+
+        <div class="checkbox form-group" style="margin-left: 1%;">
+            <label class="form-check-label" for="myCheck">
+                 
+                <input class="form-control form-check-input btn btn-lg" type="checkbox" value="" id="myCheck" onclick="openModal(1)">
+                Add custom weights
+            </label>
+            
+            
+        </div>
+        
+        <div class="form-group" style="margin-left: 1%;">
+            <button type="button" id="sendlogin" class="form-control btn btn-primary btn-md"  onclick="userAction()">GO</button>
+        </div>
+
+    </form>
 
     <div class="row justify-content-center align-items-start"
         style="margin-left: 2px;margin-right: 2px;height:80%; width:100%;">
         <div class="col-6" style="height:100%; width:50%;">
             <span class="align-text-top">
-                <h4>Code Area </h4>
+                <h6>Input Code Area </h6>
             </span>
-            <div class="form-group" style="height:100%; width:100%;">
+            <div class="form-group" style="height:80%; width:100%;">
                 <textarea id="code"></textarea>
                 <br>
             </div>
 
         </div>
-        <div class="col-6">
+        <div class="col-6" style="height:100%; width:50%;">
 
-            <div>
-                <div>
+            
+                
                     <span class="align-text-top">
-                        <h4>Output Area </h4>
+                        <h6>Output Area </h6>
                     </span>
                     <div id="output"
-                        style="height:60vh;background-color: rgb(44, 41, 41);border-radius: 20px;color:white;overflow:auto">
+                        style="height:82%; background-color: rgb(44, 41, 41);border-radius: 8px;color:white;overflow:scroll">
                     </div>
-                </div>
-                <br>
-                <br>
-                <div class="row justify-content-center align-items-start">
-                    <br>
-                    <div class="col-6">
-                        <h4>Please type the code in code area provided on the left <br> <br>OR
-                            <br><br>
-                            <input type="file" name="inputfile" id="inputfile">
-                        </h4>
-                        <br>
-                        <input class="form-check-input" type="checkbox" value="" id="myCheck" onclick="openModal(1)">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Add custom weights
-                        </label>
-                    </div>
-                    <br>
-                    <div class="col-6">
-                        <div>
-                            <h4>Choose the model: </h4>
-                            <br>
-                            <select id="model" style="width: 200px;" onchange="viewButton(this)" class="form-control">
-
-                                <option selected value="model1">Dynamic Analysis</option>
-                                <option value="model2">Static Analysis</option>
-                            </select>
-                            <br>
-                        </div>
-
-                        <div>
-                            <h4>Choose the language: </h4>
-                            <select id="lang" style="width: 200px;" class="form-control">
-
-                                <option selected value="python">Python</option>
-                                <option value="clike">C++</option>
-
-                            </select>
-                            <br>
-                        </div>
-                        <select class="btn btn-lg dropdown-toggle " name='user-action' id='usr-action'>
-                            <option value="Predict" selected>Predict</option>
-                            <option value="Learn">Learn</option>
-                            <option value="Optimize">Optimize</option>
-                            <option value="Compare">Compare</option>
-                            <option value="Rank">Rank</option>
-                        </select>
-                        <button type="button" id="sendlogin" class="btn btn-primary btn-lg" style="margin-right:1.0em"
-                            onclick="userAction()">GO</button>
-                        <!-- <button type="button" id="sendlogin" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="predict()">Predict</button>
-                                <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="learn()">Learn</button>
-                                <button type="button" id="sendlogin2" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="optimize()">Optimize</button>
-                                <button type="button" id="sendlogin3" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="rank()">Rank</button>
-                                <button type="button" id="sendlogin4" class="btn btn-primary btn-lg" style="margin-right:1.0em" onclick="compare()">Compare</button> -->
-                        <br><br><br>
-                    </div>
+            </div>
+                
                     <!-- Modal -->
-                    <div class="modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    <div class="pop-modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                         aria-hidden="true">
                         <div class="modal-dialog model-dialog-centered">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <br><br><br>
+                                <!-- <div class="modal-header"> -->
+                                    <br><br>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                             aria-hidden="true">&times;</span></button>
                                     <!-- <h4 class="modal-title" id="myModalLabel" style="color:maroon">Weights for obtaining Composite Metric
                                             </h4> -->
-                                </div>
+                                <!-- </div> -->
 
                                 <div class="modal-body">
-                                    <b style="color: darkgrey"> ----- Enter a value between 0 to 100 ----- </b><br><br>
+                                    <b style="color: darkgrey">  Enter a value between 0 to 100 </b><br><br>
                                     <form onsubmit="optimze()">
                                         <label required>Weight for Time: *</label>
                                         <input type="range" id="time_wt" name="time_wt" min="0" max="100" value=1
                                             required onchange="updateTextInput(this.value,'time_val');">
                                         <span id="time_val" class="textInput">1</span>
                                         <br><br>
-                                        <label required>Weight for Mem: *</label>
+                                        <label required>Weight for Memory: *</label>
                                         <input type="range" id="mem_wt" name="mem_wt" min="0" max="100" value=0 required
                                             onchange="updateTextInput(this.value,'mem_val');">
                                         <span id="mem_val" class="textInput">0</span>
                                         <br><br>
-                                        <label required>Weight for Cyclo: *</label>
+                                        <label required>Weight for Cyclomatic: *</label>
                                         <input type="range" id="cyclo_wt" name="cyclo_wt" min="0" max="100" value=0
                                             required onchange="updateTextInput(this.value,'cyclo_val');">
                                         <span id="cyclo_val" class="textInput">0</span>
@@ -212,8 +323,8 @@
                                             onchange="updateTextInput(this.value,'red_val');">
                                         <span id="red_val" class="textInput">0</span>
                                         <br><br>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" onclick="getWeights()"
+                                        <div class="">
+                                            <button type="button" class="btn btn-primary btn-md" onclick="getWeights()"
                                                 data-dismiss="modal">Close</button>
                                             <!-- <input type="submit" class="btn btn-default" value="Save" name="modal_submit"> -->
 
@@ -226,23 +337,18 @@
                     </div>
 
                     <!-- Modal2 -->
-                    <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    <div class="pop-modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2"
                         aria-hidden="true">
                         <div class="modal-dialog model-dialog-centered">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <br><br><br>
+                                    <br><br>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                             aria-hidden="true">&times;</span></button>
-                                    <!-- <h4 class="modal-title" id="myModalLabel" style="color:maroon">Weights for obtaining Composite Metric
-                                            </h4> -->
-                                </div>
+                                   
 
-                                <div class="modal-body">
-                                    <div id="modal2_id"
-                                        style="height:60vh;background-color: rgb(44, 41, 41);border-radius: 20px;color:white;overflow:auto">
+                                    <div class="modal-body"  id="modal2_id" style="width: 100%; height:100%;background-color: rgb(44, 41, 41);border-radius: 8px;color:white;overflow:scroll">
 
-                                    </div>
+                                    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" onclick="getWeights()"
                                             data-dismiss="modal">Close</button>
@@ -272,9 +378,19 @@
     $body = $("body");
 
     $(document).on({
-        ajaxStart: function () { $body.addClass("loading"); },
+       
+        ajaxStart: function () { 
+            
+            $body.addClass("loading");    },
         ajaxStop: function () { $body.removeClass("loading"); }
     });
+
+    $(document).ready(function () {
+            if ($('.table tr').length >= 5) {
+                $('table').addClass('tb-scroll');
+            }
+        });
+
 
     myTextarea = document.getElementById("code");
     lang = document.getElementById("lang");
@@ -350,19 +466,22 @@
 
     function displayResult(obj, heading) {
         var output = document.getElementById("output");
-        var str = "<br><div class='vertical-center'><table class='table' ><thead><tr><th scope='col'>#</th><th scope='col'>" + heading[0] + "</th><th scope='col'>" + heading[1] + "</th></tr></thead><tbody>"
+        var str = "<br><div class='table-responsive '><table class='table tb-scroll' ><thead><tr><th >#</th><th >" + heading[0] + "</th><th >" + heading[1] + "</th></tr></thead><tbody>"
         for (var i = 0; i < obj.length; i++) {
             var num = i + 1;
             if (obj[i].length == 2)
-                str += "<tr><th scope='row'>" + num + "</th><td>" + obj[i][0] + "</td><td>" + obj[i][1] + "</td></tr>"
+                str += "<tr><th >" + num + "</th><td>" + obj[i][0] + "</td><td>" + obj[i][1] + "</td></tr>"
             else
-                str += "<tr><th scope='row'>" + obj[i][2] + "</th><td>" + obj[i][0] + "</td><td>" + obj[i][1] + "</td></tr>"
+                str += "<tr><th >" + obj[i][2] + "</th><td>" + obj[i][0] + "</td><td>" + obj[i][1] + "</td></tr>"
         }
         str += "</tbody></table></div>"
-        console.log(str)
+        // console.log(str)
+        // output.insertAdjacentHTML("beforeend",str);
         output.innerHTML = str;
     }
     function predict() {
+        $('#myModal1').modal("hide");
+        $('#myModal2').modal("hide");
         var str = editor.getValue();
         obj = { "f": str, "lang": getLanguageName(), "model": getModel() }
         $.ajax({
@@ -370,7 +489,7 @@
             data: JSON.stringify(obj),
             method: "POST",
             success: function (data) {
-                displayResult(data, ["Given Function Name", "Prediction"]);
+                displayResult(data, ["Given Name", "Prediction"]);
             },
             error: function (xhr, textStatus, errorThrown) {
                 var output = document.getElementById("output");
@@ -380,6 +499,8 @@
     }
 
     function learn() {
+        $('#myModal1').modal("hide");
+        $('#myModal2').modal("hide");
         var str = editor.getValue();
         obj = { "f": str, "lang": getLanguageName(), "model": getModel() }
         $.ajax({
@@ -445,6 +566,8 @@
     }
 
     function optimize() {
+        $('#myModal1').modal("hide");
+        $('#myModal2').modal("hide");
         var str = editor.getValue();
         // $('#myModal').modal("toggle");
         // var wt=getWeights();
@@ -472,6 +595,7 @@
     }
 
     function rank() {
+        
         localStorage.clear();
         var str = editor.getValue();
         obj = { "f": str, "lang": getLanguageName(), "model": getModel(), "weights": getWeights() }
@@ -487,12 +611,12 @@
                     if (data[i].length == 3) {
                         var index_ = "index" + data[i][2];
                         new_data[index_] = data[i][1];
-                        data[i][1] = '<button type="button" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="openModal(2,\'' + index_ + '\')">Show</button>';
+                        data[i][1] = '<button type="button" class="btn btn-success btn-sm"  onclick="openModal(2,\'' + index_ + '\')">Show</button>';
                     }
                     else {
                         var index_ = "index" + num;
                         new_data[index_] = data[i][1];
-                        data[i][1] = '<button type="button" class="btn btn-success btn-lg" style="margin-right:1.0em" onclick="openModal(2,\'' + index_ + '\')">Show</button>';
+                        data[i][1] = '<button type="button" class="btn btn-success btn-sm"  onclick="openModal(2,\'' + index_ + '\')">Show</button>';
                     }
                 }
                 localStorage.setItem("functions", JSON.stringify(new_data));
@@ -523,6 +647,8 @@
     }
 
     function userAction() {
+        $('#myModal1').modal("hide");
+        $('#myModal2').modal("hide");
         var uaction = document.getElementById('usr-action');
         var action = $("#usr-action").val();
         console.log($("#usr-action").val(), typeof (action))
