@@ -1,5 +1,6 @@
 import os
 import time
+import subprocess
 
 def save_to_file(func_str):
     #save the code with filename as code.cpp
@@ -56,7 +57,7 @@ def c_dynamic_metrics(func_str):
 
     mem_val = c_mem_val()
     time_val = c_time_val()
-    return time_taken,mem_taken
+    return time_val,mem_val
     
 
 # import subprocess
