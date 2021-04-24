@@ -1,64 +1,55 @@
-#include <iostream>
+
+#include <bits/stdc++.h>
+#include <chrono>
 using namespace std;
-
-void heapify(int arr[], int n, int i)
-{
-    int largest = i;   // Initialize largest as root
-    int l = 2 * i + 1; // left = 2*i + 1
-    int r = 2 * i + 2; // right = 2*i + 2
-
-    // If left child is larger than root
-    if (l < n && arr[l] > arr[largest])
-        largest = l;
-
-    // If right child is larger than largest so far
-    if (r < n && arr[r] > arr[largest])
-        largest = r;
-
-    // If largest is not root
-    if (largest != i)
-    {
-        swap(arr[i], arr[largest]);
-
-        // Recursively heapify the affected sub-tree
-        heapify(arr, n, largest);
+class Solution {
+public:
+    #include<vector>
+    vector<bool> vist; //int d=0;
+    bool dfs(int p,vector<bool> &vis,vector<int> adj[]){
+        //d++; cout<<d<<endl;
+        if(vis[p]) return false;
+        if(vist[p]) return true;
+        vis[p]=true; vist[p]=true;
+        for(int g:adj[p]){
+            if(!dfs(g,vis,adj)) return false;
+        }
+        vis[p]=false;
+        return true;
     }
-}
-
-// main function to do heap sort
-void heapSort(int arr[], int n)
-{
-    // Build heap (rearrange array)
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify(arr, n, i);
-
-    // One by one extract an element from heap
-    for (int i = n - 1; i >= 0; i--)
-    {
-        // Move current root to end
-        swap(arr[0], arr[i]);
-
-        // call max heapify on the reduced heap
-        heapify(arr, i, 0);
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<int> adj[numCourses]; vector<bool> vis(numCourses,false), _vis(numCourses,false);
+        vist=_vis;
+        for(auto g:prerequisites) adj[g[1]].push_back(g[0]);
+        for(int i=0;i<numCourses;i++){
+            if(vist[i]) continue;
+            if(!dfs(i,vis,adj)) return false;
+        }
+        return true;
     }
-}
+};
 
-/* A utility function to print array of size n */
-void printArray(int arr[], int n)
-{
-    for (int i = 0; i < n; ++i)
-        cout << arr[i] << " ";
-    cout << "\n";
-}
-
-// Driver program
 int main()
 {
-    int arr[] = {12, 11, 13, 5, 6, 7};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    auto start = chrono::high_resolution_clock::now();
+  
+    // unsync the I/O of C and C++.
+    ios_base::sync_with_stdio(false);
 
-    heapSort(arr, n);
-
-    cout << "Sorted array is \n";
-    printArray(arr, n);
+    Solution MyObj;
+int inp1=2;
+vector<vector<int>> inp2 {{1,1},{1,0}};
+MyObj.canFinish(inp1,inp2);    
+    auto end = chrono::high_resolution_clock::now();
+  
+    // Calculating total time taken by the program.
+    double time_taken = 
+      chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+  
+    time_taken *= 1e-9;
+  
+    cout << fixed 
+         << time_taken << setprecision(9);
+    return 0;
 }
+    

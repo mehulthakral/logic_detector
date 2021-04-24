@@ -146,16 +146,23 @@ elif Input_Type == "Model":
   rank.to_csv(r'Ranked.csv', index = False, header=True)
 
 elif Input_Type == "labelled":
+  lang="C++" #"python" or "C++"
   init_wgt = [0,0,50,100]
   comb = list(itertools.product(init_wgt, repeat=4))
   comb = list(set(comb))
 
   labels=[]
-  with open("dataset_py.json") as file:
-    obj = json.load(file)
-    for i in obj:
-      labels.append(i)
-  
+  if lang=="python":
+    with open("dataset_py.json") as file:
+      obj = json.load(file)
+      for i in obj:
+        labels.append(i)
+  else:
+    with open("dataset_cpp.json") as file:
+      obj = json.load(file)
+      for i in obj:
+        labels.append(i)
+
   labelled={}
   
   for label in labels:
@@ -165,7 +172,7 @@ elif Input_Type == "labelled":
       temp={}
       weights = list(weights)
       temp["Weights"]=weights
-      df_lab = op1.rank_test(label,'python',weights)
+      df_lab = op1.rank_test(label,lang,weights)
       #print(df_lab)
       #df = pd.read_csv('Model_Output.csv')
       rank = rank_label(df_lab, weights)

@@ -1,3 +1,12 @@
 {
-    
+	"SUDOKU": [
+		"1",
+		[
+			1.0,
+			1.0,
+			15,
+			42.6364,
+			"class Solution {\npublic:\n\t#include<vector>\n\tbool rakhSakteHai(vector<vector<char>>& mat, int i,int j,int n,char num){\n\n\t\tfor(int x = 0 ; x < n ; x++){\n\t\t\tif(mat[x][j]==num || mat[i][x]==num) return false; //check col and row\n\t\t}\n\n\t\tint rn = sqrt(n);\n\t\tint sx = (i/rn)*rn;\n\t\tint sy = (j/rn)*rn;\n\t\t//check grid \n\t\tfor(int x = sx ; x < sx+rn ; x++){\n\t\t\tfor(int y = sy ; y < sy+rn ; y++){\n\n\t\t\t\tif(mat[x][y]==num) return false;\n\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\n\tbool solve(vector<vector<char>>& board, int i,int j,int n){\n\n\t\tif(i == n) return true;\n\n\t\tif(j == n) return solve(board,i+1,0,n);\n\n\t\tif(board[i][j] != '.') return solve(board,i,j+1,n);\n\n\n\t\tfor(char num = '1' ; num <= '9' ; num++){\n\n\t\t\tif(rakhSakteHai(board,i,j,n,num)){\n\t\t\t\tboard[i][j] = num;\n\n\t\t\t\tif(solve(board,i,j+1,n))return true;\n\n\t\t\t\tboard[i][j] = '.';\n\t\t\t}\n\n\t\t}\n\t\treturn false;\n\t}\n\n\tvoid solveSudoku(vector<vector<char>>& board) {\n\n\t\tint n = board.size();\n\t\tsolve(board,0,0,n);\n\t\treturn;\n\n\t}\n};"
+		]
+	]
 }

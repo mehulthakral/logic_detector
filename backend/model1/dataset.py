@@ -78,12 +78,10 @@ class json_dataset:
     def add(choice,lang="python"):
         try:
             from . import optimizer
-            from . import cyclomatic
-            from . import pymetrics
+            from . import stat_metrics
         except:
             import optimizer
-            import cyclomatic
-            import pymetrics
+            import stat_metrics
             
         name, f, label, fn_src = choice
 
@@ -98,12 +96,15 @@ class json_dataset:
             print(func_time_vector,func_mem_vector)
             func_time_metric_val = optimizer.get_integral(func_time_vector)
             func_mem_metric_val = optimizer.get_integral(func_mem_vector)
-            cyclo = cyclomatic.cyclomatic_complexity
+            cyclo = stat_metrics.cyclomatic_complexity
             
-            func_source_str = inspect.getsource(f)
+            if lang=="python":
+                func_source_str = inspect.getsource(f)
+            else:
+                func_source_str = fn_src
             # print("Before: ",func_source_str)
 
-            if(label):
+            if(label and lang=="python"):
                 func_source_str = func_source_str.replace("\n    ","\n")
                 func_source_str = func_source_str.replace("    def","def",1)
                 func_source_str = func_source_str.replace("global f",fn_src)
@@ -114,7 +115,10 @@ class json_dataset:
 
             print(func_source_str)
             func_cyclo_metric_val = sum(cyclo(func_source_str, lang).values())
-            func_diff_metric_val = pymetrics.halstead(func_source_str,lang)["difficulty"]
+            try:
+                func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["difficulty"]
+            except:
+                func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["Difficulty"]
             obj[name].append([func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,func_diff_metric_val,func_source_str])
             json_dataset.write(obj,lang)
             
@@ -126,11 +130,15 @@ class json_dataset:
             approx_upper_bound=optimizer.get_approx_upper_bound(func_time_vector)
             func_time_metric_val = optimizer.get_integral(func_time_vector)
             func_mem_metric_val = optimizer.get_integral(func_mem_vector)
-            cyclo = cyclomatic.cyclomatic_complexity
-            func_source_str=inspect.getsource(f)
+            cyclo = stat_metrics.cyclomatic_complexity
+            
+            if lang=="python":
+                func_source_str = inspect.getsource(f)
+            else:
+                func_source_str = fn_src
             # print("Before: ",func_source_str)
 
-            if(label):
+            if((label and lang=="python")):
                 func_source_str = func_source_str.replace("\n    ","\n")
                 func_source_str = func_source_str.replace("    def","def",1)
                 func_source_str = func_source_str.replace("global f",fn_src)
@@ -141,7 +149,10 @@ class json_dataset:
 
             print(func_source_str)
             func_cyclo_metric_val = sum(cyclo(func_source_str, lang).values())
-            func_diff_metric_val = pymetrics.halstead(func_source_str,lang)["difficulty"]
+            try:
+                func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["difficulty"]
+            except:
+                func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["Difficulty"]
             obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,func_diff_metric_val,func_source_str]]
             json_dataset.write(obj,lang)
               

@@ -1,15 +1,13 @@
 try:
     from . import optimizer
     from . import predict
-    from . import cyclomatic
     from . import dataset
-    from . import pymetrics
+    from . import stat_metrics
 except:
     import optimizer
     import predict
     import dataset
-    import cyclomatic
-    import pymetrics
+    import stat_metrics
 
 import inspect
 import pandas as pd
@@ -43,9 +41,9 @@ def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
     func_time_vector, func_mem_vector = pobj.generate_vector()
     # print(func_mem_vector)
     integral = optimizer.get_integral
-    cyclo = cyclomatic.cyclomatic_complexity
+    cyclo = stat_metrics.cyclomatic_complexity
     metric_vector = [integral(func_time_vector), integral(
-        func_mem_vector), cyclo(func_str, lang)[f.__name__], pymetrics.halstead(func_str,lang)["difficulty"]]
+        func_mem_vector), cyclo(func_str, lang)[f.__name__], stat_metrics.halstead(func_str,lang)["difficulty"]]
     print(metric_vector)
     dataset_list.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],func_str])
     scaled_dataset_list = optimizer.scale(dataset_list)
@@ -72,7 +70,7 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
         top_no = len(obj)
 
     integral = optimizer.get_integral
-    cyclo = cyclomatic.cyclomatic_complexity
+    cyclo = stat_metrics.cyclomatic_complexity
     s = set()
     for f, func_str in f_arr:
         func_label = predict.predict(f, lang)
@@ -83,7 +81,7 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
             pobj = optimizer.optimizer((f,func_str), lang)
             func_time_vector, func_mem_vector = pobj.generate_vector()
             metric_vector = [integral(func_time_vector), integral(
-                func_mem_vector), cyclo(func_str, lang)[f.__name__], pymetrics.halstead(func_str,lang)["difficulty"]]
+                func_mem_vector), cyclo(func_str, lang)[f.__name__], stat_metrics.halstead(func_str,lang)["difficulty"]]
             dataset_list = obj[func_label][1:]
             dataset_list.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],func_str])
             scaled_dataset_list = optimizer.scale(dataset_list)
@@ -133,7 +131,7 @@ def rank_test(func_label, lang="python", weights=[1, 0, 0, 0]):
     top_no = len(obj)
 
     integral = optimizer.get_integral
-    cyclo = cyclomatic.cyclomatic_complexity
+    cyclo = stat_metrics.cyclomatic_complexity
     s = set()
     if func_label not in obj:
         print("Label not present in dataset")
@@ -165,12 +163,12 @@ def compare(f_arr, lang="python", weights=[1, 0, 0, 0]):
     ans = []
     metric_values = []
     integral = optimizer.get_integral
-    cyclo = cyclomatic.cyclomatic_complexity
+    cyclo = stat_metrics.cyclomatic_complexity
     for f, func_str in f_arr:
         pobj = optimizer.optimizer((f,func_str), lang)
         func_time_vector, func_mem_vector = pobj.generate_vector()
         metric_vector = [integral(func_time_vector), integral(
-            func_mem_vector), cyclo(func_str, lang)[f.__name__],pymetrics.halstead(func_str,lang)["difficulty"]]
+            func_mem_vector), cyclo(func_str, lang)[f.__name__],stat_metrics.halstead(func_str,lang)["difficulty"]]
         metric_values.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],f.__name__])
 
     scaled_metric_values = optimizer.scale(metric_values)

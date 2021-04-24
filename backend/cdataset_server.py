@@ -4,6 +4,8 @@ import os
 import subprocess
 import random
 import importlib.machinery
+import model1.dataset as g1
+import model1.cpp_adaptor as cp
 
 
 def evaluate():
@@ -16,9 +18,11 @@ def evaluate():
     
 
     map = json.load(open("mapping.json"))
-    # labels = list(map.keys())-['fib','sortArray','isPalindrome','myPow','canFinish','restoreIPAddresses',"canJump",'countPrimes',"coinChange","mySqrt","countPrimes","reverse","rotate","isUgly","numTrees","hasCycle","reverseList","numIslands","canFinish","strStr","isAnagram","inorderTraversal","isValidBST","levelOrder","maxDepth","maxPathSum","solveSudoku",'isAnagram']
-    labels = ["solveSudoku"]
-    # print(map["canFinish"][0])
+    #labels = list(map.keys())-['fib','sortArray','isPalindrome','myPow','canFinish','restoreIPAddresses',"canJump",'countPrimes',"coinChange","mySqrt","countPrimes","reverse","rotate","isUgly","numTrees","hasCycle","reverseList","numIslands","canFinish","strStr","isAnagram","inorderTraversal","isValidBST","levelOrder","maxDepth","maxPathSum","solveSudoku",'isAnagram']
+    #labels = ["solveSudoku"]
+    del map["restoreIPAddresses"]
+    labels = list(map.keys())
+    #print(labels,len(labels))
     total = 0
     correct = 0
     err={}
@@ -56,4 +60,46 @@ def evaluate():
     print(err)
     return  (float(correct)/total)*100
 
-print(evaluate())
+def add_prgs():
+
+    map = json.load(open("mapping.json"))
+    labels = ["canFinish"]
+    # done = ["sortArray","rotate","fib","isPalindrome","myPow","isUgly",countPrimes","mySqrt","reverse","numTrees","isAnagram","strStr","canJump","coinChange","numIslands","canFinish","hasCycle","reverseList","inorderTraversal","isValidBST","maxDepth","maxPathSum","levelOrder"]
+    for label in labels:
+        prgs = os.listdir('CDataset'+'/'+label)
+        prgs.sort()
+        if '__pycache__' in prgs:
+            prgs.remove('__pycache__')
+
+        for prg in prgs:
+            fobj=open("random.json")
+            data=fobj.read()
+            obj=json.loads(data)
+            fobj.close()
+            if(prg in obj):
+                continue
+
+            print("Adding " + prg)
+            #loader = importlib.machinery.SourceFileLoader('CDataset'+'/'+label, 'CDataset'+'/'+label+'/'+prg)
+            #handle = loader.load_module('CDataset'+'/'+label)
+            #s = handle.Solution()
+            loc = 'CDataset'+'/'+label+'/'+prg
+            fol = 'CDataset'+'/'+label
+            a = cp.Adaptor()
+            #global f
+            #f = getattr(s, label)
+            s = open(loc)
+            fn_src = s.read()
+            # f = 0
+            #print(fn_src)
+            g1.json_dataset.add((map[label][0],getattr(a,label),label,fn_src),"C++")
+            fobj=open("random.json","w")
+            obj.append(prg)
+            data=json.dumps(obj,indent="\t")
+            fobj.write(data)
+            fobj.close() 
+
+    print("Programs added successfully!")
+
+#print(evaluate())
+add_prgs()

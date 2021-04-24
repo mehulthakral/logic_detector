@@ -84,7 +84,7 @@ class optimizer:
         self.func=func_tuple[0]
         self.func_str=func_tuple[1]
         self.lang=lang
-        self.time_limit=1
+        self.time_limit=2
         self.min_data=10
         self.high=10**6
         self.max_degree=9
