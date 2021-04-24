@@ -6,777 +6,163 @@ ms_print arguments: ./model1/cpp_logs/massif.out
 
 
     KB
-260.8^                                                          #             
-     |                                                          #             
-     |                                                         :#:      @:@:  
-     |                                                        :@#:@@@::@@:@:@:
-     |                                                        :@#:@@@::@@:@:@:
-     |                                                       ::@#:@@@::@@:@:@:
-     |                                                       ::@#:@@@::@@:@:@@
-     |                                                       ::@#:@@@::@@:@:@@
-     |                                                       ::@#:@@@::@@:@:@@
-     |                                                       ::@#:@@@::@@:@:@@
-     |                                                       ::@#:@@@::@@:@:@@
-     |                                                       ::@#:@@@::@@:@:@@
-     |                                                       ::@#:@@@::@@:@:@@
-     |                                                       ::@#:@@@::@@:@:@@
-     |                                                      :::@#:@@@::@@:@:@@
-     |                                                    :::::@#:@@@::@@:@:@@
-     |                                                    : :::@#:@@@::@@:@:@@
-     |                                                    : :::@#:@@@::@@:@:@@
-     |                                                    : :::@#:@@@::@@:@:@@
-     |                                                    : :::@#:@@@::@@:@:@@
+191.8^                                                                       #
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                      :#
+     |                                                                  :::::#
+     |                                                                  :   :#
+     |                                                                  :   :#
+     |                                                                  :   :#
+     |                                                                  :   :#
+     |                                                                  :   :#
+     |                                                                  :   :#
    0 +----------------------------------------------------------------------->Mi
-     0                                                                   2.900
+     0                                                                   2.255
 
-Number of snapshots: 98
- Detailed snapshots: [18, 23, 27 (peak), 35, 37, 42, 47, 56, 66, 76, 86, 96]
+Number of snapshots: 29
+ Detailed snapshots: [9, 19, 26 (peak)]
 
 --------------------------------------------------------------------------------
   n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
 --------------------------------------------------------------------------------
   0              0                0                0             0            0
-  1      2,202,002           72,712           72,704             8            0
-  2      2,322,109           80,912           80,896            16            0
-  3      2,330,318          130,088          130,048            40            0
-  4      2,335,055          196,016          195,952            64            0
-  5      2,341,575          199,024          198,896           128            0
-  6      2,348,095          202,032          201,840           192            0
-  7      2,354,615          205,040          204,784           256            0
-  8      2,361,135          208,048          207,728           320            0
-  9      2,367,655          211,056          210,672           384            0
- 10      2,374,175          214,064          213,616           448            0
- 11      2,380,695          217,072          216,560           512            0
- 12      2,387,215          220,080          219,504           576            0
- 13      2,393,735          223,088          222,448           640            0
- 14      2,400,255          226,096          225,392           704            0
- 15      2,406,773          229,104          228,336           768            0
- 16      2,411,911          233,576          232,752           824            0
- 17      2,418,015          236,584          235,696           888            0
- 18      2,424,119          239,592          238,640           952            0
-99.60% (238,640B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->41.03% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->41.03% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.68% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.68% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+  1      2,199,164           72,712           72,704             8            0
+  2      2,319,232           80,912           80,896            16            0
+  3      2,319,789           89,112           89,088            24            0
+  4      2,320,346           97,312           97,280            32            0
+  5      2,327,441          130,088          130,048            40            0
+  6      2,328,004          162,864          162,816            48            0
+  7      2,328,567          195,640          195,584            56            0
+  8      2,332,142          195,712          195,648            64            0
+  9      2,332,716          195,752          195,672            80            0
+99.96% (195,672B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->50.22% (98,304B) 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->50.22% (98,304B) 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   ->16.74% (32,768B) 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->16.74% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->13.68% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.68% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->16.74% (32,768B) 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->16.74% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->13.68% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.68% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->16.74% (32,768B) 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|     ->16.74% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |       
-->30.34% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.34% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.34% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.34% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.34% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+->37.14% (72,704B) 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->37.14% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
+|   ->37.14% (72,704B) 0x4011C90: call_init (dl-init.c:30)
+|     ->37.14% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
+|       ->37.14% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
 |         
-->17.05% (40,848B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->17.05% (40,848B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->17.05% (40,848B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->14.13% (33,856B) 0x10F524: void std::vector<int, std::allocator<int> >::_M_range_initialize<int const*>(int const*, int const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     | ->14.13% (33,856B) 0x10E4F3: std::vector<int, std::allocator<int> >::vector(std::initializer_list<int>, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |   ->14.13% (33,856B) in 92 places, all below massif's threshold (1.00%)
-|     |     
-|     ->02.92% (6,992B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       ->02.92% (6,992B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|         ->02.92% (6,992B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|           ->02.92% (6,992B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|             ->02.92% (6,992B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|               ->02.92% (6,992B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                 ->02.92% (6,992B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                   ->02.92% (6,992B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                     ->02.92% (6,992B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                       ->02.92% (6,992B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                         
-->10.26% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.26% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.42% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.42% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+->12.55% (24,576B) 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->12.55% (24,576B) 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   ->04.18% (8,192B) 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->04.18% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->03.42% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.42% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->04.18% (8,192B) 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->04.18% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->03.42% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.42% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->04.18% (8,192B) 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|     ->04.18% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |       
-->00.92% (2,208B) in 1+ places, all below ms_print's threshold (01.00%)
+->00.04% (88B) in 1+ places, all below ms_print's threshold (01.00%)
 
 --------------------------------------------------------------------------------
   n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
 --------------------------------------------------------------------------------
- 19      2,430,223          242,600          241,584         1,016            0
- 20      2,436,327          245,608          244,528         1,080            0
- 21      2,442,431          248,616          247,472         1,144            0
- 22      2,448,535          251,624          250,416         1,208            0
- 23      2,454,639          254,632          253,360         1,272            0
-99.50% (253,360B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->38.61% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->38.61% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->12.87% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->12.87% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+ 10      2,332,929          195,792          195,696            96            0
+ 11      2,333,015          195,832          195,720           112            0
+ 12      2,333,265          195,872          195,744           128            0
+ 13      2,333,478          195,912          195,768           144            0
+ 14      2,333,564          195,952          195,792           160            0
+ 15      2,333,650          195,992          195,816           176            0
+ 16      2,333,937          196,032          195,840           192            0
+ 17      2,334,150          196,072          195,864           208            0
+ 18      2,334,236          196,112          195,888           224            0
+ 19      2,334,486          196,152          195,912           240            0
+99.88% (195,912B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->50.12% (98,304B) 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->50.12% (98,304B) 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   ->16.71% (32,768B) 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->16.71% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->12.87% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->12.87% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->16.71% (32,768B) 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->16.71% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->12.87% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->12.87% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->16.71% (32,768B) 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|     ->16.71% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |       
-->28.55% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->28.55% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->28.55% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->28.55% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->28.55% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+->37.07% (72,704B) 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->37.07% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
+|   ->37.07% (72,704B) 0x4011C90: call_init (dl-init.c:30)
+|     ->37.07% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
+|       ->37.07% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
 |         
-->21.82% (55,568B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->21.82% (55,568B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->21.82% (55,568B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->13.30% (33,856B) 0x10F524: void std::vector<int, std::allocator<int> >::_M_range_initialize<int const*>(int const*, int const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     | ->13.30% (33,856B) 0x10E4F3: std::vector<int, std::allocator<int> >::vector(std::initializer_list<int>, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |   ->13.30% (33,856B) in 92 places, all below massif's threshold (1.00%)
-|     |     
-|     ->08.53% (21,712B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       ->08.53% (21,712B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|         ->08.53% (21,712B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|           ->08.53% (21,712B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|             ->08.53% (21,712B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|               ->08.53% (21,712B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                 ->08.53% (21,712B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                   ->08.53% (21,712B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                     ->08.53% (21,712B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                       ->08.53% (21,712B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                         
-->09.65% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->09.65% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.22% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.22% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+->12.53% (24,576B) 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->12.53% (24,576B) 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   ->04.18% (8,192B) 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->04.18% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->03.22% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.22% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->04.18% (8,192B) 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->04.18% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->03.22% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.22% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->04.18% (8,192B) 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|     ->04.18% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |       
-->00.87% (2,208B) in 1+ places, all below ms_print's threshold (01.00%)
+->00.17% (328B) in 1+ places, all below ms_print's threshold (01.00%)
 
 --------------------------------------------------------------------------------
   n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
 --------------------------------------------------------------------------------
- 24      2,460,743          257,640          256,304         1,336            0
- 25      2,466,847          260,648          259,248         1,400            0
- 26      2,472,951          263,656          262,192         1,464            0
- 27      2,480,467          267,040          265,504         1,536            0
-99.42% (265,504B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->36.81% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->36.81% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->12.27% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->12.27% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+ 20      2,334,736          196,192          195,936           256            0
+ 21      2,334,949          196,232          195,960           272            0
+ 22      2,335,035          196,272          195,984           288            0
+ 23      2,335,121          196,312          196,008           304            0
+ 24      2,335,207          196,352          196,032           320            0
+ 25      2,335,293          196,392          196,056           336            0
+ 26      2,351,972          196,392          196,056           336            0
+99.83% (196,056B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->50.05% (98,304B) 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->50.05% (98,304B) 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   ->16.68% (32,768B) 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->16.68% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->12.27% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->12.27% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->16.68% (32,768B) 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->16.68% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->12.27% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->12.27% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->16.68% (32,768B) 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|     ->16.68% (32,768B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |       
-->27.23% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->27.23% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->27.23% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->27.23% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->27.23% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+->37.02% (72,704B) 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->37.02% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
+|   ->37.02% (72,704B) 0x4011C90: call_init (dl-init.c:30)
+|     ->37.02% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
+|       ->37.02% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
 |         
-->25.36% (67,712B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->25.36% (67,712B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->25.36% (67,712B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->12.68% (33,856B) 0x10F524: void std::vector<int, std::allocator<int> >::_M_range_initialize<int const*>(int const*, int const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     | ->12.68% (33,856B) 0x10E4F3: std::vector<int, std::allocator<int> >::vector(std::initializer_list<int>, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |   ->12.68% (33,856B) in 92 places, all below massif's threshold (1.00%)
-|     |     
-|     ->12.68% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       ->12.68% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|         ->12.68% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|           ->12.68% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|             ->12.68% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|               ->12.68% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                 ->12.68% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                   ->12.68% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                     ->12.68% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                       ->12.68% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|                         
-->09.20% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->09.20% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.07% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.07% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+->12.51% (24,576B) 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->12.51% (24,576B) 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   ->04.17% (8,192B) 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->04.17% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->03.07% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.07% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->04.17% (8,192B) 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->04.17% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->03.07% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.07% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
+|   ->04.17% (8,192B) 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|     ->04.17% (8,192B) 0x10946F: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |       
-->00.83% (2,208B) in 1+ places, all below ms_print's threshold (01.00%)
+->00.24% (472B) in 1+ places, all below ms_print's threshold (01.00%)
 
 --------------------------------------------------------------------------------
   n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
 --------------------------------------------------------------------------------
- 28      2,488,951          250,872          249,680         1,192            0
- 29      2,493,799          241,848          240,848         1,000            0
- 30      2,501,207          234,664          233,856           808            0
- 31      2,512,006          234,688          233,860           828            0
- 32      2,520,793          234,768          233,936           832            0
- 33      2,530,051          235,008          234,176           832            0
- 34      2,536,827          235,200          234,368           832            0
- 35      2,545,219          235,216          234,384           832            0
-99.65% (234,384B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->41.79% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->41.79% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.93% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.93% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.93% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.93% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.93% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.93% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->30.91% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.91% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.91% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.91% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.91% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->14.61% (34,368B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->14.61% (34,368B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->14.61% (34,368B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->14.39% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     | ->14.39% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |   ->14.39% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |     ->14.39% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |       ->14.39% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |         ->14.39% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |           ->14.39% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |             ->14.39% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |               ->14.39% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |                 ->14.39% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |                   
-|     ->00.22% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|     
-->10.45% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.45% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.48% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.48% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.48% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.48% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.48% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.48% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.88% (4,416B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->01.88% (4,416B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->01.88% (4,416B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->01.88% (4,416B) in 2 places, all below massif's threshold (1.00%)
-|       
-->00.01% (16B) in 1+ places, all below ms_print's threshold (01.00%)
-
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 36      2,554,117          235,496          234,584           912            0
- 37      2,559,145          235,592          234,648           944            0
-99.60% (234,648B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->41.73% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->41.73% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.91% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.91% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.91% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.91% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.91% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.91% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->30.86% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.86% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.86% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.86% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.86% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->14.59% (34,368B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->14.59% (34,368B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->14.59% (34,368B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->14.37% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     | ->14.37% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |   ->14.37% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |     ->14.37% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |       ->14.37% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |         ->14.37% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |           ->14.37% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |             ->14.37% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |               ->14.37% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |                 ->14.37% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |                   
-|     ->00.22% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|     
-->10.43% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.43% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.48% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.48% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.48% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.48% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.48% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.48% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.87% (4,416B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->01.87% (4,416B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->01.87% (4,416B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->01.87% (4,416B) in 2 places, all below massif's threshold (1.00%)
-|       
-->00.12% (280B) in 1+ places, all below ms_print's threshold (01.00%)
-
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 38      2,567,496          235,792          234,824           968            0
- 39      2,577,265          235,984          234,952         1,032            0
- 40      2,582,293          236,080          235,016         1,064            0
- 41      2,587,741          236,176          235,080         1,096            0
- 42      2,596,131          236,416          235,320         1,096            0
-99.54% (235,320B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->41.58% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->41.58% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.86% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.86% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.86% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.86% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.86% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.86% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->30.75% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.75% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.75% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.75% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.75% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->14.54% (34,368B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->14.54% (34,368B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->14.54% (34,368B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->14.32% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     | ->14.32% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |   ->14.32% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |     ->14.32% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |       ->14.32% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |         ->14.32% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |           ->14.32% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |             ->14.32% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |               ->14.32% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |                 ->14.32% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |                   
-|     ->00.22% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|     
-->10.40% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.40% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.47% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.47% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.47% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.47% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.47% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.47% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.87% (4,416B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->01.87% (4,416B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->01.87% (4,416B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->01.87% (4,416B) in 2 places, all below massif's threshold (1.00%)
-|       
-->00.40% (952B) in 1+ places, all below ms_print's threshold (01.00%)
-
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 43      2,605,900          236,608          235,448         1,160            0
- 44      2,615,956          236,800          235,576         1,224            0
- 45      2,626,012          236,992          235,704         1,288            0
- 46      2,633,974          237,136          235,800         1,336            0
- 47      2,649,856          237,680          236,344         1,336            0
-99.44% (236,344B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->41.36% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->41.36% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.79% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.79% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.79% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.79% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.79% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.79% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->30.59% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.59% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.59% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.59% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.59% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->14.46% (34,368B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->14.46% (34,368B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->14.46% (34,368B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->14.24% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     | ->14.24% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |   ->14.24% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |     ->14.24% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |       ->14.24% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |         ->14.24% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |           ->14.24% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |             ->14.24% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |               ->14.24% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |                 ->14.24% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |                   
-|     ->00.22% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|     
-->10.34% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.34% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.45% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.45% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.45% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.45% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.45% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.45% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.86% (4,416B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->01.86% (4,416B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->01.86% (4,416B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->01.86% (4,416B) in 2 places, all below massif's threshold (1.00%)
-|       
-->00.83% (1,976B) in 1+ places, all below ms_print's threshold (01.00%)
-
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 48      2,659,625          237,872          236,472         1,400            0
- 49      2,667,167          238,016          236,568         1,448            0
- 50      2,672,195          238,112          236,632         1,480            0
- 51      2,677,223          238,208          236,696         1,512            0
- 52      2,682,251          238,304          236,760         1,544            0
- 53      2,687,279          238,400          236,824         1,576            0
- 54      2,737,206          238,520          236,920         1,600            0
- 55      2,743,006          239,256          237,600         1,656            0
- 56      2,748,910          239,352          237,664         1,688            0
-99.29% (237,664B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->41.07% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->41.07% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.69% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.69% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.69% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.69% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.69% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.69% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->30.38% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.38% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.38% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.38% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.38% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->14.57% (34,880B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->14.57% (34,880B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->14.36% (34,368B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | ->14.14% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | | ->14.14% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |   ->14.14% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |     ->14.14% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |       ->14.14% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |         ->14.14% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |           ->14.14% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |             ->14.14% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |               ->14.14% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |                 ->14.14% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |                   
-|   | ->00.21% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|   | 
-|   ->00.21% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|   
-->10.27% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.27% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.42% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.42% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.42% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.42% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.42% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.42% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.84% (4,416B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->01.84% (4,416B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->01.84% (4,416B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->01.84% (4,416B) in 2 places, all below massif's threshold (1.00%)
-|       
-->01.16% (2,784B) in 4 places, all below massif's threshold (1.00%)
-  
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 57      2,754,814          239,448          237,728         1,720            0
- 58      2,762,339          239,624          237,888         1,736            0
- 59      2,767,956          239,720          237,952         1,768            0
- 60      2,773,860          239,816          238,016         1,800            0
- 61      2,779,764          239,912          238,080         1,832            0
- 62      2,786,088          240,008          238,144         1,864            0
- 63      2,794,471          240,248          238,384         1,864            0
- 64      2,800,508          240,344          238,448         1,896            0
- 65      2,805,509          240,416          238,496         1,920            0
- 66      2,810,510          240,488          238,544         1,944            0
-99.19% (238,544B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->40.88% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->40.88% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.63% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.63% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.63% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.63% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.63% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.63% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->30.23% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.23% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.23% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.23% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.23% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->14.50% (34,880B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->14.50% (34,880B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->14.29% (34,368B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | ->14.08% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | | ->14.08% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |   ->14.08% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |     ->14.08% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |       ->14.08% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |         ->14.08% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |           ->14.08% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |             ->14.08% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |               ->14.08% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |                 ->14.08% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |                   
-|   | ->00.21% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|   | 
-|   ->00.21% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|   
-->10.22% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.22% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.41% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.41% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.41% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.41% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.41% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.41% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.84% (4,416B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->01.84% (4,416B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->01.84% (4,416B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->01.84% (4,416B) in 2 places, all below massif's threshold (1.00%)
-|       
-->01.52% (3,664B) in 4 places, all below massif's threshold (1.00%)
-  
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 67      2,815,511          240,560          238,592         1,968            0
- 68      2,820,512          240,632          238,640         1,992            0
- 69      2,825,513          240,704          238,688         2,016            0
- 70      2,830,518          240,776          238,736         2,040            0
- 71      2,835,519          240,848          238,784         2,064            0
- 72      2,840,520          240,920          238,832         2,088            0
- 73      2,859,736          241,512          239,408         2,104            0
- 74      2,865,353          241,608          239,472         2,136            0
- 75      2,871,257          241,704          239,536         2,168            0
- 76      2,877,161          241,800          239,600         2,200            0
-99.09% (239,600B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->40.66% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->40.66% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.55% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.55% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.55% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.55% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.55% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.55% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->30.07% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.07% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.07% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.07% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.07% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->14.43% (34,880B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->14.43% (34,880B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->14.21% (34,368B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | ->14.00% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | | ->14.00% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |   ->14.00% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |     ->14.00% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |       ->14.00% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |         ->14.00% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |           ->14.00% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |             ->14.00% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |               ->14.00% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |                 ->14.00% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |                   
-|   | ->00.21% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|   | 
-|   ->00.21% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|   
-->10.16% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.16% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.39% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.39% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.39% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.39% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.39% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.39% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.95% (4,720B) in 4 places, all below massif's threshold (1.00%)
-| 
-->01.83% (4,416B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-  ->01.83% (4,416B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-    ->01.83% (4,416B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-      ->01.83% (4,416B) in 2 places, all below massif's threshold (1.00%)
-        
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 77      2,883,065          241,896          239,664         2,232            0
- 78      2,888,969          241,992          239,728         2,264            0
- 79      2,894,873          242,088          239,792         2,296            0
- 80      2,900,777          242,184          239,856         2,328            0
- 81      2,934,106          241,712          239,376         2,336            0
- 82      2,938,897          241,184          239,008         2,176            0
- 83      2,943,677          240,704          238,688         2,016            0
- 84      2,948,457          240,224          238,368         1,856            0
- 85      2,953,237          239,744          238,048         1,696            0
- 86      2,958,206          238,256          236,728         1,528            0
-99.36% (236,728B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->41.26% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->41.26% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->13.75% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.75% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.75% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->13.75% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.75% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->13.75% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->30.52% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->30.52% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->30.52% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->30.52% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->30.52% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->14.42% (34,368B) 0x111F05: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->14.42% (34,368B) 0x110B4A: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->14.42% (34,368B) 0x10FA11: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | ->14.21% (33,856B) 0x1145B0: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | | ->14.21% (33,856B) 0x1141F2: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |   ->14.21% (33,856B) 0x113DD6: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |     ->14.21% (33,856B) 0x11378C: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |       ->14.21% (33,856B) 0x112F79: std::vector<int, std::allocator<int> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |         ->14.21% (33,856B) 0x111E1A: std::vector<int, std::allocator<int> >* std::uninitialized_copy<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |           ->14.21% (33,856B) 0x110A15: std::vector<int, std::allocator<int> >* std::__uninitialized_copy_a<std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> >*, std::allocator<std::vector<int, std::allocator<int> > >&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |             ->14.21% (33,856B) 0x10F6EF: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |               ->14.21% (33,856B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |                 ->14.21% (33,856B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   | |                   
-|   | ->00.21% (512B) in 1+ places, all below ms_print's threshold (01.00%)
-|   | 
-|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
-|   
-->10.31% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->10.31% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->03.44% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.44% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.44% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->03.44% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.44% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->03.44% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.85% (4,416B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->01.85% (4,416B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->01.85% (4,416B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->01.85% (4,416B) in 2 places, all below massif's threshold (1.00%)
-|       
-->00.99% (2,360B) in 1+ places, all below ms_print's threshold (01.00%)
-
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 87      2,962,986          237,776          236,408         1,368            0
- 88      2,967,766          237,296          236,088         1,208            0
- 89      2,972,546          236,800          235,768         1,032            0
- 90      2,977,326          236,320          235,448           872            0
- 91      2,993,683          232,448          231,648           800            0
- 92      3,007,915          232,072          231,280           792            0
- 93      3,012,821          223,800          223,184           616            0
- 94      3,017,727          215,528          215,088           440            0
- 95      3,022,633          207,256          206,992           264            0
- 96      3,027,539          198,984          198,896            88            0
-99.96% (198,896B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->49.40% (98,304B) 0x495CD76: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->49.40% (98,304B) 0x4958F39: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->16.47% (32,768B) 0x490ABFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->16.47% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->16.47% (32,768B) 0x490AC17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->16.47% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->16.47% (32,768B) 0x490AC30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->16.47% (32,768B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->36.54% (72,704B) 0x48F5C19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->36.54% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
-|   ->36.54% (72,704B) 0x4011C90: call_init (dl-init.c:30)
-|     ->36.54% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
-|       ->36.54% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
-|         
-->12.35% (24,576B) 0x495AF63: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-| ->12.35% (24,576B) 0x4958D49: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   ->04.12% (8,192B) 0x490AB47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->04.12% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->04.12% (8,192B) 0x490AB68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|   | ->04.12% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->04.12% (8,192B) 0x490AB88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-|     ->04.12% (8,192B) 0x1093DE: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|       
-->01.11% (2,208B) 0x112F2E: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-| ->01.11% (2,208B) 0x111DE5: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|   ->01.11% (2,208B) 0x1109D9: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     ->01.11% (2,208B) 0x10F69E: void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_range_initialize<std::vector<int, std::allocator<int> > const*>(std::vector<int, std::allocator<int> > const*, std::vector<int, std::allocator<int> > const*, std::forward_iterator_tag) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     | ->01.11% (2,208B) 0x10E5EF: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(std::initializer_list<std::vector<int, std::allocator<int> > >, std::allocator<std::vector<int, std::allocator<int> > > const&) (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |   ->01.11% (2,208B) 0x10C0F3: main (in /mnt/d/Personal/Bhavna_b40-80-win10/sem7/CAPSTONE-PRO/PHASE 2/Latest/logic_detector/backend/model1/cpp_logs/code)
-|     |     
-|     ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
-|     
-->00.55% (1,104B) in 1+ places, all below ms_print's threshold (01.00%)
-
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 97      3,040,577          122,928          122,880            48            0
+ 27      2,351,972          196,320          195,992           328            0
+ 28      2,364,184          123,608          123,288           320            0

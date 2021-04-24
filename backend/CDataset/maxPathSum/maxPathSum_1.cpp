@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    #include<algorithm>>
+    #include<algorithm>
     class TreeNode{
         public:
         TreeNode* left;

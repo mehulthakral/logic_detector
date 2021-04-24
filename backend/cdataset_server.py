@@ -63,7 +63,7 @@ def evaluate():
 def add_prgs():
 
     map = json.load(open("mapping.json"))
-    labels = ["canFinish"]
+    labels = ["maxPathSum"]
     # done = ["sortArray","rotate","fib","isPalindrome","myPow","isUgly",countPrimes","mySqrt","reverse","numTrees","isAnagram","strStr","canJump","coinChange","numIslands","canFinish","hasCycle","reverseList","inorderTraversal","isValidBST","maxDepth","maxPathSum","levelOrder"]
     for label in labels:
         prgs = os.listdir('CDataset'+'/'+label)

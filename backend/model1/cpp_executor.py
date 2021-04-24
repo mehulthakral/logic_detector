@@ -6,10 +6,7 @@ except:
 def execute(func_str,func_name,parameter_list,input_data):
     time_taken=0
     mem_taken=0
-    #include header files and namespace std
-    #add func_str (can be class or function based on that call it in int main)
-    #Add int main and input_data to get time and mem
-    print(func_name,parameter_list,input_data)
+    #print(func_name,parameter_list,input_data)
     func = getattr(Input_Adaptor,func_name)
     inp_data = func(input_data)
     func_str = """
@@ -31,26 +28,23 @@ int main()
     auto end = chrono::high_resolution_clock::now();
   
     // Calculating total time taken by the program.
-    double time_taken = 
-      chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+    double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
   
     time_taken *= 1e-9;
   
-    cout << fixed 
-         << time_taken << setprecision(9);
+    cout << fixed << time_taken << setprecision(9);
     return 0;
 }
     """
-    #Input_Adaptor.solveSudoku(input_data[0])
     func_str+=main
-    print(func_str)
+    #print(func_str)
     time_taken,mem_taken = mem.c_dynamic_metrics(func_str)
-    #input_data is List 
     return time_taken,mem_taken
 
 def Prerequisites(func_name):
-    Tree = []
+    Tree = ["inorderTraversal","isValidBST","levelOrder","maxDepth","maxPathSum"]
     List = ["hasCycle","reverseList"]
+    string = ""
     if func_name in List:
         string = """
 void insertFirst(Solution::ListNode *head, int val) {
@@ -60,9 +54,31 @@ void insertFirst(Solution::ListNode *head, int val) {
    head = link;
 }
         """
-    
-        return string
-    return ""
+    elif func_name in Tree:
+        string = """
+Solution::TreeNode* newNode(int val, Solution::TreeNode* left, Solution::TreeNode* right)
+{
+    Solution::TreeNode* newNode = (Solution::TreeNode*) malloc(sizeof(Solution::TreeNode));
+    if (!newNode) {
+        cout << "Memory error";
+        return NULL;
+    }
+    newNode->val = val;
+    newNode->left = left;
+    newNode->right = right;
+    return newNode;
+}
+
+Solution::TreeNode* makeTree(int i, vector<int>& lt)
+{
+    if(i>lt.size())
+        return NULL;
+    Solution::TreeNode* root = newNode(lt[i],makeTree(2*i+1,lt),makeTree(2*i+2,lt));
+    return root;
+}
+        """
+
+    return string
 
 class Input_Adaptor:
     def canFinish(input_data):
@@ -134,11 +150,21 @@ class Input_Adaptor:
         call = "MyObj.hasCycle(inp1);"
         return num + call
     
-    #TODO Tree
     def inorderTraversal(input_data):
-        num = "int inp1="+str(input_data[0])+";\n"
+        vec = "vector<int> vec {"
+        c=0
+        s=""
+        for j in input_data[0]:
+            if c==0:
+                s=s+str(j)
+            else:
+                s=s+","+str(j)
+            c+=1
+        vec+=s
+        vec+="};\n"
+        tree = "Solution::TreeNode* inp1 = makeTree(0,vec);\n"
         call = "MyObj.inorderTraversal(inp1);"
-        return num + call
+        return vec + tree + call
     
     def isAnagram(input_data):
         str1 = 'string inp1="'+str(input_data[0])+'";\n'
@@ -156,29 +182,69 @@ class Input_Adaptor:
         call = "MyObj.isUgly(inp1);"
         return num + call
     
-    #TODO Tree
     def isValidBST(input_data):
-        num = "int inp1="+str(input_data[0])+";\n"
+        vec = "vector<int> vec {"
+        c=0
+        s=""
+        for j in input_data[0]:
+            if c==0:
+                s=s+str(j)
+            else:
+                s=s+","+str(j)
+            c+=1
+        vec+=s
+        vec+="};\n"
+        tree = "Solution::TreeNode* inp1 = makeTree(0,vec);\n"
         call = "MyObj.isValidBST(inp1);"
-        return num + call
+        return vec + tree + call
     
-    #TODO Tree
     def levelOrder(input_data):
-        num = "int inp1="+str(input_data[0])+";\n"
+        vec = "vector<int> vec {"
+        c=0
+        s=""
+        for j in input_data[0]:
+            if c==0:
+                s=s+str(j)
+            else:
+                s=s+","+str(j)
+            c+=1
+        vec+=s
+        vec+="};\n"
+        tree = "Solution::TreeNode* inp1 = makeTree(0,vec);\n"
         call = "MyObj.levelOrder(inp1);"
-        return num + call
+        return vec + tree + call
     
-    #TODO Tree
     def maxDepth(input_data):
-        num = "int inp1="+str(input_data[0])+";\n"
+        vec = "vector<int> vec {"
+        c=0
+        s=""
+        for j in input_data[0]:
+            if c==0:
+                s=s+str(j)
+            else:
+                s=s+","+str(j)
+            c+=1
+        vec+=s
+        vec+="};\n"
+        tree = "Solution::TreeNode* inp1 = makeTree(0,vec);\n"
         call = "MyObj.maxDepth(inp1);"
-        return num + call
+        return vec + tree + call
     
-    #TODO Tree
     def maxPathSum(input_data):
-        num = "int inp1="+str(input_data[0])+";\n"
+        vec = "vector<int> vec {"
+        c=0
+        s=""
+        for j in input_data[0]:
+            if c==0:
+                s=s+str(j)
+            else:
+                s=s+","+str(j)
+            c+=1
+        vec+=s
+        vec+="};\n"
+        tree = "Solution::TreeNode* inp1 = makeTree(0,vec);\n"
         call = "MyObj.maxPathSum(inp1);"
-        return num + call
+        return vec + tree + call
     
     def myPow(input_data):
         num1 = "double inp1="+str(input_data[0])+";\n"
@@ -193,17 +259,22 @@ class Input_Adaptor:
 
     def numIslands(input_data):
         grid = "vector<vector<char>> inp1 {"
+        c1=0 #counter for comma in {}
         for i in input_data[0]:
             s=""
             c=0
             for j in i:
                 if c==0:
-                    s=s+"'"+str(j)+"'"
+                    s=s+str(j)
                 else:
-                    s=s+",'"+str(j)+"'"
+                    s=s+","+str(j)
                 c+=1
-            grid=grid+"{"+s+"}"
-        grid+="};"
+            if c1==0:
+                grid=grid+"{"+s+"}"
+            else:
+                grid=grid+",{"+s+"}"
+            c1+=1
+        grid+="};\n"
         call = "\nMyObj.numIslands(inp1);"
         return grid + call
     
@@ -223,7 +294,7 @@ class Input_Adaptor:
         return num + call
     
     def reverseList(input_data):
-        init = "Solution::ListNode *head;\n"
+        init = "Solution::ListNode *head = NULL;\n"
         CList = ""
         input_data[0].reverse()
         for i in input_data[0]:
@@ -249,6 +320,7 @@ class Input_Adaptor:
 
     def solveSudoku(input_data):
         grid = "vector<vector<char>> inp1 {"
+        c1=0 #counter for comma in {}
         for i in input_data[0]:
             s=""
             c=0
@@ -258,8 +330,12 @@ class Input_Adaptor:
                 else:
                     s=s+",'"+str(j)+"'"
                 c+=1
-            grid=grid+"{"+s+"}"
-        grid+="};"
+            if c1==0:
+                grid=grid+"{"+s+"}"
+            else:
+                grid=grid+",{"+s+"}"
+            c1+=1
+        grid+="};\n"
         call = "\nMyObj.solveSudoku(inp1);"
         return grid + call
     
