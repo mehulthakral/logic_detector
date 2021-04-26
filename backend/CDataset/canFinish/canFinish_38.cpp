@@ -26,6 +26,7 @@ public:
         {
             graph[prerequisites[i][0]].push_back(prerequisites[i][1]);
         }
+        /*
         for(int i=0;i<numCourses;i++)
         {
            // cout<<"rishu"<<endl;
@@ -35,6 +36,7 @@ public:
             }
             cout<<endl;
         }
+        */
          vis.resize(graph.size(),0);
         for(int i = 0; i < numCourses; i++)
         {

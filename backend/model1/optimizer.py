@@ -84,7 +84,7 @@ class optimizer:
         self.func=func_tuple[0]
         self.func_str=func_tuple[1]
         self.lang=lang
-        self.time_limit=10
+        self.time_limit=6
         self.min_data=10
         self.high=10**6
         self.max_degree=9
@@ -191,6 +191,7 @@ class optimizer:
 
     def find_metrics(self,data): #time and memory has been implemented
         def helper(data):
+            
             if self.lang=="python":
                 tracemalloc.start()
                 start = time.process_time_ns()
@@ -206,6 +207,16 @@ class optimizer:
                     config=params[k].annotation
                     l.append(config)
                 return cpp_executor.execute(self.func_str,self.func.__name__,l,data)
+            """
+            tracemalloc.start()
+            start = time.process_time_ns()
+            self.func(*data)
+            current, peak = tracemalloc.get_traced_memory()
+            end = time.process_time_ns()
+            tracemalloc.stop()
+            return end-start, peak
+            """
+            
         helper = concurrent.process(timeout=self.time_limit)(helper)
         time_data = helper(data)
         try:
@@ -301,6 +312,7 @@ class optimizer:
         x,y,y1= self.generate_data()
         time_model=self.find_model(x,y)
         mem_model=self.find_model(x,y1)
+        #print(x,y,y1)
         return time_model, mem_model        
 
 if __name__=="__main__":

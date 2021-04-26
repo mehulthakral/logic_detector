@@ -1,1 +1,1993 @@
-{}
+{
+	"SORT": [
+		"n",
+		[
+			5.522568037738943,
+			4.573050519273264,
+			4,
+			22.0,
+			"class Solution {\npublic:\n    #include<vector>\n    vector<int> sortArray(vector<int>& nums) {\n        int counts[100001] = {0};\n        // Maps negatives starting from 0\n        for (int &num : nums) {\n            counts[num + 50000]++;\n        }\n        vector<int> result(nums.size(), 0);\n        for (int i = 0, j = 0; i < 100001; i++) {\n            while (counts[i] > 0) {\n                result[j] = i - 50000;\n                j++;\n                counts[i]--;\n            }\n        }\n        return result;\n    }\n};\n"
+		],
+		[
+			5.996443832266359,
+			4.762282179025152,
+			5,
+			24.1579,
+			"class Solution {\npublic:\n\tvoid countingsort(vector<int>& nums){\n\t\tint n=nums.size();\n\t\tvector<int> count(100001,0);\n\t\tfor(auto& x:nums){\n\t\t\tcount[x+50000]++;\n\t\t}\n\t\tfor(int i=1;i<count.size();i++){\n\t\t\tcount[i]+=count[i-1];\n\t\t}\n\t\tvector<int> ans(n);\n\t\tfor(auto& v:nums){\n\t\t\tans[count[v+50000]-1]=v;\n\t\t\tcount[v+50000]--;\n\t\t}\n\t\tnums=ans;\n\t}\n\tvector<int> sortArray(vector<int>& nums) {\n\t\tcountingsort(nums);\n\t\treturn nums;\n\t}\n};"
+		],
+		[
+			5.653412927279669,
+			4.762361941659144,
+			5,
+			45.2647,
+			"class Solution {\npublic:\nvector<int> sortArray(vector<int>& arr) {\n        int max = *max_element(arr.begin(), arr.end()); \n        int min = *min_element(arr.begin(), arr.end()); \n        int range = max - min + 1; \n\n        vector<int> count(range), output(arr.size()); \n        for(int i=0; i<arr.size(); i++) count[arr[i]-min]++; \n\n        for(int i = 1; i<count.size(); i++) count[i] += count[i-1]; \n\n        for(int i = arr.size()-1; i >= 0; i--) {  \n             output[count[arr[i]-min] -1] = arr[i];  \n             count[arr[i]-min]--;  \n        } \n        for(int i=0; i < arr.size(); i++) \n                arr[i] = output[i]; \n        return arr;\n   }\n};"
+		],
+		[
+			7.1253996124780965,
+			5.506552659797817,
+			11,
+			63.65,
+			"class Solution {\npublic:\n\tvoid merge(vector<int>& nums_left, vector<int>& nums_right, vector<int>& nums)\n\t{\n\t\tauto left = nums_left.begin();\n\t\tauto const left_end = nums_left.end();\n\n\t\tauto right = nums_right.begin();\n\t\tauto const right_end = nums_right.end();\n\n\t\tauto target = nums.begin();\n\t\tauto const target_end = nums.end();\n\n\t\twhile (target != target_end)\n\t\t{\n\t\t\twhile (left != left_end && (right == right_end || *left <= *right))\n\t\t\t{\n\t\t\t\t*target = *left;\n\t\t\t\t++left;\n\t\t\t\t++target;\n\t\t\t}\n\t\t\twhile (right != right_end && (left == left_end || *right < *left))\n\t\t\t{\n\t\t\t\t*target = *right;\n\t\t\t\t++right;\n\t\t\t\t++target;\n\t\t\t}\n\t\t}\n\t}\n\n\tvoid merge_sort(vector<int>& nums)\n\t{\n\t\tsize_t const size = nums.size();\n\t\tif (size <= 1)\n\t\t{\n\t\t\treturn;\n\t\t}\n\t\tauto const left = nums.begin();\n\t\tauto const right = nums.end();\n\t\tauto const middle = left + size / 2;\n\n\t\tvector<int> nums_left{ left, middle };\n\t\tmerge_sort(nums_left);\n\n\t\tvector<int> nums_right{ middle, right };\n\t\tmerge_sort(nums_right);\n\n\t\tmerge(nums_left, nums_right, nums);\n\t}\n\n\tvector<int> sortArray(vector<int>& nums)\n\t{\n\t\tmerge_sort(nums);\n\t\treturn nums;\n\t}\n};"
+		],
+		[
+			6.956868806424159,
+			5.675595226935674,
+			16,
+			39.4722,
+			"class Solution {\npublic:\n    // Merges two arrays by sorting \n    void mergeArray(vector<int> &A, int left, int mid, int right) {\n        // Create temp arrays\n        int Lsize = mid - left + 1;\n        int Rsize = right - mid;\n        vector<int> L(Lsize);\n        vector<int> R(Rsize);\n        // Copy unsorted data from A to temp arrays\n        for (int i = 0; i < Lsize; i++) {\n            L[i] = A[left + i];\n        }\n        for (int j = 0; j < Rsize; j++) {\n            R[j] = A[mid + j + 1];\n        }\n        // Merge temp arrays back into A\n        int l = 0; // Left Temp Array\n        int r = 0; // Right Temp Array\n        int k; // Merged Original Array\n        for (k = left; k <= right && l < Lsize && r < Rsize; k++) {\n            if (L[l] <= R[r]) {\n                A[k] = L[l];\n                l++;\n            } else {\n                A[k] = R[r];\n                r++;\n            }\n        }\n        while (k <= r && l < Lsize && r < Rsize) {\n            if (L[l] <= R[r]) {\n                A[k] = L[l];\n                l++;\n            } else {\n                A[k] = R[r];\n                r++;\n            }\n            k++;\n        }\n        // Copy If Left Temp has any remaining elements\n        while (l < Lsize) {\n            A[k] = L[l];\n            l++;\n            k++;\n        }\n        // Copy If Right Temp has any remaining elements\n        while (r < Rsize) {\n            A[k] = R[r];\n            r++;\n            k++;\n        }\n    }\n\n    // Merge sort\n    void mergeSort(vector<int> &A, int left, int right) {\n        if (left < right) {\n            int mid = (left + right) / 2;\n            // Left Sub-Array\n            mergeSort(A, left, mid);\n            // Right Sub-Array\n            mergeSort(A, mid + 1, right);\n            // Merge Sub-Arrays\n            mergeArray(A, left, mid, right);\n        }\n    }\n\n    vector<int> sortArray(vector<int>& nums) {\n        mergeSort(nums, 0, nums.size() - 1);\n        return nums;\n    }\n};\n"
+		],
+		[
+			7.1522051231642685,
+			5.052458019610304,
+			3,
+			14.0,
+			"class Solution {\npublic:\n    vector<int> sortArray(vector<int>& nums) {\n        int n=nums.size();\n        \n        priority_queue<int,vector<int>,greater<int>>minh;\n        vector<int>v;\n        \n        for(int i=0;i<n;i++){\n            minh.push(nums[i]);\n        }\n        for(int j=0;j<n;j++){\n              v.push_back(minh.top());\n            minh.pop();\n            \n        }\n        return v;\n    }\n};\n"
+		],
+		[
+			5.750378187231969,
+			4.573050519273264,
+			4,
+			19.5,
+			"class Solution {\npublic:\n    vector<int> sortArray(vector<int>& nums) {\n        vector<int> countArr(100001, 0);\n        // Count Each Element\n        for (int num : nums) {\n            countArr[50000 + num]++;\n        }\n        // Add previous counts \n        for (int i = 1; i < 100001; i++) {\n            countArr[i] += countArr[i - 1];\n        }\n        // Create n places array\n        vector<int> placesArr(nums.size(), 0);\n        for (int &num : nums) {\n            placesArr[countArr[50000 + num] - 1] = num;\n            countArr[50000 + num]--;\n        }\n        return placesArr;\n    }\n};\n"
+		],
+		[
+			13.531191483771044,
+			4.573050519273264,
+			9,
+			48.0789,
+			"\nclass Solution {\npublic:\n    void ans(vector<int>& array,int l,int r){\n        if(l>=r)\n            return;\n        int leftidx=l+1;\n        int rightidx=r;\n        int pivotidx=l;\n        while(rightidx>=leftidx){\n            if(array[leftidx]>array[pivotidx]&&array[rightidx]<array[pivotidx])\n                swap(array[leftidx],array[rightidx]);\n            if(array[leftidx]<=array[pivotidx])\n                leftidx++;\n            if(array[rightidx]>=array[pivotidx])\n                rightidx--;\n        }\n        swap(array[rightidx],array[pivotidx]);\n        bool leftsubarraysmall=rightidx-1-l<r-(rightidx+1);\n        if(leftsubarraysmall){\n            ans(array,l,rightidx-1);\n            ans(array,rightidx+1,r);\n        }else{\n            ans(array,rightidx+1,r);\n            ans(array,l,rightidx-1);\n        }\n    }\n    vector<int> sortArray(vector<int>& nums) {\n        ans(nums,0,nums.size()-1);\n        return nums;\n }\n};\n"
+		],
+		[
+			12.134751543214735,
+			4.573050519273264,
+			6,
+			35.4375,
+			"class Solution {\npublic:\n    vector<int> sortArray(vector<int>& nums) {\n        quickSort(nums, 0, nums.size()-1);\n        return nums;\n    }\n    void quickSort(vector<int>& nums, int left, int right){\n        if(left < right){\n            // to make pivot rightmost element random\n            int random_idx = left + (rand() % (right-left));\n            swap(nums[random_idx],nums[right]);\n            \n            int pivot = left;\n            for(int j = left; j <= right - 1 ; j++){\n                if(nums[j] < nums[right]){\n                    swap(nums[pivot++], nums[j]);\n                }\n            }\n            swap(nums[pivot], nums[right]);\n            quickSort(nums, left, pivot-1);\n            quickSort(nums, pivot+1, right);\n        }\n    }\n    void swap(int& i, int& j){\n        int temp = i;\n        i = j;\n        j = temp;\n    }\n};\n"
+		],
+		[
+			13.65177141049526,
+			4.573050519273264,
+			7,
+			36.4286,
+			"class Solution {\npublic:\n    void swap(int &a, int &b)\n    {\n        int t=a;\n        a = b;\n        b = t;\n    }\n    int partition(vector<int>& nums, int low, int high)\n    {\n        int i=low-1, pivot=nums[high];\n        for(int j=low; j<high; j++)\n        {\n            if(nums[j]<=pivot) \n            {\n                i++;\n                swap(nums[i], nums[j]);\n            }\n        }\n        swap(nums[i+1], nums[high]);\n        return i+1;\n    }\n    void quickSort(vector<int>& nums, int low, int high)\n    {\n        if(low<high)\n        {\n            int pivot=partition(nums, low, high);\n            quickSort(nums, low, pivot-1);\n            quickSort(nums, pivot+1, high);\n        }\n    }\n    vector<int> sortArray(vector<int>& nums) \n    {\n        int n=nums.size(), low=0, high=n-1;\n        quickSort(nums, low, high);\n        return nums;\n    }\n};\n"
+		],
+		[
+			7.114215320199268,
+			5.624817632428762,
+			10,
+			57.75,
+			"class Solution {\npublic:\n    void merge(vector<int>& nums, int low, int mid, int high)\n    {\n        vector<int> t(high-low+1);\n        int i=0, j=low, k=mid+1; \n        while(j<=mid && k<=high)\n        {\n            if(nums[j]<=nums[k])\n            {\n                t[i] = nums[j];\n                j++;\n            }\n            else \n            {\n                t[i] = nums[k];\n                k++;\n            }\n            i++;\n        }\n        \n            while(j<=mid) t[i] = nums[j], i++, j++;\n            while(k<=high) t[i] = nums[k], i++, k++;\n            for(int i=low; i<=high; i++)\n            {\n                nums[i] = t[i-low];\n            }\n    }\n    void mergeSort(vector<int>& nums, int low, int high)\n    {\n        if(low<high) \n        {\n            int mid=low+(high-low)/2;\n            mergeSort(nums, low, mid);\n            mergeSort(nums, mid+1, high);\n            merge(nums, low, mid, high);\n        }\n    }\n    vector<int> sortArray(vector<int>& nums) \n    {\n        int n=nums.size();\n        int low=0, high=n-1;\n        mergeSort(nums, low, high);\n        return nums;\n    }\n};\n"
+		],
+		[
+			6.566150991606108,
+			4.573050519273264,
+			1,
+			7.5,
+			"class Solution {\npublic:\n    vector<int> sortArray(vector<int>& nums) {\n       sort(nums.begin(), nums.end());\n       return nums; \n    }\n};\n"
+		]
+	],
+	"CYCLE_GRAPH": [
+		"n^2",
+		[
+			19.346945287379015,
+			18.20530475528977,
+			10,
+			29.58,
+			"class Solution {\npublic:\n    #include<vector>\n    vector<bool> vist; //int d=0;\n    bool dfs(int p,vector<bool> &vis,vector<int> adj[]){\n        //d++; cout<<d<<endl;\n        if(vis[p]) return false;\n        if(vist[p]) return true;\n        vis[p]=true; vist[p]=true;\n        for(int g:adj[p]){\n            if(!dfs(g,vis,adj)) return false;\n        }\n        vis[p]=false;\n        return true;\n    }\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<int> adj[numCourses]; vector<bool> vis(numCourses,false), _vis(numCourses,false);\n        vist=_vis;\n        for(auto g:prerequisites) adj[g[1]].push_back(g[0]);\n        for(int i=0;i<numCourses;i++){\n            if(vist[i]) continue;\n            if(!dfs(i,vis,adj)) return false;\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			19.650367188420695,
+			17.468007681684202,
+			12,
+			35.4667,
+			"class Solution {\npublic: \n    \n    vector<vector<int>> createList(vector<vector<int>> &prerequisites, int numCourses) { \n        \n        vector<vector<int>> adjList(numCourses); \n        \n        for(int i = 0; i < prerequisites.size(); i++) { \n            \n            adjList[prerequisites[i][0]].push_back(prerequisites[i][1]); \n            \n        } \n        \n        return adjList;\n    }\n    \n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {  \n        \n        int count = 0;\n        \n        vector<vector<int>> adjList = createList(prerequisites, numCourses); \n        \n        unordered_map<int, int> indegree;\n        unordered_map<int, bool> visited; \n        \n        for(int i = 0; i < numCourses; i++) { \n            indegree[i] = 0;\n        } \n        \n        for(int i = 0; i < prerequisites.size(); i++) {  \n            indegree[prerequisites[i][1]]++;\n        } \n        \n        queue<int> q; \n\n        for(auto i : indegree) { \n            \n            if(i.second == 0) { \n                q.push(i.first); \n                visited[i.first] = true;  \n                count++;\n            }\n        }\n        \n        if(q.empty()) { \n            return false;\n        } \n        \n        else { \n            \n            while(!q.empty()) { \n            \n                for(int i : adjList[q.front()]) { \n                \n                    indegree[i]--; \n                \n                    if(!visited[i] && indegree[i] == 0) { \n                        q.push(i); \n                        visited[i] = true; \n                        count++;\n                    } \n                }  \n                q.pop();\n            } \n        } \n        \n        return count == numCourses;\n    }\n};\n"
+		],
+		[
+			18.892155578316704,
+			17.48069866579368,
+			10,
+			27.8182,
+			"class Solution {\npublic:\n    bool CycleUtil(vector<int> Graph[], int start, vector<bool>& visited, vector<bool>& recSt){\n        visited[start] = true;\n        recSt[start] = true;\n        \n        for(int v : Graph[start]){\n            if(! visited[v] && CycleUtil(Graph, v, visited, recSt)) \n                return true;\n            else if(recSt[v]) return true;\n        }\n    recSt[start] = false;\n    return false;\n}\n    \n    bool canFinish(int n, vector<vector<int>>& preReq) {\n        vector<int> Graph[n];\n        \n        //Make a Graph\n        for(int i = 0; i < preReq.size(); i++){\n            Graph[preReq[i][0]].push_back(preReq[i][1]);\n        }\n        \n        //Check for cycle - if exist then taking all class not possible\n        vector<bool> visited, all_ve;\n        visited.assign(n, false);\n        all_ve.assign(n, false);\n        for(int i = 0; i < n; i++){\n            if(! all_ve[i])\n                if(CycleUtil(Graph, i,visited, all_ve)) return false; \n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			8.446965140349759,
+			17.483685838017184,
+			10,
+			27.6556,
+			"class Solution {\npublic:\n    bool dfs(int node, vector<vector<int>>& g, vector<bool>& visited, vector<bool>& recStack)\n    {\n        visited[node] = true;\n        recStack[node] = true; //Activate node\n        \n        for(int i=0; i<g[node].size(); i++)\n        {\n            int adj = g[node][i];\n            \n            if(recStack[adj] == true)  //node is activated\n                return true;\n            \n            if(visited[adj] == false) //if child is unvisited\n               if(dfs(adj, g, visited, recStack))\n                return true;\n        }\n            \n        \n        //post-call -> all children have been visited\n        recStack[node] = false; //node is deactivated\n        return false;\n    }\n    \n    bool canFinish(int n, vector<vector<int>>& pre) \n    {\n        vector<vector<int>> graph(n);\n        vector<int> res;\n        vector<bool> visited(n, false);\n        vector<bool> recStack(n, false);        \n        \n        for(int i=0; i<pre.size(); i++)\n        {\n            int dep = pre[i][0];\n            int indep = pre[i][1];\n            \n            graph[indep].push_back(dep);\n        }\n        \n        for(int i=0; i<n; i++) //for disconnected graph\n        {\n            if(visited[i] == false)\n            {\n                if(dfs(i, graph, visited, recStack)) //cycle exists\n                    return false; //courses cannot be taken up\n            }\n        }        \n        \n        return true;\n        \n    }\n};\n\n"
+		],
+		[
+			17.650176021338265,
+			17.48156696211649,
+			10,
+			36.9524,
+			"class Solution {\npublic:\n    bool dfs(vector<int> nums[],vector<bool> &passedThrough,vector<bool> visited,int node)\n    {\n        if(visited[node] == true)\n        return false;\n        \n        visited[node] = true;\n\n        for(int i=0;i<nums[node].size();i++)\n        {\n            if(passedThrough[nums[node][i]] == false)\n            {\n                if(dfs(nums,passedThrough,visited,nums[node][i])==false)\n                return false;\n            }\n        }\n        passedThrough[node] = true;\n        return true;\n    }\n    \n    bool canFinish(int courses, vector<vector<int>>& pre) {\n        \n        vector<bool> passedThrough(courses,false);\n        vector<bool> visited(courses,false);\n        \n        int n= pre.size();\n        vector<int> nums[courses];\n        \n        for( int i=0;i<n;i++)\n        nums[pre[i][0]].push_back(pre[i][1]);\n\n        for(int i=0;i<courses;i++)\n        {\n            if(passedThrough[i] == false)\n            {\n                if(dfs(nums,passedThrough,visited,i ) == false)\n                return false;\n            }\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			8.646125742911709,
+			18.205897826181538,
+			10,
+			19.987,
+			"class Solution {\nprivate:\n    //2->visited and processing; 1->visited and processed; 0->unvisited\n    bool isCyclic(int v, vector<int>& vis, vector<vector<int>>& adj){\n        vis[v] = 2;\n        for(auto x : adj[v]) {\n            if(vis[x] == 2)\n                return true;\n            else if(vis[x] == 0 && isCyclic(x, vis, adj))\n                return true;\n        }\n        //if we reach here that means we've traversed all the vertices starting from vertex v and havent found a cycle so we mark the current vertex and visited and return false\n        vis[v] = 1;\n        return false;\n    }\npublic:\n    bool canFinish(int n, vector<vector<int>>& pre) {\n        //make adjacency list\n        vector<vector<int>> adj(n);\n        for(auto x: pre) \n            adj[x[0]].push_back(x[1]);\n        \n        vector<int> visited(n, 0); //graph coloring\n        for(int i = 0; i < n; ++i) { //takes care of disjoint graphs and tries all nodes to find possible cycles\n            if(visited[i] == 0) { //dfs only of current node is not visited, if it is visited that means we've tried the possible cycles(if there might be any) form the current node and have marked it processed.\n                if(isCyclic(i, visited, adj))\n                    return false;\n            }\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			18.73672026449063,
+			18.204681003922786,
+			9,
+			23.4868,
+			"class Solution {\npublic:\n    bool isCyclic(int v, vector<bool> &vis, vector<bool>&rec, vector<vector<int>>&Adj){\n        vis[v] = true;\n        rec[v] = true;\n        for (auto x: Adj[v]){\n            if (rec[x])\n                return true; // means we have a back edge here\n            else if (!vis[x] and isCyclic(x, vis,rec, Adj))\n                return true; // means we found a back edge in one of the descendants of this node\n        }\n        rec[v] = false;\n        return false;\n    }\n    bool canFinish(int n, vector<vector<int>>& prerequisites) {\n        vector<vector<int>> Adj(n);\n        for (auto x: prerequisites){\n            Adj[x[0]].push_back(x[1]);\n        }\n        vector<bool> visited(n,false);\n        vector<bool> recStack(n,false);\n        for (int i =0; i < n; i++){\n            if (!visited[i])\n                if (isCyclic(i,visited,recStack, Adj))\n                    return false;\n        }\n        return true;\n    }\n};"
+		],
+		[
+			18.266407008760698,
+			17.482414376751773,
+			8,
+			23.2791,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {       \n        vector<vector<int>> vv_graph(numCourses);   //Directed graph representing node relations specified by only prerequisites. \n                                                        //(u,v)->(u is prereq/parent and v is req/child).\n        unordered_map<int, int> um_inFq;            //Map of nodes and their number of incoming edges\n        unordered_set<int> us_noIn;                 //Set of nodes that have no incoming edges\n        int count = 0;                              //Number of nodes added to topological ordering so far\n        \n        //Creates the graph. Initializes map.\n        for (auto& pReq : prerequisites) {\n            int chi = pReq[0], par = pReq[1];\n            vv_graph[par].push_back(chi);\n            um_inFq[chi] += 1;\n            if (um_inFq.count(par) == 0) {\n                um_inFq[par] = 0;\n            } \n        }\n        \n        //Adds nodes to the set\n        for (auto& node : um_inFq) {\n            if (node.second == 0) {\n                us_noIn.insert(node.first);\n            }\n        }\n        \n        //Take node with no incoming edges from set. Update incoming edge values of adjacent nodes by updating map.\n        while (!us_noIn.empty()) {\n            int curr = *(us_noIn.begin());\n            us_noIn.erase(us_noIn.begin());\n            for (auto& node : vv_graph[curr]) {\n                if (--um_inFq[node] == 0) {\n                    us_noIn.insert(node);\n                }\n            }\n            count++;\n        }\n        \n        return count == um_inFq.size();   //For true, # of Nodes in ordering must equal # of nodes depicted by prerequisites\n    }\nprivate:\n    \n};\n"
+		],
+		[
+			15.836098834330297,
+			17.465017068616746,
+			11,
+			21.3462,
+			"class Solution {\npublic:\n\t//if course is done, similar to visited\n    map<int, int> done;\n\t//if we are still visiting/studying a course and its subcourses/recursion stack\n\tmap<int, int> pending;\n\t//our graph\n    map<int, vector<int>> mp;\n    \n    bool iscyclicutil(int v){\n\t\t//if course is not visited yet\n        if(!done[v])\n        {\n            done[v]=1;\n            pending[v]=1;\n            for(auto j : mp[v])\n\t\t\t{   //if a subcourse is not visited yet but the subcourse has a cycle then return true that \n\t\t\t    //there is a cycle\n                if(!done[j]&&iscyclicutil(j))\n                    return true;\n\t\t\t\t//if the subcourse itself is in pending state that means a cycle exists\n                else\n                    if(pending[j])\n                        return true;\n            }\n        }\n\t\t//if the course and all its courses couldnt return true for cycle it means we are done studying that course\n\t\t//remove it from pending list\n        pending[v]=0;\n        return false;\n    }\n    //function to check for cycles in the graph, if a cycle exists that means a superior course \n\t//is dependent on junior course, where we should return false\n    bool iscyclic(){\n        for(auto i : mp)\n            if(iscyclicutil(i.first))\n                return true;\n        \n        return false;\n    }\n    \n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        //making adjacency list\n        int nedges=prerequisites.size();\n        for(int i=0;i<nedges;i++)\n        {\n            mp[prerequisites[i][1]].push_back(prerequisites[i][0]);\n        }\n        //detecting a cycle, if exists, that means, iscyclic is true, return false\n        return !iscyclic();\n    }\n};\n"
+		],
+		[
+			16.641207129779144,
+			17.469690167065455,
+			7,
+			25.0833,
+			"// https://leetcode.com/problems/course-schedule/\n\n/*\n    I have multiple solution for this questions. I am discussing all solutions.\n\n    Solution 1: Detect A Cycle in directed Graph.\n\n    How do we think, this solution ?\n    If you plot all prerequiste, you will see a graph pointed toward a vertex. As, it is pointed, means it is directed.\n    Now if we got a cycle in directed graph. What does this implies? \n\n    Yes, It implies, we need to take course 1 for completing course 2 and need course 2 to complete course 1.\n    Which is'nt possible. So as long as we find a cycle we will return false. if there is no cycle, then return true.\n    I have written code already to detect a cycle. So please check 04_Detect_cycle_in_a_directed_graph.cpp in same folder.\n\n********************************************************************************************************************************\n\n    Solution 2: Topological Sorting\n    I will discuss topological sorting in new file. You can think how topological sorting can apply here.(As an exercise)\n\n*********************************************************************************************************************************\n\n    Solution 3: Kahn's Algorithm\n    If we complete all courses then return true else return false. Check comments (It is not most optimized solution but it is shortest)\n\n*/\n\nclass Solution\n{\npublic:\n    bool canFinish(int n, vector<vector<int>> &prerequisites)\n    {\n        // G is used to build a graph\n        vector<vector<int>> G(n);\n\n        //Degree will count prerequisites, bfs will store all completed courses.\n        vector<int> degree(n, 0), bfs;\n\n        // Build Graph (Add edges) & store how much courses are prerequisites to complete a course.\n        for (auto &e : prerequisites) \n            G[e[1]].push_back(e[0]), degree[e[0]]++;\n\n        // If we didnt need any prerequisites then directly add to bfs.\n        for (int i = 0; i < n; ++i)\n        {\n            if (!degree[i])\n                bfs.push_back(i);\n        }\n\n        for (int i = 0; i < bfs.size(); ++i)\n        {\n            // i'th course is done\n            for (int j : G[bfs[i]])\n            {\n                // If all prerequisites are done then add it to bfs\n                if (--degree[j] == 0)\n                    bfs.push_back(j);\n            }\n        }\n\n        //Now check does all courses completed or not.\n        return bfs.size() == n;\n    }\n};\n"
+		],
+		[
+			8.541917370294142,
+			18.205287248192164,
+			9,
+			25.1429,
+			"class Solution {\npublic:bool iscycle(vector<int> adj[],vector<int> &vis,int id){\n        if(vis[id]==1)\n            return true;\n        if(vis[id]==0){\n            vis[id]=1;\n            for(auto edge : adj[id]){\n                if(iscycle(adj,vis,edge))\n                    return true;\n            }\n        }\n        vis[id] = 2;\n        return false;\n    }\n    bool canFinish(int n, vector<vector<int>>& pre) {\n        vector<int> adj[n];\n        for(auto edge : pre)\n            adj[edge[1]].push_back(edge[0]);\n        vector<int> vis(n,0);\n        \n        for(int i=0;i<n;i++){\n            if(iscycle(adj,vis,i))\n                return false;\n        }\n        return true;\n    }\n};"
+		],
+		[
+			8.83019513468258,
+			18.2069606536408,
+			7,
+			25.8261,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>> adj(numCourses);\n        vector<int> indegrees(numCourses,0);\n        \n        queue<int>Q;\n        \n        for(auto e : prerequisites){\n            adj[e[1]].push_back(e[0]);\n            indegrees[e[0]]++;\n        }\n        \n        for(int i=0; i < numCourses; i++ ){\n            if(indegrees[i] == 0){\n                Q.push(i);\n            }\n        }\n        \n        int count =0;\n        \n        while(!Q.empty()){\n            \n            int ele = Q.front();\n            Q.pop();\n            count++;\n            \n            for(auto e : adj[ele]){\n                indegrees[e]--;\n                if(indegrees[e] == 0){\n                    Q.push(e);\n                }\n            }\n        }\n        return count == numCourses;\n    }\n};\n"
+		],
+		[
+			17.417112618848847,
+			17.480639344028447,
+			12,
+			23.3846,
+			"class Solution {\npublic:\n    bool cycle = false;\n    map<int,vector<int>>m;\n    map<int,bool>vis;\n    void dfs(int root)\n    {\n        if(cycle)\n            return;\n        vis[root] =true;\n        for(auto i:m[root] )\n        {\n            if(m[i].size()!=0&&vis[i])\n            {\n               cycle = true;\n               return;\n            }\n             dfs(i); \n             m[root].pop_back();\n        }\n    }\n    bool dfsUtil(int n)\n    {\n        if(n==0)\n            return true;\n        for(int i=0;i<n;i++)\n        {\n            if(!vis[i]&&!cycle)\n                dfs(i);\n        }\n        return cycle;\n    }\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        for(int i=0;i<prerequisites.size();i++)\n        {\n            m[prerequisites[i][0]].push_back(prerequisites[i][1]);\n        }\n        return !dfsUtil(numCourses);\n    }\n};\n"
+		],
+		[
+			19.840851879454092,
+			18.129139183948087,
+			13,
+			39.9655,
+			"class Solution {\npublic:bool dfs(vector<int> adj[],vector<bool> &visited,vector<bool> &current,\n         int currentNode){\n    visited[currentNode]=true;\n    current[currentNode]=true;\n    for(int i=0;i<adj[currentNode].size();i++){\n        int node=adj[currentNode][i];\n        if(visited[node]==false && current[node]==false)\n        {\n            if(dfs(adj,visited,current,node))\n                return true;\n        }\n        else if(current[node]==true)\n            return true;\n    }\n    current[currentNode]=false;\n    return false;\n}\n                \n         \nbool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n    int n=prerequisites.size();\n    if(n==0)\n        return true;\n    int m=prerequisites[0].size();\n    \n    //adjacency list preparation\n    vector<int> adj[numCourses];\n    for(int i=0;i<n;i++){\n        int x=prerequisites[i][0];\n        for(int j=1;j<m;j++)\n            adj[x].push_back(prerequisites[i][j]);\n    }\n    //doing dfs\n    vector<bool> visited(numCourses,false);\n    vector<bool> current(numCourses,false);\n    for(int i=0;i<visited.size();i++){\n        if(visited[i]==false){\n            if(dfs(adj,visited,current,i)==true)\n                return false;\n        }\n    }\n    return true;\n}\n};"
+		],
+		[
+			8.880369276321789,
+			17.488546431397143,
+			9,
+			22.4615,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>> graph(numCourses, vector<int>());\n        vector<int> edgeCounts(numCourses, 0); // {node, incoming edges}\n        queue<int> todo; // nodes that has no incoming edges, meaning starting points\n        // Build the adjacency list\n        for (vector<int> &p : prerequisites) {\n            graph[p[1]].push_back(p[0]);\n            // Count the incoming edges\n            edgeCounts[p[0]]++;\n        }\n        // Find the nodes/roots that has no incoming edges\n        for (int node = 0; node < edgeCounts.size(); node++) {\n            // If a nodes has no incoming edge, this is a root\n            if (edgeCounts[node] == 0) {\n                todo.push(node);\n            }\n        }\n        // If there is no any root node\n        if (todo.empty()) {\n            return false;\n        }\n        // Start BFS\n        int processedCourseCount = 0; // Num of roots at the beginning\n        while (!todo.empty()) {\n            int cur = todo.front();\n            todo.pop();\n            // If we hit to 0 edge count, we don't need that node anymore\n            if (edgeCounts[cur] == 0) {\n                processedCourseCount++;\n            } \n            for (int &neighbor : graph[cur]) {\n                // Decrease our edge count\n                edgeCounts[neighbor]--;\n                if (edgeCounts[neighbor] == 0) {\n                    todo.push(neighbor);\n                }\n            }\n        }\n        return (processedCourseCount == numCourses);\n    }\n};"
+		],
+		[
+			8.336190356652494,
+			17.48419601058825,
+			9,
+			28.2162,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>> graph(numCourses, vector<int>());\n        vector<bool> seen(numCourses, false), cycle(numCourses, false);\n        // Build the adjacency list\n        for (vector<int> &p : prerequisites) {\n            graph[p[1]].push_back(p[0]);\n        }\n        // Start DFS for each Node\n        stack<int> topoSort;\n        bool hasCycle = false;\n        for (int node = 0; node < graph.size(); node++) {\n            if (seen[node] == false) {\n                dfs(graph, node, seen, topoSort, hasCycle, cycle);\n            }\n        }\n        int size = topoSort.size();\n        return (numCourses == size && !hasCycle);\n    }\n    \n    void dfs(vector<vector<int>> &graph, int cur, vector<bool> &seen, stack<int> &topoSort, bool &hasCycle, vector<bool> &cycle) {\n        seen[cur] = true;\n        cycle[cur] = true;\n        for (int &child : graph[cur]) {\n            if (seen[child] == false) {\n                dfs(graph, child, seen, topoSort, hasCycle, cycle);\n            }\n            else if (cycle[child] == true) {\n                hasCycle = true;\n                return;\n            }\n        }\n        cycle[cur] = false; // This is for cycle detection\n        topoSort.push(cur);\n    }\n};"
+		],
+		[
+			14.465076952613916,
+			17.48310127749224,
+			12,
+			38.88,
+			"class Solution {\npublic:\n\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int> > children(numCourses);\n        vector<int> dependancy (numCourses, 0);\n        for(int i=0; i<prerequisites.size(); i++){\n            children[prerequisites[i][1]].push_back(prerequisites[i][0]);\n            dependancy[prerequisites[i][0]] ++;\n        }\n                  \n        \n        vector<int> visited (numCourses, 0);\n        queue<int> to_process;\n        \n        for(int i=0; i<numCourses; i++){\n            if(dependancy[i]==0){\n                to_process.push(i);\n                visited[i] = 1;\n            }\n        }\n        \n        \n        \n        while(to_process.size()>0){\n            while(to_process.size()>0){\n                int c = to_process.front();\n                for(int child: children[c]){\n                    dependancy[child] --;\n                }\n                visited[c] = 1;\n                to_process.pop();\n            }\n            \n            for(int i=0; i<numCourses; i++){\n                if(dependancy[i]==0 && visited[i]==0){\n                    to_process.push(i);\n                    visited[i] = 1;\n                }\n            }\n            \n        }\n        \n        for(int i=0; i<numCourses; i++){\n            if(visited[i]==0) return false;\n        }\n        \n        return true;\n    }\n};\n"
+		],
+		[
+			8.882705095054217,
+			18.20225278272677,
+			7,
+			23.4231,
+			"class Solution {\npublic:\n    //TOPOLOGICAL SORT USING BFS\n    bool canFinish(int n, vector<vector<int>>& prerequisites) {\n        vector<vector<int>> graph(n,vector<int>());\n        queue<int> q;\n        vector<int> in_degree(n,0);\n        vector<int> ans;\n        //Making graph edge is unidirictional(p[1] --> p[0]) \n        for(auto p: prerequisites) {\n            graph[p[1]].push_back(p[0]);\n            ++in_degree[p[0]];\n        }\n        //Push all the elements in the queue which has 0 in_degree\n        for(int i=0;i<n;++i) {\n            if(in_degree[i]==0) {\n                q.push(i);\n            }\n        }\n        //if we remove the parent of a node then its in_degree will decreases by 1 unit\n        while(!q.empty()) {\n            int cur=q.front();\n            q.pop();\n            ans.push_back(cur);\n            for(int child: graph[cur]) {\n                --in_degree[child];\n                if(in_degree[child]==0) {\n                    q.push(child);\n                }\n            }\n        }\n        return ans.size()==n;\n    }\n};\n"
+		],
+		[
+			9.080469233032286,
+			18.176821999526325,
+			8,
+			27.3485,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        unordered_map<int, vector<int> > graph;\n        unordered_map<int, int> indegree;\n        int child, parent, i;\n        queue<int> source;\n        vector<int> result, children;\n        \n        // init graph\n        for(i=0; i<numCourses; i++) {\n            indegree[i] = 0;\n            graph[i] = vector<int>();\n        }\n        \n        // populate graph\n        for(auto req: prerequisites) {\n            parent = req[1];\n            child = req[0];\n            indegree[child]++;\n            graph[parent].push_back(child);\n        }\n        \n        // populate source\n        for(auto entry: indegree) {\n            if(entry.second == 0) {\n                source.push(entry.first);\n            }\n        }\n        \n        // bfs\n        while(source.size()) {\n            parent = source.front();\n            source.pop();\n            result.push_back(parent);\n            children = graph[parent];\n            for(auto child: children) {\n                indegree[child]--;\n                if(indegree[child] == 0) {\n                    source.push(child);\n                }\n            }\n        }\n        return result.size()==numCourses;\n    }\n};"
+		],
+		[
+			1.0,
+			18.850934545217658,
+			10,
+			26.5455,
+			"class Solution {\npublic:\n    bool dfs(int z, vector<vector<int>>& courses, vector<int>& vis) {\n        vis[z] = 1;\n        for(auto it: courses[z]) {\n            if(vis[it] == 1 || (vis[it] == 0 && !dfs(it, courses, vis))) {\n                return false;\n            }\n        }\n        vis[z] = 0;\n        return true;\n    }\n    \n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        int n = prerequisites.size();\n        if(n == 0) {\n            return true;\n        }\n        vector<vector<int>> courses(numCourses);\n        for(auto i: prerequisites) {\n            courses[i[1]].push_back(i[0]);\n        }\n        vector<int> vis(numCourses, 0);\n        for(int i=0;i<numCourses;i++) {\n            if(!dfs(i, courses, vis)) {\n                return false;\n            }\n        }\n        return true;\n    }\n};"
+		],
+		[
+			19.608654079721624,
+			17.484365156633384,
+			10,
+			35.8261,
+			"class Solution {\npublic:\n    bool cycle(vector<vector<int>> &graph, vector<bool> &visited, vector<bool> &rec_stack, int s){\n        visited[s] = true;\n        rec_stack[s] = true;\n        for(int i = 0; i < graph[s].size(); i++){\n            int u = graph[s][i];\n            if(!visited[u] && cycle(graph, visited, rec_stack, u)){\n                return true;\n            }else if(rec_stack[u]){\n                return true;\n            }\n        }\n        rec_stack[s] = false;\n        return false;\n    }\n\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        int i, j;\n        vector<vector<int>> graph(numCourses, vector<int>());\n        for(i = 0; i < prerequisites.size(); i++){\n            graph[prerequisites[i][0]].push_back(prerequisites[i][1]);\n        }\n        \n        vector<bool> visited(numCourses, false), rec_stack(numCourses, false);\n        \n        for(i = 0; i < numCourses; i++){\n            if(!visited[i]){\n                if(cycle(graph, visited, rec_stack, i)){\n                    return false;\n                }\n            }\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			19.074925989353513,
+			17.479971302441953,
+			9,
+			27.0,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>> graph(numCourses);\n        for(auto& p : prerequisites) graph[p.front()].push_back(p.back());\n\n        vector<bool> done(numCourses);\n        vector<bool> visited(numCourses);\n\n        for(int i = 0; i < graph.size(); ++i)\n            if(! check(i, graph, visited, done)) return false;\n        return true;\n    }\n    \nprotected:\n    bool check(int course, vector<vector<int>>& graph, vector<bool>& visited, vector<bool>& done)\n    {\n        if(done[course]) return true;\n        if(visited[course]) return false;\n\n        visited[course] = true;\n        for(int n : graph[course])\n            if(!check(n, graph, visited, done)) return false;\n        visited[course] = false;\n\n        done[course] = true;\n        return true;\n    }\n};\n"
+		],
+		[
+			17.94519484474508,
+			17.44213126434902,
+			11,
+			38.4762,
+			"class Solution {\npublic:\n    bool containsCycle(vector<vector<int>>& g, int i, vector<bool>& visited, vector<bool>& ongoing) {\n        visited[i]= true;\n        ongoing[i]= true;\n        \n        for(int j=0; j<g[i].size(); j++) {\n            if(!visited[g[i][j]]) {\n                if(containsCycle(g, g[i][j], visited, ongoing))\n                    return true;\n            }\n            else if(visited[g[i][j]] && ongoing[g[i][j]])\n                return true;\n        }\n        ongoing[i]= false;\n        return false;\n    }\n    \n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        int n= prerequisites.size();\n        vector<bool> visited(numCourses, false), ongoing(numCourses, false);\n        vector<vector<int>>g(numCourses);\n        \n        for(int i=0; i<n; i++) \n            g[prerequisites[i][0]].push_back(prerequisites[i][1]);\n               \n        for(int i=0; i<numCourses; i++) {\n            if(!visited[i]) {\n                if(containsCycle(g, i, visited, ongoing)) return false;\n            }\n        }\n        return true;\n    }\n};"
+		],
+		[
+			8.729038093475646,
+			18.202261633875374,
+			11,
+			28.44,
+			"class Solution {\n    unordered_map<int,vector<int> > gr;\npublic:\n    bool iscyc(vector<int> &rec,vector<int> &vis,int u){\n        if(!vis[u]){\n            vis[u]=1;\n            rec[u]=1;\n            for(auto v:gr[u]){\n                if(!vis[v] && iscyc(rec,vis,v)){\n                    return true;\n                }\n                else if(rec[v]==1){\n                    return true;\n                }\n            }\n        }\n        rec[u]=0;\n        return false;\n    }\n    bool canFinish(int n, vector<vector<int>>& pr) {\n        for(auto p:pr){\n            gr[p[1]].push_back(p[0]);\n        }\n        vector<int> recs(n+1,0);\n        vector<int> vis(n+1,0);\n        for(int i=0;i<n;i++){\n            if(!vis[i]){\n            if(iscyc(recs,vis,i)){\n                return false;\n            }\n            }\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			13.931556536892085,
+			17.480722103515983,
+			10,
+			27.2593,
+			"class Solution {\npublic:\n    set <int> vis;\n    set <int> ordering;\n    \n    bool dfs(vector < vector<int> > &graph, int x) {\n        vis.insert(x);\n        ordering.insert(x);\n        \n        for(int i=0;i<graph[x].size();i++) {\n          int v = graph[x][i];\n            \n          if(vis.find(v) != vis.end()) {\n              if(ordering.find(v) != ordering.end()) {\n                  return false;\n              }\n          }\n            \n          if(!dfs(graph, v)) return false;\n        }\n\t\t\n        ordering.erase(x);\n        return true;\n    }\n        \n    bool canFinish(int numCourses, vector<vector<int>>& pq) {\n       vector < vector<int> > graph(numCourses);\n        \n       for(int i=0;i<pq.size();i++) {\n           int u = pq[i][0], v = pq[i][1];\n           \n           graph[u].push_back(v);\n       }\n        \n       for(int i=0;i<numCourses;i++) {\n           if(vis.find(i) == vis.end()) {\n               if(!dfs(graph, i)) return false;\n           }\n       }\n       return true;\n       \n    }\n};\n"
+		],
+		[
+			8.367523924168445,
+			18.205055146172814,
+			10,
+			23.3333,
+			"class Solution {\n\tprivate:\n\tvector<vector<int>> graph;\n\tvector<int> dp;\npublic:\n\tbool dfs(int a){\n\t\tif(dp[a]==1) return true;\n\t\tif(dp[a]==2) return false;\n\t\tdp[a]=1;\n\t\tfor(auto v:graph[a]){\n\t\t\tif(dfs(v)){\n\t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\tdp[a]=2;\n\t\treturn false;\n\t}\n\tbool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n\t\tif(prerequisites.size()==0) return true;\n\t\tgraph=vector<vector<int>>(numCourses);\n\t\tfor(auto x:prerequisites){\n\t\t\tgraph[x[1]].push_back(x[0]);\n\n\t\t}\n\t\tdp=vector<int>(numCourses,0);\n\t\tfor(int i=0;i<numCourses;i++){\n\t\t\tif(dfs(i)){\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\n\t}\n};"
+		],
+		[
+			8.590165571236493,
+			17.517920046433783,
+			6,
+			23.4155,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        \n        // store graph as an adjacency list\n        vector<int> graph[numCourses];\n        \n        // use a vector to store the in-degree of each node\n        vector<int> indegrees(numCourses, 0);  \n        \n        // use a priority queue to store all the nodes by acending order of their in-degree\n        priority_queue<array<int,2>, vector<array<int,2>>, greater<array<int,2>>> nodesQueue;\n        \n        // graph construction\n        for(int i=0; i<prerequisites.size(); i++) {\n            int next = prerequisites[i][0];\n            int prev = prerequisites[i][1];\n            \n            graph[prev].push_back(next);\n            indegrees[next]++;\n            \n        }\n        \n        // add starting in-degrees to the node priority queue\n        for(int i=0; i<numCourses; i++) {\n            nodesQueue.push(array<int,2> {indegrees[i], i});\n        }\n        \n        // get from the nodesQueue n times (all nodes will be retrieved by topological order)\n        // if any node retrieved has in-degree > 0, a cycle must exist\n        for(int i=0; i<numCourses; i++) {\n            array<int,2> curNode = nodesQueue.top();\n            nodesQueue.pop();\n            if(curNode[0]>0) {\n                return false;\n            }\n            \n            //reduce the in-degree of all neighbours by -1 and put the updated in-degree to pq\n            for(int next : graph[curNode[1]]) {\n                indegrees[next]--;\n                nodesQueue.push(array<int,2> {indegrees[next], next});\n            }\n        }\n        \n        return true;\n            \n    }\n};"
+		],
+		[
+			17.93617930753078,
+			17.48044670563766,
+			10,
+			28.05,
+			"class Solution {\nprivate:\n    int not_processed=0;\n    int processing=1;\n    int processed=2;\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prereq) {\n        vector<int> visited(numCourses,0);\n        \n        vector<vector<int>> graph(numCourses);\n        \n        for(int i=0;i<prereq.size();i++){\n            graph[prereq[i][0]].push_back(prereq[i][1]);\n        }\n        for(int i=0;i<numCourses;i++){\n            if(visited[i]==not_processed){\n                if(!dfs(i,graph,visited)){  //return false if cycle exist\n                    return false;  \n                }\n            }\n        }\n        return true;\n    }\n    bool dfs(int node,vector<vector<int>>& graph,vector<int>& visited){\n        if(visited[node]==processing){\n            return false;\n        }\n        if(visited[node]==processed){\n            return true;\n        }\n        visited[node]=processing;\n        for(int i=0;i<graph[node].size();i++){\n            if(!dfs(graph[node][i],graph,visited)){\n                return false;\n            } \n        }\n        visited[node]=processed;\n        return true;  //means the graph is acyclic\n    }\n};"
+		],
+		[
+			8.890061893567044,
+			17.484225061110124,
+			7,
+			33.0435,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prereq) {\n        vector<vector<int>> graph(numCourses);\n        vector<int> indegree(numCourses);\n        \n        for(int i=0;i<prereq.size();i++){\n            graph[prereq[i][0]].push_back(prereq[i][1]);\n            indegree[prereq[i][1]]++;\n        }\n        stack<int> zeroDegreeNodes;\n        for(int i=0;i<numCourses;i++){\n            if(indegree[i]==0){\n                //cout<<i<<\" \";\n                zeroDegreeNodes.push(i);\n            }\n        }\n        int count=0;\n        while(!zeroDegreeNodes.empty()){\n            int curr=zeroDegreeNodes.top();\n            //cout<<curr<<\" \";\n            zeroDegreeNodes.pop();\n            count++;\n            for(int i=0;i<graph[curr].size();i++){\n                if(--indegree[graph[curr][i]]==0){\n                    zeroDegreeNodes.push(graph[curr][i]);\n                }\n            }\n        }\n        return count==numCourses;\n        \n    }\n};"
+		],
+		[
+			9.904993242388267,
+			17.483050387349238,
+			7,
+			33.0435,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prereq) {\n        vector<vector<int>> graph(numCourses);\n        vector<int> indegree(numCourses);\n        \n        for(int i=0;i<prereq.size();i++){\n            graph[prereq[i][0]].push_back(prereq[i][1]);\n            indegree[prereq[i][1]]++;\n        }\n        queue<int> zeroDegreeNodes;\n        for(int i=0;i<numCourses;i++){\n            if(indegree[i]==0){\n                //cout<<i<<\" \";\n                zeroDegreeNodes.push(i);\n            }\n        }\n        int count=0;\n        while(!zeroDegreeNodes.empty()){\n            int curr=zeroDegreeNodes.front();\n            //cout<<curr<<\" \";\n            zeroDegreeNodes.pop();\n            count++;\n            for(int i=0;i<graph[curr].size();i++){\n                if(--indegree[graph[curr][i]]==0){\n                    zeroDegreeNodes.push(graph[curr][i]);\n                }\n            }\n        }\n        return count==numCourses;\n        \n    }\n};"
+		],
+		[
+			9.496552868791273,
+			17.475583757683147,
+			9,
+			30.963,
+			"class Solution {\npublic:\n    vector<int>res;\n    vector<int>in;\n    void check(int numCourses,vector<vector<int>>& v)\n    {   queue<int>q;\n        for(int i=0;i<numCourses;i++)\n           if(in[i]==0)\n              q.push(i);   \n        while(q.size()>0)\n        {   int cur=q.front();\n            res.push_back(cur);\n            q.pop();\n            for(int node:v[cur])\n            {\n                in[node]--;\n                if(in[node]==0)\n                    q.push(node);\n            }\n        }\n    }\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>>v(numCourses);\n        in.resize(numCourses);\n        for(int i=0;i<prerequisites.size();i++)\n        {\n            v[prerequisites[i][0]].push_back(prerequisites[i][1]);\n            in[prerequisites[i][1]]++;\n        }\n        check(numCourses,v);\n        if(res.size()==numCourses) return true;\n        else return false;\n    }\n};"
+		],
+		[
+			8.365373419567408,
+			17.476711627091365,
+			11,
+			38.0769,
+			"class Solution {\npublic:\n    bool isValid = false;\n     vector<int>vis;\n    bool dfs(int node,vector<vector<int>>& graph)\n    {\n        if(vis[node]==2)\n            return true;\n        vis[node]=2;\n        for(int i=0;i<graph[node].size();i++)\n        {\n            if(vis[graph[node][i]]!=1)\n            {\n                if(dfs(graph[node][i],graph))\n                    return true;\n            }\n        }\n        vis[node]=1;\n        return false;\n    }\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>>graph(numCourses);\n        if(prerequisites.size()==0)\n            return true;\n        for(int i=0;i<prerequisites.size();i++)\n        {\n            graph[prerequisites[i][0]].push_back(prerequisites[i][1]);\n        }\n        /*\n        for(int i=0;i<numCourses;i++)\n        {\n           // cout<<\"rishu\"<<endl;\n            for(int j=0;j<graph[i].size();j++)\n            {\n                cout<<graph[i][j]<<\" \";\n            }\n            cout<<endl;\n        }\n        */\n         vis.resize(graph.size(),0);\n        for(int i = 0; i < numCourses; i++)\n        {\n            if(vis[i] == 0)\n            {\n                if(dfs(i,graph))\n                    return false;\n            }\n        }\n         return true;\n    }\n};"
+		],
+		[
+			2511886431.509583,
+			8.035584269104683,
+			10,
+			20.0909,
+			"class Solution {\npublic:\n    int WHITE = 0;  // Unvisited\n    int GREY = 1;   // Explore incomplete\n    int BLACK = 2;  // Fully explored\n    \n    // return true if no cycle otherwise return false\n    bool dfs(int node, vector<vector<int>>&graph,vector<int>&visited)\n    {\n        visited[node] = GREY;\n        \n        // go thourgh all parent nodes i.e., prerequisites courses\n        for(int j=0;j<graph[node].size();j++)\n        {\n            // If end up in an unexplored node then it is a cycle and return false\n            if(visited[graph[node][j]]==GREY) return false;\n            \n            // Explore all unvisited parent node\n            if(visited[graph[node][j]]==WHITE)\n                if(!dfs(graph[node][j],graph,visited)) return false;    // return false if find cycle\n        }\n        \n        visited[node] = BLACK;\n        \n        return true;\n    }\n    \n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        \n        // create graph for each course to prerequisites Adjacency List\n        vector<vector<int>>graph(numCourses);\n        \n        // Visited track of each node\n        vector<int>visited(numCourses,WHITE);\n        \n        // Populate graph \n        for(int i=0;i<prerequisites.size();i++)\n            graph[prerequisites[i][0]].push_back(prerequisites[i][1]);\n        \n        // Run DFS on each unvisited node\n        for(int i=0;i<numCourses;i++)\n        {\n            if(visited[i]==WHITE)\n                if(!dfs(i,graph,visited))return false;  // return false if detect cycle\n        }\n            \n        return true;\n    }\n};"
+		],
+		[
+			3.827163278418475,
+			1.0,
+			7,
+			31.5714,
+			"class Solution {\npublic:bool dfs(vector<vector<int>> & a, vector<int> & v, int i)\n{\n\tif(v[i]==1)  return true;\n\tif(v[i]==-1) return false;\n\tv[i] = -1;\n\n\tauto out{true};\n\tfor(const auto & k : a[i]) out &= dfs(a, v, k);\n\n\tv[i] = 1;\n\treturn out;\n}\n\nbool canFinish(int n, vector<vector<int>>& p)\n{\n\tvector a(n, vector<int>{});\n\tfor(const auto & i : p) a[i[0]].push_back(i[1]);\n\n\tvector v(n, 0);\n\tauto out{true};\n\tfor(auto i{0}; i<n; ++i)\n\t\tout &= dfs(a, v, i);\n\n\treturn out;\n}\n};"
+		],
+		[
+			17.612700838378743,
+			17.486574387654336,
+			7,
+			21.8919,
+			"class Solution {//BEST2: BFS:Time/Space: O(N); O(N)\npublic:// prerequisites: {child, parent}\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>> g(numCourses);\n        vector<int> degrees(numCourses, 0);\n        for(const auto& e: prerequisites){\n            g[e[1]].emplace_back(e[0]);\n            degrees[e[0]]++; //Note1\n        }\n        \n        queue<int> q;\n        for(int i = 0; i < numCourses; i++)\n            if(degrees[i] == 0) q.push(i);  // Note2\n        int todoCnt=numCourses;\n        while(!q.empty()){\n            auto cur = q.front(); q.pop(); todoCnt--;\n            for(const auto& next: g[cur])\n                if(--degrees[next]==0) q.push(next); //Note3\n        }\n        return todoCnt == 0;\n    }\n};"
+		],
+		[
+			8.558516766212135,
+			18.20945049004398,
+			9,
+			18.1452,
+			"class Solution {\n    using vi  = vector<int>;\npublic:\n    template <typename Tmp, typename Tv>\n    bool iscycle(Tmp& adj, Tv& vis, int id){\n        if (vis[id] == 1) return true;\n        if (vis[id] == 0) {\n            vis[id]=1;\n            for (auto& edge : adj[id])\n                if (iscycle(adj,vis,edge)) return true;\n        }\n        vis[id] = 2;\n        return false;\n    }\n    \n    bool canFinish(int n, vector<vector<int>>& pre) {\n        unordered_map<int, vi> adj;\n        for(auto edge : pre)\n            adj[edge[1]].push_back(edge[0]);\n        \n        vi vis(n, 0);\n        for (const auto& pr : adj)\n            if(iscycle(adj,vis, pr.first)) return false;\n        return true;\n    }\n};"
+		],
+		[
+			13.838853472330895,
+			18.204705256080036,
+			9,
+			26.1818,
+			"class Solution {\npublic:\n    typedef vector<vector<int>> vii;\n    typedef vector<int> vi;\n    bool cycle(vii & p, vi & v,int i)\n    {\n       if(v[i] == 1) return true; \n       if(v[i] == 2) return false; \n       v[i] = 1; \n       for(int x: p[i])\n          if(cycle(p,v,x)) return true; \n       v[i] = 2;\n       return false; \n    }\n    bool canFinish(int n, vii & p) {\n      vii adjList(n);  \n      vi v(n,0); \n        for(vi v : p)\n            adjList[v[1]].push_back(v[0]); \n        for(int i = 0 ; i < n;i++)\n            if(cycle(adjList,v,i)) return false; \n        return true;\n    }\n};"
+		],
+		[
+			8.037859980675016,
+			18.204900094142857,
+			9,
+			24.7273,
+			"class Solution {\npublic:\n    bool cycle(vector<vector<int>> & pre, vector<int> & visited,int pos)\n    {\n       if(visited[pos] == 1) return true; \n       if(visited[pos] == 2) return false; \n       visited[pos] = 1; \n       for(int x: pre[pos])\n          if(cycle(pre,visited,x)) return true; \n       visited[pos] = 2;\n       return false; \n    }\n    bool canFinish(int numCourses, vector<vector<int>>& pre) {\n      vector<vector<int>> adjList(numCourses);  \n      vector<int> visited(numCourses,0); \n        for(auto v : pre)\n            adjList[v[1]].push_back(v[0]); \n        for(int i = 0 ; i < numCourses;i++)\n            if(cycle(adjList,visited,i)) return false; \n        return true;\n    }\n};"
+		],
+		[
+			18.24100887932229,
+			18.25044753403949,
+			13,
+			32.0625,
+			"class Solution {\nprivate:\n    unordered_map<int, vector<int> > graph;\n    unordered_map<int, vector<int> > rgraph;\n    vector<bool> visited;\n    stack<int> st;\n    \n    void dfs1(int u) {\n        if(visited[u]) {\n            return;\n        }\n        \n        visited[u] = true;\n        for(int v: graph[u]) {\n            dfs1(v);\n        }\n        \n        st.push(u);\n    }\n    \n    int dfs2(int u) {\n        if(visited[u]) {\n            return 0;\n        }\n        \n        int count = 1;\n        visited[u] = true;\n        for(int v: rgraph[u]) {\n            count += dfs2(v);\n        }\n        \n        return count;\n    }\n    \npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        int u, v, count;\n        \n        visited = vector<bool>(numCourses, false);\n        \n        for(auto req: prerequisites) {\n            u = req[1];\n            v = req[0];\n            graph[u].push_back(v);\n            rgraph[v].push_back(u);\n        }\n        \n        for(u=0; u<numCourses; u++) {\n            if(visited[u] == false) {\n                dfs1(u);\n            }\n        }\n        \n        visited = vector<bool>(numCourses, false);\n        \n        while(st.size()) {\n            u = st.top();\n            st.pop();\n            if(visited[u] == false) {\n                count = dfs2(u);\n                if(count>1) {\n                    return false;\n                }\n            }\n        }\n        \n        return true;\n    }\n};"
+		],
+		[
+			16.898195938840306,
+			17.482715041737507,
+			7,
+			31.9091,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>> graph(numCourses,vector<int>());\n        vector<int> indegree(numCourses,0);\n\n        for (int i = 0; i < prerequisites.size(); ++i) {\n            ++indegree[prerequisites[i][0]];\n            graph[prerequisites[i][1]].push_back(prerequisites[i][0]);\n        }\n\n        queue<int> myque;\n        for (int i = 0; i < indegree.size(); ++i)\n            if (!indegree[i])\n                myque.push(i);\n\n        int counter = 0;\n        while (!myque.empty()) {\n            int cur = myque.front();\n            myque.pop();\n            ++counter;\n\n            for (int i = 0; i < graph[cur].size(); ++i) \n                if (--indegree[graph[cur][i]] == 0)\n                    myque.push(graph[cur][i]);\n        }\n\n        return numCourses == counter;\n    }\n};"
+		],
+		[
+			9.882657992024532,
+			18.205795367399368,
+			11,
+			30.5455,
+			"class Solution\n{\npublic:\n    bool has_cycle(vector<int>adj[],vector<bool>&vis,vector<bool>&stk,int src)\n    {\n        if(!vis[src])\n        {\n            vis[src]=true;\n            stk[src]=true;\n            for(auto it:adj[src])\n            {\n                if(stk[it])\n                {\n                    return true;\n                }\n                else if(!vis[it] && has_cycle(adj,vis,stk,it))\n                {\n                    return true;\n                } \n            }\n            stk[src]=false;\n        }\n        return false;\n    }\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites)\n    {\n        vector<int>adj[numCourses];\n        for(auto it:prerequisites)\n        {\n            adj[it[0]].push_back(it[1]);\n        }\n        vector<bool>vis(numCourses,false),stk(numCourses,false);\n        for(int i=0;i<numCourses;i++)\n        {\n            if(!vis[i])\n            {\n                if(has_cycle(adj,vis,stk,i))\n                {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			1.0,
+			17.488087922234126,
+			9,
+			34.2,
+			"class Solution {\npublic:\n    bool canFinish(int nc, vector<vector<int>>& arr) {\n        vector<int>adj[nc+1];\n        int inc[nc+1];\n        memset(inc,0,sizeof(inc));\n        for(int i=0;i<arr.size();i++) \n        {\n            adj[arr[i][1]].push_back(arr[i][0]);\n            inc[arr[i][0]]++;\n        }\n        queue<int>que;\n        for(int i=0;i<nc;i++)\n        {\n            if(inc[i]==0)\n                que.push(i);\n        }\n        while(!que.empty())\n        {\n            int tmp = que.front();\n            que.pop();\n            for(int i=0;i<adj[tmp].size();i++)\n            {\n                inc[adj[tmp][i]]--;\n                if(inc[adj[tmp][i]]==0) que.push(adj[tmp][i]);\n            }\n        }\n        for(int i=0;i<nc;i++)\n        {\n            if(inc[i]!=0) return false;\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			17.903174995610158,
+			17.476853981899296,
+			7,
+			28.2692,
+			"class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<int> pre_req_count(numCourses,0);\n        unordered_map<int,vector<int>> before_after;\n        \n        for (int i=0; i<prerequisites.size(); ++i) {\n            // \n            before_after[prerequisites[i][1]].push_back(prerequisites[i][0]);\n            //increase pre-req count of this course needed by 1 \n            pre_req_count[prerequisites[i][0]]++;\n        }\n        \n        int total = 0, curr;\n        queue<int> q;\n        //find all courses that don't have any prerequisites and add to queue\n        for (int i=0; i<pre_req_count.size(); ++i) {\n            if (pre_req_count[i] == 0)\n                q.push(i);\n        }\n        \n        while (!q.empty()) {\n            curr = q.front(); q.pop();\n            //find all courses that has this course as pre-req\n            for (auto &i : before_after[curr]) {\n                //this course now has one less pre-req\n                pre_req_count[i]--;\n                //if now this course is pre-req free, add to q\n                if (pre_req_count[i] == 0)\n                    q.push(i);\n            } \n            ++total;\n        }\n        return total == numCourses;\n    }\n};\n"
+		],
+		[
+			17.418164645879305,
+			18.20578013004991,
+			10,
+			32.5806,
+			"class Solution {\npublic:\n    bool dfs(vector<int>adj[],vector<int>&visited,vector<int>&rec,int node)\n{\n    visited[node]=1;\n    rec[node]=1;\n    for(auto it:adj[node])\n    {\n        if(rec[it]){\n            return true;\n        }\n        else if(!visited[it] && dfs(adj,visited,rec,it))\n        {\n            return true;\n        }\n    }\n    rec[node]=0;\n    return false;\n}\n    bool canFinish(int numCourses, vector<vector<int>>& pre) {\n        \n        // contruct a graph (adjacency list from Prerequisites)\n        vector<int>adj[numCourses];\n        for(auto it:pre)\n        {\n            adj[it[0]].push_back(it[1]);\n        }\n         int V=numCourses;\n        // for(int i=0;i<V;i++)\n        // {\n        //     cout<<i<<\"-->\";\n        //     for(auto it:adj[i])\n        //     {\n        //         cout<<it<<\" \";\n        //     }\n        //     cout<<endl;\n        // }\n       \n        vector<int>visited(V,0);\n        vector<int>rec(V,0);\n        for(int i=0;i<V;i++)\n        {\n            if(!visited[i])\n            {\n                if(dfs(adj,visited,rec,i))\n                {\n                    return false;\n                }\n            }\n        }\n        return true;\n        \n        \n    }\n};\n"
+		]
+	],
+	"JUMP_GAME": [
+		"n",
+		[
+			4.729918571480351,
+			4.266807006446483,
+			3,
+			18.75,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int index=nums.size()-1;\n        for(int i=nums.size()-2;i>=0;--i){\n            if(i+nums[i]>=index){\n                index=i;\n            }\n        }\n        return index==0;\n    }\n};\n"
+		],
+		[
+			4.738596291241468,
+			4.266807006446484,
+			4,
+			24.6154,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        if(nums.size()==1)\n            return true;\n        int maxi = nums[0];\n        for(int i=1;i<nums.size()-1;i++){\n            if(i>maxi)\n                continue;\n            \n            maxi = max(maxi, i+nums[i]);\n        }\n        return (nums.size()-1)<=maxi;\n    }\n};\n"
+		],
+		[
+			5.9384295034232135,
+			4.279657409509342,
+			9,
+			34.125,
+			"class Solution {\npublic:\n\nbool canJump(vector<int>& nums) {\n    \n    int n = nums.size();\n    \n    if(!n || (n>1 && !nums[0]))\n        return false;\n    \n    if(nums[0] >= (n-1))\n        return true;\n    \n    vector<bool> dp(n,false);\n    dp[n-1] = true;\n    \n    for(long i=n-2;i>=0;i--)\n    {\n        for(long j=i+nums[i];j>i;j--)\n        {\n            if(j >= n || (dp[j] == true))\n            {\n                dp[i] = true;\n                break;\n            }\n        }\n    }\n    \n    return dp[0];\n}\n};"
+		],
+		[
+			4.702922446966743,
+			4.266807006446484,
+			5,
+			20.3571,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        // support variables\n        int iLen = nums.size();\n        bool canReach[iLen];\n        for (bool &b: canReach) b = false;\n        canReach[0] = {1};\n        for (int i = 0, jLen, lastChecked = 0, jumps; i < iLen - 1; i++) {\n            // exiting when unreachable/unreached blocks are met\n            if (!canReach[i]) break;\n            // updating canReach with the latest jump\n            jumps = nums[i];\n            jLen = min(iLen, i + jumps + 1);\n            for (int j = max(lastChecked, i) + 1; j < jLen; j++) canReach[j] = true;\n            // updating lastChecked\n            lastChecked = jLen - 1;\n        }\n        return canReach[iLen - 1];\n    }\n};"
+		],
+		[
+			4.517440679533891,
+			4.266807006446483,
+			3,
+			17.1429,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        // support variables\n        int last = 0, len = nums.size() - 1;\n        for (int i = 0; i < len; i++) {\n            // exit condition - unreachable cell met\n\t\t\tif (i > last) break;\n\t\t\t// updating last\n            last = max(last, nums[i] + i);\n        }\n        return last >= len;\n    }\n};"
+		],
+		[
+			4.802435968171864,
+			4.266807006446484,
+			4,
+			17.6071,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int n=nums.size();\n        if(n==0) return 0;\n        \n        int maxreach=0;\n        for(int i=0; i<n; i++){\n            if(maxreach<i)\n                return false;\n            maxreach=max(maxreach, i + nums[i]);\n        }\n        return true;\n    }\n};"
+		],
+		[
+			4.676294088601096,
+			4.266807006446484,
+			5,
+			18.45,
+			"//Jump Game\n//O(1) space solution\nclass Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        if (nums.size() == 0) return false;\n        if (nums.size() == 1) return true;\n        \n        int n = nums.size();\n        int jump = 0;\n        for (int i = 1; i < n; i++) {\n            jump = max(nums[i-1], jump) - 1;\n            if (jump < 0) return false;\n        }\n        return true;\n    }\n};"
+		],
+		[
+			4.770179601221479,
+			4.266807006446483,
+			4,
+			20.0357,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        for(int i = 0, max_jump = 0; i < nums.size() && max_jump < nums.size()-1; ++i)\n        {\n            if(i > max_jump) return false;\n            max_jump = max(max_jump, i+nums[i]);\n        }\n        return true;\n    }\n};"
+		],
+		[
+			4.841829743985941,
+			4.266807006446484,
+			3,
+			20.3571,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        for(int i = 0, max_jump = 0; i <= max_jump; ++i)\n        {\n            max_jump = max(max_jump, i+nums[i]);\n            if(max_jump >= nums.size()-1) return true;\n        }\n        return false;   \n    }\n};"
+		],
+		[
+			4.820324861244558,
+			4.266807006446484,
+			5,
+			15.0,
+			"class Solution \n{\npublic:\n    //AC - 16ms - backwards searching for zero jump length and then make sure it can be jumped over;\n    bool canJump(vector<int>& nums) \n    {\n        int d = 0;\n        for(int i = nums.size()-2; i >= 0; --i)\n        {\n            if(nums[i] == 0)\n            {\n                int d = 1;\n                while(d > nums[i])\n                {\n                    d++;\n                    i--;\n                    if(i < 0) return false;\n                }\n            }\n        }\n        return true;\n    }\n};"
+		],
+		[
+			7.810781186943741,
+			4.36558790866042,
+			10,
+			31.1389,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        if(nums.empty()) return true;\n        if(nums[0]==0)\n        {\n            if(nums.size()==1) return true;\n            else return false;\n        }\n        vector<int> zero;\n        for(int i=0;i<nums.size()-1;i++)\n        {\n            if(nums[i]==0)\n            {\n                zero.push_back(i);\n            }\n        }\n        bool flag;\n        for(int i=0;i<zero.size();i++)\n        {\n            flag=false;\n            for(int j=0;j<zero[i];j++)\n            {\n                if(nums[j]+j>zero[i]) \n                {\n                    flag=true;\n                    break;\n                }\n            }\n            if(!flag) return false;\n        }\n        return true;\n    }\n};"
+		],
+		[
+			4.598332447870326,
+			4.266807006446484,
+			3,
+			18.75,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int reachable = nums.size()-1;\n        for(int i=nums.size()-2;i>=0;--i)\n            if(i+nums[i] >= reachable) reachable = i;\n        return reachable == 0;\n    }\n};\n"
+		],
+		[
+			4.704930196778218,
+			4.266807006446483,
+			5,
+			22.3929,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        if(nums.size()==1) return true;\n        if(nums[0]==0) return false;\n        int step = nums[0];\n        for(int i=1; i<nums.size()-1; i++){\n            step = max(--step, nums[i]);\n            if(step<=0) return false;\n        }\n        return true;\n    }\n};"
+		],
+		[
+			4.668808143775618,
+			4.266807006446484,
+			3,
+			21.0,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int closest_stand=nums.size()-1;\n        for (int i=closest_stand;i>=0;--i) {\n            if (i+nums[i]>=closest_stand) closest_stand=i;\n        }\n        return closest_stand==0;\n    }\n};"
+		],
+		[
+			4.436007008422013,
+			4.266807006446483,
+			3,
+			16.0714,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int distance = 0;\n        for(int i = 0; i < nums.size() - 1; i++){\n            distance = max(distance, i + nums[i]);\n            if(distance == i) return false;\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			4.604992982712588,
+			4.266807006446483,
+			9,
+			29.0588,
+			"class Solution {\npublic:\n\tbool canJump(vector<int>& nums) {\n\t\tif (nums.empty())\n\t\t\treturn false;\n\t\tif (nums.size() == 1)\n\t\t\treturn true;\n\t\tif (nums[0] == 0)\n\t\t\treturn false;\n\t\tbool can_over;\n\t\tfor (int i = nums.size() - 2; i > 0; --i)\n\t\t{\n\t\t\tif (nums[i])\n\t\t\t\tcontinue;\n\t\t\tcan_over = false;\n\t\t\tint j;\n\t\t\tfor (j = i - 1; j >= 0; --j)\n\t\t\t{\n\t\t\t\tif (nums[j] > i - j)\n\t\t\t\t{\n\t\t\t\t\tcan_over = true;\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif (!can_over)\n\t\t\t\treturn false;\n\t\t\ti = j;\n\t\t}\n\t\treturn true;\n\t}\n};\n"
+		],
+		[
+			4.401966499861366,
+			4.266807006446483,
+			3,
+			21.4286,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int size = nums.size();\n        int k = nums[0];\n        for(int i = 0; i <= k; ++i) {\n            if((i+nums[i]) >= (size-1)) return true;\n            else k = max(k, i+nums[i]);\n        }\n        return false;\n    }\n};\n"
+		],
+		[
+			4.48161884528892,
+			4.266807006446483,
+			4,
+			15.4062,
+			"class Solution {\npublic:\nbool canJump(vector<int>& nums) {\n    if(nums.empty()) return true;\n    int m = nums[0];\n    for(auto i = 1; i < nums.size(); ++i)\n    {\n        if(m <= 0) return false;\n        m = max(m - 1, nums[i]);\n    }\n    return true;\n}\n};"
+		],
+		[
+			4.497560168358014,
+			4.266807006446484,
+			5,
+			17.0946,
+			"class Solution {\n    public:\n        bool canJump(vector<int>& nums) {\n            int n=nums.size();// get first constraint\n            \n            if(n==0)// corner case\n            return false;\n            int maxIndex=0;\n            for(int i=0;i<n&&i<=maxIndex;i++)// two constraints. It will stop when either one terminates\n                maxIndex=max(maxIndex,i+nums[i]);// update dynamic range every time\n                \n                if(maxIndex>=n-1)// cover last index\n                return true;\n                else// not cover\n                return false;\n            \n            \n        }\n    };"
+		],
+		[
+			4.651944707695098,
+			4.266807006446484,
+			6,
+			25.5244,
+			"/*\n *  The idea is to jump 1 index at a time while keeping the max jump value by \n *  comparing current jump value vs max jump value. max jump value decreases by 1\n *  each time I jump 1 index.\n *  This way, if I have more zeroes than I can jump, my max jump value will\n *  become 0 before I reach the last index.\n */class Solution {\npublic:\nbool canJump(vector<int>& nums) \n{\n    if (nums.empty()) return false;\n    \n    int maxJumpVal = 0;\n    int curIndex = -1;\n    while (++curIndex + maxJumpVal < nums.size()) // if jump from where I am right now goes beyond the end, return true\n    {\n        int curJumpVal = nums.at(curIndex);\n        maxJumpVal = max(curJumpVal, --maxJumpVal); // if my current jump value is bigger than the max jump value, update it. Otherwise, use max jump value where I am jumping from previous index.\n        \n        if (curJumpVal == 0) // if current jump value is 0, just continue with one less max jump value\n        {\n            if (maxJumpVal == 0 && curIndex < nums.size()-1) // if, however, max jump value is also zero and I am not on the last index, return false. If I am on the last index, curIndex will increment in the while loop condition and break out of the loop resulting in returning true\n                return false;\n            continue;\n        }   \n    }\n    \n    return true;\n}\n };"
+		],
+		[
+			4.529639176361969,
+			4.266807006446484,
+			3,
+			13.1429,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int u = 1;\n        for (int i = 0; i < nums.size(); i ++){\n            if (--u < 0) return false;\n            u = max(nums[i], u);\n        }\n        return true;\n    }\n};"
+		],
+		[
+			4.757510457091475,
+			4.266807006446484,
+			5,
+			20.3571,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        // support variables\n        int iLen = nums.size();\n        bool canReach[iLen];\n        for (bool &b: canReach) b = false;\n        canReach[0] = {1};\n        for (int i = 0, jLen, lastChecked = 0, jumps; i < iLen - 1; i++) {\n            // exiting when unreachable/unreached blocks are met\n            if (!canReach[i]) break;\n            // updating canReach with the latest jump\n            jumps = nums[i];\n            jLen = min(iLen, i + jumps + 1);\n            for (int j = max(lastChecked, i) + 1; j < jLen; j++) canReach[j] = true;\n            // updating lastChecked\n            lastChecked = jLen - 1;\n        }\n        return canReach[iLen - 1];\n    }\n};\n"
+		],
+		[
+			4.544183956610552,
+			4.266807006446484,
+			4,
+			20.7143,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int farthest = 0;\n        for (int i = 0; i < nums.size(); ++i) {\n            farthest = max(farthest, i + nums[i]);\n            if (farthest >= nums.size() - 1) {\n                return true;\n            } else if (farthest == i) {\n                return false;\n            }\n        }\n        return false;\n    }\n};\n"
+		],
+		[
+			4.62536339322144,
+			4.266807006446484,
+			5,
+			26.8235,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int n = nums.size();\n        \n        if(n == 1)\n            return true;\n        \n        int max_so_far = 0;\n        \n        for(int i = 0; i < n-1; i++){\n            \n            if(nums[i] == 0 and i == max_so_far)\n                return false;\n            \n            if(i + nums[i] >= n-1)\n                return true;\n            max_so_far = max(max_so_far, i + nums[i]);\n        }\n        return false;\n    }\n};\n"
+		],
+		[
+			4.537737738771282,
+			4.266807006446484,
+			4,
+			18.3077,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n       int jump = 0, size = nums.size(); \n       for(int i = 0 ; i < size-1;i++)\n       {\n           jump = nums[i] > jump ? nums[i] : jump;\n           if(!jump) return false;\n           jump--;\n       } \n        return true;\n    }\n};\n"
+		],
+		[
+			4.434892773457009,
+			4.266807006446483,
+			3,
+			14.7692,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int last=0;\n        for(int i=0;i<nums.size();i++)\n        {\n            if(i>last) return false;            \n            last=max(last,i+nums[i]);\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			4.596770933544274,
+			4.266807006446483,
+			4,
+			20.5882,
+			"typedef long long ll;\nclass Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        ll store = nums.size()-1;\n        ll r = nums.size()-2;\n        ll l = 0;\n        while(l<=r)\n        {\n            if(nums[r]>=(store-r))\n            {\n                store = r;\n                r--;\n            }\n            else\n                r--;\n        }\n        if(store==0)\n            return true;\n        else\n            return false;\n        \n    }\n};\n"
+		],
+		[
+			4.45257825839876,
+			4.266807006446484,
+			3,
+			12.7273,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        ios_base::sync_with_stdio(false);\n        cin.tie(NULL);\n        \n        int n = nums.size();\n        int maxReach = 0;\n        \n        for(int i=0; i<n; i++){\n            if(maxReach < i)\n                return false;\n            maxReach = max(maxReach, nums[i]+i);\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			4.576769777190841,
+			4.266807006446484,
+			4,
+			18.1364,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int minSteps=1;      //no of steps required from any index to reach last index\n        for(int i=nums.size()-2;i>=0;i--)\n            nums[i]<minSteps?minSteps++:minSteps=1;   //if we can reach to last index from here, minSteps from i-1th index is 1\n        return minSteps>1?false:true;    //if minSteps>1, we were not able to reach last index from first\n    }\n};\n"
+		],
+		[
+			4.583140347996499,
+			4.266807006446484,
+			3,
+			18.0,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int len=nums.size();\n        int last=len-1;\n        for(int i=len-2;i>=0;i--)\n        {\n            if((nums[i]+i)>=last)\n            {\n                last=i;\n            }\n        }\n        return last==0;\n    }\n};\n"
+		],
+		[
+			4.569890221754246,
+			4.266807006446483,
+			3,
+			19.6364,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int target = nums.size()-1;\n        \n        for(int i = target-1; i >= 0; i--){\n            if(nums[i]+i >= target) target = i;\n        }\n        \n        return target == 0;\n    }\n};"
+		],
+		[
+			4.416167737638117,
+			4.266807006446484,
+			6,
+			19.425,
+			"class Solution {\npublic:\nbool canJump(vector<int>& nums) {\n    int len = nums.size() - 1; // ignore last step\n\n    // If there is none 0, then it is OK.\n    // If there is a 0, it should be like this:\n    // 7,[?],5,4,3,2,1,0, ... the [?] should be greater than 6\n    for (int i=0; i<len; ++i) {\n        if (0 == nums[i]) {\n            bool breakZero = false;\n            for (int j=i-1, count=1; j>=0; --j, ++count) {\n                if (nums[j] > count) {\n                    breakZero = true;\n                    break;\n                }\n            }\n            if (false == breakZero) {\n                return false;\n            }\n        }\n    }\n    \n    return true;\n}\n};"
+		],
+		[
+			4.531113705465802,
+			4.266807006446484,
+			4,
+			18.4722,
+			"class Solution {\npublic:\nbool canJump(vector<int>& nums) {\n    unsigned int maxReach = 0;\n    for (unsigned int i = 0; i < nums.size(); i++) {\n        if (maxReach < i)  // cannot reach i \n            return false;\n        if (maxReach >= nums.size()-1)\n            return true;  //early return \n        maxReach = max(maxReach, i+nums[i]);\n    }\n    return true;\n}\n};"
+		],
+		[
+			4.435168581749873,
+			4.266807006446484,
+			8,
+			47.25,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        \n        if(nums.size()==1)\n            return 1;\n        else if(nums[0]==0)\n            return 0;\n        \n        int count=0;\n        \n        for(int i=0;i<nums.size()-1;i++)\n        {\n            if(nums[i]==0)\n            {\n                count=0;\n                for(int j=i-1;j>=0;j--)\n                {\n                   if(nums[j]+j>=i+1)\n                   {\n                      i=nums[j]+j-1;\n                      ++count;\n                      break;\n                   }\n                }\n                if(count==0)\n                    return 0;\n            }\n            else\n                i=i+nums[i]-1;\n        }\n        \n        \n        return 1;\n    }\n};\n"
+		],
+		[
+			4.480237847940689,
+			4.266807006446484,
+			5,
+			28.875,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int n=nums.size(), max_so_far=0;;\n        if(n==0) return true;\n        \n        for(int i=0; i<= max_so_far && max_so_far<n; i++){\n            max_so_far= max(max_so_far, i + nums[i]);\n        }\n        if(max_so_far>=n-1)\n                return true;\n        else\n            return false;\n        \n    }\n};"
+		],
+		[
+			4.568070518816127,
+			4.266807006446483,
+			4,
+			20.0,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int i,minjump=0;\n        for(i=nums.size()-2;i>=0;i--){\n            minjump++;\n            if(nums[i]>=minjump)minjump=0;\n        }\n        if(minjump==0)return true;\n        else return false;\n    }\n};\n"
+		],
+		[
+			13.664565948149187,
+			12.755811928116483,
+			5,
+			21.4773,
+			"class Solution {\n    \npublic:\n    bool canJump(const vector<int>& nums) {\n        if (nums.size() == 1) return true; // Handle edge case of a vector being given of size 1\n        for (int i{nums[0]}; i > 0; --i) {\n            bool res = nums.begin() + i >= nums.end() - 1 ? true : canJump({nums.begin() + i, nums.end()});\n            if (res) return true;\n        }\n        return false;\n    }\n};\n"
+		],
+		[
+			4.762254102036435,
+			4.266807006446484,
+			5,
+			24.0667,
+			"class Solution {\npublic:bool canJump(vector<int>& a) {\n        int n = a.size();\n        int currrent_max = 0;\n        \n        for(int i=0; i<n; i++){\n            currrent_max = max(currrent_max, i+a[i]);\n            if(currrent_max == n-1)\n                return true;\n            \n            if(a[i] == 0 && currrent_max <= i)\n                return false;\n        }\n        return true;\n    }\n};"
+		],
+		[
+			4.642410780698236,
+			4.266807006446484,
+			3,
+			16.8,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int valid = 0; // Furthest it can reach currently.\n        for (int i(0); i < nums.size() && i <= valid; ++i) {\n\t\t\t// maximum between the current furthest reached and the current value + index.\n            valid  = max(valid, i + nums[i]); \n        }\n        return valid >= nums.size() - 1; // if valid >= length - 1, then true else false.\n    }\n};\n"
+		],
+		[
+			4.670398924731002,
+			4.266807006446484,
+			5,
+			20.7692,
+			"class Solution {\npublic:\n\tbool canJump(vector<int>& nums) {\n\t\tint cur=0;\n\t\tfor(int i=0;i<nums.size()-1;i++){\n\t\t\tif(i+nums[i]>cur){\n\t\t\t\tcur=i+nums[i];\n\t\t\t}\n\t\t\tif(nums[i]==0){\n\t\t\t\tif(cur<=i){\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n};"
+		],
+		[
+			4.854062160569239,
+			4.266807006446484,
+			5,
+			20.1875,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int jump=nums[0]; // first jump\n        for(int i=1;i<nums.size();i++){\n            if(jump<=0) return false; \n            jump--;\n            if(jump<=nums[i])\n                jump=nums[i]; // update jump - greedy\n        }\n        if(jump>=0)\n            return true;\n        return false;\n    }\n};\n"
+		],
+		[
+			4.696267535764189,
+			4.266807006446483,
+			3,
+			17.25,
+			"class Solution {\npublic:\n    int canJump(vector<int>& nums) {\n        int a=0;\n        for(int i=0;i<nums.size();i++)\n        {\n            if(a>=i)\n                a=max(a,i+nums[i]);\n            else\n                return false;\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			4.669076377959913,
+			4.266807006446484,
+			5,
+			20.0769,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) { \n     int maxindex = 0;\n     for(int i=0;i<nums.size()-1;i++){\n       if(nums[i]){\n         if(nums[i]+i > maxindex) maxindex = nums[i]+i;\n       }else if(maxindex <= i) return false;\n     } \n     return true;   \n    }\n};\n"
+		],
+		[
+			4.7096971894621475,
+			4.266807006446484,
+			4,
+			15.7857,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int reach = nums.size() - 1;\n        for(int i = nums.size() - 2; i >= 0; i--){\n            if(i + nums[i] >= reach) reach = i;\n        }\n        if(!reach) return true;\n        return false;\n    }\n};\n"
+		],
+		[
+			4.868379636900066,
+			4.266807006446484,
+			4,
+			22.1667,
+			"class Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int n=nums.size();\n        int max_position=0;\n        for(int i=0;i<n;i++){\n            max_position=max(max_position,nums[i]+i);\n            if(max_position>=n-1)\n                return true;\n            if(max_position==i)\n                return false;\n        }\n        return false;\n    }\n};\n"
+		],
+		[
+			4.604010325979182,
+			4.266807006446484,
+			3,
+			18.4062,
+			"class Solution {\npublic:\n\tbool canJump(vector<int>& nums) {\n\t\tint n = nums.size();\n\n\t\tint can_reach = 0;\n\n\t\tfor(int i=0;i<=can_reach;i++){\n\t\t\tif(i == n-1){\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\tcan_reach = max(can_reach , i+nums[i]);\n\t\t}\n\n\t\treturn false;\n\t}\n};"
+		]
+	],
+	"COIN_CHANGE": [
+		"m",
+		[
+			7.020829327832227,
+			4.762282179025152,
+			5,
+			24.0625,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        vector<double> dp(amount+1, INT_MAX);\n        dp[0] = 0;\n        \n        // dp[i] represents the fewest number of coins to make up the amount i\n        for (int i = 1; i <= amount; i++) {\n            \n            for (auto coin : coins) {\n                \n                if (coin <= i) {\n                    \n                    dp[i] = min(dp[i], dp[i-coin]+1);\n                }\n            }\n        }\n        \n        return dp.back() == INT_MAX ? -1 : dp.back();\n    }\n};\n"
+		],
+		[
+			6.354946980608282,
+			4.266807006446483,
+			4,
+			25.5,
+			"class Solution {\npublic:\n\tint coinChange(vector<int>& coins, int amount) {\n\t\tvector<int> dp(amount+1,amount+1);\n\t\tdp[0]=0;\n\t\tfor(auto x:coins){\n\t\t\tfor(int i=x;i<=amount;i++){\n\t\t\t\tdp[i]=min(dp[i],dp[i-x]+1);\n\t\t\t}\n\t\t}\n\t\treturn dp[amount]>=amount+1 ? -1:dp[amount];\n\n\t}\n};"
+		],
+		[
+			6.8190288716415175,
+			4.573050519273264,
+			4,
+			25.5,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        vector<int> dp(amount+1,amount+1);\n        dp[0] = 0;\n        for(auto x:coins)\n            for(int i=x; i<=amount; i++)\n                dp[i] = min(dp[i],dp[i-x]+1);\n        int ans = -1;\n        if(dp[amount]!=amount+1) ans = dp[amount];\n        return ans;\n    }\n};\n"
+		],
+		[
+			19.285582924285396,
+			4.573050519273264,
+			5,
+			36.1538,
+			"class Solution {\npublic:    int coinChange(vector<int>& coins, int amount) {\n        vector<int> dp (amount+1, amount+1);\n        dp[0] = 0;\n        for (int i = 1; i <= amount; i++)\n            for (int j = 0; j < coins.size(); j++)\n                if (i-coins[j] >= 0)\n                    dp[i] = min(dp[i-coins[j]]+1, dp[i]);\n        return (dp[amount] == amount+1) ? -1 : dp[amount];\n    }\n};"
+		],
+		[
+			6.978311306587633,
+			4.266807006446483,
+			9,
+			44.5,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        // unbounded Knspascak Problem\n        \n        int n = coins.size();\n        int m = amount;\n        \n        int t[n+1][m+1];\n        \n        for(int i=0;i<n+1;i++)\n        {\n            for(int j=0;j<m+1;j++)\n            {\n                if(i==0 && j==0)\n                {\n                    t[i][j]=0;\n                }\n                else if(i==0)\n                {\n                    t[i][j]=INT_MAX-100;\n                }\n                else if(j==0)\n                {\n                    t[i][j]=0;\n                }\n                else if(coins[i-1]<=j)\n                {\n                    t[i][j]=min((1+t[i][j-coins[i-1]]),t[i-1][j]);\n                }\n                else\n                {\n                    t[i][j]=t[i-1][j];\n                }\n            }\n            \n        }\n        return (t[n][m]==INT_MAX-100)?-1:t[n][m];\n    }\n};\n"
+		],
+		[
+			7.274057607290383,
+			4.573050519273264,
+			6,
+			26.1333,
+			"class Solution {\npublic:    int coinChange(vector<int>& coins, int amount) {\n        // coin change solution will be stored in dp[i] upto 'amount' where i = amount\n\t\tvector<int> dp(amount + 1, -1); // initially all solution upto amount is -1 (unknown)\n        dp[0] = 0; // 0 is solution for amount 0\n\t\tfor (int i = 1; i <= amount; i++) {\n            int minCnt = amount + 1;  //minCnt is used to count minimum coin for i amount. initially assigned to coin numbers more than amount\n            for (auto v : coins) \n                if( i >= v && dp[i - v] > -1)\n                    minCnt = min(dp[i - v], minCnt); /*get the minimum coin count if amount is greater than coin value  and solution exists for that particular coin*/\n            if (minCnt != amount + 1)\n                dp[i] = minCnt + 1; // update dp[i] if solution exist\n        }\n        return dp[amount];\n    }\n};"
+		],
+		[
+			7.191278239696133,
+			4.762282179025152,
+			9,
+			42.6667,
+			"/*\ndp[amount] = dp[amount-coins[i]] + 1;\n*/\n\nclass Solution {\npublic:\n    int coinChange(vector<int>& nums, int amount) {\n        long long int n=nums.size();\n        sort(nums.begin(),nums.end());\n        //dp[i] -> min no of coins required to make amount 'i'\n        vector<long long int> dp(amount+1,INT_MAX);\n        dp[0]=0;\n        for(long long int i=0;i<n;i++){\n            if(nums[i]>amount)\n                break;\n            dp[nums[i]]=1;\n        }\n        \n        for(long long int i=1;i<=amount;i++){\n            if(dp[i]!=INT_MAX){\n                for(long long int j=0;j<n && i+nums[j]<=amount;j++){\n                    int new_val=i+nums[j];\n                    if(new_val>amount)\n                        break;\n                    dp[new_val]=min(dp[new_val],dp[i]+1);\n                }\n            }\n            \n        }\n        if(dp[amount]==INT_MAX){\n            return -1;\n        }\n        return dp[amount];\n    }\n};\n"
+		],
+		[
+			7.0903750405168395,
+			4.573050519273264,
+			6,
+			26.4,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        vector<int> dp(amount+1,-1); dp[0] = 0;\n        for(int i = 1;i<=amount;i++)\n        {\n            int mi = 100000000;\n            for(auto a:coins)\n                if(i>=a && dp[i-a]!=-1)  mi = min(mi,dp[i-a]);\n            if(mi != 100000000)  dp[i] = 1+mi;\n        }\n        return dp[amount];\n    }\n};\n"
+		],
+		[
+			7.0983065613722305,
+			4.573050519273264,
+			5,
+			23.8718,
+			"class Solution\n{\npublic:\n    int coinChange(vector<int> &coins, int amount)\n    {\n        vector<int> memo(amount + 1, amount + 1);\n        memo[0] = 0;\n        for (int amt = 1; amt <= amount; amt++)\n        {\n            for (int coin : coins)\n            {\n                // If this coin can be used to make amt\n                if (coin <= amt)\n                {\n                    // Number of coins required to make amt amount is\n                    // Minimum of (current minimum number of coins required to make amt) and\n                    //            (Sum of Current coin value and minimum number of coins\n                    //               required for (amt - coin val) amount)\n                    memo[amt] = min(memo[amt], memo[amt - coin] + 1);\n                }\n            }\n        }\n        // Return memo of amount if making that amount with given coins is possible.\n        // Otherwise, return -1\n        return memo[amount] > amount ? -1 : memo[amount];\n    }\n};\n"
+		],
+		[
+			18.686406378599358,
+			4.266807006446483,
+			6,
+			33.9231,
+			"class Solution {\npublic:int coinChange(vector<int>& coins, int amount) { \n        int dp[amount+1];\n        dp[0] = 0;    \n        for(int e=1;e<amount+1;e++)\n            dp[e] = amount+1;\n        for(int i=1;i<amount+1;i++){\n            for(int j:coins){\n                if(i-j>=0)\n                    dp[i] = min(dp[i],dp[i-j]+1);\n            }\n        }\n        if(dp[amount]==amount+1)\n            return -1;\n        \n        return dp[amount];\n    }\n};"
+		],
+		[
+			6.817718156195993,
+			4.266807006446484,
+			8,
+			48.8235,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n\n        int n=coins.size();\n        if(n==0) return 0;\n        \n        int dp[n+1][amount+1];\n        \n        for(int i=0;i<=amount;i++)\n        {\n            dp[0][i]=INT_MAX-1;\n        }\n        \n        for(int i=1;i<=n;i++)\n        {\n            dp[i][0]=0;\n        }\n        \n        for(int i=1;i<=n;i++)\n        {\n            for(int j=1;j<=amount;j++)\n            {\n                if(j<coins[i-1])\n                {\n                    dp[i][j]=dp[i-1][j];\n                }\n                else\n                {\n                dp[i][j]=min(1+dp[i][j-coins[i-1]],dp[i-1][j]);\n                }\n            }\n        }\n        int ans= dp[n][amount];\n        \n        if(ans==INT_MAX-1) return -1;\n        else return ans;\n        return {};\n    }\n};"
+		],
+		[
+			18.600885534039787,
+			4.573050519273264,
+			6,
+			22.75,
+			"class Solution {\npublic:    int coinChange(vector<int>& coins, int amount) {\n        if(coins.size()==0)return 0;\n        vector<int> dp(amount+1);             //Note that dp[0]=0 because for amount 0 there is no possible way to pay using the given coins\n        for(int i=1;i<=amount;i++)\n        {\n            int t=INT_MAX/2;                     //we cannot use INT_MAX cuz anything above INT_MAX will cause an overflow.\n            for(int j=0;j<coins.size();j++)\n            {\n                if(i-coins[j]>=0)\n                    t=min(t,dp[i-coins[j]]+1);\n            }\n            dp[i]=t;\n        }\n        return dp[amount]>=INT_MAX/2?-1:dp[amount];      //Sometimes it impossible to get an amount using the coins given eg: amount 3 using coins 2 and 5.\n    }\n};"
+		],
+		[
+			6.852099693122493,
+			4.762282179025152,
+			7,
+			45.5,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n\t\tif (amount == 0) return 0;\n\t\tvector<double> result(amount + 1, amount + 1);\n\t\tresult[0] = 0;\n\t\tfor (int i = 1; i <= amount; i++)\n\t\t{\n\t\t\tfor (int j = 0; j < coins.size(); j++)\n\t\t\t{\n\t\t\t\tif (i >= coins[j] && result[i] - 1 > result[i - coins[j]])\n\t\t\t\t{\n\t\t\t\t\tresult[i] = result[i - coins[j]] + 1;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn (int)result[amount] > amount ? -1 : (int)result[amount];\n\t}\n};\n"
+		],
+		[
+			6.944176020689601,
+			4.573050519273264,
+			5,
+			31.6667,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        vector<int> dp(amount+1,INT_MAX-1);\n        dp[0]=0;\n        \n        for(int i=1;i<=coins.size();i++)\n        {\n            for(int j=1;j<=amount;j++)\n            {\n                if(coins[i-1]<=j)\n                {\n                    dp[j]=min(dp[j],1+dp[j-coins[i-1]]);\n                }\n            }\n        }\n        \n        return (dp[amount]>=INT_MAX-1 ? -1 : dp[amount]);\n    }\n};\n"
+		],
+		[
+			19.24816860341597,
+			4.266807006446483,
+			11,
+			57.5,
+			"#define MAX 9999\nclass Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        if(amount==0)\n            return 0;\n\t\t\t\n        int dp[coins.size()+1][amount+1];\n\t\t\n        for(int i=0;i<=coins.size();i++)\n            for(int j=0;j<=amount;j++)\n                if(i==0||j==0)\n                 dp[i][j]=MAX;\n\t\t\t\t \n        for(int i=1;i<=coins.size();i++)\n        {\n            for(int j=1;j<=amount;j++)\n            {\n                if(coins[i-1]>j)\n                    dp[i][j]=dp[i-1][j];\n                else if(coins[i-1]==j)\n                    dp[i][j]=1;\n                else\n                    dp[i][j]=min(dp[i-1][j],1+dp[i][j-coins[i-1]]);\n            }\n        }\n\t\t\n        if(dp[coins.size()][amount]==MAX)\n            return -1;\n\t\t\t\n        return dp[coins.size()][amount];\n    }\n};\n"
+		],
+		[
+			6.78173228186286,
+			4.266807006446484,
+			6,
+			33.8889,
+			"class Solution {\npublic:\n    \n    int coinChange(vector<int>& coins, int amount) {\n        int dp[amount+1];\n        dp[0] = 0;\n        \n        // for every amt = [1, amount], find min coins req\n        for(int amt=1; amt<=amount ; amt++){\n            dp[amt] = INT_MAX;\n            for(int i=0 ; i<coins.size() ; i++){\n                if(amt - coins[i] >= 0 && \n                   dp[amt-coins[i]] != INT_MAX)\n                        dp[amt] = min(dp[amt], dp[amt-coins[i]]+1);\n            }\n        }\n        \n        if(dp[amount] <= amount)\n            return dp[amount];\n        \n        return -1;\n    }\n};\n"
+		],
+		[
+			6.763925934898144,
+			4.266807006446483,
+			8,
+			35.625,
+			"class Solution {\npublic:\n\tint coinChange(vector<int>& coins, int amount) {\n\t\tint dp[amount+1];\n\t\tdp[0]=0;\n\t\tfor(int i=1;i<=amount;++i)\n\t\t\tdp[i] = INT_MAX;\n\t\t\n\t\tint len = coins.size();\n\n\t\tfor (int i = 1; i <= amount; ++i)\n\t\t{\n\t\t\tfor (int j = 0; j < len; ++j)\n\t\t\t{\n\t\t\t\tif(coins[j] <= i){\n\t\t\t\t\tint rest = dp[i-coins[j]];\n\t\t\t\t\tif(rest != INT_MAX && rest+1<dp[i]){\n\t\t\t\t\t\tdp[i] = rest+1;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn dp[amount]==INT_MAX ? -1 : dp[amount];\n\t}\n};\n"
+		],
+		[
+			7.249942042566421,
+			4.266807006446483,
+			7,
+			47.5,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        int n = coins.size();\n        int dp[n+1][amount+1];\n        \n        for(int i=0;i<=n;i++) dp[i][0]=0;\n        for(int i=1;i<=amount;i++) dp[0][i]=1e5;\n        \n        for(int i=1;i<=n;i++){\n            for(int j=1;j<=amount;j++){\n                if(coins[i-1]>j) dp[i][j]=dp[i-1][j];\n                else dp[i][j] = min(1+dp[i][j-coins[i-1]], dp[i-1][j]); \n            }\n        }\n        \n        if(dp[n][amount]>=1e4) return -1;\n        return dp[n][amount];\n    }\n};\n"
+		],
+		[
+			18.91221550768334,
+			4.573050519273264,
+			5,
+			26.4717,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount){\n       vector<int> dp(amount+1,amount+1) ;                 //Initialise the vector of size  amount +1 with anything greater than amount\n        dp[0]=0;                                           //Base case i.e 0 can be made from 0 coins\n        sort(coins.begin(),coins.end());                   // In case if any coin is greater than the amount then we need not check for other coins rather break the loop\n        for (int i = 1; i <= amount; i++)                  //Varying all amount ,i represents different amounts i.e subproblems\n        {\n            for (int j = 0; j < coins.size(); j++)         //Varying all coins,j represents different coins\n            {  if(i>=coins[j])\n                {\n                    dp[i]=min(dp[i],dp[i-coins[j]]+1);\n                    \n                }\n             else{\n                 break;\n             }\n                  \n            }\n        }\n        return dp[amount]>=amount+1?-1:dp[amount];         //if final cell is greater than amount which is impossible then return -1 else return that cell value\n    }\n};\n"
+		],
+		[
+			6.976946974455174,
+			4.573050519273264,
+			6,
+			30.5556,
+			"class Solution {\npublic:\n    \n    int coinChange(vector<int>& coins, int amount) {\n        vector<int> dp(amount+1);\n        for(int i=0;i<=amount;i++) dp[i]=INT_MAX-1;// -1 for not to overflow\n        dp[0]=0;\n        for(int i=1;i<=amount;i++)\n        {\n            for(auto x: coins)\n            {\n               \n                    if(i-x>=0)\n                {\n                    dp[i]=min(dp[i],dp[i-x]+1);\n                }\n            }\n        }\n        if(dp[amount]==INT_MAX-1) return -1;\n        return dp[amount];\n    }\n};\n"
+		],
+		[
+			20.557476954284954,
+			4.573050519273264,
+			6,
+			39.7273,
+			"class Solution {\npublic:\n    int coinChange(vector<int>& coins, int amount) {\n        vector<int> dp (amount+1,amount+1);\n        dp[0] = 0;\n        for(int i=1;i<=amount;++i){\n            for(int coin:coins){\n                if(i-coin < 0) continue;\n                dp[i] = (dp[i] < dp[i-coin]+1)?dp[i]:dp[i-coin]+1;\n            }\n        }\n        return (dp[amount] == amount+1)?-1:dp[amount];\n    }\n};\n"
+		],
+		[
+			7.475400252551959,
+			4.573050519273264,
+			5,
+			29.0769,
+			"class Solution {\npublic:    int coinChange(vector<int>& coins, int amount) {\n        vector<int> dp(amount+1, amount+1);\n        dp[0] = 0;        \n        for(int i = 0; i <= amount; i++){            \n            for(auto c : coins){\n                if(i - c < 0) {\n                    continue;\n                }                \n                dp[i] = min(dp[i], dp[i-c]+1);\n            }            \n        }        \n        return dp[amount] < amount+1 ? dp[amount] : -1;\n    }\n};"
+		],
+		[
+			19.35380562855652,
+			4.266807006446484,
+			7,
+			23.5667,
+			"const int m = 1e4 + 100; // max allowed amount < 1e4\nclass Solution {\n    int dp[m];\npublic:\n    int coinChange(vector<int>& coins, int amount){\n        sort(coins.begin(), coins.end()); // sort on basis on coin value\n        \n        for(int i=0;i<=amount;i++)\n            dp[i] = INT_MAX; // initialize\n        \n        dp[0] = 0; // no coin needed for 0 value\n        \n        for(int i=coins[0];i<=amount;i++){ // we can only make values > coins[0]\n            for(int j=0;j<coins.size();j++){\n                if(i < coins[j]) // we cant take any coin which comes after this\n                    break;\n                if(dp[i-coins[j]]!=INT_MAX) \n                    dp[i] = min(dp[i], 1 + dp[i-coins[j]]);// recurrence obvious\n            }\n        }\n        \n        if(dp[amount]==INT_MAX)\n            return -1;\n        \n        return dp[amount];\n    }\n};\n"
+		]
+	],
+	"SIEVE": [
+		"n",
+		[
+			6.4774429404455205,
+			1.0,
+			8,
+			18.2143,
+			"class Solution {\npublic:\n    bool isPrime(int num)\n    {\n        for(int i=2;i*i<=num;i++)\n        {\n            if(num%i==0)\n              return false;\n            \n        }\n        return true;\n    }\n    \n    int countPrimes(int n) \n    {\n      if(n==0 || n==1)\n          return 0;\n      int c=0;\n        \n      for(int i=2;i<n;i++)\n      {\n          if(isPrime(i))\n              c++;\n      }\n        return c;\n        \n    }\n};\n"
+		],
+		[
+			5.829677344013032,
+			1.0,
+			6,
+			22.1176,
+			"class Solution {\npublic:\n    int countPrimes(int n)\n    {\n        std::bitset<1500000> primes;\n        primes.set();\n        primes.reset(0);\n        primes.reset(1);\n\n        for (int i = 2; i * i < n; ++i) {\n            if (!primes.test(i))\n                continue;\n\t\t\t\t\n            for (int j = i + i; j < n; j += i)\n                primes.reset(j);\n        }\n\n        int ret = 0;\n        for (int i = 2; i < n; ++i) {\n            if (primes.test(i))\n                ++ret;\n        }\n        \n        return ret;\n    }\n};\n"
+		],
+		[
+			5.37398886408501,
+			4.266807006446483,
+			7,
+			36.4167,
+			"class Solution {\npublic:\n    int countPrimes(int n) \n    {\n        if(n<=1) return 0;\n        vector<int> sieve(n, -1);\n        sieve[0] = sieve[1] = 1;\n        for(int i=2; i<n; i++)\n        {\n            if(sieve[i]!=-1) continue;\n            for(int j=i+i; j<n; j+=i)\n            {\n                sieve[j] = 1;\n            }\n        }\n        int ans=0;\n        for(int i=2; i<n; i++)\n        {\n            if(sieve[i]==-1) ans++;\n        }\n        return ans;\n    }\n};\n"
+		],
+		[
+			6.322372194939005,
+			1.0,
+			7,
+			16.5526,
+			"class Solution {\npublic:\n    bool checkprime(int&number){\n        int stop = ceil((double)(sqrt(number)));\n        for(int div=3;div<=stop;div+=2){\n            if(number%div==0){return false;}\n        }\n        return true;\n    }\n    int countPrimes(int n) {\n        int result=(n>2)?1:0;\n        for(int numbers=3;numbers<n;numbers+=2){\n            if(checkprime(numbers)){result++;}\n        }\n        return result;\n    }\n};\n"
+		],
+		[
+			6.766750934492882,
+			1.0,
+			9,
+			20.8929,
+			"class Solution\n{\nprivate:\n\nbool isPrime(int n)\n{\n    if(n == 0) return false;\n    if(n == 1) return false;\n    if(n == 2) return true;\n    \n    for(int i = 2; i * i <= n; i++)\n    {\n        if(n % i == 0) return false;\n    }\n    \n    return true;\n}\n\npublic:\n\nint countPrimes(int n) \n{\n    int res = 0;\n    \n    for(int i = 0; i < n; i++)\n    {\n        if(isPrime(i)) res++;\n    }\n    \n    return res;\n}\n};"
+		],
+		[
+			5.358678581773735,
+			1.0,
+			7,
+			27.7667,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        //Sieve of Eratosthenes\n        int primeNumbers = 0;\n        int arr[n+1];\n        for(int i=0;i<n;++i) arr[i] =1;\n        for(int i=2; i<=sqrt(n); ++i){\n            if(arr[i]==1)\n                for(int j=i*i; j<n; j+=i)\n                    arr[j] = 0;\n        }\n        for(int i=2;i<n;++i){\n            if(arr[i]==1)\n                ++primeNumbers;\n        }\n        return primeNumbers;\n    }\n};"
+		],
+		[
+			5.529612508591848,
+			4.266807006446484,
+			6,
+			27.0,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        vector<int> prime(n+1,1);\n        int p = 2;\n\n        while (p * p <= n) {\n            if (prime[p])\n                for (int i = p*p; i < n+1; i += p)        \n                    prime[i] = 0;\n            \n            ++p;\n        }\n    \n        int res = 0;\n        for (int k = 2; k < n; ++k)\n            if (prime[k])\n                ++res;\n    \n        return res;\n    }\n};"
+		],
+		[
+			5.931294422759386,
+			3.017083418859238,
+			5,
+			20.8125,
+			"class Solution {\npublic:\nint countPrimes(int n) {\n        if(n < 2) return 0;\n        vector<bool> isPrime(n, true);\n        for(int i = 2; i*i < n; i++) {\n            if(!isPrime[i]) continue; \n            for(int j = i*i; j < n; j += i) isPrime[j] = false;\n        }\n        return accumulate(isPrime.cbegin() + 2, isPrime.cend(), 0);\n    }\n};"
+		],
+		[
+			5.993372718229236,
+			3.0170873154702496,
+			6,
+			35.0625,
+			"class Solution {\npublic:int countPrimes(int n) {\n        if(n <= 2) return 0;\n        vector<bool> isPrime(n);\n        int total = (n - 2);\n        for(int i = 2; i*i < n; i++) {\n            if(isPrime[i]) continue;\n            for(int j = i; i*j < n; j ++) {    // j = i*i; j < n; j += i\n                if(!isPrime[j*i]) {\n                    isPrime[j*i] = true; total--;\n                }\n            }\n        }\n        // return accumulate(isPrime.cbegin() + 2, isPrime.cend(), 0);\n        return total;\n    }\n};"
+		],
+		[
+			6.4425569183887275,
+			3.017094467554443,
+			5,
+			18.4091,
+			"class Solution {\npublic:\n    int countPrimes(int n)\n    {\n        if(n<=1)return 0;\n        vector<bool> V(n,true);\n        for(size_t i{2},s=sqrt(n);i<=s;++i)\n        {\n            if(V[i])\n            {\n                for(size_t jump{i*i};jump<V.size();jump+=i)\n                    V[jump]=false;\n            }\n        }\n        return std::accumulate(V.cbegin()+2,V.cend(),0);\n    }\n};"
+		],
+		[
+			6.285060645517337,
+			3.017120614593673,
+			5,
+			18.4091,
+			"class Solution {\npublic:\n    int countPrimes(int n)\n    {\n        if(n<=1)return 0;\n        vector<bool> V(n,true);\n        for(size_t i{2},s=sqrt(n);i<=s;++i)\n        {\n            if(V[i])\n            {\n                for(size_t jump{i*i};jump<V.size();jump+=i)\n                    V[jump]=false;\n            }\n        }\n        return std::count(V.cbegin()+2,V.cend(),true);\n    }\n};"
+		],
+		[
+			4.995801557004825,
+			1.0,
+			7,
+			21.8947,
+			"class Solution {\npublic:int countPrimes(int n) {\n        bool sieve[n+1];\n        memset(sieve, true, sizeof(sieve));\n        int cnt = 0;\n        \n         for(int even=4; even< n; even+=2){\n             sieve[even] = false;\n         }\n        \n        for(int i=2; i < sqrt(n); i++){\n            if(sieve[i] == true){\n                for(int j=i*i; j < n; j+=i){\n                    sieve[j] = false;\n                }\n            }\n        }\n        \n        for(int i=2; i < n; i++){\n            if(sieve[i]) cnt++;\n        }\n        return cnt;\n        \n    }\n};"
+		],
+		[
+			5.616691641200909,
+			3.01708573485726,
+			6,
+			27.4167,
+			"class Solution {\npublic:int countPrimes(int n) {\n        if(n <= 2) return 0;\n        vector<bool> isPrime(n);\n        int total = (n - 2) / 2;\n        for(int i = 3; i*i < n; i += 2) {\n            if(isPrime[i]) continue;\n            for(int j = 3*i; j < n; j += 2*i) {\n                if(!isPrime[j]) {\n                    isPrime[j] = true; total--;\n                }\n            }\n        }\n        // return accumulate(isPrime.cbegin() + 2, isPrime.cend(), 0);\n        return total + 1;\n    }\n};"
+		],
+		[
+			5.754592499739965,
+			3.0171025655765233,
+			6,
+			21.7143,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        vector<bool> sieve(n, true);\n        for (int i = 2; i*i < n; ++i) {\n            if (sieve[i]) {\n                for (int j = 2*i; j < n; j += i) {\n                    sieve[j] = false;\n                }\n            }\n        }\n\t\tint count = 0;\n        for (int i = 2; i < n; ++i) {\n            if (sieve[i]) ++count;\n        }\n        return count;\n    }\n};"
+		],
+		[
+			5.897248894070738,
+			3.7836318622820992,
+			6,
+			17.0,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        if (n <= 2) return 0;\n        vector<int> primes{2};\n        for (int i = 3; i < n; i += 2) {\n            for (const int &p : primes) {\n                if (p*p > i) {\n                    primes.push_back(i);\n                    break;\n                }\n                if (!(i % p)) break;\n            }\n        }\n        return primes.size();\n    }\n};"
+		],
+		[
+			5.8923362169271,
+			3.0170822183660766,
+			6,
+			33.6471,
+			"class Solution {\npublic:int countPrimes(int n) {\n        if(n <= 2) return 0;\n        vector<bool> isPrime(n, true);\n        int total = (n - 2);\n        for(int i = 2; i*i < n; i++) {\n            if(!isPrime[i]) continue;\n            for(int j = i; i*j < n; j ++) {    // j = i*i; j < n; j += i\n                if(isPrime[j*i]) {\n                    isPrime[j*i] = false; total--;\n                }\n            }\n        }\n        // return accumulate(isPrime.cbegin() + 2, isPrime.cend(), 0);\n        return total;\n    }\n};"
+		],
+		[
+			6.182072986422277,
+			3.0170683990392164,
+			4,
+			18.8214,
+			"class Solution {\n\n public :\n     int countPrimes( int n) {\n\t \n         int res = 0 ;\n        vector < bool > prime(n, true );\n\t\t\n         for ( int i = 2 ; i <n; ++ i) {\n\t\t \n             if (prime[i]==false) continue ;\n             ++ res;\n\t\t\t \n             for ( int j = 2 ; i * j <n; ++ j) {\n                prime[i * j] = false ;\n            }\n        }\n        return res;\n    }\n};"
+		],
+		[
+			5.803744032975024,
+			3.6996821463185343,
+			10,
+			31.15,
+			"class Solution {\npublic:\n    vector<int> primes = {2, 3, 5, 7, 11};\n    bool isPrime(int n) {\n        int lmt = sqrt(n), i = 1;\n        while (primes[i] <= lmt) {\n            if (n % primes[i++] == 0) return false;\n        }\n        return true;\n    }\n    int countPrimes(int n) {\n        if  (primes.back() < n) {\n            int lastBase, a, b;\n            if ((primes.back() - 1) % 6 == 0) lastBase = primes.back() + 5;\n            else {\n                lastBase = primes.back() + 7;\n                if (isPrime(primes.back() + 2)) primes.push_back(primes.back() + 2);\n            }\n            while (primes.back() < n) {\n                a = lastBase - 1;\n                b = lastBase + 1;\n                if (isPrime(a)) primes.push_back(a);\n                if (isPrime(b)) primes.push_back(b);\n                lastBase += 6;\n            }\n        }\n        return lower_bound(begin(primes), end(primes), n) - begin(primes);\n    }\n};\n"
+		],
+		[
+			5.524443908665913,
+			4.266807006446484,
+			6,
+			26.9167,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        vector<int> a(n,1);\n        for (int i = 2; i < n; ++i)\n            if (a[i] == 1)\n                for (int j = i * 2; j < n; j += i)\n                    a[j] = 0;\n        int cnt = 0;\n        for (int i = 2; i < n; ++i)\n            if (a[i] == 1)\n                ++cnt;\n        return cnt;\n    }\n};\n"
+		],
+		[
+			6.702297307780915,
+			1.0,
+			5,
+			17.2308,
+			"class Solution {\npublic:int countPrimes(int n) {\n       int count=0;\n        for (int i=2;i<n; i++) \n       {\n        bool prime=true;\n        for (int j=2; j*j<=i; j++)\n        {\n            if (i % j == 0) \n            {\n                prime=false;\n                break;    \n            }\n        }   \n        if(prime) \n        count++;\n    } \n    \n       return count;\n    }    \n};"
+		],
+		[
+			5.468294758049136,
+			4.266807006446484,
+			4,
+			20.9231,
+			"class Solution {\npublic:\n\tint countPrimes(int n) {\n\t\tint ans=0;\n\t\tvector<int> dp(n,1);\n\t\tfor(int i=2;i<n;i++){\n\t\t\tif(dp[i]==1){\n\t\t\t\tans++;\n\t\t\t\tint cur=i;\n\t\t\t\tint tem=2;\n\t\t\t\twhile(cur*tem<n){\n\t\t\t\t\tdp[cur*tem]=0;\n\t\t\t\t\ttem++;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;   \n\t}\n};"
+		],
+		[
+			5.453485108757373,
+			4.266807006446484,
+			6,
+			26.1724,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        if(n == 0) return 0;\n        \n        vector <int> primes(n+1, 1);\n        primes[0] = primes[1] = 0;\n        for(int i=2;i*i<=n;i++) {\n            if(primes[i] == 1) {\n                for(int j=2;i*j<=n;j++) {\n                    primes[i*j] = 0;\n                }\n            }\n        }\n        \n\t\t// just doing this in case there were many test cases (couting number of ones uptill n-1 would have worked too!)\n        for(int i=1;i<=n;i++) primes[i] += primes[i-1];\n        \n        return primes[n-1];\n    }\n};\n"
+		],
+		[
+			5.479687030304013,
+			3.017069929018344,
+			7,
+			26.1071,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        if(n<2)return 0;\n        vector<bool> ans(n,true);\n        for(int i=2;i*i<n;i++){\n            if(ans[i]==true){\n                for(int j=i*i;j<n;j+=i){\n                    ans[j]=false;\n                }\n            }\n        }\n        int count=0;\n        for(int i=2;i<n;i++){\n            if(ans[i]==true)count++;\n        }\n        return count;\n    }\n};\n"
+		],
+		[
+			5.5209432094999995,
+			4.266807006446484,
+			6,
+			22.5,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        if (n==0 || n==1) return false;\n        vector<int> prime(n+1, 1);    // vector<int> is much faster than vector<bool>\n        for (int p = 2; p*p < n; ++p) {\n            if (!prime[p]) continue;\n            for (int d = 2; (p*d) < n; ++d)\n                prime[p*d] = 0;\n        }\n        return accumulate(prime.begin(), prime.end(), -3);\n    }\n};\n"
+		],
+		[
+			1.0,
+			4.092673215965582,
+			7,
+			33.8889,
+			"class Solution {\npublic:\n  int countPrimes(int n) {\n    static vector<int> sieve;\n    if (n <= 2) return 0;\n    if (sieve.size() < n/2) {\n      sieve.resize(n/2, 1);\n      for (int p = 3; p*p < n; p += 2) {\n        if (!sieve[p/2]) continue;\n        int pp = max(sieve[p/2], p*p);\n        for (; pp < n; pp += 2*p)\n          sieve[pp/2] = 0;\n        sieve[p/2] = pp;\n      }\n    }\n    int result = 0;\n    for (int i = 0; i < n/2; ++i)\n      result += !!sieve[i];\n    return result;\n  }\n};\n"
+		],
+		[
+			4.884746356965687,
+			4.266807006446484,
+			6,
+			24.6667,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        vector<int> primes(n+1,0);\n        int totalPrimes=0;\n        //Making all odd numbers as potential prime numbers bcz except 2(special case) no other number is prime\n        for(long long int i=3;i<n;i+=2){\n            primes[i]=1;\n        }\n        //sieve of eratosthenes\n        for(long long int i=3;i<n;i++){\n            //if the current number is assigned 1 it is a prime number bcz we only assign 1 to prime numbers\n            if(primes[i]==1){\n                //if the number is prime increase the total count of prime numbers\n                totalPrimes++;\n                //mark all of its multiple as 0(not prime)\n                // we have started the loop from i*i bcz before that the multiples of i are already marked 0 by the previous prime numbers as they were divisible by atleast one previos prime number.\n                for(long long int j=i*i;j<=n;j+=i){\n                    primes[j]=0;\n                }\n            }\n        }\n        //special case to handle 2 as 2 is the only even prime number\n        if(n>2){\n            totalPrimes++;\n        }\n        return totalPrimes;\n    }\n};\n"
+		],
+		[
+			4.811715132951366,
+			1.0,
+			9,
+			26.0,
+			"class Solution {\npublic:\n\tint countPrimes(int n) {\n\t\tif(n==0 ||n==1)return 0;\n\n\t\tbool prime[n+1];\n\n\t\tfor(int i=2;i<n;i++){\n\t\t\tprime[i]=true;\n\t\t}\n\n\t\tfor(int p=2; p*p<n; p++){\n\n\t\t\tif(prime[p]==true){\n\n\t\t\t\tfor(int j=p*p;j<n;j+=p)\n\t\t\t\t\tprime[j]=false;\n\n\t\t\t}\n\t\t}\n\n\t\tint ans = 0;\n\n\t\tfor(int i=2;i<n;i++){\n\t\t\tif(prime[i]==true)ans++;\n\t\t}\n\n\t\treturn ans;\n\n\t}\n};\n"
+		],
+		[
+			5.595381829770765,
+			3.01708482540534,
+			5,
+			20.6522,
+			"class Solution {\npublic:int countPrimes(int n) {\n        if(n<=1) return 0;\n \n        vector<bool> isPrime(n,true);\n//         we will mark 0 and 1 as false manually \n        isPrime[0]=isPrime[1]=false;\n        \n        for(int i=2;i*i<n;++i) {\n            \n            if(isPrime[i]) {\n                for(int j=i*i;j<n;j+=i) {\n                    isPrime[j]=false;\n                }\n            }\n        }\n        return count(isPrime.begin(),isPrime.end(),true);\n}\n};"
+		],
+		[
+			5.242272857230396,
+			3.0171254048488114,
+			6,
+			22.8704,
+			"class Solution {\npublic:\n    int countPrimes(int n) {\n        if(n<3)return 0;\n        vector<bool>ntp(n,false);//ntp::=notPrime,initially assuming all odd numbers are prime so for of them ntp is false\n        int lim=sqrt(n),ans=n/2;//assuming all odd numbers are prime,so assumed no of primes=n/2 (half of the numbers are odd)\n        for(int i=3;i<=lim;i+=2)//i+=2 for loading only odd numbers.\n            if(!ntp[i])//if prime we need to subtract it's odd multiples\n                for(int j=i*i;j<n;j+=2*i)//odd multiples only j=i*i+even*i=i*(i+even)=odd multiples as i is odd,so (i+even) is odd.\n                {\n                    if(!ntp[j]){//wrongly assumed before so we need to update the anwer as it was included in the answer number.\n                        ans--;\n                        ntp[j]=true;\n                    }\n                }\n        return ans;\n    }\n};\n"
+		]
+	],
+	"FIB": [
+		"2^n",
+		[
+			1631787956.8847885,
+			1.0,
+			3,
+			11.4286,
+			"class Solution {\npublic:\n    int fib(int n) {\n        if(n==0){\n            return 0;\n        }\n        if(n==1){\n            return 1;\n        }\n        return fib(n-1)+fib(n-2);\n    }\n};\n\n\n\n"
+		],
+		[
+			4.292815967586478,
+			1.0,
+			3,
+			14.7727,
+			"class Solution {\npublic:\n    int fib(int N) {\n        if (N <= 1)\n            return N;\n        int a = 0;\n        int b = 1;\n        for (int j = 2; j < N; j++) {\n            int c = a + b;\n            a = b;\n            b = c;\n        }\n        return a + b;\n    }\n};\n"
+		],
+		[
+			4.299485062549888,
+			1.0,
+			2,
+			12.6667,
+			"class Solution {\npublic:\n    int fib(int N) {\n        int cur = 0;\n        int pre = 1;\n        int i = 0;\n        while(i++<N){\n            cur = cur + pre;\n            pre = cur - pre;\n        }\n        return cur;\n    }\n};\n"
+		],
+		[
+			4.400034069373604,
+			1.0,
+			4,
+			17.1818,
+			"class Solution {\npublic:\n    int fib(int n) {\n        if(n==0||n==1)\n            return n;\n        int a=0,b=1,c;\n        for(int i=2;i<=n;i++)\n        {\n            c=a+b;\n            a=b;\n            b=c;\n        }\n        return c;\n    }\n};\n"
+		],
+		[
+			4.395888834978805,
+			1.0,
+			3,
+			15.9091,
+			"class Solution {\npublic:\n    int fib(int N) {\n        int a=0,b=1,c;\n        if(N<2)\n            return N;\n        for(int i=2;i<=N;i++)\n        {\n            c  =a + b;\n            a = b; \n            b = c; \n        }\n        return b;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			23.5455,
+			"class Solution \n{\nprivate:\n  int cache[31];\npublic:\n    Solution()\n    {\n        cache[0] = 0;\n        cache[1] = 1;\n        for(int i=2;i<31;i++)\n            cache[i]=-1;\n    }\n    \n    int fib(int N) \n    {\n      if(cache[N] != -1)\n      {\n        return cache[N];   \n      }\n      cache[N] = fib(N-1)+fib(N-2);\n\n      return cache[N];\n    }\n};\n"
+		],
+		[
+			4.459007483069866,
+			1.0,
+			4,
+			17.1364,
+			"class Solution {\npublic:\nint fib(int N) {\n\n    if(N == 0) return 0;\n    if(N == 1) return 1;\n    \n    int xNm2 = 0;\n    int xNm1 = 1;\n    int xN = 0;\n    \n    for(int i = 2; i <= N; i++)\n    {\n        xN = xNm1 + xNm2;\n        xNm2 = xNm1;\n        xNm1 = xN;\n    }\n    \n    return xN;\n    \n}\n};"
+		],
+		[
+			29171703.867576417,
+			1.0,
+			2,
+			19.5,
+			"class Solution {\npublic:\n    int fib(int N) {\n        int fib[31];\n        fib[0] = 0;\n        fib[1] = 1;\n        for(int i=2;i<=N;i++){\n            fib[i] = fib[i-1]+fib[i-2];\n        }\n        return fib[N];\n    }\n};\n"
+		],
+		[
+			4.274069761753719,
+			1.0,
+			4,
+			20.3,
+			"class Solution {\npublic:\n    int fib(int N) {\n        int f=0, a=0, b=1;\n        if(N==0)    return 0;\n        if(N==1)    return 1;\n        for(int i=0; i<N; i++)\n        {\n            f=a+b;\n            a=b;\n            b=f;\n        }\n        return a;\n    }\n};\n"
+		],
+		[
+			4.3429037031408155,
+			1.0,
+			4,
+			17.8182,
+			"class Solution {\npublic:int fib(int N) {\n        if(N==0)\n            return 0;\n        if(N==1)\n            return 1;\n        int a=0,b=1,ans;\n        for(int i=2;i<=N;i++)\n        {  \n            ans = a + b;\n            a=b;\n            b=ans;\n        }\n        return ans;\n    }\n};"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			18.0,
+			"class Solution {\npublic:\n\tint dp[31];\n\tint getResult(int n)\n\t{\n\t\tif(n <= 0)\n\t\t\treturn 0;\n\t\tif(dp[n] != 0)\n\t\t\treturn dp[n];\n\t\tdp[n] = getResult(n-1) + getResult(n-2);\n\t\treturn dp[n];\n\t}\n\tint fib(int N) {\n\n\t\tmemset(dp, 0, sizeof(dp));\n\t\tdp[1] = 1;\n\t\treturn getResult(N);\n\t}\n};"
+		],
+		[
+			4.475706336107635,
+			1.0,
+			4,
+			21.0909,
+			"class Solution {\npublic:\n    int fib(int n) {\n        if (n==0) return 0;\n        if(n<2) return 1;\n        long a=0,b=1,c=0;\n        for(int i=2;i<=n;i++){\n            c=a+b;\n            a=b;\n            b=c;\n        }\n        return c;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			1,
+			13.4615,
+			"class Solution {\npublic:\n    int fib(int N) {\n\t\tfloat z = sqrt(5);\n        long long int t = (pow(2,N)*z);\n        long long int a = (pow(1+z,N));\n        long long int b = (pow(1-z,N));\n        return (a-b)/t;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			6,
+			57.12,
+			"class Solution {\npublic:\nvoid matvec_update(const uint32_t* A, uint32_t* s){\n    uint32_t s_new[2];\n    s_new[0] = A[0]*s[0] + A[1]*s[1];\n    s_new[1] = A[2]*s[0] + A[3]*s[1];\n    s[0] = s_new[0]; s[1] = s_new[1];\n}\n\nvoid mat_squared(uint32_t* A){\n    uint32_t A_sq[4];\n    A_sq[0] = A[0]*A[0] + A[1]*A[2];\n    A_sq[1] = A[1]*(A[0] + A[3]);\n    A_sq[2] = A[2]*(A[0] + A[3]);\n    A_sq[3] = A[3]*A[3] + A[1]*A[2];\n    A[0] = A_sq[0];\n    A[1] = A_sq[1];\n    A[2] = A_sq[2];\n    A[3] = A_sq[3];\n}\n\n    int fib(int N) {\n        if( N == 0 ){ return 0; }\n        const uint32_t n = N-1;\n        uint32_t A[4] = {1, 1, 1, 0}, sn[2] = {1, 0};\n        uint32_t bit_idx = 1;\n        while( bit_idx <= n ){\n            if( n & bit_idx ){\n                matvec_update(A, sn);\n            }\n            mat_squared(A);\n            bit_idx = bit_idx << 1;\n        }\n        \n        return sn[0];\n    }\n};"
+		],
+		[
+			4.986662432246396,
+			4.266807006446484,
+			4,
+			28.9,
+			"class Solution {\npublic:\n    int fib(int N) {\n        if(N == 0) return 0;\n        if(N == 1) return 1;\n        vector<int> a(N + 1);\n        a[0] = 0;\n        a[1] = 1;\n        int i = 2;\n        while(i <= N)\n            a[i++] = a[i - 1] + a[i - 2];\n        return a[N];\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			3,
+			17.1364,
+			"class Solution {\npublic:\n    Solution(){\n        f[0] = 0;\n        f[1] = 1;\n        for(int i=2; i<31; ++i) f[i] = f[i-1] + f[i-2];\n    }\n    int fib(int N) {\n        return f[N];\n    }\nprivate:\n    int f[31];\n};\n"
+		],
+		[
+			4.4270942931717405,
+			1.0,
+			3,
+			15.9091,
+			"class Solution {\npublic:\n    int fib(int N) {\n        int a = 0, b = 1, c;\n        if (N < 2) return N;\n        \n        for (int i=2; i<=N; i++) {\n            c = a + b;\n            a = b;\n            b = c;\n        }\n        return c;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			1,
+			7.5,
+			"class Solution {\npublic:    int fib(int n) {\n        \n\t\tdouble phi = (1 + sqrt(5)) / 2; \n\t\treturn round(pow(phi, n) / sqrt(5));\n    \n    }\n};"
+		],
+		[
+			1458216926.6480389,
+			1.0,
+			3,
+			11.4286,
+			"class Solution {\npublic:\n    int fib(int N) {\n        if(N==0) return 0;\n        if(N==1) return 1;\n        return fib(N-1)+fib(N-2);\n    }\n};\n"
+		],
+		[
+			4.93239603643032,
+			1.0,
+			2,
+			9.16667,
+			"class Solution {\npublic:int fib(int n)\n{\n\tint a=0, b=1;\n\tfor (; n--; a=exchange(b,a+b));\n\treturn a;   \n}\n};"
+		],
+		[
+			4.407948588744117,
+			1.0,
+			4,
+			17.1364,
+			"class Solution {\npublic:\n    int fib(int N) \n    {\n        int n1 = 0;\n        int n2 = 1;\n        int answer = 0;\n        if(N == 0) return 0;\n        if(N == 1) return 1;\n        \n        for(int i = 2 ; i <= N; i++)\n        {\n            answer = n1+n2;\n            n1 = n2;\n            n2 = answer;\n        }\n        return answer;\n    }\n};\n"
+		],
+		[
+			4.983068297412377,
+			4.266807006446484,
+			2,
+			21.6,
+			"class Solution {\npublic:int fib(int N) {\n        vector<int> dp(N+2, 0);\n        dp[1] = 1;\n        for(int i = 2; i <= N; i++){\n            dp[i] = dp[i-1] + dp[i-2];\n        }    \n        return dp[N];\n    }\n};\n"
+		],
+		[
+			4.38299194750407,
+			1.0,
+			4,
+			19.6,
+			"class Solution {\npublic:\n    int fib(int n) {\n        int t1=0;\n        int t2=1;\n        int total;\n        if (n==0)\n\t\t{\n            return 0;\n        }\n        else if (n==1)\n\t\t{\n            return 1;\n        }\n        else\n\t\t{\n\t\t\tfor (int i=1; i<n; i++)\n\t\t\t{\n\t\t\t\ttotal = t1 + t2;\n\t\t\t\tt1 = t2;\n\t\t\t\tt2 = total;\n\t\t\t}\n        return total;\n        }\n    }\n};\n \n"
+		],
+		[
+			4.306997079044316,
+			1.0,
+			3,
+			24.8,
+			"class Solution {\npublic:\n    int fib(int N)\n    {\n        int prev[] = { 0, 1 }; \n        int p = 0; \n        if (N <= 1) {\n            return N;\n        } else {\n            for (int i = 2; i <= N; i++) {\n                prev[p] = prev[0] + prev[1];\n                p = (p + 1) % 2;\n            }\n            return prev[(p + 1) % 2];\n        }\n    }\n};"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			24.375,
+			"template <int N>\nstruct Fib {\n\tenum {\n\t\tvalue = Fib<N - 2>::value + Fib<N - 1>::value,\n\t};\n};\n\ntemplate <>\nstruct Fib<1> {\n\tenum {\n\t\tvalue = 1,\n\t};\n};\n\ntemplate <>\nstruct Fib<0> {\n\tenum {\n\t\tvalue = 0,\n\t};\n};\n\ntemplate <int N>\nstatic inline int fibn(int n)\n{\n\tif (n == N)\n\t\treturn Fib<N>::value;\n\treturn fibn<N - 1>(n);\n}\n\ntemplate <>\nint fibn<-1>(int n)\n{\n\treturn -1;\n}\n\n\nclass Solution {\npublic:\n    int fib(int N) {\n        return fibn<30>(N);\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			1,
+			7.5,
+			"class Solution {\npublic:int fib(int N) {\n       double phi = (1 + sqrt(5)) / 2; \n        return round(pow(phi, N) / sqrt(5)); \n    }\n};"
+		],
+		[
+			1485784728.3351612,
+			1.0,
+			2,
+			10.8333,
+			"class Solution {\npublic:int fib(int n) {\n\tif (n < 2) {\n\t\treturn n;\n\t}\n\treturn fib(n - 1) + fib(n - 2);\n}\n};"
+		],
+		[
+			5.953090011171787,
+			4.266807006446483,
+			4,
+			33.4444,
+			"class Solution {\npublic:\nint fib(int n) {\n\tvector<int> cache(n + 1, -1);\n\treturn fib_impl(n, cache);\n}\n\nint fib_impl(int n, vector<int>& cache) {\n\tif (n < 2) {\n\t\tcache[n] = n;\n\t\treturn n;\n\t}\n\tif (cache[n] != -1) {\n\t\treturn cache[n];\n\t}\n\tcache[n] = fib_impl(n - 1, cache) + fib_impl(n - 2, cache);\n\treturn cache[n];\n}\n};"
+		],
+		[
+			4.236069991776071,
+			1.0,
+			2,
+			14.7692,
+			"class Solution {\npublic:\nint fib(int n) {\n\tsize_t a = 0;\n\tsize_t b = 1;\n\tfor (size_t i = 0; i != n; ++i) {\n\t\t// a, b = a + b, a\n\t\tauto tmp = a;\n\t\ta += b;\n\t\tb = tmp;\n\t}\n\treturn a;\n}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			6,
+			31.3438,
+			"// @return x^n.\nclass Solution {\npublic:\nint pow(int x, int n) {\n\t// ...\n\tint ret = 1;\n\twhile (n != 0) {\n\t\tif (n % 2 == 1) {\n\t\t\tret *= x;\n\t\t}\n\t\tx *= x;\n\t\tn /= 2;\n\t}\n\treturn ret;\n}\n\nint fib(int n) {\n\t// matrix:\n\t// |r00 r01|\n\t// |r10 r11|\n\tsize_t r00 = 1;\n\tsize_t r01 = 0;\n\t// r10 and r11 can be ignored, because r01 doesn't depend on them.\n\n\tsize_t x00 = 1;\n\tsize_t x01 = 1;\n\tsize_t x10 = 1;\n\tsize_t x11 = 0;\n\twhile (n != 0) {\n\t\tif (n % 2 == 1) {\n\t\t\tconst auto r00_t = r00;\n\t\t\tr00 = r00 * x00 + r01 * x10;\n\t\t\tr01 = r00_t * x01 + r01 * x11;\n\t\t}\n\t\tconst auto x01_x_x10 = x01 * x10;\n\t\tx01 = x00 * x01 + x01 * x11;\n\t\tx10 = x00 * x10 + x10 * x11;\n\t\tx00 = x00 * x00 + x01_x_x10;\n\t\tx11 = x01_x_x10 + x11 * x11;\n\n\t\tn /= 2;\n\t}\n\treturn r01;\n}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			1,
+			7.33333,
+			"class Solution {\npublic:\nint fib(int n) {\n\tconst double phi = (1 + sqrt(5)) / 2;\n\treturn round(pow(phi, n) / sqrt(5));\n}\n};"
+		],
+		[
+			5.029606386423588,
+			4.266807006446483,
+			4,
+			28.6364,
+			"class Solution {\npublic:\n    int fib(int n) {\n        if (n == 0 || n == 1) {\n            return n;\n        }\n        vector<int> dp(n, 0);\n        dp[0] = dp[1] = 1;\n        for (int i = 2; i < dp.size(); i++) {\n            dp[i] = dp[i - 1] + dp[i - 2];\n        }\n        return dp[n - 1];\n    }\n};"
+		],
+		[
+			1493891715.8973358,
+			1.0,
+			3,
+			10.7143,
+			"class Solution {\npublic:\n    int fib(int n) {\n        if (n == 1 || n == 0) {\n            return n;\n        }\n        return fib(n - 1) + fib(n - 2);\n    }\n};"
+		],
+		[
+			1519910917.438066,
+			1.0,
+			3,
+			10.7143,
+			"class Solution {\npublic:\n    int fib(int n) {\n        if (n == 1 || n == 0) {\n            return n;\n        }\n        return fib(n - 1) + fib(n - 2);\n    }\n};\n"
+		],
+		[
+			1509807807.3914726,
+			1.0,
+			2,
+			11.25,
+			"//recursion [Runtime: 12 ms, faster than 27.75% ]\nclass Solution {\npublic:\n    int fib(int n) {\n         if (n <= 1) \n            return n; \n         return fib(n-1) + fib(n-2); \n    }\n};"
+		],
+		[
+			1.0,
+			1.0,
+			1,
+			21.6364,
+			"//memoization \nclass Solution {\npublic:\n    int fib(int n,int dp[]) {\n        if (n <= 1) \n           return n; \n        \n        if (dp[n] != -1) \n           return dp[n];\n        \n        return dp[n]=fib(n-1) + fib(n-2);\n    }\n    int fib(int n) {\n        int dp[31];\n        memset(dp, -1, sizeof(dp)); \n        return fib(n,dp);\n    }\n};"
+		],
+		[
+			6.033851488586934,
+			4.266807006446484,
+			5,
+			28.5,
+			"class Solution {\npublic:\nint fib(int n) {\n        vector<int> dp(n+1,-1);\n        return findFib(n,dp);\n    }\n    int findFib(int n,vector<int>& dp){\n        if(n == 0 || n==1)\n            return n;\n        if(dp[n]!= -1)\n            return dp[n];\n        dp[n]=findFib(n-1,dp) + findFib(n-2,dp);\n        return dp[n];\n    }\n};"
+		],
+		[
+			5.007952531633456,
+			4.266807006446484,
+			4,
+			29.45,
+			"class Solution {\npublic:\n    int fib(int n) {\n        vector<int> dp(n+1,-1);\n        for(int i=0;i<=n;i++){\n            if(i==0 || i==1)\n                dp[i]=i;\n            else{\n                dp[i]=dp[i-1]+dp[i-2];\n            }\n        }\n        return dp[n];\n    }\n   \n};"
+		],
+		[
+			1523198658.4991193,
+			1.0,
+			3,
+			12.5714,
+			"class Solution {\npublic:\nint fib(int N) {\n\n    if(N==0){\n        return 0;\n    }else if(N==1){\n        return 1;\n    }else{\n        return fib(N-1)+fib(N-2);\n    }\n}\n};"
+		],
+		[
+			4.368606345922862,
+			1.0,
+			3,
+			18.2,
+			"class Solution {\npublic:\n    int fib(int N) {\n        if(N == 1){\n            return 1;\n        }\n        int result = 0,a = 0,b = 1;\n        for(int i = 1;i < N;i++){\n            result = (a+b);\n            a = b;\n            b = result;\n        }\n        return result;\n    }\n};"
+		],
+		[
+			6.57800785717457,
+			1.0,
+			7,
+			45.6,
+			"class Solution {\npublic:\nint countways(int N, int* memo)\n{\nif(N<0) return 0;\nelse if(N==0) return 0;\nelse if(N==1) return 1;\nelse if(memo[N]>-1) return memo[N];\nelse memo[N] = (countways((N-1), memo)+countways((N-2), memo));\nreturn (memo[N]);\n}\n\nint fib(int N) \n{           \n    int memo[N+1];\n    for(int i=0; i<N+1; i++)\n        memo[i] = -1;\n    return (countways(N, memo));\n}\n};"
+		],
+		[
+			4.359625943595786,
+			1.0,
+			4,
+			17.0455,
+			"class Solution {\npublic:\nint fib(int N) {\nif(N == 1) return 1;\nif(N == 0) return 0;\nunsigned int a = 0, b = 1, i = 2;\nwhile(i++ <= N) {\nb += a;\na = b - a;\n}\nreturn b;\n}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			1,
+			9.57895,
+			"// formula for nth term in the fibonacci series Fn = {[(\u221a5 + 1)/2] ^ n} / \u221a5 \nclass Solution {\npublic:\n    int fib(int n) {\n         double phi = (1 + sqrt(5)) / 2; \n         return round(pow(phi, n) / sqrt(5));\n    }\n};\n"
+		],
+		[
+			4.3691022474671435,
+			1.0,
+			3,
+			15.3636,
+			"class Solution {\npublic:\n    int fib(int n) {\n        if(n<2)return n;\n        int x=0,y=1,res=0;\n        for(int i=1;i<n;i++){\n            res=x+y;\n            x=y;\n            y=res;\n        }\n        return res;\n    }\n};\n"
+		],
+		[
+			1515796499.3140943,
+			1.0,
+			2,
+			11.9167,
+			"class Solution {\npublic:\n    int fib(int n) {\n        if(n<2)return n;\n        else return fib(n-1)+fib(n-2);\n    }\n};\n"
+		],
+		[
+			7.466472481061607,
+			1.0,
+			3,
+			16.0,
+			"class Solution {\npublic:\n\nSolution() {\n\n    res[0] = 0;\n    res[1] = 1;\n         \n    int xNm2 = 0;\n    int xNm1 = 1;\n    int xN = 0;\n    \n    for(int i = 2; i <= 30; i++)\n    {\n        xN = xNm1 + xNm2;\n        xNm2 = xNm1;\n        xNm1 = xN;\n        \n        res[i] = xN;\n    }\n}\n\nint fib(int N) {\n    return res[N];\n}\n\nstatic int res[31];\n};\n\nint Solution::res[31];"
+		],
+		[
+			1.0,
+			1.0,
+			3,
+			14.6667,
+			"class Solution {\npublic:\n    int fib(int N) {\n        if (N < 2) return N;\n        if (N == 2) return 1;\n        return fib(N - 1) + fib(N - 2);\n    }\n};"
+		]
+	],
+	"INORDER_TRAVERSAL": [
+		"n",
+		[
+			7.0839815269577455,
+			15.216675489641679,
+			2,
+			14.3929,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> ans;\n    vector<int> inorderTraversal(TreeNode* root) {\n        if(root==NULL)\n            return {};\n        inorderTraversal(root->left);\n        ans.push_back(root->val);\n        inorderTraversal(root->right);\n        return ans;\n    }\n};\n"
+		],
+		[
+			7.720443369934414,
+			5.763290953010267,
+			6,
+			20.8,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode *root) {\n        vector<int> result;\n        stack<TreeNode*> visit;\n        set<TreeNode*> visited;\n        if(root == NULL)\n            return result;\n        visit.push(root);\n        while(!visit.empty()) {\n            TreeNode* node = visit.top();\n            if(visited.find(node) == visited.end()) {\n                visited.insert(node);\n                if(node->left != NULL)\n                    visit.push(node->left);\n            } else {\n                result.push_back(node->val);\n                visit.pop();\n                if(node->right != NULL)\n                    visit.push(node->right);\n            }\n        }\n        return result;\n    }\n};"
+		],
+		[
+			6.886775927321179,
+			16.312042386575154,
+			2,
+			13.3226,
+			"class Solution {\n\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) \n    {\n\t\t//do traversal only if the tree is not empty\n        if( root )\n        {\n\t\t\t//traverse left sub tree first\n            inorderTraversal(root->left);\n\t\t\t\n\t\t\t//visit the root node\n            result.push_back(root->val);\n\t\t\t\n\t\t\t//traverse right sub tree last\n            inorderTraversal(root->right);\n        }\n\t\t//return the result \n        return result;\n    }\nprivate:\n\t//vector to store values if any\n    vector<int> result;\n};\n"
+		],
+		[
+			6.106240609349004,
+			5.356860999865066,
+			4,
+			19.4318,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n\tvector<int> inorderTraversal(TreeNode* root)\n\t{\n\t\tvector<int> traversed_values;\n\t\tstack<TreeNode*> to_traverse;\n\n\t\tTreeNode* current = root;\n\n\t\twhile (current != nullptr || !to_traverse.empty()) {\n\t\t\tif (current != nullptr) {\n\t\t\t\tto_traverse.push(current);\n\t\t\t\tcurrent = current->left;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tcurrent = to_traverse.top();\n\t\t\t\tto_traverse.pop();\n\t\t\t\ttraversed_values.push_back(current->val);\n\t\t\t\tcurrent = current->right;\n\t\t\t}\n\t\t}\n\t\treturn traversed_values;\n\t}\n};\n"
+		],
+		[
+			5.843457696493484,
+			5.398445811221528,
+			3,
+			18.375,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n   void pot(TreeNode*root,vector<int>&v)\n    {    if(root==NULL) return;\n         pot(root->left,v);\n         v.push_back(root->val);\n         pot(root->right,v);\n        \n    }\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int>v;\n        pot(root,v);\n        return v;\n    }\n};\n"
+		],
+		[
+			6.121956001905447,
+			5.394852370811171,
+			5,
+			19.975,
+			" class Solution {\n public:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n     vector<int> inorderTraversal(TreeNode* root){ \n         if(root==NULL)\n            return {};\n         vector<int> vec;\n         stack<TreeNode*> s;\n         while(true){\n             if(root!=NULL){\n                s.push(root);\n                root=root->left; \n             }\n             else{\n                 if(s.empty())\n                     break;\n                 root=s.top();\n                 s.pop();\n                 vec.push_back(root->val);\n                 root=root->right;\n             }\n         }\n         return vec;\n     }\n };\n"
+		],
+		[
+			5.823345905767972,
+			5.383632550181898,
+			3,
+			18.375,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> v;\n        helper(root,v);\n        return v;\n    }\n    void helper(TreeNode* root,vector<int> &v)\n    {\n        if(root==NULL)\n            return ;\n        helper(root->left,v);\n        v.push_back(root->val);\n        helper(root->right,v);\n    }\n};\n"
+		],
+		[
+			6.0976424700769485,
+			5.3985998500447305,
+			5,
+			19.5,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> v;\n        if(root==NULL)\n            return v;\n        stack<TreeNode*>s;\n        TreeNode* current=root;\n        while(!s.empty() || current!=NULL)\n        {\n            while(current!=NULL)\n            {\n                s.push(current);\n                current=current->left;\n            }\n            current=s.top();\n            s.pop();\n            v.push_back(current->val);\n            current=current->right;\n        }\n        return v;\n    }\n};\n"
+		],
+		[
+			5.926818800930843,
+			5.389782360941895,
+			7,
+			35.0,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> v;\n        if(root==NULL)\n            return v;\n        \n        TreeNode* current=root;\n        \n        while(current!=NULL)\n        {\n            if(current->left==NULL)\n            {\n                v.push_back(current->val);\n                current=current->right;\n            }\n            else{\n                TreeNode* preNode=current->left;\n                \n                while(preNode->right!=NULL && preNode->right!=current)\n                    preNode=preNode->right;\n                \n                if(preNode->right==current)\n                {\n                    v.push_back(current->val);\n                    preNode->right=NULL;\n                    current=current->right;\n                }\n                else\n                {\n                    preNode->right=current;\n                    current=current->left;\n                }\n            }\n        }\n        return v;\n    }\n};\n"
+		],
+		[
+			5.920213364743193,
+			5.325545378623863,
+			3,
+			16.7222,
+			"class Solution {\n\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> ans;\n        \n        inOrder(root, ans);\n        \n        return ans;\n    }    \n    private:\n    void inOrder(TreeNode* root, vector<int> &vec){\n        \n        if(root != NULL){\n            inOrder(root->left, vec);\n            vec.push_back(root->val);\n            inOrder(root->right, vec);\n        }\n        \n    }\n    \n};\n"
+		],
+		[
+			5.858426994029267,
+			5.320931467183026,
+			2,
+			19.6,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector <int> vec;\n        inorderTraversal (root, vec);\n        return vec;  \n    }\n    \n   void inorderTraversal(TreeNode* root , vector <int> &vec){\n       if (root != NULL){\n           inorderTraversal (root->left , vec);\n           vec.push_back(root->val);\n           inorderTraversal (root->right , vec);\n       }\n   }\n    \n};\n"
+		],
+		[
+			6.817662079356847,
+			15.219540448675755,
+			2,
+			14.3929,
+			"class Solution {\npublic:\n#include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> vec;\n    vector<int> inorderTraversal(TreeNode* root) {\n        if(root==nullptr) return {};\n        inorderTraversal(root->left);\n        vec.push_back(root->val);\n        inorderTraversal(root->right);\n        return vec;\n    }\n};\n"
+		],
+		[
+			6.176112955670824,
+			5.380154208145435,
+			5,
+			24.9153,
+			"/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    \n    // Recursive Method\n    \n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root)\n    {\n        TreeNode *ptr = root;\n        vector <int> ans;\n        stack <TreeNode*> address;\n        \n        if(root == NULL)\n            return ans;\n        \n        // until address stack is empty and ptr points to NULL i.e. Traversal is over\n        while( !address.empty() || ptr != NULL )\n        {\n            // if ptr points to a child\n            if(ptr != NULL)\n            {\n                // pushing the address to the stack\n                address.push(ptr);\n                // moving left\n                ptr = ptr->left;                    // LEFT\n            }\n            else\n            {\n                // popping the address and making ptr point to it, kinda backtrack a step\n                ptr = address.top();\n                address.pop();\n                // printing or pushing the value of node to array\n                ans.push_back(ptr->val);            // PRINT\n                // movinf left\n                ptr= ptr->right;                    // RIGHT\n            }\n        }  \n        return ans;\n    }\n};\n"
+		],
+		[
+			6.4429024444222325,
+			5.384990699992939,
+			7,
+			31.8778,
+			"/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    void inorder(TreeNode* root,stack<pair<TreeNode*,int>> &s,vector<int> &ans){\n        while(!s.empty()){\n            while(s.top().first->left && s.top().second==0){\n                s.top().second=1;\n                s.push(make_pair(s.top().first->left,0));\n            }\n            ans.push_back(s.top().first->val);\n            s.top().second=1;\n            pair<TreeNode*,int> temp=s.top();\n            s.pop();\n            if(temp.first->right){\n                s.push(make_pair(temp.first->right,0));\n            }\n        }\n    }\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> ans;\n        stack<pair<TreeNode*,int>> s;\n        /*will have to maintain if left subtree has\n        been checked for this node or not 0 for not checked 1 for checked*/\n        if(root){\n            s.push(make_pair(root,0));\n            inorder(root,s,ans);\n        }\n        return ans;\n    }\n};\n"
+		],
+		[
+			6.091276357041339,
+			5.325477395298673,
+			5,
+			19.3421,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> out;\n        stack<TreeNode*> s;\n        if(root == NULL)\n            return out;\n        while(root!=NULL || !s.empty())\n        {\n            while(root!=NULL)\n            {\n                s.push(root);\n                root = root->left;\n            }\n            \n            root = s.top();\n            s.pop();\n            out.push_back(root->val);\n            root = root->right;\n        }\n        return out;\n    }\n};\n"
+		],
+		[
+			5.850846765211419,
+			5.4104886893102355,
+			3,
+			18.375,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    void Traverse(TreeNode* root, vector<int>& res){\n        if(root != NULL){\n            Traverse(root->left, res);\n            res.push_back(root->val);\n            Traverse(root->right, res);\n        }\n    }\n    vector<int> inorderTraversal(TreeNode* root){\n        vector<int> res;\n        Traverse(root, res);\n        return res;\n    }\n};"
+		],
+		[
+			6.114995913622996,
+			5.275986558179746,
+			4,
+			14.4828,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    stack <TreeNode * > s;\n    void mypush(TreeNode * node) // pushes a node and all its left members onto stack\n    {\n        while(node)\n        {\n            s.push(node);\n            node = node->left;\n        }\n    }\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector <int> res; \n        mypush(root);\n        while(!s.empty())\n        {\n            TreeNode * p = s.top();\n            res.push_back(p->val);\n            s.pop();\n            mypush(p->right);\n        }\n        return res;\n    }\n};\n"
+		],
+		[
+			5.897298611979611,
+			5.3578684544403705,
+			5,
+			21.0,
+			"class Solution {\npublic:\n#include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> v;\n        inorder(&v,root);\n        return v;\n    } \n    void inorder(vector<int> *v,TreeNode* root)\n{   if(root==NULL)\n        return ;\n    if(root->left!=NULL)\n        inorder(v,root->left);\n    v->push_back(root->val);\n    if(root->right!=NULL)\n        inorder(v,root->right);\n    \n    return;\n}\n};\n"
+		],
+		[
+			6.105029314046028,
+			5.364116314201602,
+			4,
+			20.4545,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> ans;\n        //insertNode(root,ans);\n        stack<TreeNode*> nodes;\n        // nodes.push(root);\n        while(!nodes.empty() || root!=NULL){\n            while(root!=NULL){\n                //cout<<root->val<<endl;\n                nodes.push(root);    \n                root=root->left;\n            }\n            root=nodes.top();\n            // cout<<root->val<<endl;\n            ans.push_back(root->val);\n            nodes.pop();\n            root=root->right;\n        }\n        return ans;\n    }\n    \n    \n};\n"
+		],
+		[
+			5.887424135674839,
+			5.443567509546898,
+			3,
+			15.0312,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> ans;\n    vector<int> inorderTraversal(TreeNode* root) {\n        make(root);\n        return ans;\n        \n    }\n    void make(TreeNode* root){\n        if(root==NULL){\n            return;\n        }\n        make(root->left);\n        ans.push_back(root->val);\n        make(root->right);\n        return;\n    }\n};\n"
+		],
+		[
+			5.826593386154606,
+			5.385218946634187,
+			5,
+			20.0,
+			"class Solution {\npublic:\n#include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> vect;\n        traverse(root,vect);\n        return vect;\n    }\n    void traverse(TreeNode* t,vector<int> &v){\n    if(t==nullptr)return;\n    if(t->left!=nullptr)traverse(t->left,v);\n    v.push_back(t->val);\n    if(t->right!=nullptr)traverse(t->right,v);\n}\n};\n"
+		],
+		[
+			6.152007401463297,
+			5.381698743912403,
+			5,
+			21.375,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        stack<TreeNode*> inOrder;\n        TreeNode* temp;\n        vector<int> ret;\n        if(root)\n        {\n            inOrder.push(root);\n            while(!inOrder.empty())\n            {\n                temp=inOrder.top();\n                if(temp->left)\n                {\n                    inOrder.push(temp->left);\n                    temp->left=NULL;\n                }\n                else\n                {\n                    inOrder.pop();\n                    ret.push_back(temp->val);\n                    if(temp->right)\n                    {\n                        inOrder.push(temp->right);\n                        temp->right=NULL;\n                    }\n                }\n            }\n        }\n        return ret;\n    }\n};\n"
+		],
+		[
+			6.10404836562963,
+			5.388917729867501,
+			5,
+			19.975,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root){ \n        if(root==NULL)\n           return {};\n        vector<int> vec;\n        stack<TreeNode*> s;\n        while(true){\n            if(root!=NULL){\n               s.push(root);\n               root=root->left; \n            }\n            else{\n                if(s.empty())\n                    break;\n                root=s.top();\n                s.pop();\n                vec.push_back(root->val);\n                root=root->right;\n            }\n        }\n        return vec;\n    }\n};\n"
+		],
+		[
+			5.839996858677657,
+			5.3733564843176485,
+			4,
+			18.6333,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> values;\n        if (!root) return values;\n        inorder(root, values);\n        return values;        \n    }\n    \n    void inorder(TreeNode* root, vector<int>& values) {\n        if (root) {\n            inorder(root->left, values);\n            values.push_back(root->val);\n            inorder(root->right, values);\n        }\n        return;\n        \n    }\n};\n"
+		],
+		[
+			5.898195698877669,
+			5.3460341022483995,
+			6,
+			30.0,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> nodes;\n        while (root) {\n            if (root -> left) {\n                TreeNode* pre = root -> left;\n                while (pre -> right && pre -> right != root) {\n                    pre = pre -> right;\n                }\n                if (!pre -> right) {\n                    pre -> right = root;\n                    root = root -> left;\n                } else {\n                    pre -> right = NULL;\n                    nodes.push_back(root -> val);\n                    root = root -> right;\n                }\n            } else {\n                nodes.push_back(root -> val);\n                root = root -> right;\n            }\n        }\n        return nodes;\n    }\n};\n"
+		],
+		[
+			7.193049786054426,
+			5.806006294346353,
+			4,
+			22.7368,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        if (root == NULL) return std::vector<int>{};\n        //std::cout << root->val << '\\n';\n        std::vector<int> left, right;\n        if (root->left) left = inorderTraversal(root->left);\n        if (root->right) right = inorderTraversal(root->right);\n        left.push_back(root->val);\n        left.insert(end(left), begin(right), end(right));\n        return left;\n    }\n};\n"
+		],
+		[
+			6.2517329065929985,
+			5.375912292374426,
+			5,
+			21.6456,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        if (!root) return {}; // If there is no root return empty.\n        \n        vector<int> resVec; // Store results here\n        stack<TreeNode*> ourStack; // Store the nodes we traverse here\n        TreeNode* currentNode = root; // Set a pointer ot the first node.\n        \n        while (1) { // Continue running until our break condition is reached\n            if (currentNode) { // If the node exists, push it into the stack\n                ourStack.push(currentNode);\n                currentNode = currentNode->left; // Move left.\n            } else { // If there is no left, and the stack isn't empty, push the topmost element\n                if (ourStack.empty()) break; // into our result (this is the last number that entered the stack)\n                resVec.push_back(ourStack.top()->val);\n                currentNode = ourStack.top(); // take this same node and see if you can go right with it\n                ourStack.pop(); // Now that it's captured in currentNode, you can remove it from the stack\n                currentNode = currentNode->right;\n            } // If you can't go right with it, then you take the next top element, push its value into the\n        } // result vector, and see whether you can go right with it. This ccontinues until your stack is empty.\n        return resVec;\n    }\n};"
+		],
+		[
+			5.856685098347801,
+			5.3639107137156845,
+			4,
+			19.3333,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        // traverse the left tree first \n        // display the root information\n        // traverse the right sub tree\n    vector<int> ans;\n        \n    if(root ==NULL) return ans; \n    traversal(root,ans);\n        \n    return ans;\n    }\n    \n    void  traversal(TreeNode* head, vector<int>& ans)\n    {\n        if(!head) return ;\n        traversal(head->left,ans);\n        ans.push_back(head->val);\n        traversal(head->right,ans);\n    }\n};\n\n\n\n\n"
+		],
+		[
+			5.846498948843708,
+			5.312551649563679,
+			3,
+			17.7667,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> ans;\n        helper(root, ans);\n        return ans;\n    }\n    \n    void helper(TreeNode* root, vector<int>& ans) {\n        if(!root) return;\n        helper(root->left, ans);\n        ans.push_back(root->val);\n        helper(root->right, ans);\n    }\n};\n"
+		],
+		[
+			6.122688641997838,
+			5.373839529202117,
+			4,
+			18.5526,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> ans;\n        stack<TreeNode*> visit;\n        TreeNode* cur = root;\n        while(cur || !visit.empty()) {\n            if(cur) {\n                visit.push(cur);\n                cur = cur->left;\n            }else {\n                cur = visit.top();\n                visit.pop();\n                ans.push_back(cur->val);\n                cur = cur->right;\n            }\n        }\n        return ans;\n    }\n};\n"
+		],
+		[
+			5.929208580122882,
+			5.361323335723392,
+			6,
+			29.5312,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> ans;\n        TreeNode* cur = root;\n        while(cur) {\n            if(!cur->left) {\n                ans.push_back(cur->val);\n                cur = cur->right;\n            } else {\n                TreeNode* pred = cur->left;\n                while(pred->right && pred->right != cur) pred = pred->right;\n                if(!pred->right) {\n                    pred->right = cur;\n                    cur = cur->left;\n                } else {\n                    pred->right = nullptr;\n                    ans.push_back(cur->val);\n                    cur = cur->right;\n                }\n            }\n        }\n        return ans;\n    }\n};\n"
+		],
+		[
+			5.9220589954747,
+			5.340741533091769,
+			8,
+			36.0,
+			"class Solution {\n\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n\n    //AC - Morris Traversal;\n    vector<int> inorderTraversal(TreeNode* root) \n    {\n        vector<int> v;\n        while(root)\n        {\n            if(!root->left)\n            {\n                v.push_back(root->val);\n                root = root->right;\n\n            }\n            else\n            {\n                TreeNode *pre = root->left;\n                while(pre->right && pre->right!=root) pre = pre->right;\n                if(!pre->right)\n                {\n                    pre->right = root;\n                    root = root->left;\n                }\n                else\n                {\n                    v.push_back(root->val);\n                    root = root->right;\n                    pre->right = NULL;\n                }\n            }\n        }\n        return v;\n    }\n    private:\n    void traverse(TreeNode* root, vector<int>& v)\n    {\n        if(!root) return;\n        traverse(root->left, v);\n        v.push_back(root->val);\n        traverse(root->right, v);\n    }\n};"
+		],
+		[
+			6.147528939133534,
+			5.359654630044804,
+			6,
+			22.125,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n       vector<int> ans;\n       if(root == NULL) return ans;\n       stack<TreeNode*> st;\n      while(root != NULL) {\n          st.push(root);\n          root = root->left;\n      }\n       while(st.size() != 0) {\n           root = st.top();\n           st.pop();\n           ans.push_back(root->val);\n           if(root->right != NULL) {\n               root = root->right;\n               while(root != NULL) {\n                   st.push(root);\n                   root = root->left;\n               }\n           }\n       }\n       return ans;\n    }\n};"
+		],
+		[
+			6.1261191996041395,
+			5.387164533762808,
+			5,
+			17.6842,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode* root) {\n        if(!root) return {};\n        vector<int> result;\n        stack<TreeNode*> st;\n        TreeNode* curr = root;\n        while(curr || !st.empty()) {\n            while(curr) {\n                 st.push(curr);\n                 curr = curr->left;\n            }\n            curr = st.top();\n            result.push_back(curr->val);\n            st.pop();\n            curr = curr->right;\n        }\n        return result;\n    }\n};\n"
+		],
+		[
+			6.108222249512765,
+			5.356421326434603,
+			4,
+			15.925,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> ret;\n        stack<TreeNode *> s;\n        TreeNode *temp = root;\n        \n        while (!s.empty() || temp != NULL)\n        {\n            while (temp != NULL)\n            {\n                s.push(temp);\n                temp = temp->left;\n            }\n            \n            temp = s.top();\n            ret.push_back(temp->val);\n            s.pop();\n            temp = temp->right;\n        }\n        \n        return ret;\n    }\n};"
+		],
+		[
+			6.089957626147142,
+			5.341428604745002,
+			4,
+			16.0789,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n  vector<int> inorderTraversal(TreeNode* root) {\n    vector<int> ret;\n    stack<TreeNode *> s;\n    for (TreeNode *n = root; n || !s.empty(); n = n->right) {\n      for (; n; n = n->left) s.push(n);\n      n = s.top(); s.pop();\n      ret.push_back(n->val);\n    }\n    return ret;\n  }\n};"
+		],
+		[
+			6.167519049842541,
+			5.3882767436362675,
+			7,
+			26.0606,
+			"/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\n\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> result;\n        initialize(root);\n        while(hasNext())\n        {\n            result.push_back(next());\n        }\n        return result;\n    }\n    private:\n    TreeNode* node;\n    vector<TreeNode*> leftMostNodes;\n    \n    void initialize(TreeNode* root)\n    {\n        node = root;\n    }\n    \n    bool hasNext()\n    {\n        while(node)\n        {\n            leftMostNodes.push_back(node);\n            node = node->left;\n        }\n        if(leftMostNodes.size() == 0)\n            return false;\n        else\n            return true;\n    }\n    \n    int next()\n    {\n        int value;\n        node = leftMostNodes.back();\n        leftMostNodes.pop_back();\n        value = node->val;\n        node = node->right;\n        return value;\n    }\n    \n};"
+		],
+		[
+			6.129505858983272,
+			5.398845359405434,
+			5,
+			19.7895,
+			"class Solution {\npublic: \n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n//     Iterative\n    vector<int> res;\n    vector<int> inorderTraversal(TreeNode* root) {\n        if(!root) return res;\n        stack<TreeNode*> st;\n        while(root || !st.empty()){\n            if(root){\n                st.push(root);\n                root=root->left;\n            }\n            else{\n                root = st.top();\n                st.pop();\n                res.push_back(root->val);\n                root=root->right;\n            }\n        }\n        return res;\n    }\n};"
+		],
+		[
+			6.1396982715824455,
+			5.366161317273387,
+			4,
+			16.1,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        stack<TreeNode*> st;\n        vector<int> v;\n        while(root || st.empty()==0)\n        {\n            while(root!=NULL)\n            {\n                st.push(root);\n                root=root->left;\n            }\n            root=st.top();\n            st.pop();\n            v.push_back(root->val);\n            root=root->right;\n        }\n        return v;\n    }\n};"
+		],
+		[
+			6.143794168573425,
+			5.407398984449532,
+			4,
+			18.3333,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode *root) {\n        stack<TreeNode*> s;\n        pushAllLeft(s, root);\n        vector<int> result;\n        while(!s.empty()) {\n            TreeNode* p = s.top();\n            s.pop();\n            result.push_back(p->val);\n            pushAllLeft(s,p->right);\n        }\n        return result;\n    }\n    \n    void pushAllLeft(stack<TreeNode*>& s, TreeNode* root) {\n        while(root) {\n            s.push(root);\n            root = root->left;\n        }\n    }\n};"
+		],
+		[
+			6.016824127080847,
+			5.395215138431937,
+			6,
+			25.1458,
+			"class Solution\n{\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector< int > inorderTraversal( TreeNode *root )\n    {\n        vector< int > out;\n        stack< pair< int, TreeNode * > > toDo;\n        TreeNode * current = root;\n        \n        for ( ;; )\n        {\n            if( current )\n            {\n                if( current->left )\n                {\n                    pair< int, TreeNode * > temp;\n                    temp.first  = current->val;\n                    temp.second = current->right;\n                    toDo.push( temp );\n                    current = current->left;\n                }\n                else\n                {\n                    out.push_back( current->val );\n                    if( current->right )\n                    {\n                        current = current->right;\n                    }\n                    else current = 0;\n                }\n            }\n            else\n            {\n                if( toDo.size() )\n                {\n                    out.push_back( toDo.top().first );\n                    current = toDo.top().second;\n                    toDo.pop();\n                }\n                else break;\n            }\n        }\n        return out;\n    }\n};"
+		],
+		[
+			6.15812244191864,
+			5.342507485315188,
+			6,
+			22.8947,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };    vector<int> inorderTraversal(TreeNode *root) {\n        stack<TreeNode*> tstack;\n        vector<int> vals;\n        if(root==NULL)  return vals;\n        tstack.push(root);\n        while(!tstack.empty()) {\n            while(root) {\n                if(tstack.top()!=root)  tstack.push(root);\n                root=root->left;\n            }\n            root=tstack.top();\n            vals.push_back(root->val);\n            tstack.pop();\n            if(root->right) {\n                tstack.push(root->right);\n            }\n            root=root->right;\n        }\n        return vals;\n    }\n};"
+		],
+		[
+			6.091336055472533,
+			5.383584612603944,
+			3,
+			16.25,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    vector<int> inorderTraversal(TreeNode *root) {\n        stack<TreeNode*> stack;\n        vector<int> vals;\n        while(!stack.empty() or root) {\n            while(root) {\n                stack.push(root);\n                root=root->left;\n            }\n            root=stack.top();\n            stack.pop();\n            vals.push_back(root->val);\n            root=root->right;\n        }\n        return vals;\n    }\n};"
+		],
+		[
+			6.125740316784852,
+			5.379291020437379,
+			4,
+			17.1111,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> nodes;\n        stack<TreeNode*> todo;\n        while (root || !todo.empty()) {\n            while (root) {\n                todo.push(root);\n                root = root -> left;\n            }\n            root = todo.top();\n            todo.pop();\n            nodes.push_back(root -> val);\n            root = root -> right;\n        }\n        return nodes;\n    }\n};\n"
+		],
+		[
+			7.09317071752952,
+			16.312275364580053,
+			2,
+			14.3077,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorder;\n    vector<int> inorderTraversal(TreeNode* root) {\n        if(!root) return inorder;\n        inorderTraversal(root->left);\n        inorder.push_back(root->val);\n        inorderTraversal(root->right);\n        return inorder;\n    }\n};\n"
+		],
+		[
+			5.92242175428952,
+			5.36562687341828,
+			3,
+			17.0625,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> nodes;\n        inorder(root, nodes);\n        return nodes;\n    }\nprivate:\n    void inorder(TreeNode* root, vector<int>& nodes) {\n        if (!root) {\n            return;\n        }\n        inorder(root -> left, nodes);\n        nodes.push_back(root -> val);\n        inorder(root -> right, nodes);\n    }\n};\n"
+		],
+		[
+			6.093856341387485,
+			5.3598453248880835,
+			5,
+			18.2143,
+			"class Solution {\npublic:\n    \n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        if(root==nullptr)return {};\n        vector<int> ans;\n        stack<TreeNode*> s;\n        TreeNode* curr = root;\n        \n        while(curr!=NULL || !s.empty()){\n            while(curr!=NULL){\n                s.push(curr);\n                curr = curr->left;\n            }\n            curr = s.top();\n            s.pop();\n            \n            ans.push_back(curr->val);\n            curr = curr->right;\n        }\n        return ans;\n    }\n};\n"
+		],
+		[
+			5.9401289694743244,
+			5.430816266628372,
+			3,
+			15.0312,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> result;\n    vector<int> inorderTraversal(TreeNode* root) {\n        inorder(root);\n        return result;\n    }\n    \n    void inorder(TreeNode* root) {\n        if(root == NULL) {\n            return;\n        }\n        inorder(root->left);\n        result.push_back(root->val);\n        inorder(root->right);\n    }\n};\n"
+		],
+		[
+			6.197367041714702,
+			5.344922043807519,
+			4,
+			18.1579,
+			"class Solution {\npublic:\n\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        stack<TreeNode*> stk;\n        vector<int> result;\n        \n        TreeNode* curr = root;\n        while(curr || !stk.empty()) {\n            if(curr) {\n                stk.push(curr);\n                curr = curr->left;\n            } else {\n                result.push_back(stk.top()->val);\n                curr = stk.top()->right;\n                stk.pop();\n            }\n        }\n        \n        return result;\n    }\n    \n};\n"
+		],
+		[
+			5.930032205043091,
+			5.399097548641375,
+			6,
+			32.0,
+			"class Solution {\npublic:\n    #include<vector>\n    class TreeNode{\n        public:\n        TreeNode* left;\n        TreeNode* right;\n        int val;\n    };\n    \n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int> result;\n        TreeNode* curr = root;\n\t\t\n        while(curr) {\n            if(curr->left) {\n                TreeNode* prev = curr->left;\n                while(prev->right && prev->right != curr)\n                    prev = prev->right;\n                if(prev->right == curr) {\n                    result.push_back(curr->val);\n                    prev->right = NULL;\n                    curr = curr->right;\n                } else {\n                    prev->right = curr;\n                    curr = curr->left;\n                }\n            } else {\n                result.push_back(curr->val);\n                curr = curr->right;\n            }\n        }\n        \n        return result;\n    }\n    \n};\n"
+		]
+	],
+	"PALIN": [
+		"1",
+		[
+			1.0,
+			1.0,
+			4,
+			17.2308,
+			"class Solution {\npublic:\n    bool isPalindrome(int n) {\n        if(n<0) return false;\n        \n        long long rev = 0;\n        int copy = n;\n        while(n)\n        {\n            short d = n%10;\n            n = n/10;\n            rev = rev * 10 + d;\n        }\n        if(rev == copy) return true;\n        return false;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			19.3333,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) \n    {\n        if(x < 0)\n            return false;\n        \n        long lastDigit = 0;\n        long reversedNum = 0;\n        long copyX = x;\n        while(copyX)\n        {\n            lastDigit = copyX % 10;\n            reversedNum = reversedNum * 10  + lastDigit;\n            copyX = copyX / 10;\n        }\n\n        if( x == reversedNum)\n            return true;\n        \n        return false;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			5,
+			23.0714,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x<0)\n            return false;\n        else\n        {\n            int p=0,y,k;\n            y = x;\n            while(x > 0)\n            {\n                k = x%10;\n                x = x/10;\n                p = p*10 + k;\n                if(p > INT_MAX/10)\n                    break;\n            }\n            if(p == y)\n                return true;\n            else\n                return false;\n        }\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			5,
+			21.9583,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        long long int ans=0,bal,qus=x;\n        if(x<0){\n            return false;\n        }\n        if(x<10){\n            return true;\n        }\n        while(x){\n            bal = x%10;\n            ans = bal+ans*10;\n            x = x/10;\n        }\n        if(ans == qus){\n            return true;\n        }\n        return false;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			5,
+			18.4412,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x<0){\n            return false;\n        }\n        vector<int> v;\n        while(x){\n            v.push_back(x%10);\n            x=x/10;\n        }\n        int i=0,j=v.size()-1;\n        while(i<j){\n            if(v[i++]!=v[j--]){\n                return false;\n            }\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			2,
+			8.76923,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        \n        string str=to_string(x);\n        string s=str;\n        reverse(str.begin(),str.end());\n        \n        if(str == s)    return true;\n        return false;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			6,
+			25.7778,
+			"class Solution {\npublic:\nbool isPalindrome(int x) {\n\tif (x < 0 || (x % 10 == 0 && x != 0))\n\t\treturn false;\n\tint rx = 0;\n\twhile (x > rx) {\n\t\trx = rx * 10 + x % 10;\n\t\tx /= 10;\n\t}\n\treturn x == rx || x == rx / 10;;\n}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			25.0556,
+			"class Solution {\npublic:\nbool isPalindrome(int x) {\nint a = x;\nint b = a;\nint c = b;\nint len = 0;\nlong long int sum = 0;\n\n\twhile (a > 0) {\n\t\ta /= 10;\n\t\tlen++;\n\t}\n\t\n\tfor (int i = 0; i < len; i++) {\n\t\tint power = len - i - 1;\n\n\t\tsum += (b % 10) * pow(10, power);\n\t\tb /= 10;\n\t}\n\n\tif (sum == c) {\n\t\treturn true;\n\t}\n\telse\n\t{\n\t\treturn false;\n\t}\n}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			1,
+			11.44,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        string s = to_string(x); //convert int x to a string\n        string s2 = s; //make a copy of the string representation of int x to reverse\n        reverse(s2.begin(), s2.end()); //use reverse to reverse s2  from its beginning to end\n        return (s == s2); //*see note below\n    }\n};"
+		],
+		[
+			1.0,
+			1.0,
+			5,
+			19.0,
+			"class Solution {\npublic:\nbool isPalindrome(int x) {\n\n    if (x < 0) {\n        return false;\n    }\n    \n    if (x == 0) {\n        return true;\n    }\n    \n    int x_0 = x;\n    long y = 0;\n    \n    while (x != 0) {\n        y = y * 10 + x % 10;\n        x /= 10;\n    }\n    \n    if (y == x_0) {\n        return true;\n    }\n    else {\n        return false;\n    }\n    \n    // limitation: y must be in the range of - 2147483648 and y > 2147483647\n}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			3,
+			18.8182,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if (x < 0) return false; // edge case \n        \n        long val = x, rev = 0;\n        while (x) {\n            rev = 10*rev + x%10; \n            x /= 10; \n        }\n        return val == rev; \n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			20.0,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if (x < 0) {\n            return false;\n        }\n        \n        return (x == reverse(x));\n    }  \n    \nprivate:\n    long long reverse(int x) {\n        long long reverse = 0;\n\n        while (x) {\n            reverse = reverse*10 + x%10;\n            x /= 10;\n        }\n\n        return reverse;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			6,
+			18.1087,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        //Negative numbers handled\n        if(x%10<0)\n            return false;\n        \n\t\tint ans=0, rem=0, temp=x;\n        //Reversing the integer\n\t\twhile(temp!=0){\n            rem = temp%10;\n            temp = temp/10;\n            //To prevent overflow\n            if(ans > INT_MAX/10 || (ans == INT_MAX/10 && rem>7))\n                return false;\n            ans = ans*10 + rem;\n        }\n        return (ans==x);\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			6,
+			24.0,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x==0) return true;\n        if(x<0 || x%10 == 0) return false;\n        int rev = 0;\n        while(x>rev) {\n            rev  = rev*10 + x%10;\n            x /= 10;\n        }\n        return x == rev || x== rev/10;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			5,
+			21.25,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        bool ans = false;\n        if(x<0){\n            return ans;\n        }\n        \n        int ch=x,y=0;\n        while(x){\n            if(INT_MAX/10 < y){return ans;}\n            \n            y = (y*10)+(x%10);\n            x = x/10;\n        }\n        if(ch==y){\n            ans=true;\n            return ans;\n        }else{\n            return ans;\n        }\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			18.3077,
+			"class Solution {\npublic:\n\tbool isPalindrome(int x) {\n\t\tif(x<0) return false;\n\t\tint a=abs(x);\n\t\tlong int num=0;\n\t\twhile(a!=0){\n\t\t\tint cur=a%10;\n\t\t\tnum=num*10+cur;\n\t\t\ta/=10;         \n\t\t}\n\t\tif(num==x) return true;\n\t\telse return false;   \n\t}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			6,
+			22.7143,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x < 0) return false;\n        else if(x < 10) return true;\n        int digits = (int)ceil(log10(x));\n        if(digits == (int)log10(x)) return false;   //For powers of 10\n        for(int i = 1, j = digits; i < j; i++, j--)\n        {\n            int right = (x%(int)pow(10, i))/pow(10, i-1);\n            int left = (x%(int)pow(10, j))/pow(10, j-1);\n            if(left != right) return false;\n        }\n        return true;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			2,
+			10.2917,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n\n        if(x < 0){\n            return false;\n        }\n        \n        string y = to_string(x);\n        \n        reverse(y.begin(), y.end());\n        \n        return y == to_string(x);\n    }\n};"
+		],
+		[
+			1.0,
+			1.0,
+			6,
+			29.8571,
+			"class Solution\n{\n\tpublic:\n\tbool isPalindrome(int x)\n\t{\n\t\tif(x < 0)  return false;\n\t\tif(x == 0) return true;\n\t\tint digits = 0;\n\t\tint tem = x;\n\t\tdigits = int(log10(x));\n\t\ttem = x;\n\t\twhile((digits > 0) &&\n\t\t\t  (tem % 10) == (tem / int(pow(10, digits))))\n\t\t{\n\t\t\ttem -= tem % 10 + (tem % 10)*int(pow(10, digits));\n\t\t\ttem /= 10;\n\t\t\tdigits -= 2;\n\n\t\t}\n\t\treturn (digits <= 0)?true:false;\n\t}\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			8,
+			23.0,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x==0)return true;\n        int n=x;\n        int sign=(x>0)?1:-1;\n        if(sign<0)return false;\n        x=abs(x);\n        int r=0;\n        while(x>0)\n        {\n            if(r>INT_MAX/10 || r==INT_MAX/10 && x%10>7)return false;\n            r=r*10+x%10;\n            x/=10;\n        }\n        return r==n;\n    }\n};"
+		],
+		[
+			1.0,
+			1.0,
+			5,
+			19.2,
+			"class Solution {\npublic:\nbool isPalindrome(int x) {\nif(x<0) return false;\nlong y=0,z=x;\nwhile(z!=0)\n{\ny=(y*10)+(z%10);\nz/=10;\n}\nif(y>INT_MAX || y<INT_MIN) return false; //checking overflow\nreturn y==x;\n}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			3,
+			11.2667,
+			"class Solution\n{\npublic:\n\nbool isPalindrome(int x) \n{\n    if(x < 0) return false;\n    \n    std::string s1 = std::to_string(x);\n    std::string s2 = s1;\n    std::reverse(s2.begin(), s2.end());\n    \n    if(s1 == s2) return true;\n    \n    return false;\n}\n};"
+		],
+		[
+			1.0,
+			1.0,
+			5,
+			16.5526,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if (x < 0) return false;\n        \n        std::deque<int> qDigits;\n        while(x!=0){\n           qDigits.push_back(x%10);\n            x /= 10;\n        }\n        \n        auto iterBegin = qDigits.begin();\n        auto iterEnd = qDigits.end();\n        iterEnd--;\n        \n        while(iterBegin < iterEnd){\n            if (*iterBegin != *iterEnd){\n                return false;\n            }\n            iterBegin++;\n            iterEnd--;\n        }\n        \n        return true;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			3,
+			13.7143,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        string str = to_string(x);\n        \n        for(int i = 0; i < str.length() / 2; i++){\n            if(str[i] != str[str.length() - i - 1]) return false;\n        }\n        \n        return true;\n    }\n};"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			18.1818,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x<0)\n            return false;\n        int val = x;\n        long int rem = 0;\n        while(x)\n        {\n            rem = rem*10 + x%10 ;\n                x =x/10;\n        }\n        return(rem == val ? true : false);  \n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			20.0909,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if (x<0) return false;\n        if (x==0) return true;\n        long y = 0;\n        long xo = x;\n        while(x>0) {\n            y = y*10 + x%10;\n            x/=10;\n        }\n        return xo == y;\n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			11,
+			27.0,
+			"\tclass Solution {\n\tpublic:\n\t\tbool isPalindrome(int x) {\n\t\t\tint revNo=0;\n\t\t\tint n=x;\n\t\t\tint rem;\n\t\t\tif(x<0) return false;\n\t\t\tif(x%10==x) return true;\n\t\t\twhile(n!=0)\n\t\t\t{\n\t\t\t\trem=n%10;\n\t\t\t\tn/=10;\n\t\t\t\tif (revNo > INT_MAX/10 || (revNo == INT_MAX / 10 && rem > 7)) return 0;\n\t\t\t\tif (revNo < INT_MIN/10 || (revNo == INT_MIN / 10 && rem < -8)) return 0;\n\n\t\t\t\trevNo=revNo*10 + rem;\n\t\t\t}\n\t\t\treturn (revNo==x) ? true : false;\n\t\t}\n\t};\n"
+		],
+		[
+			1.0,
+			1.0,
+			4,
+			18.3077,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        long rev=0;\n        int temp=x;\n        if(x>=0){\n        while(x!=0){\n            int rem = abs(x%10);\n            rev=(rev*10)+rem;\n            x/=10;\n            }\n            \n            if(temp == rev)\n                return true;\n            else\n                return false;\n        }\n        else\n            return false;\n        \n    }\n};\n"
+		],
+		[
+			1.0,
+			1.0,
+			5,
+			14.7027,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x < 0)\n            return false;\n        \n        if(x == 0)//As log(0) is undefined\n            return true;\n        \n        int n = (int)log10(x) + 1;//Number of digits to represent x\n        int d = pow(10, n-1);//divisor to get MSB\n        \n        while(d != 0)\n        {\n            if(x/d != x%10)//Compare MSB and LSB\n                return false;\n            \n            x = (x % d)/10;//Remove LSB and MSB from the number\n            d /= 100;//As two digits got remved from the number\n        }\n        return true;\n    }\n};"
+		],
+		[
+			1.0,
+			1.0,
+			3,
+			19.3182,
+			"class Solution {\npublic:\n    bool isPalindrome(int x) {\n        \n        if(x<0) return false;\n        \n        int a=abs(x);\n        long int p=0;\n        while(a>0)\n        {\n            p=(p*10) + (a%10);\n            a=a/10;\n        }\n       return p==x;\n    }\n};"
+		]
+	]
+}

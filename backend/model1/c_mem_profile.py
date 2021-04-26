@@ -22,7 +22,7 @@ def valgrind():
 def c_time_val():
     out = subprocess.Popen(['./model1/cpp_logs/code'],  stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     stdout,stderr = out.communicate()
-    val = stdout.decode("utf-8")
+    val = float(stdout.decode("utf-8"))
     return val
 
 def massif():
@@ -45,7 +45,7 @@ def c_mem_val():
             mem_val = line.split(" ")[-3].split(",")
             mem_val = int(("").join(mem_val))
             print(mem_val)
-    mem_val=mem_val/1024 # convert bytes to Kib
+    #mem_val=mem_val/1024 # convert bytes to Kib
     return mem_val
 
 def c_dynamic_metrics(func_str):

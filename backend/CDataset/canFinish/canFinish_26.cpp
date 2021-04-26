@@ -1,58 +1,46 @@
-struct Node {
-    int indegrees;
-    vector<int> outdegrees;
-    Node() : indegrees(0), outdegrees() {}
-};
-
 class Solution {
 public:
-    bool canFinish(int n, vector<vector<int>>& prerequisites) {
-        if (empty(prerequisites)) return true;
-
-        // an array to represent the graph
-        vector<Node*> nodes(n, nullptr);
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        unordered_map<int, vector<int> > graph;
+        unordered_map<int, int> indegree;
+        int child, parent, i;
+        queue<int> source;
+        vector<int> result, children;
         
-        // create the graph
-        for (const auto& course : prerequisites) {
-            if (nodes[course[0]] == nullptr) nodes[course[0]] = new Node();
-            if (nodes[course[1]] == nullptr) nodes[course[1]] = new Node();
-            nodes[course[0]]->indegrees++;
-            nodes[course[1]]->outdegrees.emplace_back(course[0]);
+        // init graph
+        for(i=0; i<numCourses; i++) {
+            indegree[i] = 0;
+            graph[i] = vector<int>();
         }
-
-        stack<Node*> to_process;
-        int prerequisites_count = 0;
-        for (const auto& node : nodes) {
-            if (node != nullptr) {
-                ++prerequisites_count;
-                // if the node have no indegrees
-                // we add it to the stack
-                if (node->indegrees == 0) {
-                    to_process.emplace(node);
-                }
-            }
+        
+        // populate graph
+        for(auto req: prerequisites) {
+            parent = req[1];
+            child = req[0];
+            indegree[child]++;
+            graph[parent].push_back(child);
         }
-
-        int count = 0;
-        // standard depth-first search
-        while (!empty(to_process)) {
-            auto node = to_process.top();
-            to_process.pop();
-            count++;
-            for (auto next_node : node->outdegrees) {
-                // once we process a node, we want to decrement
-                // the indegree count for all of its outnodes
-                --nodes[next_node]->indegrees;
-                if (nodes[next_node]->indegrees == 0) {
-                    // if an outnode has an indegree count of 0
-                    // it should be processed next
-                    to_process.emplace(nodes[next_node]);
-                }
+        
+        // populate source
+        for(auto entry: indegree) {
+            if(entry.second == 0) {
+                source.push(entry.first);
             }
         }
         
-        // the number of nodes with prerequisites
-        // must match the count of the nodes we processed
-        return count == prerequisites_count;
+        // bfs
+        while(source.size()) {
+            parent = source.front();
+            source.pop();
+            result.push_back(parent);
+            children = graph[parent];
+            for(auto child: children) {
+                indegree[child]--;
+                if(indegree[child] == 0) {
+                    source.push(child);
+                }
+            }
+        }
+        return result.size()==numCourses;
     }
 };

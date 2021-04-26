@@ -115,10 +115,7 @@ class json_dataset:
 
             print(func_source_str)
             func_cyclo_metric_val = sum(cyclo(func_source_str, lang).values())
-            try:
-                func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["difficulty"]
-            except:
-                func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["Difficulty"]
+            func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["Difficulty"]
             obj[name].append([func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,func_diff_metric_val,func_source_str])
             json_dataset.write(obj,lang)
             
@@ -149,10 +146,7 @@ class json_dataset:
 
             print(func_source_str)
             func_cyclo_metric_val = sum(cyclo(func_source_str, lang).values())
-            try:
-                func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["difficulty"]
-            except:
-                func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["Difficulty"]
+            func_diff_metric_val = stat_metrics.halstead(func_source_str,lang)["Difficulty"]
             obj[name]=[approx_upper_bound,[func_time_metric_val,func_mem_metric_val,func_cyclo_metric_val,func_diff_metric_val,func_source_str]]
             json_dataset.write(obj,lang)
               

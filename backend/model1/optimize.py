@@ -14,7 +14,8 @@ import pandas as pd
 
 Mode = "Test" #Test or Exec
 
-def change_func_name(func_str, func_name):
+def change_func_name(func_str, new_func_name, old_func_name):
+    """
     func_str = func_str.split("def", 1)
     func_str[1] = func_str[1].strip()
     func_str[1] = func_str[1].split("(", 1)
@@ -25,9 +26,16 @@ def change_func_name(func_str, func_name):
         temp += i
     func_str[1] = temp
     return func_str[0]+"def "+func_str[1]
+    """
+    return func_str.replace(old_func_name,new_func_name)
 
 
 def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
+
+    """
+    if lang!="python":
+        weights[1]=0
+    """
     f,func_str=func_tuple
     func_label = predict.predict(f, lang)
     obj = dataset.json_dataset.read(lang)
@@ -43,7 +51,7 @@ def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
     integral = optimizer.get_integral
     cyclo = stat_metrics.cyclomatic_complexity
     metric_vector = [integral(func_time_vector), integral(
-        func_mem_vector), cyclo(func_str, lang)[f.__name__], stat_metrics.halstead(func_str,lang)["difficulty"]]
+        func_mem_vector), cyclo(func_str, lang)[f.__name__], stat_metrics.halstead(func_str,lang)["Difficulty"]]
     print(metric_vector)
     dataset_list.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],func_str])
     scaled_dataset_list = optimizer.scale(dataset_list)
@@ -59,7 +67,12 @@ def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
         return func_str
     else:
         f_name = f.__name__
-        return change_func_name(dataset_function_source_str, f_name)
+        temp_d = {}
+        if lang=="python":
+            exec(dataset_function_source_str,globals(),temp_d)
+            return change_func_name(dataset_function_source_str, f_name, temp_d[list(temp_d.keys())[0]].__name__)
+        else:
+            return dataset_function_source_str
 
 
 def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
@@ -81,7 +94,7 @@ def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
             pobj = optimizer.optimizer((f,func_str), lang)
             func_time_vector, func_mem_vector = pobj.generate_vector()
             metric_vector = [integral(func_time_vector), integral(
-                func_mem_vector), cyclo(func_str, lang)[f.__name__], stat_metrics.halstead(func_str,lang)["difficulty"]]
+                func_mem_vector), cyclo(func_str, lang)[f.__name__], stat_metrics.halstead(func_str,lang)["Difficulty"]]
             dataset_list = obj[func_label][1:]
             dataset_list.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],func_str])
             scaled_dataset_list = optimizer.scale(dataset_list)
@@ -168,7 +181,7 @@ def compare(f_arr, lang="python", weights=[1, 0, 0, 0]):
         pobj = optimizer.optimizer((f,func_str), lang)
         func_time_vector, func_mem_vector = pobj.generate_vector()
         metric_vector = [integral(func_time_vector), integral(
-            func_mem_vector), cyclo(func_str, lang)[f.__name__],stat_metrics.halstead(func_str,lang)["difficulty"]]
+            func_mem_vector), cyclo(func_str, lang)[f.__name__],stat_metrics.halstead(func_str,lang)["Difficulty"]]
         metric_values.append([metric_vector[0],metric_vector[1],metric_vector[2],metric_vector[3],f.__name__])
 
     scaled_metric_values = optimizer.scale(metric_values)

@@ -31,7 +31,7 @@ def halstead(func_str,lang="python"):
         # print(vis)
         res = {}
         keys = ["h1", "h2", "N1", "N2", "vocabulary", "length",
-                "calculated_length", "volume", "difficulty", "effort", "time", "bugs"]
+                "calculated_length", "volume", "Difficulty", "effort", "time", "bugs"]
 
         """ vis[0] returns for combined for multiple functions, ==> the total report """
         # print((vis[0], "\n", type(vis[0]))

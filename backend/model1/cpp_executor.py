@@ -30,7 +30,7 @@ int main()
     // Calculating total time taken by the program.
     double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
   
-    time_taken *= 1e-9;
+    //time_taken *= 1e-9;
   
     cout << fixed << time_taken << setprecision(9);
     return 0;
@@ -39,6 +39,7 @@ int main()
     func_str+=main
     #print(func_str)
     time_taken,mem_taken = mem.c_dynamic_metrics(func_str)
+    #print(time_taken,mem_taken)
     return time_taken,mem_taken
 
 def Prerequisites(func_name):

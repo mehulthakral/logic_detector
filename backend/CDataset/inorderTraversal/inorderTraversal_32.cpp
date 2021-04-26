@@ -10,7 +10,7 @@ public:
     
     vector<int> inorderTraversal(TreeNode* root) {
         if (root == NULL) return std::vector<int>{};
-        std::cout << root->val << '\n';
+        //std::cout << root->val << '\n';
         std::vector<int> left, right;
         if (root->left) left = inorderTraversal(root->left);
         if (root->right) right = inorderTraversal(root->right);

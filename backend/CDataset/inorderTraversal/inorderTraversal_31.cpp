@@ -9,25 +9,26 @@ public:
     };
     
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> result;
-        std::stack<std::pair<TreeNode*, bool>> in_process;
-        in_process.emplace(root, false);
-
-        while (!in_process.empty()) {
-            auto [node, is_processed] = in_process.top();
-            in_process.pop();
-			
-            if (node) {
-                if (is_processed) {
-                    result.push_back(node->val);
-                } else {
-                    in_process.emplace(node->right, false);
-                    in_process.emplace(node, true);
-                    in_process.emplace(node->left, false);
+        vector<int> nodes;
+        while (root) {
+            if (root -> left) {
+                TreeNode* pre = root -> left;
+                while (pre -> right && pre -> right != root) {
+                    pre = pre -> right;
                 }
+                if (!pre -> right) {
+                    pre -> right = root;
+                    root = root -> left;
+                } else {
+                    pre -> right = NULL;
+                    nodes.push_back(root -> val);
+                    root = root -> right;
+                }
+            } else {
+                nodes.push_back(root -> val);
+                root = root -> right;
             }
         }
-
-        return result;
+        return nodes;
     }
 };
