@@ -63,7 +63,7 @@ def evaluate():
 def add_prgs():
 
     map = json.load(open("mapping.json"))
-    labels = ["inorderTraversal"]
+    labels = ["reverseList"]
     # done = ["sortArray","rotate","fib","isPalindrome","myPow","isUgly",countPrimes","mySqrt","reverse","numTrees","isAnagram","strStr","canJump","coinChange","numIslands","canFinish","hasCycle","reverseList","inorderTraversal","isValidBST","maxDepth","maxPathSum","levelOrder"]
     for label in labels:
         prgs = os.listdir('CDataset'+'/'+label)
@@ -72,7 +72,7 @@ def add_prgs():
             prgs.remove('__pycache__')
 
         for prg in prgs:
-            fobj=open("random.json")
+            fobj=open("random1.json")
             data=fobj.read()
             obj=json.loads(data)
             fobj.close()
@@ -93,7 +93,7 @@ def add_prgs():
             # f = 0
             #print(fn_src)
             g1.json_dataset.add((map[label][0],getattr(a,label),label,fn_src),"C++")
-            fobj=open("random.json","w")
+            fobj=open("random1.json","w")
             obj.append(prg)
             data=json.dumps(obj,indent="\t")
             fobj.write(data)

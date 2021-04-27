@@ -1,15 +1,14 @@
 class Solution {
 public:
     int numTrees(int n) {
-        if(n==0){
-            return 0;
-        }
-        if(n==1){
-            return 1;
-        }
-        long long ans=0;
-        ans=ceil(exp(lgamma(2*n+1)-lgamma(n+1)-lgamma(n+1)));
-        cout<<ans<<endl;
-        return (ans)/(n+1);
+        map<int, int> Mymap;
+		Mymap[0] = 1;
+		for (int i = 1; i <= n; i++){
+		    int cont = 0;
+			for (int k = 0; k < i; k++)
+			cont+= Mymap[k] * Mymap[i - 1 - k];
+			Mymap[i] = cont;
+		}
+		return Mymap[n];
     }
 };

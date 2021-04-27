@@ -1,49 +1,29 @@
 class Solution {
 public:
-    int numIslands(vector<vector<char>>& a) {
-        int count=0;
-        int rows=a.size();
-        if(rows==0) return 0;
-        int cols=a[0].size();
-        
-        for(int i=0;i<rows;i++)
-        {
-            for(int j=0;j<cols;j++)
-            {
-                if(a[i][j]!='2' && a[i][j]!='0')
-                {
-                     count +=dfs(i,j,a,rows,cols);
-                     if(a[i][j]=='1')
-                        a[i][j]='2';
+    int numIslands(vector<vector<char>>& grid) {
+        if (!grid.size() || !grid[0].size()) return 0;
+        int count = 0;
+        int m = grid.size(), n = grid[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        queue<int> queue; 
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '0' || visited[i][j]) continue;
+                count++;
+                visited[i][j] = true;
+                queue.push(i * n + j);
+                while (!queue.empty()) {
+                    int x = queue.front() / n, y = queue.front() % n;
+                    queue.pop();
+                    if (grid[x][y] == '0') continue;
+                    if (x - 1 >= 0 && !visited[x-1][y]) {queue.push((x-1) * n + y); visited[x-1][y] = true;}
+                    if (y - 1 >= 0 && !visited[x][y-1]) {queue.push(x * n + y-1); visited[x][y-1] = true;}
+                    if (x + 1 < m && !visited[x+1][y]) {queue.push((x+1) * n + y); visited[x+1][y] = true;}
+                    if (y + 1 < n && !visited[x][y+1]) {queue.push(x * n + y+1); visited[x][y+1] = true;}
                 }
-                   
             }
-        }
-        
-        return count;
-        
-        
+                
+        return count;           
     }
-    
-    
-    int dfs(int i,int j,vector<vector<char>>& a,int rows,int cols)
-    {
-      if(i>=rows || j>=cols || i<0 || j<0) 
-          return 0;
-        
-      if(a[i][j]=='0' || a[i][j]=='2')
-          return 0;
-      
-      
-      if(i>=0 && j>=0 && i<rows && j<cols)
-          if(a[i][j]=='1')
-                a[i][j]='2';
-        
-      int ans=dfs(i+1,j,a,rows,cols) + dfs(i,j+1,a,rows,cols) + dfs(i-1,j,a,rows,cols) + dfs(i,j-1,a,rows,cols);
-      
-      return 1 ;  
-        
-    }
-    
-    
+
 };
