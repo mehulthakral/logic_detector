@@ -1,14 +1,12 @@
 class Solution {
-private: 
-    class TreeNode{
+public:
+class TreeNode{
         public:
         TreeNode* left;
         TreeNode* right;
         int val;
     };
-
 vector<vector<int>> abc;
-public:
 void helper(TreeNode* root, int level) {
     if(abc.size() < level+1) abc.push_back(vector<int>(1,root->val));
     else abc[level].push_back(root->val);

@@ -1,13 +1,24 @@
 class Solution {
-private:
-    
+public:
+
     class TreeNode{
         public:
         TreeNode* left;
         TreeNode* right;
         int val;
     };
-
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> ourRes;
+        insertAtLevel(root, 0);
+        // Go over each level in our map
+        for (const auto& key : ourLevels) {
+        // Push the level into our result vector
+            ourRes.push_back(key.second);
+        }
+     
+        return ourRes;
+    }
+private:
     // Map sorts by key, maintains 
     // our levels in order
     map<int, vector<int>> ourLevels;
@@ -22,15 +33,5 @@ private:
         return;
     }
     
-public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> ourRes;
-        insertAtLevel(root, 0);
-        // Go over each level in our map
-        for (const auto& key : ourLevels) {
-        // Push the level into our result vector
-            ourRes.push_back(key.second);
-        }
-        return ourRes;
-    }
+
 };

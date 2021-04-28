@@ -1,39 +1,29 @@
 class Solution {
 public:
-    #include<vector>
-
     class TreeNode{
         public:
         TreeNode* left;
         TreeNode* right;
         int val;
     };
-vector<vector<int>> levelOrder(TreeNode* root) {
-        if(root==NULL)
-            return {};
-        else
-        {
-            queue<TreeNode*> q;
-            q.push(root);
-            vector<int> inter;
-            vector<vector<int>> result;
-            while(q.size()!=NULL)
-            {
-               int count=q.size();
-                while(count>0)
-                {   TreeNode* curr=q.front();
-                    q.pop();
-                    inter.push_back(curr->val);
-                    if(curr->left!=NULL)
-                        q.push(curr->left);
-                    if(curr->right!=NULL)
-                        q.push(curr->right);
-                    count--;
-                }  
-                result.push_back(inter);
-                inter={};
+
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if (!root) { return {}; }
+        vector<int> row;
+        vector<vector<int> > result;
+        queue<TreeNode*> q;
+        q.push(root);
+        int count = 1;
+
+            while (!q.empty()) {
+            if (q.front()->left) { q.push(q.front()->left); }
+            if (q.front()->right) { q.push(q.front()->right); }
+            row.push_back(q.front()->val), q.pop();
+            if (--count == 0) {
+                result.emplace_back(row), row.clear();
+                count = q.size();
             }
-             return result;
-         }
-}
+        }
+        return result;
+    }
 };

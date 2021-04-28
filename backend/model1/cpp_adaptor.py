@@ -120,7 +120,7 @@ class Adaptor:
         return obj.inorderTraversal(tree)
 
     #Tested
-    def isAnagram(self,s:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0},t:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0}):
+    def isAnagram(self,s:str={"special_count":0},t:str={"special_count":0}):
         obj=cppyy.gbl.Solution()
         return obj.isAnagram(s,t)
     
@@ -329,7 +329,7 @@ def make_board():
         return obj.sortArray(new_vec)
     
     #Tested
-    def strStr(self,s1:str={"upper_count":0,"lower_count":5,"digits_count":0,"special_count":0},s2:str={"upper_count":0,"lower_count":5,"digits_count":0,"special_count":0}):
+    def strStr(self,s1:str={"special_count":0},s2:str={"special_count":0}):
         obj=cppyy.gbl.Solution()
         return obj.strStr(s1,s2)
 

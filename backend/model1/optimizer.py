@@ -228,20 +228,39 @@ class optimizer:
             return None,None
     
     def param_generator(self,num,t,config={}):
-        if config==inspect._empty:
-            config={}
-        if "generator" in config:
-            return param_gen.param_generator(t,config)()
+        new_config=config.copy()
+        default_config={"start":0,"end":11,"len_list":1,"upper_count":1,"lower_count":1,"digits_count":1,"special_count":1,"wspace_count":1}
+        if "start" not in new_config:
+            new_config["start"]=default_config["start"]
+        if "end" not in new_config:
+            new_config["end"]=default_config["end"]
+        if "len_list" not in new_config:
+            new_config["len_list"]=default_config["len_list"]
+        if "upper_count" not in new_config:
+            new_config["upper_count"]=default_config["upper_count"]
+        if "lower_count" not in new_config:
+            new_config["lower_count"]=default_config["lower_count"]
+        if "digits_count" not in new_config:
+            new_config["digits_count"]=default_config["digits_count"]
+        if "special_count" not in new_config:
+            new_config["special_count"]=default_config["special_count"]
+        if "wspace_count" not in new_config:
+            new_config["wspace_count"]=default_config["wspace_count"]
+        if "generator" in new_config:
+            return param_gen.param_generator(t,new_config)()
         if t==int:
             return num
         else:
-            config["len_list"]=num
-            config["upper_count"]=num
-            config["lower_count"]=num
-            config["digits_count"]=num
-            config["special_count"]=num
-            config.pop("generator",None)
-            return param_gen.param_generator(t,config)()
+            #print(num,new_config)
+            new_config["len_list"]=num*new_config["len_list"]//6
+            new_config["upper_count"]=num*new_config["upper_count"]//6
+            new_config["lower_count"]=num*new_config["lower_count"]//6
+            new_config["digits_count"]=num*new_config["digits_count"]//6
+            new_config["special_count"]=num*new_config["special_count"]//6
+            new_config["wspace_count"]=num*new_config["wspace_count"]//6
+            #print(new_config)
+            new_config.pop("generator",None)
+            return param_gen.param_generator(t,new_config)()
         
     def is_iterable(self,S):
         try:
@@ -280,6 +299,7 @@ class optimizer:
                         else:
                             ans.append(j)
                     x.append(ans)
+                    #print("size:",ans,low)
                     y.append(time_taken)
                     y1.append(mem_taken)
                     low=low*2

@@ -1,6 +1,8 @@
 class Solution {
 public:
-    bool isAnagram(const string& s, const string& t) {
-        return unordered_multiset(s.begin(), s.end()) == unordered_multiset(t.begin(), t.end());
+    bool isAnagram(string s, string t) {
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+        return s == t;
     }
 };

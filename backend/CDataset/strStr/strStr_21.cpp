@@ -1,17 +1,16 @@
-static auto x = []() {ios_base::sync_with_stdio(false); cin.tie(NULL); return NULL; }();
-
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        if (needle.empty()) { return 0; }
-        else if(needle.size()>haystack.size()){ return -1; }
-        
-        for(short int i=0; i<(haystack.size()-needle.size()+1); ++i){
-            for(short int j=0;j<needle.size(); ++j){
-                if (haystack[i+j]!=needle[j]) { break; }
-                else if (j+1==needle.size()) { return i; }
-            }
-        }
+        if(needle.size() == 0) return 0;
+        for(int i = 0; i < haystack.size(); i++)
+            if(haystack[i] == needle[0] && isEqual(haystack.substr(i), needle)) return i;
         return -1;
-    }   
+    }
+    
+    bool isEqual(string s1, string s2){
+        if(s1.size() < s2.size()) return false;
+        for(int i = 0; i < s2.size(); i++)
+            if(s1[i] != s2[i]) return false;
+        return true;
+    }
 };

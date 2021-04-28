@@ -1,52 +1,42 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
 public:
+    #include<vector>
+
     class TreeNode{
         public:
         TreeNode* left;
         TreeNode* right;
         int val;
     };
-
-    int height(TreeNode* root){
-        if( !root )
-            return NULL;
-        return 1 + max(height(root->left),height(root->right));
+vector<vector<int>> levelOrder(TreeNode* root) {
+    queue<TreeNode*> que;
+    vector<vector<int>> result;
+    vector<int> tmp;
+    if(!root) return result;
+    TreeNode* nullPointer=NULL;
+    que.push(root);
+    que.push(nullPointer);
+    while(!que.empty()){
+        auto ptr=que.front();
+        que.pop();
+        if(ptr==NULL){
+            result.push_back(tmp);
+            tmp.clear();
+            if(!que.empty()){
+               que.push(nullPointer);
+               continue;
+            }
+            else
+                  break;
+        }
+        else
+          tmp.push_back(ptr->val);
+        if(ptr->left)
+           que.push(ptr->left);
+        if(ptr->right)
+           que.push(ptr->right);
     }
-    vector<vector<int> > levelOrder(TreeNode* root) {
-            vector< vector<int > > res;
-            if( !root )
-                return res;
-            int h = height(root);
-            vector<vector<TreeNode* > > dp;
-            dp.push_back({root});
-            res.push_back({root->val});
-            for(int i=0;i<=h;i++){
-                vector<TreeNode*> t;
-                vector<int> r;
-                for(int j=0;j<dp[i].size();j++){
-                    if(dp[i][j]->left){
-                        t.push_back(dp[i][j]->left);
-                        r.push_back(dp[i][j]->left->val);
-                    }
-                    if(dp[i][j]->right){
-                        t.push_back(dp[i][j]->right);
-                        r.push_back(dp[i][j]->right->val);
-                    }
-                }
-                    dp.push_back(t);
-                    if(r.size())
-                        res.push_back(r);
-         }
-            
-        return res;
-    }
+    return result;
+    
+}
 };

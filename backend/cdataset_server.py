@@ -63,8 +63,10 @@ def evaluate():
 def add_prgs():
 
     map = json.load(open("mapping.json"))
-    labels = ["reverseList"]
-    # done = ["sortArray","rotate","fib","isPalindrome","myPow","isUgly",countPrimes","mySqrt","reverse","numTrees","isAnagram","strStr","canJump","coinChange","numIslands","canFinish","hasCycle","reverseList","inorderTraversal","isValidBST","maxDepth","maxPathSum","levelOrder"]
+    labels = ["strStr"]
+    # done = ["reverseList","reverse","numTrees","numIslands","mySqrt","myPow"]
+    # done = ["rotate","sortArray","canFinish","canJump","coinChange","countPrimes","fib","isPalindrome","inorderTraversal","isUgly","isValidBST","levelOrder","maxDepth","maxPathSum","solveSudoku"]
+    # left = ["hasCycle","restoreIPAddresses","isAnagram","strStr"] 
     for label in labels:
         prgs = os.listdir('CDataset'+'/'+label)
         prgs.sort()
@@ -72,7 +74,7 @@ def add_prgs():
             prgs.remove('__pycache__')
 
         for prg in prgs:
-            fobj=open("random1.json")
+            fobj=open("random.json")
             data=fobj.read()
             obj=json.loads(data)
             fobj.close()
@@ -93,7 +95,7 @@ def add_prgs():
             # f = 0
             #print(fn_src)
             g1.json_dataset.add((map[label][0],getattr(a,label),label,fn_src),"C++")
-            fobj=open("random1.json","w")
+            fobj=open("random.json","w")
             obj.append(prg)
             data=json.dumps(obj,indent="\t")
             fobj.write(data)
@@ -101,5 +103,30 @@ def add_prgs():
 
     print("Programs added successfully!")
 
+def optimize_evaluate():
+    fobj=open("model1/Labelled.json")
+    data=fobj.read()
+    obj=json.loads(data)
+    fobj.close()
+
+    #del obj["MIN"]
+    #del obj["MAX"]
+    # print(obj.keys())
+    overall_sum = 0.0
+    for key in obj.keys():
+        print(key, len(obj[key]))
+        total, correct = 0,0
+        for comb in obj[key]:
+            total += 1
+            found_value = [dictionary for dictionary in comb["Results"] if dictionary["Model_Rank"] == 1.0]
+            if(len(found_value)>0):
+                correct += 1
+        with open("results.txt",'a') as f:
+            f.write("Accuracy of "+ key + " " + str(correct)+"/"+str(total)+" combs: " + str((float(correct)/total)*100)+"\n")
+        overall_sum += (float(correct)/total)*100
+    with open("results.txt",'a') as f:
+            f.write("Overall Accuracy: " + str(float(overall_sum)/len(obj))+"\n")
+            
 #print(evaluate())
-add_prgs()
+#add_prgs()
+optimize_evaluate()

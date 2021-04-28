@@ -45,9 +45,9 @@ class json_dataset:
                 fobj=open("dataset_py.json")
         else:
             try:
-                fobj=open("model1/dataset_cpp1.json")
+                fobj=open("model1/dataset_cpp.json")
             except:
-                fobj=open("dataset_cpp1.json")
+                fobj=open("dataset_cpp.json")
 
         data=fobj.read()
         if data=="":
@@ -66,9 +66,9 @@ class json_dataset:
                 fobj=open("dataset_py.json","w")
         else:
             try:
-                fobj=open("model1/dataset_cpp1.json","w")
+                fobj=open("model1/dataset_cpp.json","w")
             except:
-                fobj=open("dataset_cpp1.json","w")
+                fobj=open("dataset_cpp.json","w")
 
         data=json.dumps(obj,indent="\t")
         fobj.write(data)

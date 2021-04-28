@@ -12,7 +12,7 @@ heap_tree=empty
 #-----------
 snapshot=1
 #-----------
-time=2081944
+time=2200652
 mem_heap_B=72704
 mem_heap_extra_B=8
 mem_stacks_B=0
@@ -20,7 +20,7 @@ heap_tree=empty
 #-----------
 snapshot=2
 #-----------
-time=2202321
+time=2320718
 mem_heap_B=80896
 mem_heap_extra_B=16
 mem_stacks_B=0
@@ -28,747 +28,140 @@ heap_tree=empty
 #-----------
 snapshot=3
 #-----------
-time=2203371
-mem_heap_B=97280
-mem_heap_extra_B=32
+time=2321275
+mem_heap_B=89088
+mem_heap_extra_B=24
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=4
 #-----------
-time=2210333
-mem_heap_B=130048
-mem_heap_extra_B=40
+time=2321832
+mem_heap_B=97280
+mem_heap_extra_B=32
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=5
 #-----------
-time=2214468
-mem_heap_B=195600
-mem_heap_extra_B=64
+time=2328927
+mem_heap_B=130048
+mem_heap_extra_B=40
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=6
 #-----------
-time=2216132
-mem_heap_B=196112
-mem_heap_extra_B=320
+time=2329490
+mem_heap_B=162816
+mem_heap_extra_B=48
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=7
 #-----------
-time=2219200
-mem_heap_B=197056
-mem_heap_extra_B=792
+time=2330053
+mem_heap_B=195584
+mem_heap_extra_B=56
 mem_stacks_B=0
-heap_tree=detailed
-n4: 197056 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n0: 1472 in 1 place, below massif's threshold (1.00%)
+heap_tree=empty
 #-----------
 snapshot=8
 #-----------
-time=2222528
-mem_heap_B=198080
-mem_heap_extra_B=1304
+time=2347445
+mem_heap_B=285337
+mem_heap_extra_B=71
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=9
 #-----------
-time=2225856
-mem_heap_B=199104
-mem_heap_extra_B=1816
+time=2438750
+mem_heap_B=375090
+mem_heap_extra_B=86
 mem_stacks_B=0
-heap_tree=empty
+heap_tree=detailed
+n5: 375090 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 98304 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n3: 98304 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 32768 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 32768 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 32768 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 89753 0x498E43C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n0: 89753 0x1093E3: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 89753 0x498E5AC: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n0: 89753 0x1093C1: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 72704 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 24576 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n3: 24576 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 8192 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 8192 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 #-----------
 snapshot=10
 #-----------
-time=2229184
-mem_heap_B=200128
-mem_heap_extra_B=2328
+time=2529341
+mem_heap_B=375090
+mem_heap_extra_B=86
 mem_stacks_B=0
-heap_tree=empty
+heap_tree=peak
+n5: 375090 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 98304 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n3: 98304 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 32768 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 32768 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 32768 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 89753 0x498E43C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n0: 89753 0x1093E3: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 89753 0x498E5AC: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n0: 89753 0x1093C1: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 72704 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 24576 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n3: 24576 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 8192 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 8192 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 #-----------
 snapshot=11
 #-----------
-time=2232512
-mem_heap_B=201152
-mem_heap_extra_B=2840
+time=2529341
+mem_heap_B=285337
+mem_heap_extra_B=71
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=12
 #-----------
-time=2234800
-mem_heap_B=201856
-mem_heap_extra_B=3192
+time=2544002
+mem_heap_B=195584
+mem_heap_extra_B=56
 mem_stacks_B=0
-heap_tree=detailed
-n4: 201856 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 6272 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 6272 in 392 places, all below massif's threshold (1.00%)
+heap_tree=empty
 #-----------
 snapshot=13
 #-----------
-time=2238128
-mem_heap_B=202880
-mem_heap_extra_B=3704
+time=2556176
+mem_heap_B=122880
+mem_heap_extra_B=48
 mem_stacks_B=0
 heap_tree=empty
-#-----------
-snapshot=14
-#-----------
-time=2241456
-mem_heap_B=203904
-mem_heap_extra_B=4216
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=15
-#-----------
-time=2244784
-mem_heap_B=204928
-mem_heap_extra_B=4728
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=16
-#-----------
-time=2248112
-mem_heap_B=205952
-mem_heap_extra_B=5240
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=17
-#-----------
-time=2251440
-mem_heap_B=206976
-mem_heap_extra_B=5752
-mem_stacks_B=0
-heap_tree=detailed
-n4: 206976 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 11392 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 11392 in 712 places, all below massif's threshold (1.00%)
-#-----------
-snapshot=18
-#-----------
-time=2254768
-mem_heap_B=208000
-mem_heap_extra_B=6264
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=19
-#-----------
-time=2258096
-mem_heap_B=209024
-mem_heap_extra_B=6776
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=20
-#-----------
-time=2261424
-mem_heap_B=210048
-mem_heap_extra_B=7288
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=21
-#-----------
-time=2264752
-mem_heap_B=211072
-mem_heap_extra_B=7800
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=22
-#-----------
-time=2268080
-mem_heap_B=212096
-mem_heap_extra_B=8312
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=23
-#-----------
-time=2271408
-mem_heap_B=213120
-mem_heap_extra_B=8824
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=24
-#-----------
-time=2274736
-mem_heap_B=214144
-mem_heap_extra_B=9336
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=25
-#-----------
-time=2278064
-mem_heap_B=215168
-mem_heap_extra_B=9848
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=26
-#-----------
-time=2281392
-mem_heap_B=216192
-mem_heap_extra_B=10360
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=27
-#-----------
-time=2284720
-mem_heap_B=217216
-mem_heap_extra_B=10872
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=28
-#-----------
-time=2288048
-mem_heap_B=218240
-mem_heap_extra_B=11384
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=29
-#-----------
-time=2291376
-mem_heap_B=219264
-mem_heap_extra_B=11896
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=30
-#-----------
-time=2294704
-mem_heap_B=220288
-mem_heap_extra_B=12408
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=31
-#-----------
-time=2297200
-mem_heap_B=221056
-mem_heap_extra_B=12792
-mem_stacks_B=0
-heap_tree=detailed
-n4: 221056 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 25472 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 25472 in 1592 places, all below massif's threshold (1.00%)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-#-----------
-snapshot=32
-#-----------
-time=2301568
-mem_heap_B=222400
-mem_heap_extra_B=13464
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=33
-#-----------
-time=2305936
-mem_heap_B=223744
-mem_heap_extra_B=14136
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=34
-#-----------
-time=2310304
-mem_heap_B=225088
-mem_heap_extra_B=14808
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=35
-#-----------
-time=2314672
-mem_heap_B=226432
-mem_heap_extra_B=15480
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=36
-#-----------
-time=2319040
-mem_heap_B=227776
-mem_heap_extra_B=16152
-mem_stacks_B=0
-heap_tree=detailed
-n4: 227776 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 32192 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 32192 in 2012 places, all below massif's threshold (1.00%)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-#-----------
-snapshot=37
-#-----------
-time=2323408
-mem_heap_B=229120
-mem_heap_extra_B=16824
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=38
-#-----------
-time=2327776
-mem_heap_B=230464
-mem_heap_extra_B=17496
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=39
-#-----------
-time=2329960
-mem_heap_B=231136
-mem_heap_extra_B=17832
-mem_stacks_B=0
-heap_tree=detailed
-n4: 231136 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 35552 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 35552 in 2222 places, all below massif's threshold (1.00%)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-#-----------
-snapshot=40
-#-----------
-time=2332144
-mem_heap_B=231808
-mem_heap_extra_B=18168
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=41
-#-----------
-time=2334328
-mem_heap_B=232480
-mem_heap_extra_B=18504
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=42
-#-----------
-time=2336512
-mem_heap_B=233152
-mem_heap_extra_B=18840
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=43
-#-----------
-time=2338696
-mem_heap_B=233824
-mem_heap_extra_B=19176
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=44
-#-----------
-time=2340880
-mem_heap_B=234496
-mem_heap_extra_B=19512
-mem_stacks_B=0
-heap_tree=detailed
-n4: 234496 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 38912 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 38912 in 2432 places, all below massif's threshold (1.00%)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-#-----------
-snapshot=45
-#-----------
-time=2343064
-mem_heap_B=235168
-mem_heap_extra_B=19848
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=46
-#-----------
-time=2345248
-mem_heap_B=235840
-mem_heap_extra_B=20184
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=47
-#-----------
-time=2347432
-mem_heap_B=236512
-mem_heap_extra_B=20520
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=48
-#-----------
-time=2349616
-mem_heap_B=237184
-mem_heap_extra_B=20856
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=49
-#-----------
-time=2351800
-mem_heap_B=237856
-mem_heap_extra_B=21192
-mem_stacks_B=0
-heap_tree=detailed
-n4: 237856 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 42272 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 42272 in 2642 places, all below massif's threshold (1.00%)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-#-----------
-snapshot=50
-#-----------
-time=2352892
-mem_heap_B=238192
-mem_heap_extra_B=21360
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=51
-#-----------
-time=2353984
-mem_heap_B=238528
-mem_heap_extra_B=21528
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=52
-#-----------
-time=2355076
-mem_heap_B=238864
-mem_heap_extra_B=21696
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=53
-#-----------
-time=2356168
-mem_heap_B=239200
-mem_heap_extra_B=21864
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=54
-#-----------
-time=2357260
-mem_heap_B=239536
-mem_heap_extra_B=22032
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=55
-#-----------
-time=2358352
-mem_heap_B=239872
-mem_heap_extra_B=22200
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=56
-#-----------
-time=2359444
-mem_heap_B=240208
-mem_heap_extra_B=22368
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=57
-#-----------
-time=2360536
-mem_heap_B=240544
-mem_heap_extra_B=22536
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=58
-#-----------
-time=2361628
-mem_heap_B=240880
-mem_heap_extra_B=22704
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=59
-#-----------
-time=2362720
-mem_heap_B=241216
-mem_heap_extra_B=22872
-mem_stacks_B=0
-heap_tree=detailed
-n4: 241216 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 45632 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 45632 in 2852 places, all below massif's threshold (1.00%)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-#-----------
-snapshot=60
-#-----------
-time=2363812
-mem_heap_B=241552
-mem_heap_extra_B=23040
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=61
-#-----------
-time=2364904
-mem_heap_B=241888
-mem_heap_extra_B=23208
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=62
-#-----------
-time=2365996
-mem_heap_B=242224
-mem_heap_extra_B=23376
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=63
-#-----------
-time=2367088
-mem_heap_B=242560
-mem_heap_extra_B=23544
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=64
-#-----------
-time=2368180
-mem_heap_B=242896
-mem_heap_extra_B=23712
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=65
-#-----------
-time=2369272
-mem_heap_B=243232
-mem_heap_extra_B=23880
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=66
-#-----------
-time=2370364
-mem_heap_B=243568
-mem_heap_extra_B=24048
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=67
-#-----------
-time=2371456
-mem_heap_B=243904
-mem_heap_extra_B=24216
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=68
-#-----------
-time=2402541
-mem_heap_B=244016
-mem_heap_extra_B=24272
-mem_stacks_B=0
-heap_tree=peak
-n4: 244016 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n1: 98304 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 98304 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 32768 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 32768 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 32768 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
- n1: 72704 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n1: 72704 0x40108D1: _dl_init (dl-init.c:72)
-   n0: 72704 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
- n1: 48432 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  n0: 48432 in 3027 places, all below massif's threshold (1.00%)
- n1: 24576 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  n3: 24576 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-   n1: 8192 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-   n1: 8192 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    n0: 8192 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)

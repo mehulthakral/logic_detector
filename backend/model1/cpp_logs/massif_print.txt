@@ -6,427 +6,122 @@ ms_print arguments: ./model1/cpp_logs/massif.out
 
 
     KB
-262.0^                                                                       #
-     |                                                                      @#
-     |                                                                     @@#
-     |                                                                    @@@#
-     |                                                                   :@@@#
-     |                                                                  @@@@@#
-     |                                                                  @@@@@#
-     |                                                                  @@@@@#
-     |                                                                  @@@@@#
-     |                                                                  @@@@@#
-     |                                                                  @@@@@#
-     |                                                                  @@@@@#
-     |                                                                  @@@@@#
-     |                                                                  @@@@@#
-     |                                                                 :@@@@@#
-     |                                                              ::::@@@@@#
-     |                                                              :  :@@@@@#
-     |                                                              :  :@@@@@#
-     |                                                              :  :@@@@@#
-     |                                                              :  :@@@@@#
+366.4^                                                                    @@@#
+     |                                                                    @  #
+     |                                                                    @  #
+     |                                                                    @  #
+     |                                                                    @  #
+     |                                                                  ::@  #
+     |                                                                  : @  #
+     |                                                                  : @  #
+     |                                                                  : @  #
+     |                                                                  : @  #
+     |                                                                 :: @  #
+     |                                                                 :: @  #
+     |                                                                 :: @  #
+     |                                                                 :: @  #
+     |                                                                 :: @  #
+     |                                                                 :: @  #
+     |                                                                 :: @  #
+     |                                                             :::::: @  #
+     |                                                             :   :: @  #
+     |                                                             :   :: @  #
    0 +----------------------------------------------------------------------->Mi
-     0                                                                   2.291
+     0                                                                   2.438
 
-Number of snapshots: 69
- Detailed snapshots: [7, 12, 17, 31, 36, 39, 44, 49, 59, 68 (peak)]
+Number of snapshots: 14
+ Detailed snapshots: [9, 10 (peak)]
 
 --------------------------------------------------------------------------------
   n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
 --------------------------------------------------------------------------------
   0              0                0                0             0            0
-  1      2,081,944           72,712           72,704             8            0
-  2      2,202,321           80,912           80,896            16            0
-  3      2,203,371           97,312           97,280            32            0
-  4      2,210,333          130,088          130,048            40            0
-  5      2,214,468          195,664          195,600            64            0
-  6      2,216,132          196,432          196,112           320            0
-  7      2,219,200          197,848          197,056           792            0
-99.60% (197,056B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->49.69% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->49.69% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->16.56% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->16.56% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+  1      2,200,652           72,712           72,704             8            0
+  2      2,320,718           80,912           80,896            16            0
+  3      2,321,275           89,112           89,088            24            0
+  4      2,321,832           97,312           97,280            32            0
+  5      2,328,927          130,088          130,048            40            0
+  6      2,329,490          162,864          162,816            48            0
+  7      2,330,053          195,640          195,584            56            0
+  8      2,347,445          285,408          285,337            71            0
+  9      2,438,750          375,176          375,090            86            0
+99.98% (375,090B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->26.20% (98,304B) 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->26.20% (98,304B) 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   ->08.73% (32,768B) 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->08.73% (32,768B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->16.56% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->16.56% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+|   ->08.73% (32,768B) 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->08.73% (32,768B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->16.56% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->16.56% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+|   ->08.73% (32,768B) 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|     ->08.73% (32,768B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |       
-->36.75% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->36.75% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->36.75% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->12.42% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->12.42% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->04.14% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->04.14% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->04.14% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->04.14% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->04.14% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->04.14% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->00.74% (1,472B) in 1+ places, all below ms_print's threshold (01.00%)
-
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
-  8      2,222,528          199,384          198,080         1,304            0
-  9      2,225,856          200,920          199,104         1,816            0
- 10      2,229,184          202,456          200,128         2,328            0
- 11      2,232,512          203,992          201,152         2,840            0
- 12      2,234,800          205,048          201,856         3,192            0
-98.44% (201,856B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->47.94% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->47.94% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->15.98% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->15.98% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->15.98% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->15.98% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->15.98% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->15.98% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->35.46% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->35.46% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->35.46% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->11.99% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->11.99% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->04.00% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->04.00% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->04.00% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->04.00% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->04.00% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->04.00% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->03.06% (6,272B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  ->03.06% (6,272B) in 392 places, all below massif's threshold (1.00%)
-    
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 13      2,238,128          206,584          202,880         3,704            0
- 14      2,241,456          208,120          203,904         4,216            0
- 15      2,244,784          209,656          204,928         4,728            0
- 16      2,248,112          211,192          205,952         5,240            0
- 17      2,251,440          212,728          206,976         5,752            0
-97.30% (206,976B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->46.21% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->46.21% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->15.40% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->15.40% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->15.40% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->15.40% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->15.40% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->15.40% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->34.18% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->34.18% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->34.18% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->11.55% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->11.55% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->03.85% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->03.85% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.85% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->03.85% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->03.85% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->03.85% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->05.36% (11,392B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-  ->05.36% (11,392B) in 712 places, all below massif's threshold (1.00%)
-    
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 18      2,254,768          214,264          208,000         6,264            0
- 19      2,258,096          215,800          209,024         6,776            0
- 20      2,261,424          217,336          210,048         7,288            0
- 21      2,264,752          218,872          211,072         7,800            0
- 22      2,268,080          220,408          212,096         8,312            0
- 23      2,271,408          221,944          213,120         8,824            0
- 24      2,274,736          223,480          214,144         9,336            0
- 25      2,278,064          225,016          215,168         9,848            0
- 26      2,281,392          226,552          216,192        10,360            0
- 27      2,284,720          228,088          217,216        10,872            0
- 28      2,288,048          229,624          218,240        11,384            0
- 29      2,291,376          231,160          219,264        11,896            0
- 30      2,294,704          232,696          220,288        12,408            0
- 31      2,297,200          233,848          221,056        12,792            0
-94.53% (221,056B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->42.04% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->42.04% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->14.01% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->14.01% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->14.01% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->14.01% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->14.01% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->14.01% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->31.09% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->31.09% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->31.09% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->10.89% (25,472B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-| ->10.89% (25,472B) in 1592 places, all below massif's threshold (1.00%)
+->23.92% (89,753B) 0x498E43C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->23.92% (89,753B) 0x1093E3: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   
-->10.51% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  ->10.51% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    ->03.50% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.50% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+->23.92% (89,753B) 0x498E5AC: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->23.92% (89,753B) 0x1093C1: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+|   
+->19.38% (72,704B) 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->19.38% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
+|   ->19.38% (72,704B) 0x4011C90: call_init (dl-init.c:30)
+|     ->19.38% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
+|       ->19.38% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+|         
+->06.55% (24,576B) 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  ->06.55% (24,576B) 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    ->02.18% (8,192B) 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    | ->02.18% (8,192B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
     |   
-    ->03.50% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.50% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+    ->02.18% (8,192B) 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    | ->02.18% (8,192B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
     |   
-    ->03.50% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-      ->03.50% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+    ->02.18% (8,192B) 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+      ->02.18% (8,192B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
         
 --------------------------------------------------------------------------------
   n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
 --------------------------------------------------------------------------------
- 32      2,301,568          235,864          222,400        13,464            0
- 33      2,305,936          237,880          223,744        14,136            0
- 34      2,310,304          239,896          225,088        14,808            0
- 35      2,314,672          241,912          226,432        15,480            0
- 36      2,319,040          243,928          227,776        16,152            0
-93.38% (227,776B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->40.30% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->40.30% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->13.43% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->13.43% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+ 10      2,529,341          375,176          375,090            86            0
+99.98% (375,090B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->26.20% (98,304B) 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->26.20% (98,304B) 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   ->08.73% (32,768B) 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->08.73% (32,768B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->13.43% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->13.43% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+|   ->08.73% (32,768B) 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|   | ->08.73% (32,768B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   |   
-|   ->13.43% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->13.43% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+|   ->08.73% (32,768B) 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+|     ->08.73% (32,768B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |       
-->29.81% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->29.81% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->29.81% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->13.20% (32,192B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-| ->13.20% (32,192B) in 2012 places, all below massif's threshold (1.00%)
+->23.92% (89,753B) 0x498E43C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->23.92% (89,753B) 0x1093E3: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
 |   
-->10.08% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  ->10.08% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    ->03.36% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.36% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+->23.92% (89,753B) 0x498E5AC: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->23.92% (89,753B) 0x1093C1: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+|   
+->19.38% (72,704B) 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->19.38% (72,704B) 0x4011B89: call_init.part.0 (dl-init.c:72)
+|   ->19.38% (72,704B) 0x4011C90: call_init (dl-init.c:30)
+|     ->19.38% (72,704B) 0x4011C90: _dl_init (dl-init.c:119)
+|       ->19.38% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+|         
+->06.55% (24,576B) 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  ->06.55% (24,576B) 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    ->02.18% (8,192B) 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    | ->02.18% (8,192B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
     |   
-    ->03.36% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.36% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+    ->02.18% (8,192B) 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    | ->02.18% (8,192B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
     |   
-    ->03.36% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-      ->03.36% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
+    ->02.18% (8,192B) 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+      ->02.18% (8,192B) 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
         
 --------------------------------------------------------------------------------
   n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
 --------------------------------------------------------------------------------
- 37      2,323,408          245,944          229,120        16,824            0
- 38      2,327,776          247,960          230,464        17,496            0
- 39      2,329,960          248,968          231,136        17,832            0
-92.84% (231,136B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->39.48% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->39.48% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->13.16% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->13.16% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.16% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->13.16% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->13.16% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->13.16% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->29.20% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->29.20% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->29.20% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->14.28% (35,552B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-| ->14.28% (35,552B) in 2222 places, all below massif's threshold (1.00%)
-|   
-->09.87% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  ->09.87% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    ->03.29% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.29% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.29% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.29% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.29% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-      ->03.29% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-        
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 40      2,332,144          249,976          231,808        18,168            0
- 41      2,334,328          250,984          232,480        18,504            0
- 42      2,336,512          251,992          233,152        18,840            0
- 43      2,338,696          253,000          233,824        19,176            0
- 44      2,340,880          254,008          234,496        19,512            0
-92.32% (234,496B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->38.70% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->38.70% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->12.90% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->12.90% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->12.90% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->12.90% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->12.90% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->12.90% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->28.62% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->28.62% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->28.62% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->15.32% (38,912B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-| ->15.32% (38,912B) in 2432 places, all below massif's threshold (1.00%)
-|   
-->09.68% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  ->09.68% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    ->03.23% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.23% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.23% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.23% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.23% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-      ->03.23% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-        
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 45      2,343,064          255,016          235,168        19,848            0
- 46      2,345,248          256,024          235,840        20,184            0
- 47      2,347,432          257,032          236,512        20,520            0
- 48      2,349,616          258,040          237,184        20,856            0
- 49      2,351,800          259,048          237,856        21,192            0
-91.82% (237,856B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->37.95% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->37.95% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->12.65% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->12.65% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->12.65% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->12.65% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->12.65% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->12.65% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->28.07% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->28.07% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->28.07% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->16.32% (42,272B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-| ->16.32% (42,272B) in 2642 places, all below massif's threshold (1.00%)
-|   
-->09.49% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  ->09.49% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    ->03.16% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.16% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.16% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.16% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.16% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-      ->03.16% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-        
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 50      2,352,892          259,552          238,192        21,360            0
- 51      2,353,984          260,056          238,528        21,528            0
- 52      2,355,076          260,560          238,864        21,696            0
- 53      2,356,168          261,064          239,200        21,864            0
- 54      2,357,260          261,568          239,536        22,032            0
- 55      2,358,352          262,072          239,872        22,200            0
- 56      2,359,444          262,576          240,208        22,368            0
- 57      2,360,536          263,080          240,544        22,536            0
- 58      2,361,628          263,584          240,880        22,704            0
- 59      2,362,720          264,088          241,216        22,872            0
-91.34% (241,216B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->37.22% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->37.22% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->12.41% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->12.41% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->12.41% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->12.41% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->12.41% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->12.41% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->27.53% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->27.53% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->27.53% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->17.28% (45,632B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-| ->17.28% (45,632B) in 2852 places, all below massif's threshold (1.00%)
-|   
-->09.31% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  ->09.31% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    ->03.10% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.10% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.10% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.10% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.10% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-      ->03.10% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-        
---------------------------------------------------------------------------------
-  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
---------------------------------------------------------------------------------
- 60      2,363,812          264,592          241,552        23,040            0
- 61      2,364,904          265,096          241,888        23,208            0
- 62      2,365,996          265,600          242,224        23,376            0
- 63      2,367,088          266,104          242,560        23,544            0
- 64      2,368,180          266,608          242,896        23,712            0
- 65      2,369,272          267,112          243,232        23,880            0
- 66      2,370,364          267,616          243,568        24,048            0
- 67      2,371,456          268,120          243,904        24,216            0
- 68      2,402,541          268,288          244,016        24,272            0
-90.95% (244,016B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
-->36.64% (98,304B) 0x4F26DC9: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->36.64% (98,304B) 0x4F22FA1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   ->12.21% (32,768B) 0x4ED8C96: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->12.21% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->12.21% (32,768B) 0x4ED8CB0: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|   | ->12.21% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|   |   
-|   ->12.21% (32,768B) 0x4ED8CCA: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-|     ->12.21% (32,768B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-|       
-->27.10% (72,704B) 0x4EC4424: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-| ->27.10% (72,704B) 0x40108D1: _dl_init (dl-init.c:72)
-|   ->27.10% (72,704B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
-|     
-->18.05% (48,432B) 0x108A71: insertFirst(Solution::ListNode*, int) (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-| ->18.05% (48,432B) in 3027 places, all below massif's threshold (1.00%)
-|   
-->09.16% (24,576B) 0x4F24FE6: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-  ->09.16% (24,576B) 0x4F22DC1: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    ->03.05% (8,192B) 0x4ED8BDF: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.05% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.05% (8,192B) 0x4ED8C00: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-    | ->03.05% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-    |   
-    ->03.05% (8,192B) 0x4ED8C21: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-      ->03.05% (8,192B) 0x108AC0: main (in /home/cvuser/logic_detector/backend/model1/cpp_logs/code)
-        
+ 11      2,529,341          285,408          285,337            71            0
+ 12      2,544,002          195,640          195,584            56            0
+ 13      2,556,176          122,928          122,880            48            0
