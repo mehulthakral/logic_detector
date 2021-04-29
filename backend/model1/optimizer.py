@@ -84,7 +84,7 @@ class optimizer:
         self.func=func_tuple[0]
         self.func_str=func_tuple[1]
         self.lang=lang
-        self.time_limit=6
+        self.time_limit=1
         self.min_data=10
         self.high=10**6
         self.max_degree=9
@@ -228,6 +228,10 @@ class optimizer:
             return None,None
     
     def param_generator(self,num,t,config={}):
+        if config==inspect._empty:
+            config={}
+        if "generator" in config:
+            return param_gen.param_generator(t,config)()
         new_config=config.copy()
         default_config={"start":0,"end":11,"len_list":1,"upper_count":1,"lower_count":1,"digits_count":1,"special_count":1,"wspace_count":1}
         if "start" not in new_config:
@@ -252,7 +256,7 @@ class optimizer:
             return num
         else:
             #print(num,new_config)
-            new_config["len_list"]=num*new_config["len_list"]//6
+            new_config["len_list"]=num*new_config["len_list"]
             new_config["upper_count"]=num*new_config["upper_count"]//6
             new_config["lower_count"]=num*new_config["lower_count"]//6
             new_config["digits_count"]=num*new_config["digits_count"]//6

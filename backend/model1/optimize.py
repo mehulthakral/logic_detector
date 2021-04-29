@@ -29,6 +29,13 @@ def change_func_name(func_str, new_func_name, old_func_name):
     """
     return func_str.replace(old_func_name,new_func_name)
 
+def isIterable(f):
+    try:
+        iterator = iter(f)
+    except TypeError:
+        return False
+    else:
+        return True
 
 def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
 
@@ -36,6 +43,11 @@ def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
     if lang!="python":
         weights[1]=0
     """
+    if not isIterable(func_tuple):
+        f=func_tuple
+        func_str=inspect.getsource(f)  
+        func_tuple=(f,func_str) 
+        
     f,func_str=func_tuple
     func_label = predict.predict(f, lang)
     obj = dataset.json_dataset.read(lang)
@@ -76,6 +88,9 @@ def optimize(func_tuple, lang="python", weights=[1, 0, 0, 0]):
 
 
 def rank(f_arr, lang="python", weights=[1, 0, 0, 0], top_no=None):
+    for i in range(len(f_arr)):
+        if not isIterable(f_arr[i]):
+            f_arr[i]=[f_arr[i],inspect.getsource(f_arr[i])]
     ans = []
     obj = dataset.json_dataset.read(lang)
 
@@ -173,6 +188,9 @@ def rank_test(func_label, lang="python", weights=[1, 0, 0, 0]):
 
 
 def compare(f_arr, lang="python", weights=[1, 0, 0, 0]):
+    for i in range(len(f_arr)):
+        if not isIterable(f_arr[i]):
+            f_arr[i]=[f_arr[i],inspect.getsource(f_arr[i])]
     ans = []
     metric_values = []
     integral = optimizer.get_integral
