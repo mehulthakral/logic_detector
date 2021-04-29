@@ -65,12 +65,12 @@ Steps to Optimize Functions via Library function call:
 Steps to Rank Functions via Library function call:
 
 1. `import model1.optimize as op1`
-2. `m = op1.rank(function_arr,"python",[1,0,0,0])`
+2. `m = op1.rank(function_arr,"python",[1,0,0,0]) #where function_arr is an array of functions`
 
 Steps to Compare Functions via Library function call:
 
 1. `import model1.optimize as op1`
-2. `m = op1.rank(function_arr,"python",[1,0,0,0])`
+2. `m = op1.compare(function_arr,"python",[1,0,0,0]) #where function_arr is an array of functions`
 
 Note :
 
