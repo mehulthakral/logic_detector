@@ -1,4 +1,4 @@
-# logic detector and optimizer
+# Logic Detector and Optimizer
 An attempt to detect logic of the program and optimize the program 
 
 Steps to Install:
@@ -62,7 +62,7 @@ For example : In case of a function validating IP address string, the string mus
 `def IP_VAL(s:str={'upper_count':0,'lower_count':0, 'special_count':0, 'digits_count': 8}):
   pass`
   
-So here my making upper case, lower case and special character count as 0 and digits count as 8, you are specifying the precondition as string having 8 digits with no upper case, lower case and special characters.
+So here by making upper case, lower case and special character count as 0 and digits count as 8, you are specifying the precondition as string having 8 digits with no upper case, lower case and special characters.
 
 3. Default Precondition when no precondition is specified is
 
@@ -79,8 +79,9 @@ So when function signature is like this,
 
 5. generator specifies a custom random data generator for an argument. It is a callable which takes no arguments. It can also be a string which has a function inside. The function must not take any arguments.
 
-To determine accuracy label wise for dynamic model:
+To determine prediction/optimization accuracy label wise for dynamic model for Python and C++:
 
   1. `cd backend`
   2. Add the labels for which accuracy has to be determined in the labels list in dataset_server.py. Available labels can be reffered from mapping.json 
-  3. Run `python dataset_server.py` and the results can be seen in results.txt 
+  3. Run `python dataset_server.py` for Python and the results can be seen in results.txt
+  4. Run `python cdataset_server.py` for C++ and the results can be seen in results.txt 
