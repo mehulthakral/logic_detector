@@ -11,23 +11,40 @@ Steps to Install:
 Steps to Train/Learn new Functions via UI :
 
 1. Type `localhost:8090` in browser to access UI
-2. Select model
+2. Select language
 3. Type code/upload file. The Function name will be taken as label
 4. Click on Learn button
 
 Steps to Test/Predict Functions via UI:
 
 1. Type `localhost:8090` in browser to access UI
-2. Select model
+2. Select language and model
 3. Type code/upload file.
 4. Click on Test Button
 
 Steps to Optimize Functions via UI:
 
 1. Type `localhost:8090` in browser to access UI
-2. Select model
+2. Select language
 3. Type code/upload file.
-4. Click on Optimize Button
+4. Modify the weights if necessary by selecting "Add custom weights" checkbox
+5. Click on Optimize Button
+
+Steps to Rank Function with respect to functions in Dataset via UI:
+
+1. Type `localhost:8090` in browser to access UI
+2. Select language
+3. Type code/upload file.
+4. Modify the weights if necessary by selecting "Add custom weights" checkbox
+5. Click on Rank Button
+
+Steps to Compare 2 or more functions via UI:
+
+1. Type `localhost:8090` in browser to access UI
+2. Select language
+3. Type the functions
+4. Modify the weights if necessary by selecting "Add custom weights" checkbox
+5. Click on Compare Button
 
 Steps to Learn new Functions via Library function call:
 
@@ -44,6 +61,16 @@ Steps to Optimize Functions via Library function call:
 
 1. `import model1.optimize as op1`
 2. `m = op1.optimize(function)`
+
+Steps to Rank Functions via Library function call:
+
+1. `import model1.optimize as op1`
+2. `m = op1.rank(function_arr,"python",[1,0,0,0])`
+
+Steps to Compare Functions via Library function call:
+
+1. `import model1.optimize as op1`
+2. `m = op1.rank(function_arr,"python",[1,0,0,0])`
 
 Note :
 
@@ -85,3 +112,5 @@ To determine prediction/optimization accuracy label wise for dynamic model for P
   2. Add the labels for which accuracy has to be determined in the labels list in dataset_server.py. Available labels can be reffered from mapping.json 
   3. Run `python dataset_server.py` for Python and the results can be seen in results.txt
   4. Run `python cdataset_server.py` for C++ and the results can be seen in results.txt 
+  
+6. Optimization, Rank and Compare by default give weightage of 1 to time and 0 for the memory, cyclomatic complexity and halstead's difficulty. Can modifiy the weights to give more/less importance to various parameters
