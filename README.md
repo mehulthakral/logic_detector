@@ -106,11 +106,11 @@ So when function signature is like this,
 
 5. generator specifies a custom random data generator for an argument. It is a callable which takes no arguments. It can also be a string which has a function inside. The function must not take any arguments.
 
+6. Optimization, Rank and Compare by default give weightage of 1 to time and 0 for the memory, cyclomatic complexity and halstead's difficulty. Can modifiy the weights to give more/less importance to various parameters
+
 To determine prediction/optimization accuracy label wise for dynamic model for Python and C++:
 
   1. `cd backend`
   2. Add the labels for which accuracy has to be determined in the labels list in dataset_server.py. Available labels can be reffered from mapping.json 
   3. Run `python dataset_server.py` for Python and the results can be seen in results.txt
   4. Run `python cdataset_server.py` for C++ and the results can be seen in results.txt 
-  
-6. Optimization, Rank and Compare by default give weightage of 1 to time and 0 for the memory, cyclomatic complexity and halstead's difficulty. Can modifiy the weights to give more/less importance to various parameters
