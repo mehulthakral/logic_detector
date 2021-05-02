@@ -93,8 +93,8 @@ def Greedy(df, weights):
   n = (total-int(total/(7-cw)))/cw
   n=int(n)
   left = total-cw*n
-  if left<=3:
-    n-=1
+  #if left<=3:
+  n-=2
   #print(n,weights,total-cw*n)
   metrics=["Scaled_Time","Scaled_Space","Scaled_Cyclomatic","Scaled_Halstead"]
   wgt=list(zip(weights,metrics))

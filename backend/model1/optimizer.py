@@ -191,7 +191,7 @@ class optimizer:
 
     def find_metrics(self,data): #time and memory has been implemented
         def helper(data):
-            
+            """
             if self.lang=="python":
                 tracemalloc.start()
                 start = time.process_time_ns()
@@ -215,7 +215,7 @@ class optimizer:
             end = time.process_time_ns()
             tracemalloc.stop()
             return end-start, peak
-            """
+            
             
         helper = concurrent.process(timeout=self.time_limit)(helper)
         time_data = helper(data)

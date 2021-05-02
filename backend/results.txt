@@ -84,27 +84,28 @@ Accuracy of rotate 36/36 prgs: 100.0
 Overall Accuracy: 99.7164461247637
 
 --------- C++ Optimization Accuracy --------
-Accuracy of SORT 79/81 combs: 97.53086419753086
-Accuracy of CYCLE_GRAPH 65/81 combs: 80.24691358024691
-Accuracy of JUMP_GAME 80/81 combs: 98.76543209876543
-Accuracy of COIN_CHANGE 80/81 combs: 98.76543209876543
-Accuracy of SIEVE 30/81 combs: 37.03703703703704
+
+Accuracy of SORT 81/81 combs: 100.0
+Accuracy of CYCLE_GRAPH 69/81 combs: 85.18518518518519
+Accuracy of JUMP_GAME 79/81 combs: 97.53086419753086
+Accuracy of COIN_CHANGE 81/81 combs: 100.0
+Accuracy of SIEVE 34/81 combs: 41.9753086419753
 Accuracy of FIB 81/81 combs: 100.0
-Accuracy of INORDER_TRAVERSAL 75/81 combs: 92.5925925925926
+Accuracy of INORDER_TRAVERSAL 78/81 combs: 96.29629629629629
 Accuracy of PALIN 76/81 combs: 93.82716049382715
 Accuracy of UGLY_NUM 81/81 combs: 100.0
-Accuracy of VALID_BST 77/81 combs: 95.06172839506173
+Accuracy of VALID_BST 78/81 combs: 96.29629629629629
 Accuracy of LEVELORDER_TRAVERSAL 81/81 combs: 100.0
-Accuracy of HEIGHT_BT 70/81 combs: 86.41975308641975
+Accuracy of HEIGHT_BT 64/81 combs: 79.01234567901234
 Accuracy of MAX_PATH_SUM_BT 81/81 combs: 100.0
-Accuracy of SUDOKU 77/81 combs: 95.06172839506173
-Accuracy of ROTATE_ARRAY 33/81 combs: 40.74074074074074
+Accuracy of SUDOKU 80/81 combs: 98.76543209876543
+Accuracy of ROTATE_ARRAY 64/81 combs: 79.01234567901234
 Accuracy of POW 81/81 combs: 100.0
 Accuracy of SQRT 81/81 combs: 100.0
-Accuracy of COUNT_ISLANDS 21/81 combs: 25.925925925925924
+Accuracy of COUNT_ISLANDS 30/81 combs: 37.03703703703704
 Accuracy of CATALAN_NUM 81/81 combs: 100.0
-Accuracy of REVERSE_INTEGER 77/81 combs: 95.06172839506173
-Accuracy of REVERSE_LL 30/81 combs: 37.03703703703704
-Accuracy of ANAGRAM 79/81 combs: 97.53086419753086
-Accuracy of STR_SEARCH 40/81 combs: 49.382716049382715
-Overall Accuracy: 83.52120236178206
+Accuracy of REVERSE_INTEGER 81/81 combs: 100.0
+Accuracy of REVERSE_LL 34/81 combs: 41.9753086419753
+Accuracy of ANAGRAM 81/81 combs: 100.0
+Accuracy of STR_SEARCH 50/81 combs: 61.72839506172839
+Overall Accuracy: 87.3322597960279
