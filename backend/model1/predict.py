@@ -1,12 +1,16 @@
-from . import func
-from . import languages
-from . import model_knn as model 
-import sys
+try:
+    from . import predictor
+    from . import model_knn as model 
+except:
+    import predictor
+    import model_knn as model
 
 
-def predict(f,lang):
-    vec=languages.Vector(f,lang)
-    obj=model.Model()
-    return obj.predict(vec)
+def predict(f,lang="python"):
+
+    mobj=model.Model()
+    vobj=predictor.predictor(f)
+    vec =vobj.generate_vector()
+    return mobj.predict(vec)
 
 

@@ -1,4 +1,4 @@
-from nodes import ListNode
+from dataset_server import ListNode
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         l={}

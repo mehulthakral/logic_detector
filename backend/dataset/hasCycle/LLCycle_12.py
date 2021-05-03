@@ -1,11 +1,16 @@
-class Solution:
-	def hasCycle(self, head:ListNode)->bool:
-		if not head:
-			return False 
-		while head.next:
-			if head.val is None:
-				return True 
-			head.val = None 
-			head = head.next 
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
-		return False 
+class Solution:
+    def hasCycle(self, head:ListNode)->bool:
+        if not head:
+            return False 
+        while head.next:
+            if head.val is None:
+                return True 
+            head.val = None 
+            head = head.next 
+
+        return False 

@@ -1,7 +1,12 @@
 flask
 requests
 flask_cors
-tensorflow==2.3.0
+tensorflow
 sklearn
 numpy
-pandas==1.1.2
+pandas
+pebble
+cppyy
+radon
+lizard
+valgrind

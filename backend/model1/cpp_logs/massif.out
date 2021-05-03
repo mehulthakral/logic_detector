@@ -1,0 +1,167 @@
+desc: --massif-out-file=./model1/cpp_logs/massif.out
+cmd: ./model1/cpp_logs/code
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=2200652
+mem_heap_B=72704
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=2320718
+mem_heap_B=80896
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=2321275
+mem_heap_B=89088
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=2321832
+mem_heap_B=97280
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=2328927
+mem_heap_B=130048
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=2329490
+mem_heap_B=162816
+mem_heap_extra_B=48
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=2330053
+mem_heap_B=195584
+mem_heap_extra_B=56
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=2347445
+mem_heap_B=285337
+mem_heap_extra_B=71
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=2438750
+mem_heap_B=375090
+mem_heap_extra_B=86
+mem_stacks_B=0
+heap_tree=detailed
+n5: 375090 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 98304 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n3: 98304 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 32768 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 32768 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 32768 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 89753 0x498E43C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n0: 89753 0x1093E3: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 89753 0x498E5AC: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n0: 89753 0x1093C1: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 72704 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 24576 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n3: 24576 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 8192 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 8192 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+#-----------
+snapshot=10
+#-----------
+time=2529341
+mem_heap_B=375090
+mem_heap_extra_B=86
+mem_stacks_B=0
+heap_tree=peak
+n5: 375090 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 98304 0x4956BD6: std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n3: 98304 0x4952DA9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 32768 0x4904BFD: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 32768 0x4904C17: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 32768 0x4904C30: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 32768 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 89753 0x498E43C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n0: 89753 0x1093E3: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 89753 0x498E5AC: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n0: 89753 0x1093C1: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+ n1: 72704 0x48EFC19: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 24576 0x4954DD3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n3: 24576 0x4952BB9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x4904B47: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 8192 0x4904B68: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+   n1: 8192 0x4904B88: std::ios_base::sync_with_stdio(bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10935D: main (in /mnt/c/Users/dheem/Downloads/Capstone/Phase 2/logic_detector/backend/model1/cpp_logs/code)
+#-----------
+snapshot=11
+#-----------
+time=2529341
+mem_heap_B=285337
+mem_heap_extra_B=71
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=2544002
+mem_heap_B=195584
+mem_heap_extra_B=56
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=2556176
+mem_heap_B=122880
+mem_heap_extra_B=48
+mem_stacks_B=0
+heap_tree=empty

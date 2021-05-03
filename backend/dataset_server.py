@@ -5,7 +5,19 @@ import model1.predict as mp
 import json
 from typing import List
 import collections, itertools
-from nodes import ListNode, TreeNode
+import model1.dataset as g1
+import inspect
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 # def test():
 #     # print(os.listdir('.'))
@@ -50,6 +62,22 @@ class Adaptor:
     def __init__(self):
         pass
     
+    def fib(self,n:int)->int:
+        global f
+        return f(n)
+
+    def sortArray(self,l:list)->list:
+        global f
+        return f(l)
+
+    def isPalindrome(self,n:int)->bool:
+        global f
+        return f(n)
+
+    def myPow(self, x: float, n: int) -> float:
+        global f
+        return f(x,n)
+
     def makeList(self,l):
         head = None
         if(len(l)==0):
@@ -127,12 +155,50 @@ class Adaptor:
         return f(n)
 
     def hasCycle(self,l:List[int],p:int):
+        def makeListCycle(l,p):
+            head = None
+            reqp = None
+            if(len(l)==0):
+                return head
+            else:
+                head = temp = ListNode(l[0])
+                for i in range(1,len(l)):
+                    temp.next = ListNode(l[i])
+                    temp = temp.next
+                    if(i==p):
+                        reqp = temp
+            if(p==-1):
+                return head
+            if(reqp==None):
+                temp.next = head
+            else:
+                temp.next = reqp
+            return head
+
         global f
-        return f(self.makeListCycle(l,p))
+        return f(makeListCycle(l,p))
 
     def reverseList(self,l:List[int]):
+        def makeList(l):
+            head = None
+            if(len(l)==0):
+                return head
+            else:
+                head = temp = ListNode(l[0])
+                for i in range(1,len(l)):
+                    temp.next = ListNode(l[i])
+                    temp = temp.next
+            return head
+
+        def breakList(head):
+            l = []
+            while(head!=None):
+                l.append(head.val)
+                head = head.next
+            return l
+
         global f
-        return self.breakList(f(self.makeList(l)))
+        return breakList(f(makeList(l)))
 
     def isAnagram(self,a:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0}, b:str={"upper_count":0,"lower_count":10,"digits_count":0,"special_count":0}):
         global f
@@ -157,7 +223,7 @@ class Adaptor:
         f(l,k)
         return l
 
-    def strStr(self,a:str,b:str):
+    def strStr(self,a:str={"upper_count":0,"lower_count":5,"digits_count":0,"special_count":0}, b:str={"upper_count":0,"lower_count":5,"digits_count":0,"special_count":0}):
         global f
         return f(a,b)
 
@@ -201,24 +267,64 @@ def make_board():
         return [[int(myBoard[i][j]) for j in range(len(board))] for i in range(len(board))]
 
     def inorderTraversal(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+        
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
     def isValidBST(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
     def levelOrder(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
     def maxDepth(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
     def maxPathSum(self,l:List[int]):
+        def makeTree(i:int,lt:List[int]):
+            if(i>=len(lt)):
+                return None
+            root = TreeNode(lt[i])
+            root.left = makeTree(2*i+1,lt)
+            root.right = makeTree(2*i+2,lt)
+            return root
+
         global f
-        return f(self.makeTree(0,l))
+        return f(makeTree(0,l))
 
 def evaluate():
     # labels = os.listdir('dataset_working')
@@ -231,7 +337,7 @@ def evaluate():
 
     map = json.load(open("mapping.json"))
     # labels = list(map.keys())-['fib','sortArray','isPalindrome','myPow','canFinish','restoreIPAddresses',"canJump",'countPrimes',"coinChange","mySqrt","countPrimes","reverse","rotate","isUgly","numTrees","hasCycle","reverseList","numIslands","canFinish","strStr","isAnagram","inorderTraversal","isValidBST","levelOrder","maxDepth","maxPathSum","solveSudoku",'isAnagram']
-    labels = ["canFinish"]
+    labels = ["coinChange"]
     # print(map["canFinish"][0])
     total = 0
     correct = 0
@@ -253,7 +359,7 @@ def evaluate():
             global f
             f = getattr(s, label)
             res = mp.predict(getattr(a,label),"python")
-            oplabel = max(res,key=res.get)
+            oplabel = res
             if(oplabel==map[label][0]):
                 correct +=1
                 lcorrect += 1
@@ -264,5 +370,145 @@ def evaluate():
             f.write("Accuracy of "+ label + " " + str(lcorrect)+"/"+str(ltotal)+" prgs: " + str((float(lcorrect)/ltotal)*100)+"\n")
     
     return  (float(correct)/total)*100
+
+def add_prgs():
+
+    map = json.load(open("mapping.json"))
+    labels = ["solveSudoku"]
+    # done = ["sortArray","rotate","fib","isPalindrome","myPow","isUgly",countPrimes","mySqrt","reverse","numTrees","isAnagram","strStr","canJump","coinChange","numIslands","canFinish","hasCycle","reverseList","inorderTraversal","isValidBST","maxDepth","maxPathSum","levelOrder"]
+    for label in labels:
+        prgs = os.listdir('dataset'+'/'+label)
+        prgs.sort()
+        if '__pycache__' in prgs:
+            prgs.remove('__pycache__')
+
+        for prg in prgs:
+            fobj=open("random.json")
+            data=fobj.read()
+            obj=json.loads(data)
+            fobj.close()
+            if(prg in obj):
+                continue
+
+            print("Adding " + prg)
+            loader = importlib.machinery.SourceFileLoader('dataset'+'/'+label, 'dataset'+'/'+label+'/'+prg)
+            handle = loader.load_module('dataset'+'/'+label)
+            s = handle.Solution()
+            a = Adaptor()
+            global f
+            f = getattr(s, label)
+            # res = mp.predict(getattr(a,label),"python")
+
+            # func_source_str = inspect.getsource(getattr(a,label))
+            # fobj=open("random.json","w")
+            # func_source_str = func_source_str.replace("\n    ","\n")
+            # func_source_str = func_source_str.replace("    def","def",1)
+            # # print(func_source_str)
+            # data=json.dumps(func_source_str,indent="\t")
+            # fobj.write(data)
+            # fobj.close()  
+
+            fn_src = ""
+            # f = 0
+            for m in dir(s):
+                if ((not m.startswith('__')) and (inspect.isfunction(getattr(s, m)) or (inspect.ismethod(getattr(s, m))))):
+                    src = inspect.getsource(getattr(s, m))
+                    # src = src.replace("\n    ","\n")
+                    # src = src.replace("    def","def",1)
+                    # print(src)
+                    if(len(fn_src)==0):
+                        # fn_src += "\t"
+                        src = src.replace("    def","def",1)
+ 
+                    # fn_src += src.replace("\n","\n\t")
+                    fn_src += src
+                    fn_src += '\n'
+            # print(fn_src)
+            g1.json_dataset.add((map[label][0],getattr(a,label),label,fn_src),"python")
+            fobj=open("random.json","w")
+            obj.append(prg)
+            data=json.dumps(obj,indent="\t")
+            fobj.write(data)
+            fobj.close() 
+
+    print("Programs added successfully!")
+
+def optimize_evaluate():
+    fobj=open("model1/Labelled.json")
+    data=fobj.read()
+    obj=json.loads(data)
+    fobj.close()
+
+    #del obj["MIN"]
+    #del obj["MAX"]
+    # print(obj.keys())
+    overall_sum = 0.0
+    for key in obj.keys():
+        print(key, len(obj[key]))
+        total, correct = 0,0
+        for comb in obj[key]:
+            total += 1
+            found_value = [dictionary for dictionary in comb["Results"] if dictionary["Model_Rank"] == 1.0]
+            if(len(found_value)>0):
+                correct += 1
+        with open("results.txt",'a') as f:
+            f.write("Accuracy of "+ key + " " + str(correct)+"/"+str(total)+" combs: " + str((float(correct)/total)*100)+"\n")
+        overall_sum += (float(correct)/total)*100
+    with open("results.txt",'a') as f:
+            f.write("Overall Accuracy: " + str(float(overall_sum)/len(obj))+"\n")
+
+def test_performance():
+    # labels = os.listdir('dataset_working')
+    # # labels.remove(os.path.basename(__file__))
+    # labels.remove('isAnagram')
+    # labels.remove('myPow')
+    # labels.remove('isPalindrome')
+    # labels.remove('fib')
+    
+
+    map = json.load(open("mapping.json"))
+    accuracy = json.load(open("label_accuracy.json"))
+    labels = ["isAnagram","strStr"]
+    # done = ["sortArray","rotate","fib","isPalindrome","myPow","isUgly","countPrimes","mySqrt","reverse","numTrees","isAnagram","strStr","canJump","coinChange","numIslands","canFinish","hasCycle","reverseList","inorderTraversal","isValidBST","maxDepth","maxPathSum","levelOrder","solveSudoku"]
+    # print(map["canFinish"][0])
+    total = 0
+    correct = 0
+    for label in labels:
+        prgs = os.listdir('dataset'+'/'+label)
+        prgs.sort()
+        if '__pycache__' in prgs:
+            prgs.remove('__pycache__')
+        ltotal = 0
+        lcorrect = 0
+        frontend_label = map[label][0]
+        for prg in prgs:
+            total += 1
+            ltotal += 1
+            print("Evaluating " + prg)
+            loader = importlib.machinery.SourceFileLoader('dataset'+'/'+label, 'dataset'+'/'+label+'/'+prg)
+            handle = loader.load_module('dataset'+'/'+label)
+            s = handle.Solution()
+            a = Adaptor()
+            global f
+            f = getattr(s, label)
+            res = mp.predict(getattr(a,label),"python")
+            oplabel = res
+            if(oplabel==map[label][0]):
+                lcorrect += 1
+            print(res,label)
+            # print("Accuracy till "+ str(total)+" prgs: " + str((float(correct)/total)*100) )
+        val = (float(lcorrect)*(accuracy[frontend_label]/100)/ltotal)*100
+        correct += float(lcorrect)*(accuracy[frontend_label]/100)
+        with open("results.txt",'a') as f:
+            f.write("Accuracy of "+ frontend_label + " " + str(lcorrect)+"/"+str(ltotal)+" prgs: " + str(val)+"\n")
+    
+    with open("results.txt",'a') as f:
+            f.write("Overall Accuracy: " + str((float(correct)/total)*100)+"\n")
+
+    return  (float(correct)/total)*100
+
 # print(test())
-print(evaluate())
+# print(evaluate())
+# add_prgs()
+# optimize_evaluate()
+test_performance()

@@ -1,355 +1,664 @@
 <html>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script  src="require.js"></script>
-    <link rel="stylesheet" href="lib/codemirror.css">
-    <link rel="stylesheet" href="theme/material-palenight.css">
-    <link href="theme/styles.css" rel="stylesheet" />
-    
-    <style>
-        .CodeMirror {
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="require.js"></script>
+<link rel="stylesheet" href="lib/codemirror.css">
+<link rel="stylesheet" href="theme/material-palenight.css">
+<link rel="stylesheet" href="theme/code-prettify-theme.css">
+<link href="theme/styles.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+<style>
+    table td {
+        color: white;
+        font-size: small;
+        /* border: 1px solid white; */
+    }
+
+    table th {
+        color: white;
+        font-size: medium;
+        /* border: 1px solid white; */
+    }
+    table.scroll {
+    /* width: 100%; */ /* Optional */
+    /* border-collapse: collapse; */
+    border-spacing: 0;
+    border: 0.5px solid white;
+    overflow-wrap: normal;
+}
+table.scroll tbody,
+table.scroll thead { display: block; }
+
+thead tr th { 
+    height: 10%;
+    line-height: 10%;
+    /* text-align: left; */
+}
+.tb-scroll {
+  overflow-y: scroll;
+  height: 100px;
+}
+    .vertical-center {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .CodeMirror {
         font-family: monospace;
-        height: 600px;
+        height: 10%;
         color: black;
         direction: ltr;
-        width:800px;
-        font-size: x-large;
+        width: 50%;
+        font-size: small;
         border-radius: 8px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        }
-        .modal {
-            display:    none;
-            position:   fixed;
-            z-index:    1000;
-            top:        0;
-            left:       0;
-            height:     100%;
-            width:      100%;
-            background: rgba( 255, 255, 255, .8 ) 
-                        url('http://i.stack.imgur.com/FhHRx.gif') 
-                        50% 50% 
-                        no-repeat;
-        }
-
-        /* When the body has the loading class, we turn
-        the scrollbar off with overflow:hidden */
-        body.loading .modal {
-            overflow: hidden;   
-        }
-
-        /* Anytime the body has the loading class, our
-        modal element will be visible */
-        body.loading .modal {
-            display: block;
-        }
-        .d1{
-            float:left;
-        }
-        .d2{
-            overflow: hidden;
-        }
-    </style>
-    <title>
-        Code Semantics
-    </title>
-    <body>
-
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark justify-content-center" >
-            <!-- Navbar content -->
-            <a class="navbar-brand" href="#"><h2>Capstone Phase 1: Code Semantic Detection</h2></a>
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
-
-           
-               
-                
-        </nav>
-        <br><br>
-        <br><br>
         
-       <div><br><br></div>
-            <!-- <div class="row page-header justify-content-center align-items-center">
-                <h1>Code Semantics</h1>
-            </div> -->
-            <div class="row justify-content-center align-items-start" style="height:100vh">
-                <div class="col-6">
-                    
-                    <div class="form-group ">
-                        <!--<div id="code" style="height:600px; width: 900px;"  class="shadow-lg p-3 mb-5 bg-white rounded" contenteditable="true">int i=1;</div>-->
-                        <p><h4>Your Code Area</h4>
-                        </p>
-                        <textarea id="code"></textarea>
-                        <br>
-                    </div>
-                    
-                </div>
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.671) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+    }
+
+    .pop-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, .8)
+    }
+    /* When the body has the loading class, we turn
+        the scrollbar off with overflow:hidden */
+    body.loading .modal {
+        overflow: hidden;
+        display: block;
+    }
+
+    /* Anytime the body has the loading class, our
+        modal element will be visible */
+    /* body.loading .modal {
+        display: block;
+    } */
+
+    .d1 {
+        float: left;
+    }
+
+    .d2 {
+        overflow: hidden;
+    }
+
+    .modal-backdrop {
+        z-index: -1;
+    }
+
+    
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}   
+/* Style the form - display items horizontally */
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+/* Add some margins for each label */
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+/* Style the input fields */
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* Style the submit button */
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+</style>
+<title>
+    Code Semantics
+</title>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-dark fixed-top bg-dark justify-content-center">
+            <!-- Navbar content -->
+            <div style="align-content: center; color: rgb(221, 216, 208);">
+               <h4>Code Semantic Detection & Optimization</h4>
+               
+               
+            </div>
+            <!-- <a class="navbar-brand" href="#">
+                <h5>Capstone Phase 2: Code Semantic Detection and Optimisation</h5>
+            </a> -->
+        </nav>
+    </div>
+    <br><br>
+    <form class="form-inline justify-content-center" style="padding-left: 1%; margin: 1%; ">
+
+                
+        <div class="form-group" style="margin-left: 1%;">
+                <label for="lang">Model: </label>
+                <select id="model"  onchange="viewButton(this)" class="form-control btn btn-md">
+                    <option selected value="model1">Dynamic Analysis</option>
+                    <option value="model2">Static Analysis</option>
+                </select>
+        </div> 
+        <div class="form-group" style="margin-left: 1%;">
+            <label for="lang"> Language: </label>
+            <select id="lang"  class="form-control btn btn-md">
+                <option selected value="python">Python</option>
+                <option value="clike">C++</option>
+            </select>
+        </div>
+        
+        <div class = "form-group" style="margin-left: 1%;">  
+            <label for="lang"> Action: </label>
+            <select class="form-control btn btn-md dropdown-toggle " name='user-action' id='usr-action'>
+                <option value="Predict" selected>Predict</option>
+                <option value="Learn">Learn</option>
+                <option value="Optimize">Optimize</option>
+                <option value="Compare">Compare</option>
+                <option value="Rank">Rank</option>
+            </select>
+        </div>
+
+        <div class="checkbox form-group" style="margin-left: 1%;">
+            <label class="form-check-label" for="myCheck">
+                 
+                <input class="form-control form-check-input btn btn-lg" type="checkbox" value="" id="myCheck" onclick="openModal(1)">
+                Add custom weights
+            </label>
+            
+            
+        </div>
+        
+        <div class="form-group" style="margin-left: 1%;">
+            <button type="button" id="sendlogin" class="form-control btn btn-primary btn-md"  onclick="userAction()">GO</button>
+        </div>
+
+    </form>
+
+    <div class="row justify-content-center align-items-start"
+        style="margin-left: 2px;margin-right: 2px;height:80%; width:100%;">
+        <div class="col-6" style="height:100%; width:50%;">
+            <span class="align-text-top">
+                <h6>Input Code Area </h6>
+            </span>
+            <div class="form-group" style="height:80%; width:100%;">
+                <textarea id="code"></textarea>
                 <br>
-                <class class="col-4">
-                    <div class="form group col-md-8">
-                        <br>
-                        <br>
-                        <br>
-                        <h4>Please type the code in area provided on the left OR 
-                        <br><br>
-                        <input type="file" name="inputfile" id="inputfile">
-                        </h4>
-                        
-                        
-                        
+            </div>
+
+        </div>
+        <div class="col-6" style="height:100%; width:50%;">
+
+            
+                
+                    <span class="align-text-top">
+                        <h6>Output Area </h6>
+                    </span>
+                    <div id="output"
+                        style="height:82%; background-color: rgb(44, 41, 41);border-radius: 8px;color:white;overflow:scroll">
                     </div>
-                    <div class="form-group col-md-8">
-                        <br>
-                        <br>
-                        <br>
-                        <h4>Choose input code language: </h4>
-                        <select id="lang" class="form-control">
-                            
-                            <option selected value="python">Python</option>
-                            
-                            <!-- <option value="clike">C</option> -->
-                            
-                        </select>
-                        
-                        <br>
-                        <h4>Choose the model: </h4>
-                        <select id="model" onchange="view_button(this)" class="form-control">
-                            
-                            <option selected value="model1">Dynamic Analysis</option>
-                            <option value="model2">Static Analysis</option>
-                        </select>
-                        
-                        <br>
-                        <button type="button" id="sendlogin" class="btn btn-success btn-lg" onclick="test()">Predict</button>
-                        <button type="button" id="sendlogin1" class="btn btn-primary btn-lg" onclick="learn()">Learn</button>
+            </div>
+                
+                    <!-- Modal -->
+                    <div class="pop-modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                        aria-hidden="true">
+                        <div class="modal-dialog model-dialog-centered">
+                            <div class="modal-content">
+                                <!-- <div class="modal-header"> -->
+                                    <br><br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <!-- <h4 class="modal-title" id="myModalLabel" style="color:maroon">Weights for obtaining Composite Metric
+                                            </h4> -->
+                                <!-- </div> -->
+
+                                <div class="modal-body">
+                                    <b style="color: darkgrey">  Enter a value between 0 to 100 </b><br><br>
+                                    <form onsubmit="optimze()">
+                                        <label required>Weight for Time: *</label>
+                                        <input type="range" id="time_wt" name="time_wt" min="0" max="100" value=1
+                                            required onchange="updateTextInput(this.value,'time_val');">
+                                        <span id="time_val" class="textInput">1</span>
+                                        <br><br>
+                                        <label required>Weight for Memory: *</label>
+                                        <input type="range" id="mem_wt" name="mem_wt" min="0" max="100" value=0 required
+                                            onchange="updateTextInput(this.value,'mem_val');">
+                                        <span id="mem_val" class="textInput">0</span>
+                                        <br><br>
+                                        <label required>Weight for Cyclomatic: *</label>
+                                        <input type="range" id="cyclo_wt" name="cyclo_wt" min="0" max="100" value=0
+                                            required onchange="updateTextInput(this.value,'cyclo_val');">
+                                        <span id="cyclo_val" class="textInput">0</span>
+                                        <br><br>
+                                        <label required>Weight for Redundancy: *</label>
+                                        <input type="range" id="red_wt" name="red_wt" min="0" max="100" value=0 required
+                                            onchange="updateTextInput(this.value,'red_val');">
+                                        <span id="red_val" class="textInput">0</span>
+                                        <br><br>
+                                        <div class="">
+                                            <button type="button" class="btn btn-primary btn-md" onclick="getWeights()"
+                                                data-dismiss="modal">Close</button>
+                                            <!-- <input type="submit" class="btn btn-default" value="Save" name="modal_submit"> -->
+
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <br><br>
-                    <span class="align-text-top"><h4>The predicted label is : </h4></span>
-                    <div id="output" style="height:40vh">  </div>                   
-                    </class>
+
+                    <!-- Modal2 -->
+                    <div class="pop-modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2"
+                        aria-hidden="true">
+                        <div class="modal-dialog model-dialog-centered">
+                            <div class="modal-content">
+                                    <br><br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                   
+
+                                    <div class="modal-body"  id="modal2_id" style="width: 100%; height:100%;background-color: rgb(44, 41, 41);border-radius: 8px;color:white;overflow:scroll">
+
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="getWeights()"
+                                            data-dismiss="modal">Close</button>
+                                        <!-- <input type="submit" class="btn btn-default" value="Save" name="modal_submit"> -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        
-        <div class="text-center"><br>
-            <h4><b>Project Guide:</b> Prof. NS Kumar</h4>
-            <p>
-        
-            <h4><b>Team:</b></h4>
-            <table class="table table-borderless text-center">
-                <tr>
-                    <td>
-                        <h5>Bhavna Arora</h5>
-                    </td>
-                    <td>
-                        <h5> PES1201700062</h5>
-                    </td>
-                </tr><br>
-                <tr>
-                    <td>
-                        <h5>GR Dheemanth</h5>
-                    </td>
-                    <td>
-                        <h5> PES1201700229
-                    </td>
-                    </h5>
-                    </td>
-                </tr><br>
-                <tr>
-                    <td>
-                        <h5>Skanda V C</h5>
-                    </td>
-                    <td>
-                        <h5>PES1201700987</h5>
-                    </td>
-                </tr><br>
-                <tr>
-                    <td>
-                        <h5>Mehul Thakral </h5>
-                    </td>
-                    <td>
-                        <h5>PES1201701122</h5>
-                    </td>
-                </tr><br>
-            </table>
-        
-            </p>
         </div>
-        <br>
-        <br>
-        
-        <div class="modal"><!-- Place at bottom of page -->   </div>
-    </body>
-    <script>
-        $body = $("body");
+    </div>
 
-        $(document).on({
-            ajaxStart: function() { $body.addClass("loading");    },
-            ajaxStop: function() { $body.removeClass("loading"); }    
+    <div class="modal">
+        <!-- Place at bottom of page -->
+    </div>
+</body>
+<!--<h4>Choose input code language: </h4>-->
+<select id="lang" style="display: none;" class="form-control">
+    <option selected value="python">Python</option>
+</select>
+<script>
+    $body = $("body");
+
+    $(document).on({
+       
+        ajaxStart: function () { 
+            
+            $body.addClass("loading");    },
+        ajaxStop: function () { $body.removeClass("loading"); }
+    });
+
+    $(document).ready(function () {
+            if ($('.table tr').length >= 5) {
+                $('table').addClass('tb-scroll');
+            }
         });
-        
-        myTextarea=document.getElementById("code");
-        lang = document.getElementById("lang");
 
-        function getLanguageName()
-        {
-            var strUser = lang.options[lang.selectedIndex].value;
-            return strUser;
-        }
 
-        
+    myTextarea = document.getElementById("code");
+    lang = document.getElementById("lang");
 
-        function getModel()
-        {
-            var model = document.getElementById("model");
-            var strUser = model.options[model.selectedIndex].value;
-            return strUser;
-        }
+    function getLanguageName() {
+        var strUser = lang.options[lang.selectedIndex].value;
+        return strUser;
+    }
 
-        function loadEditor(l)
-        {
-            editor=null;
-            require(["lib/codemirror", "mode/"+l+"/"+l,"addon/edit/closebrackets"], function(CodeMirror) {
+    function getModel() {
+        var model = document.getElementById("model");
+        var strUser = model.options[model.selectedIndex].value;
+        return strUser;
+    }
 
-            editor=CodeMirror.fromTextArea(myTextarea, {
+    function loadEditor(l) {
+        editor = null;
+        require(["lib/codemirror", "mode/" + l + "/" + l, "addon/edit/closebrackets"], function (CodeMirror) {
+
+            editor = CodeMirror.fromTextArea(myTextarea, {
                 lineNumbers: true,
                 mode: l,
-                theme:"material-palenight",
-                autoCloseBrackets: true
-                });
+                theme: "material-palenight",
+                autoCloseBrackets: true,
+                indentUnit: 4,
+                indentWithTabs: true
             });
-
-        }
-
-        function view_button(obj)
-        {
-            var value = obj.value;  
-            var learn=document.getElementById("sendlogin1");
-            if(value=="model1")
-            {
-                learn.style="";
-            }
-            else 
-            {
-                learn.style="display: none;";
-            }
-        }
-
-        loadEditor(getLanguageName());
-
-        lang.addEventListener("change",function(){
-            var l=getLanguageName();
-            editor=loadEditor(l);
-        }
-        );
-
-        document.getElementById('inputfile') 
-            .addEventListener('change', function() { 
-              
-            var fr=new FileReader(); 
-            fr.onload=function(){ 
-                editor.setValue(fr.result); 
-            } 
-              
-            fr.readAsText(this.files[0]); 
+            editor.setSize("100%", "100%");
         });
 
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
+    }
+
+    function viewButton(obj) {
+        var value = obj.value;
+        var learn = document.getElementById("sendlogin1");
+        var optimize = document.getElementById("sendlogin2");
+        var rank = document.getElementById("sendlogin3");
+        var compare = document.getElementById("sendlogin4");
+
+        if (value == "model1") {
+            learn.style = "";
+            optimize.style = "";
+            rank.style = "";
+            compare.style = "";
+        }
+        else {
+            learn.style = "display: none;";
+            optimize.style = "display: none;";
+            rank.style = "display: none;";
+            compare.style = "display: none;";
+        }
+    }
+
+    loadEditor(getLanguageName());
+
+    lang.addEventListener("change", function () {
+        editor.CodeMirror.toTextArea();
+        var l = getLanguageName();
+        editor = loadEditor(l);
+    }
+    );
+
+    document.getElementById('inputfile')
+        .addEventListener('change', function () {
+
+            var fr = new FileReader();
+            fr.onload = function () {
+                editor.setValue(fr.result);
             }
-            return color;
+
+            fr.readAsText(this.files[0]);
+        });
+
+    function displayResult(obj, heading) {
+        var output = document.getElementById("output");
+        var str = "<br><div class='table-responsive '><table class='table tb-scroll' ><thead><tr><th >#</th><th >" + heading[0] + "</th><th >" + heading[1] + "</th></tr></thead><tbody>"
+        for (var i = 0; i < obj.length; i++) {
+            var num = i + 1;
+            if (obj[i].length == 2)
+                str += "<tr><th >" + num + "</th><td>" + obj[i][0] + "</td><td>" + obj[i][1] + "</td></tr>"
+            else
+                str += "<tr><th >" + obj[i][2] + "</th><td>" + obj[i][0] + "</td><td>" + obj[i][1] + "</td></tr>"
+        }
+        str += "</tbody></table></div>"
+        // console.log(str)
+        // output.insertAdjacentHTML("beforeend",str);
+        output.innerHTML = str;
+    }
+    function predict() {
+        $('#myModal1').modal("hide");
+        $('#myModal2').modal("hide");
+        var str = editor.getValue();
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel() }
+        $.ajax({
+            url: 'http://localhost:5000/predict',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                displayResult(data, ["Given Name", "Prediction"]);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
+            }
+        });
+    }
+
+    function learn() {
+        $('#myModal1').modal("hide");
+        $('#myModal2').modal("hide");
+        var str = editor.getValue();
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel() }
+        $.ajax({
+            url: 'http://localhost:5000/learn',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'><h1>Learnt the function successfully !</h1></div>"
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
+            }
+        });
+    }
+
+    function openModal(modal_num, data_key = 0) {
+        var checkBox = document.getElementById("myCheck");
+        if (modal_num == 1) {
+            if (checkBox.checked == true) {
+                $('#myModal1').modal("show");
+            }
+            else {
+                $('#myModal1').modal('hide');
+            }
+        }
+        else {
+            var data = JSON.parse(localStorage.getItem("functions"));
+            document.getElementById("modal2_id").innerHTML = "<br><pre class='prettyprint linenums' style='font-size:large;'>" + data[data_key] + "</pre><br>";
+            PR.prettyPrint();
+            $('#myModal2').modal("show");
         }
 
-        /*function displayResult(obj)
-        {
-            var output=document.getElementById("output");
-            output.innerHTML='<canvas id="bar-chart-horizontal" width="800" height="450"></canvas>';
-            var list=[]
-            for(var i in obj)
-            {
-                list.push([obj[i],i])
+    }
+
+    function updateTextInput(val, metric) {
+
+        let output = document.getElementById(metric);
+        output.innerText = val;
+    }
+
+    function getWeights() {
+        var checkBox = document.getElementById("myCheck");
+        res = []
+        if (checkBox.checked == true) {
+            let t = document.getElementById("time_wt").value;
+            let m = document.getElementById("mem_wt").value;
+            let c = document.getElementById("cyclo_wt").value;
+            let r = document.getElementById("red_wt").value;
+
+            res.push(parseInt(t));
+            res.push(parseInt(m));
+            res.push(parseInt(c));
+            res.push(parseInt(r));
+
+            console.log("weights:", res);
+            return res;
+        }
+        else {
+            return [1, 0, 0, 0] //return the default weights 
+        }
+    }
+
+    function optimize() {
+        $('#myModal1').modal("hide");
+        $('#myModal2').modal("hide");
+        var str = editor.getValue();
+        // $('#myModal').modal("toggle");
+        // var wt=getWeights();
+        // console.log(wt)
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel(), "weights": getWeights() }
+        $.ajax({
+            url: 'http://localhost:5000/optimize',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                var output = document.getElementById("output");
+                output.style.overflow = 'auto';
+                var str = "";
+                for (var i = 0; i < data.length; i++) {
+                    str += "<br><pre class='prettyprint linenums' style='font-size:large;'>" + data[i] + "</pre><br>"
+                }
+                output.innerHTML = str;
+                PR.prettyPrint();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
             }
-            list.sort();
-            list.reverse();
-            data_=[]
-            categories_=[]
-            colors_=[]
-            for(var i in list)
-            {
-                data_.push(list[i][0]);
-                categories_.push(list[i][1]);
-                colors_.push(getRandomColor())
-            }
-            
-            new Chart(document.getElementById("bar-chart-horizontal"), {
-                type: 'horizontalBar',
-                data: {
-                labels: categories_,
-                datasets: [
-                    {
-                    label: "Classes",
-                    backgroundColor: colors_,
-                    data: data_
+        });
+    }
+
+    function rank() {
+        
+        localStorage.clear();
+        var str = editor.getValue();
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel(), "weights": getWeights() }
+        $.ajax({
+            url: 'http://localhost:5000/rank',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                var new_data = {};
+
+                for (var i = 0; i < data.length; i++) {
+                    var num = i + 1;
+                    if (data[i].length == 3) {
+                        var index_ = "index" + data[i][2];
+                        new_data[index_] = data[i][1];
+                        data[i][1] = '<button type="button" class="btn btn-success btn-sm"  onclick="openModal(2,\'' + index_ + '\')">Show</button>';
                     }
-                ]
-                },
-                options: {
-                    legend: { display: false },
-                    title: {
-                        display: true,
-                        text: 'Predicted Classes and their probabilities'
+                    else {
+                        var index_ = "index" + num;
+                        new_data[index_] = data[i][1];
+                        data[i][1] = '<button type="button" class="btn btn-success btn-sm"  onclick="openModal(2,\'' + index_ + '\')">Show</button>';
                     }
                 }
-            });
-
-        }*/
-
-        function displayResult(obj)
-        {
-            var output=document.getElementById("output");
-            var list=[]
-            for(var i in obj)
-            {
-                list.push([obj[i],i])
+                localStorage.setItem("functions", JSON.stringify(new_data));
+                displayResult(data, ["Composite Metric Value", "Function"]);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
             }
-            output.innerHTML="<span class='align-middle'><center><h1>"+list[0][1]+"</h1></center></span>"
+        });
+    }
 
-        }
-        function test()
-        {
-            var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
-            $.ajax( {
-                  url:'http://localhost:5000/predict',
-                  data:JSON.stringify(obj),
-                  method:"POST",
-                  success:function(data) {
-                    displayResult(data);
-                  }
-            });
-        }
+    function compare() {
+        var str = editor.getValue();
+        obj = { "f": str, "lang": getLanguageName(), "model": getModel(), "weights": getWeights() }
+        $.ajax({
+            url: 'http://localhost:5000/compare',
+            data: JSON.stringify(obj),
+            method: "POST",
+            success: function (data) {
+                displayResult(data, ["Composite Metric Value", "Function Name"]);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var output = document.getElementById("output");
+                output.innerHTML = "<br><div class='vertical-center'>Syntax Error !</div>"
+            }
+        });
+    }
 
-        function learn()
-        {
-            var str=editor.getValue();
-            obj={"f":str,"lang":getLanguageName(),"model":getModel()}
-            $.ajax( {
-                  url:'http://localhost:5000/add',
-                  data:JSON.stringify(obj),
-                  method:"POST",
-                  success:function(data) {
-                    var output=document.getElementById("output");
-                    output.innerHTML="<span class='align-middle'><center><h1>Learnt the function successfully !</h1></center></span>"
-                  }
-            });
-        }
+    function userAction() {
+        $('#myModal1').modal("hide");
+        $('#myModal2').modal("hide");
+        var uaction = document.getElementById('usr-action');
+        var action = $("#usr-action").val();
+        console.log($("#usr-action").val(), typeof (action))
+        if (action === "Predict") { predict(); }
+        else if (action === "Learn") { learn(); }
+        else if (action === "Rank") { rank(); }
+        else if (action === "Optimize") { optimize(); }
+        else { compare(); }
+    }
 
-    </script>
-   
+</script>
+
 </html>
