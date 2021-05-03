@@ -181,3 +181,27 @@ def h(l:list):
 		if m>i:
 			m=i
 	return m
+
+# ---------- For Learn -------------
+
+# First add this:
+
+def removeDuplicates(nums:List[int])->int:
+    t=0
+    for i in range(1,len(nums)):
+        if nums[i] != nums[t]:
+            t+=1
+            nums[t] = nums[i]
+    return t+1
+
+# Then predict and optimize this:
+
+def test(nums: List[int]) -> int:
+	i=1
+	while i < len(nums):
+		j=i-1
+		if nums[j] == nums[i] :
+			nums.pop(i)
+		else:
+			i+=1    
+	return len(nums)

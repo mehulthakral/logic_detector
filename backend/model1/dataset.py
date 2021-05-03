@@ -83,7 +83,12 @@ class json_dataset:
             import optimizer
             import stat_metrics
             
-        name, f, label, fn_src = choice
+        name, f, label, fn_src = None, None, None, None
+
+        if(len(choice)==2):
+            name,f=choice
+        else:
+            name, f, label, fn_src = choice
 
         obj=json_dataset.read(lang)
         if name in obj:
